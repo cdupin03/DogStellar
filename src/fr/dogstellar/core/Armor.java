@@ -8,7 +8,7 @@ package fr.dogstellar.core;
  *
  * @author (G3)
  * @version (01)
- */
+ *///T'aime
 public class Armor extends Stuff
 {
     // the number of armor point given to the player. 
