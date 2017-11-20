@@ -135,12 +135,14 @@ public class AreaPlanet
             System.out.printf("Orientation : " + currentArea.getKey() + " / ");
             System.out.printf("Name : "+currentArea.getValue().getInformation().getName());
         }
+    }
     
     /**
      * Getter of the areas of the planet
      *
+     * @return areas is the hashmap of the areas around
      */
-    public HashMap<String,AreaPlanet> getAreasPlanet()
+    public HashMap<String,AreaPlanet> getAreaPlanet()
     {    
         return areas;
     }
