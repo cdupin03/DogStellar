@@ -6,30 +6,30 @@ import java.util.Map;
  * An area is a specific region in a planet (like a room in a home)
  *
  * @author G3
- * @version V03
+ * @version V04
  */
 public class AreaPlanet
 {
-    // instance variables - replace the example below with your own
-    private Info information;               //the name and the description store in a Info object 
-    private HashMap<String, AreaPlanet> areas;
-    private ArrayList<Element> elements;    //A list of elements
-    Syste
+    private Info information;                   //the name and the description store in a Info object 
+    private HashMap<String, AreaPlanet> areas;  //the hashmap allows to store the attached area to the current area
+    private ArrayList<Element> elements;        //the list of elements in the current area like quest, chest, pieces...
 
     /**
      * Constructor for objects of class AreaPlanet
-     * @ param name , descritption
+     *
+     * @param name is the name of the area
+     * @param descritption is the description of the area
      */
-    AreaPlanet(String newName, String newDescription)
+    public AreaPlanet(String newName, String newDescription)
     {
-        information = new Info(newName, newDescription);
-        areas = new HashMap<>();
+        information = new Info(newName, newDescription);    //call the constructor of the Info class
+        areas = new HashMap<>();                            //instanciation of the hashmap
     }
 
     /**
      * To get the area
      *
-     * @return    the area
+     * @return the area
      */
     public AreaPlanet getArea(String theOrientation)
     {
@@ -38,7 +38,7 @@ public class AreaPlanet
     }
  
     /**
-     * Define the north area. Every direction either leads to another area or is null (no exit there).
+     * Define every direction either leads to another area or leave it empty.
      *
      * @param  north, west, east, south are the different area around
      */
@@ -67,7 +67,7 @@ public class AreaPlanet
     /**
      * To add an element into the area.
      *
-     * @param  newElement is the element to add
+     * @param  newElement is the element to add to the list of element
      */
     public void addElement(Element newElement)
     {
@@ -75,17 +75,17 @@ public class AreaPlanet
     }
     
     /**
-     * To add an element into the area.
+     * To remove an element into the area.
      *
-     * @param  newElement is the element to add
+     * @param  theElement is the element to remove to the list of element
      */
-    public void removeElement(Element newElement)
+    public void removeElement(Element theElement)
     {
-        elements.remove(newElement);
+        elements.remove(theElement);
     }
     
     /**
-     * To show all elements in the area.
+     * To show all elements in the area. A listing of all element
      *
      */
     public void displayElement()
@@ -100,6 +100,7 @@ public class AreaPlanet
     /**
      * To get all the infos.
      *
+     * @return the object Info (his name and the description)
      */
     public Info getInformation()
     {
@@ -118,4 +119,5 @@ public class AreaPlanet
             System.out.printf("Name : "+currentArea.getValue().getInformation().getName());
         }
     }
+    
 }
