@@ -1,6 +1,6 @@
 package fr.dogstellar.core;
+
 import java.util.*;
-import java.util.HashMap;
 
 /**
  * An area is a specific region in a planet (like a room in a home)
@@ -24,6 +24,7 @@ public class AreaPlanet
     {
         information = new Info(newName, newDescription);    //call the constructor of the Info class
         areas = new HashMap<>();                            //instanciation of the hashmap
+        elements = new ArrayList<Element>();                //instanciation of the list of element
     }
 
     /**
@@ -75,6 +76,22 @@ public class AreaPlanet
     }
     
     /**
+     * To search an element into the area.
+     *
+     * @param  theElement is the element to search in the list of element
+     * @return if the element exist in the list
+     */
+    public boolean searchElement(Element theElement)
+    {
+        for(Element i : elements)
+        {
+            if(i.equals(theElement))
+                return true;
+        }
+        return false;
+    }
+    
+    /**
      * To remove an element into the area.
      *
      * @param  theElement is the element to remove to the list of element
@@ -119,8 +136,14 @@ public class AreaPlanet
             System.out.printf("Name : "+currentArea.getValue().getInformation().getName());
         }
     
- }
- public HashMap<String, AreaPlanet> getAreaPlanet(){
-	 return areas;
- } 
+    /**
+     * Getter of the areas of the planet
+     *
+     */
+    public HashMap<String,AreaPlanet> getAreasPlanet()
+    {    
+        return areas;
+    }
+    
+
 }
