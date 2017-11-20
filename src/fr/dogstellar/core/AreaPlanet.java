@@ -141,7 +141,7 @@ public class AreaPlanet
      *
      * @return areas is the hashmap of the areas around
      */
-    public HashMap<String,AreaPlanet> getAreasPlanet()
+    public HashMap<String,AreaPlanet> getAreaPlanet()
     {    
         return areas;
     }
