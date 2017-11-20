@@ -135,6 +135,7 @@ public class AreaPlanet
             System.out.printf("Orientation : " + currentArea.getKey() + " / ");
             System.out.printf("Name : "+currentArea.getValue().getInformation().getName());
         }
+    }
     
     /**
      * Getter of the areas of the planet
