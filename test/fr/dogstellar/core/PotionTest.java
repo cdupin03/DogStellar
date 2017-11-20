@@ -10,12 +10,12 @@ import org.junit.Test;
 /**
  * The test class PotionTest.
  *
- * @author  (your name)
- * @version (a version number or a date)
+ * @author  (G3)
+ * @version (01)
  */
 public class PotionTest
 {
-    Potion po;
+    Potion po; // A good potion
     /**
      * Default constructor for test class PotionTest
      */
@@ -25,7 +25,7 @@ public class PotionTest
 
     /**
      * Sets up the test fixture.
-     *
+     * Initialize the po potion.
      * Called before every test case method.
      */
     @Before
@@ -37,6 +37,7 @@ public class PotionTest
     
     /**
      * Method goodPotion
+     * Check if when a good potion is made, the right number of lifePoint is set to the object.
      * Potion constructor normal
      */
     @Test
@@ -48,6 +49,7 @@ public class PotionTest
     /**
      * Method shortPotion
      * Potion constructor with less than 1 lifePoint
+     * Check if when a potion is created with too few healthpoint, the healthpoint is analyze to 1.
      */
     @Test
     public void shortPotion ()
@@ -59,6 +61,7 @@ public class PotionTest
     /**
      * Method tooBigPotion
      * Test if a too big potion is initialized to 1 lp.
+     * Check if when a potion is created with too much healthpoint, the healthpoint is analyze to 1.
      */
     @Test
     public void tooBigPotion ()
