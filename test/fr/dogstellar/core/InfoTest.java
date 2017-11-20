@@ -54,7 +54,7 @@ public class InfoTest
     public void spaceBeforeName()
     {
         Info info1 = new Info(" Julien", "Test");
-        assertEquals("Julien", info1.getDescription());
+        assertEquals("Julien", info1.getName());
     }
 
     @Test
