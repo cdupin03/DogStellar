@@ -1,7 +1,6 @@
 package fr.dogstellar.core;
 
 import java.util.*;
-//import java.util.Map;
 
 /**
  * An area is a specific region in a planet (like a room in a home)
@@ -136,7 +135,6 @@ public class AreaPlanet
             System.out.printf("Orientation : " + currentArea.getKey() + " / ");
             System.out.printf("Name : "+currentArea.getValue().getInformation().getName());
         }
-    }
     
     /**
      * Getter of the areas of the planet
@@ -147,4 +145,5 @@ public class AreaPlanet
         return areas;
     }
     
+
 }
