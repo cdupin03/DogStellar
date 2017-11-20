@@ -1,5 +1,8 @@
 package fr.dogstellar.core;
 import java.util.*;
+import java.util.HashMap.*;
+
+import com.sun.corba.se.impl.oa.poa.ActiveObjectMap.Key;
 
 /**
  * Write a description of class Planet here.
@@ -34,27 +37,23 @@ public class Planet
     /**
      * To remove an area to the planet
      *
-     * @param  newArea is the area to add
+     * @param  newArea is the area to remove
      */
     public void removeArea()
     {
         this.areas = null;       
     }
     
-    // /**
-     // * Search an area name in the list
-     // *
+     /**
+     // * Search an area name in the list if
+      *  the area is present in the hashmap a boolean with the true value will be returned
+     // *@param name ( a string containing the name of the aera than the user is looking for)
      // */
-    // public int searchArea(String name)
-    // {
-        // int compteur = 0;
-        // for(AreaPlanet i : areas)
-        // {
-            // if(i.getInformation().getName().equals(name))
-                // compteur += 1;
-        // }
-        // return compteur;
-    // }
+     public boolean searchArea(String name)
+     {  
+    	 return (areas.getAreaPlanet().containsKey(name));
+    
+     }
     
 
 }

@@ -1,6 +1,6 @@
 package fr.dogstellar.core;
 import java.util.*;
-import java.util.Map;
+import java.util.HashMap;
 
 /**
  * An area is a specific region in a planet (like a room in a home)
@@ -111,13 +111,16 @@ public class AreaPlanet
      * Display the name and the orientation of all areas connected to the current area
      *
      */
-    public void getAreasConnected()
+    public void displayAreasConnected()
     {    
         for (HashMap.Entry<String, AreaPlanet> currentArea: areas.entrySet())
         {
             System.out.printf("Orientation : " + currentArea.getKey() + " / ");
             System.out.printf("Name : "+currentArea.getValue().getInformation().getName());
         }
-    }
     
+ }
+ public HashMap<String, AreaPlanet> getAreaPlanet(){
+	 return areas;
+ } 
 }
