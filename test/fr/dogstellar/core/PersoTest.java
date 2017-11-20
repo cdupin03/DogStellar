@@ -1,17 +1,13 @@
 package fr.dogstellar.core;
 
-
-
 import static org.junit.Assert.*;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
  * The test class PersoTest.
  *
- * @author  (your name)
- * @version (a version number or a date)
+ * @author  GP3
+ * @version 20/11/2017
  */
 public class PersoTest
 {
@@ -23,43 +19,34 @@ public class PersoTest
     public PersoTest()
     {
     }
-
+    
     /**
-     * Sets up the test fixture.
-     *
-     * Called before every test case method.
+     * We test the creation of a new perso with good parameters (a name and no negative lifePoint and attackPoint)
      */
-    @Before
-    public void setUp()
-    {
-    }
-
-    /**
-     * Tears down the test fixture.
-     *
-     * Called after every test case method.
-     */
-    @After
-    public void tearDown()
-    {
-    }
-
     @Test
     public void normalPerso()
     {
-        perso1 = new Perso("Perso1",0,0);
+        perso1 = new Perso("Perso1",10,10);
         assertEquals("Perso1", perso1.getNamePerso());
         assertEquals(10, perso1.getLifePoint());
         assertEquals(10, perso1.getAttackPoint());
     }
     
+    /**
+     * In this test, there is no name for the Perso
+     * The default name is Perso1
+     */
     @Test
     public void noNamePerso()
     {
         mauvais = new Perso("", 10 , 10);
         assertEquals("Perso1", mauvais.getNamePerso());
     }
-    
+     /**
+      * Test with a negative lifePoint
+      * When we want to create a Perso and there is a negative number for lifePoint, the number
+      * is initialized with 10 lifePoint
+      */
     @Test
     public void noNegativeLifePoint()
     {
@@ -67,6 +54,11 @@ public class PersoTest
         assertEquals(10, mauvais.getLifePoint());
     }
     
+    /**
+     * Test with a negativeAttackPoint
+     * When we want to create a Perso and there is a negative number for attackPoint, the number
+     * is initialized with 10 attackPoint
+     */
     @Test
     public void noNegativeAttackPoint()
     {
@@ -74,6 +66,10 @@ public class PersoTest
         assertEquals(10, mauvais.getAttackPoint());
     }
     
+    /**
+     * If we want to decrease lifePoint and the result in under 0, the variable is automatically
+     * egals to 0.
+     */
     @Test
     public void decreaseInNegativeLifePoint()
     {
@@ -82,6 +78,10 @@ public class PersoTest
         assertEquals(0, perso1.getLifePoint());
     }
     
+    /**
+     * If we want to decrease attackPoint and the result in under 0, the variable is automatically
+     * egals to 0.
+     */
     @Test
     public void decreaseInNegativeAttackPoint()
     {
