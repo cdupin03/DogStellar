@@ -60,7 +60,7 @@ public class PlayerTest
         assertEquals(false, player1.isInList(potion1));
     }
     
-    /**
+    /** 
      * We test if we delete correctly 1 stuff and not 2 stuff.
      * So 2 potion1 are added and only 1 potion1 is delete.
      * So, at the end of test, 1 potion1 is in list.
