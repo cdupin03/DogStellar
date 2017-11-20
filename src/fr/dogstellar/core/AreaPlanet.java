@@ -142,7 +142,7 @@ public class AreaPlanet
      * Getter of the areas of the planet
      *
      */
-    public HashMap<String,AreaPlanet> getAreasPlanet()
+    public HashMap<String,AreaPlanet> getAreaPlanet()
     {    
         return areas;
     }
