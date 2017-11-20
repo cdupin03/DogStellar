@@ -2,12 +2,11 @@ package fr.dogstellar.core;
 import java.util.*;
 
 /**
- * This class gives the characteristics of the player.
- * This class is an inheritance of the Perso class 
- * which we added a inventory that is a list of Stuffs.
+ * This class gives the characteristics of the player (name lifePoint, attackPoint and inventory).
+ * This class is an inheritance of the Perso class which we added a inventory that is a list of Stuffs.
  *
  * @author Gp3
- * @version V0
+ * @version 20/11/2017
  */
 public class Player extends Perso
 {
@@ -15,6 +14,8 @@ public class Player extends Perso
     
     /**
      * Constructor for objects of class Player
+     * When a player is creating, a inventory (list of stuffs) is create and is empty
+     * @param nameP corresponds to the name of the player
      */
     public Player(String nameP)
     {
@@ -23,12 +24,11 @@ public class Player extends Perso
     }
 
     /**
-     * this method allows us to add a stuff in the list of stuff
-     * of the player when he wins a stuff
+     * this method allows us to add a stuff in the list of stuff (the inventory) of the player when he wins a stuff
+     * we can add several same stuff
      *
-     * @param  nameStuff is the name of the stuff
-     * @param numberStuffAdd is a number of stuff that we add to the
-     * inventary when the player win it
+     * @param  Stuff is the name of the stuff
+     * @param numberStuffAdd is a number of stuff that we add to the inventory when the player win it
      */
     public void addStuff(Stuff stuff, int numberStuffAdd)
     {
@@ -38,12 +38,10 @@ public class Player extends Perso
     }
     
     /**
-     * this method allows us to delete a stuff in the list of stuff
-     * of the player when he lost a stuff
+     * this method allows us to delete a stuff in the list of stuff (inventory) of the player when he lost a stuff
+     * we can delete only one Stuff with this method
      *
-     * @param  nameStuff is the name of the stuff
-     * @param numberStuffDelete is a number of stuff that we add to the
-     * inventary when the player win it
+     * @param  stuff is the name of the stuff
      */
     public void deleteStuff(Stuff stuff)
     {   
@@ -56,7 +54,7 @@ public class Player extends Perso
     }
     
     /**
-     * This method returns the list of equipment of the character.
+     * This method returns the list of stuff(inventory) of the user.
      *
      */
     public ArrayList<Stuff> getStuff()
@@ -65,8 +63,7 @@ public class Player extends Perso
     }
     
     /**
-     * This method display the list of equipment of the character.
-     * // Cette methode est bidon (c'est pour le moment pout les tests)
+     * This method allows us to know if a stuff is in inventory or not.
      */
     public boolean isInList(Stuff stuff)
     {
