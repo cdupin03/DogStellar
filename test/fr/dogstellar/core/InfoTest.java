@@ -11,7 +11,7 @@ import org.junit.Test;
  * The test class InfoTest.
  *
  * @author  G3
- * @version V01
+ * @version V02
  */
 public class InfoTest
 {
