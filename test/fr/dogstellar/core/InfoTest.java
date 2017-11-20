@@ -33,8 +33,8 @@ public class InfoTest
     @Before
     public void setUp()
     {
-        badInfo = new Info("Ma", "Goo");
-        goodInfo = new Info("Mark", "Good Info");        
+        badInfo = new Info("Ma", "Goo");			//a bad Info object
+        goodInfo = new Info("Mark", "Good Info");   //a good Info object   
     }
 
     /**
