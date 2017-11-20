@@ -103,15 +103,8 @@ public class InfoTest
      */
     public void wrongGetters()
     {
-        assertEquals("Name", badInfo.getName());
-        assertEquals("Description", badInfo.getDescription());
+        assertEquals("No Name", badInfo.getName());
+        assertEquals("No Description", badInfo.getDescription());
     }
+    
 }
-
-
-
-
-
-
-
-
