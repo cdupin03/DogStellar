@@ -20,7 +20,7 @@ public class AreaPlanet
      * Constructor for objects of class AreaPlanet
      * @ param name , descritption
      */
-    public AreaPlanet(String newName, String newDescription)
+    AreaPlanet(String newName, String newDescription)
     {
         information = new Info(newName, newDescription);
         areas = new HashMap<>();
