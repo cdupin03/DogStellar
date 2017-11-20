@@ -33,8 +33,8 @@ public class InfoTest
     @Before
     public void setUp()
     {
-        badInfo = new Info("Ma", "Goo");
-        goodInfo = new Info("Mark", "Good Info");        
+        badInfo = new Info("Ma", "Goo");			//a bad Info object
+        goodInfo = new Info("Mark", "Good Info");   //a good Info object   
     }
 
     /**
@@ -54,7 +54,7 @@ public class InfoTest
     public void spaceBeforeName()
     {
         Info info1 = new Info(" Julien", "Test");
-        assertEquals("Julien", info1.getDescription());
+        assertEquals("Julien", info1.getName());
     }
 
     @Test

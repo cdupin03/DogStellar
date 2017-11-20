@@ -4,7 +4,7 @@ package fr.dogstellar;
 import fr.dogstellar.core.*;
 
 /**
- * @author clarisse
+ * @author GP3
  *
  */
 public class Main {
