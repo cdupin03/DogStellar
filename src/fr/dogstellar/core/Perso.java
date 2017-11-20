@@ -20,6 +20,7 @@ public class Perso
     private String namePerso;
     protected int lifePoint;
     protected int attackPoint;
+    
 
     /**
      * Constructor of the Perso class

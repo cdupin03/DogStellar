@@ -13,6 +13,7 @@ public class PersoTest
 {
     Perso perso1;
     Perso mauvais;
+    
     /**
      * Default constructor for test class PersoTest
      */
