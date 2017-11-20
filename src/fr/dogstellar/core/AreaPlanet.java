@@ -14,6 +14,7 @@ public class AreaPlanet
     private Info information;               //the name and the description store in a Info object 
     private HashMap<String, AreaPlanet> areas;
     private ArrayList<Element> elements;    //A list of elements
+    Syste
 
     /**
      * Constructor for objects of class AreaPlanet

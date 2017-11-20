@@ -1,7 +1,4 @@
-/**
- * 
- */
-package fr.dogstellar;
+package src.fr.dogstellar;
 
 import fr.dogstellar.core.Player;
 
@@ -16,7 +13,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 
-		
+		System.out.println("coucou");
 
 	}
 
