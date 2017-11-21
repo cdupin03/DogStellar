@@ -1,7 +1,5 @@
 package fr.dogstellar.core;
  
-
-
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
@@ -11,7 +9,7 @@ import org.junit.Test;
  * The test class AreaPlanetTest.
  *
  * @author  G3
- * @version V03
+ * @version V01
  */
 public class AreaPlanetTest
 {
@@ -82,6 +80,8 @@ public class AreaPlanetTest
         areaPlan1.addAreaPlanet(areaPlan3, "WEST");
         areaPlan1.addAreaPlanet(areaPlan4, "EAST");
         areaPlan1.addAreaPlanet(areaPlan5, "SOUTH");
+        assertEquals("Zone1", areaPlan2.getNameArea());
+        assertEquals("Test2", areaPlan2.getDescriptionArea());
         assertEquals(areaPlan4, areaPlan1.getArea("EAST"));
         assertEquals(areaPlan2, areaPlan1.getArea("NORTH"));
         assertEquals(areaPlan5, areaPlan1.getArea("SOUTH"));
