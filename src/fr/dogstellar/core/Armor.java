@@ -3,8 +3,12 @@ package fr.dogstellar.core;
 /**
  *  A piece of armor for a player. 
  *  The armor point should be superior to 1 and inferior to 25.
- *  The player loose armor point before lifePoint.
+ *  If the player take damage and wear an armor, then the armor take the incoming damage 
+ *  and loose armorPoint equivalent to the damage taken. 
+ *  The armor behave as a upgrade of the lifepoint of the player.
+ *  
  *  If the armor drop to 0, the player loose the armor.
+ *  
  *
  * @author (G3)
  * @version (01)
@@ -12,12 +16,14 @@ package fr.dogstellar.core;
 public class Armor extends Stuff
 {
     // the number of armor point given to the player. 
-    //It should be inferior to 1 and superior to 15.
+    //It should be inferior to 25 and superior to 1.
     int armorPoint;
     /**
-     * Constructor for objects of class Weapon
-     * The constructor of the Weapon.  A piece of armor for a player.
+     * Constructor for objects of class Armor
+     * The constructor of the  Armor.  A piece of armor for a player.
      * The armor point should be superior to 1 and inferior to 25.
+     * If an armor is created with armorPoint outside the range (1,25) then the armor is 
+     * created with 1 armorPoint
      * The player loose armor point before lifePoint.
      * If the armor drop to 0, the player loose the armor.
      * 
@@ -32,11 +38,12 @@ public class Armor extends Stuff
     }
 
     /**
-     * Method setDamage
-     * set the armor point to point value. 
-     * If point has not a good value set the armor of 1.
-     *
-     * @param dam The damage
+     * Method setArmorPoint
+     * set the armorPoint value. 
+     * If the armorPoint is outside the range (1,25) then the armor is 
+     * then the armorPoint is set to one. 
+     * 
+     * @param arm The armor point
      */
     private void setArmorPoint (int arm)
     {
@@ -51,7 +58,7 @@ public class Armor extends Stuff
     }
     
     /**
-     * Method getDamage
+     * Method getArmorPoint
      * get the remaining armor  
      *
      * @return the remaining armor  

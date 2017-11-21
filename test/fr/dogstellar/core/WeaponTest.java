@@ -14,40 +14,21 @@ import org.junit.Test;
  * @version (01)
  */
 public class WeaponTest
-{Weapon weapon1;
+{
     /**
      * Default constructor for test class WeaponTest
+     * Useless
      */
     public WeaponTest()
     {
        
     }
 
-    /**
-     * Sets up the test fixture.
-     *
-     * Called before every test case method.
-     */
-    @Before
-    public void setUp()
-    {
-        Weapon weapon1 = new Weapon("","",7); 
-    }
-
-    /**
-     * Tears down the test fixture.
-     *
-     * Called after every test case method.
-     */
-    @After
-    public void tearDown()
-    {
-    }
-
  
     /**
      * Create a Weapon with value and test if the values enter are right
-     * The test success if the information enter match
+     * The test success if the information enter match.
+     * It tests if when a "normal" weapon is made, a normal behaviour happens.
      *
      */
     @Test
@@ -60,9 +41,9 @@ public class WeaponTest
     }
     
     /**
-     * Create a Weapon with value and test if the values of damage can be set under 1
-       * 
-       * The test success if the damage value is 1
+     * Create a Weapon with a too short damage point.
+     * 
+     * The test success if the damage value is 1
      *
      */
     @Test
@@ -73,7 +54,7 @@ public class WeaponTest
     }
     
       /**
-       * Create a Weapon with value and test if the values of damage can be set above 16
+       * Create a Weapon with a too big value.
        * 
        * The test success if the damage value is 1
        *

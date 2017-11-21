@@ -1,7 +1,6 @@
 package fr.dogstellar.core;
 
 import java.util.*;
-//import java.util.Map;
 
 /**
  * An area is a specific region in a planet (like a room in a home)
@@ -141,10 +140,12 @@ public class AreaPlanet
     /**
      * Getter of the areas of the planet
      *
+     * @return areas is the hashmap of the areas around
      */
     public HashMap<String,AreaPlanet> getAreaPlanet()
     {    
         return areas;
     }
     
+
 }
