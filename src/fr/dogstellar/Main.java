@@ -2,6 +2,7 @@ package fr.dogstellar;
 
 //import fr.dogstellar.core.Player;
 import fr.dogstellar.core.*;
+import fr.dogstellar.view.*;
 import fr.dogstellar.game.*;
 
 /**
@@ -15,6 +16,8 @@ public class Main {
 	 */
 	
 	public static void main(String[] args) {
+		
+		Window wind = new Window();
 //new player
 		Player player1 = new Player("toto");
 		//player1.displayInfoPerso();
