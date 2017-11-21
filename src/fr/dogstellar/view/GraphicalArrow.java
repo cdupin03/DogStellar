@@ -25,7 +25,7 @@ public class GraphicalArrow  extends JButton{
 	 * then, the direction taken is NORTH by default.
 	 */
 	
-	private String picturePath;
+	private String picturePath;// The path of the picture.
 	
 	public GraphicalArrow (String direction) {
 		super();
@@ -39,7 +39,6 @@ public class GraphicalArrow  extends JButton{
 		picturePath = picturePath + direction;
 		System.out.println(picturePath);
 		this.setIcon(new ImageIcon(picturePath + ".png"));
-		this.setPressedIcon(new ImageIcon(picturePath + "Click.png"));
 		this.setRolloverIcon(new ImageIcon (picturePath + "Roll.png"));
 		this.setBorder(BorderFactory.createEmptyBorder());
 		this.setContentAreaFilled(false);
