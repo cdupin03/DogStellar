@@ -15,8 +15,8 @@ public abstract class Stuff
     
     /**
      * Stuff Constructor
-     * Initialize the name and the description of the stuff
-
+     * Initialize the name and the description of the stuff.
+     * The name and description are controlled by info class
      *
      * @param name the name
      * @param description the description

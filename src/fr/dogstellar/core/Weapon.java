@@ -16,6 +16,8 @@ public class Weapon extends Stuff
      * Constructor for objects of class Weapon
      * The constructor of the Weapon. The int damage is given as parameter.
      * It cannot be changed after.
+     * The name and the description are managed by the info class.
+     * If the damage is inferior to 1 or superior to 15, initialize it to 1.
      * 
      * @param name The name of the object
      * @param description The description of the object 
@@ -29,7 +31,8 @@ public class Weapon extends Stuff
 
     /**
      * Method setDamage
-     * set the damage of the weapon if the dam is not good,
+     * set the damage dam of the weapon.
+     * If the damage is inferior to 1 or superior to 15, initialize it to 1.
      * set the damage to 1.
 
      *

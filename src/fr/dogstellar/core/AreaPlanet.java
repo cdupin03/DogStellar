@@ -13,6 +13,7 @@ public class AreaPlanet
     private Info information;                   //the name and the description store in a Info object 
     private HashMap<String, AreaPlanet> areas;  //the hashmap allows to store the attached area to the current area
     private ArrayList<Element> elements;        //the list of elements in the current area like quest, chest, pieces...
+    private ArrayList<Perso> persos;            //the list of persos in the current area (player or monsters)
 
     /**
      * Constructor for objects of class AreaPlanet
@@ -25,6 +26,7 @@ public class AreaPlanet
         information = new Info(newName, newDescription);    //call the constructor of the Info class
         areas = new HashMap<>();                            //instanciation of the hashmap
         elements = new ArrayList<Element>();                //instanciation of the list of element
+        persos = new ArrayList<Perso>();                    //instanciation of the list of persos
     }
 
     /**
@@ -125,6 +127,26 @@ public class AreaPlanet
     }
     
     /**
+     * To get the name of the Area.
+     *
+     * @return the name of the Area
+     */
+    public String getNameArea()
+    {
+        return this.information.getName();
+    }
+    
+    /**
+     * To get the name of the Area.
+     *
+     * @return the name of the Area
+     */
+    public String getDescriptionArea()
+    {
+        return this.information.getDescription();
+    }
+    
+    /**
      * Display the name and the orientation of all areas connected to the current area
      *
      */
@@ -135,15 +157,68 @@ public class AreaPlanet
             System.out.printf("Orientation : " + currentArea.getKey() + " / ");
             System.out.printf("Name : "+currentArea.getValue().getInformation().getName());
         }
+    }
     
     /**
      * Getter of the areas of the planet
      *
+     * @return areas is the hashmap of the areas around
      */
-    public HashMap<String,AreaPlanet> getAreasPlanet()
+    public HashMap<String,AreaPlanet> getAreaPlanet()
     {    
         return areas;
     }
     
+    /**
+     * Getter of the areas of the planet
+     *
+     * @return areas is the hashmap of the areas around
+     */
+    public boolean searchAreaPlanet(String theName)
+    {    
+        for(Map.Entry<String, AreaPlanet> i : areas.entrySet())
+        {
+            AreaPlanet value = i.getValue();
+            if(value.getNameArea().equals(theName))
+                return true;
+        }
+        return false;
+    }
+    
+    /**
+     * To add a perso into the area.
+     *
+     * @param  newPerso is the perso to add to the list of persos
+     */
+    public void addPerso(Perso newPerso)
+    {
+        persos.add(newPerso);
+    }
+    
+    /**
+     * To search an element into the area.
+     *
+     * @param  thePerso is the perso to search in the list of persos
+     * @return true if the perso exist in the list
+     */
+    public boolean searchPerso(Perso thePerso)
+    {
+        for(Perso i : persos)
+        {
+            if(i.equals(thePerso))
+                return true;
+        }
+        return false;
+    }
+    
+    /**
+     * To remove an element into the area.
+     *
+     * @param thePerso is the perso to remove to the list of persos
+     */
+    public void removePerso(Perso thePerso)
+    {
+        persos.remove(thePerso);
+    }
 
 }
