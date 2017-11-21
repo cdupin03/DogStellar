@@ -6,13 +6,14 @@ import java.util.*;
  * An area is a specific region in a planet (like a room in a home)
  *
  * @author G3
- * @version V04
+ * @version V05
  */
 public class AreaPlanet
 {
     private Info information;                   //the name and the description store in a Info object 
     private HashMap<String, AreaPlanet> areas;  //the hashmap allows to store the attached area to the current area
     private ArrayList<Element> elements;        //the list of elements in the current area like quest, chest, pieces...
+    private ArrayList<Perso> persos;       		//the list of persos in the current area (player or monsters)
 
     /**
      * Constructor for objects of class AreaPlanet
@@ -25,6 +26,7 @@ public class AreaPlanet
         information = new Info(newName, newDescription);    //call the constructor of the Info class
         areas = new HashMap<>();                            //instanciation of the hashmap
         elements = new ArrayList<Element>();                //instanciation of the list of element
+        persos = new ArrayList<Perso>();                	//instanciation of the list of persos
     }
 
     /**
@@ -147,5 +149,40 @@ public class AreaPlanet
         return areas;
     }
     
+    /**
+     * To add a perso into the area.
+     *
+     * @param  newPerso is the perso to add to the list of persos
+     */
+    public void addPerso(Perso newPerso)
+    {
+        persos.add(newPerso);
+    }
+    
+    /**
+     * To search an element into the area.
+     *
+     * @param  thePerso is the perso to search in the list of persos
+     * @return true if the perso exist in the list
+     */
+    public boolean searchPerso(Perso thePerso)
+    {
+        for(Perso i : persos)
+        {
+            if(i.equals(thePerso))
+                return true;
+        }
+        return false;
+    }
+    
+    /**
+     * To remove an element into the area.
+     *
+     * @param thePerso is the perso to remove to the list of persos
+     */
+    public void removePerso(Perso thePerso)
+    {
+        persos.remove(thePerso);
+    }
 
 }
