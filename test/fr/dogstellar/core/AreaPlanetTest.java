@@ -1,7 +1,5 @@
 package fr.dogstellar.core;
  
-
-
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
@@ -22,6 +20,8 @@ public class AreaPlanetTest
     AreaPlanet areaPlan5;
     Element elem1;
     Element elem2;
+    Perso perso1;
+    Perso perso2;
     
     /**
      * Default constructor for test class AreaPlanetTest
@@ -46,6 +46,8 @@ public class AreaPlanetTest
         elem1 = new Element("TheElement1", "MyElementOne");
         elem2 = new Element("TheElement2", "MyElementTwo");
         areaPlan1.addElement(elem1);
+        perso1 = new Perso("Player1",10, 10);
+        perso2 = new Perso("Player2",10, 10);
     }
 
     /**
@@ -78,6 +80,8 @@ public class AreaPlanetTest
         areaPlan1.addAreaPlanet(areaPlan3, "WEST");
         areaPlan1.addAreaPlanet(areaPlan4, "EAST");
         areaPlan1.addAreaPlanet(areaPlan5, "SOUTH");
+        assertEquals("Zone1", areaPlan2.getNameArea());
+        assertEquals("Test2", areaPlan2.getDescriptionArea());
         assertEquals(areaPlan4, areaPlan1.getArea("EAST"));
         assertEquals(areaPlan2, areaPlan1.getArea("NORTH"));
         assertEquals(areaPlan5, areaPlan1.getArea("SOUTH"));
@@ -114,4 +118,37 @@ public class AreaPlanetTest
         areaPlan1.removeElement(elem2);
         assertEquals(false, areaPlan1.searchElement(elem2));
     }
+    
+    @Test
+    /**
+     * To search a perso to the list and if the perso exists, it returns true
+     */
+    public void searchAPersoToTheList()
+    {
+        areaPlan1.addPerso(perso1);
+        assertEquals(true, areaPlan1.searchPerso(perso1));
+    }
+
+    @Test
+    /**
+     * Add an element to the list 
+     */
+    public void addAPersoToTheList()
+    {
+        areaPlan1.addPerso(perso1);
+        assertEquals(true, areaPlan1.searchPerso(perso1));
+    }
+
+    @Test
+    /**
+     * Remove a perso to the list
+     */
+    public void removeAPersoToTheList()
+    {
+        areaPlan1.addPerso(perso1);
+        assertEquals(true, areaPlan1.searchPerso(perso1));
+        areaPlan1.removePerso(perso1);
+        assertEquals(false, areaPlan1.searchPerso(perso1));
+    }
+    
 }
