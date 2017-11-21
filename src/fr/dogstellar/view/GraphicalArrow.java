@@ -32,8 +32,8 @@ public class GraphicalArrow  extends JButton{
 		picturePath = System.getProperty("user.dir") + "/pictures/Fleche";
 		
 		direction = direction.toUpperCase();
-		if (!direction.equals("NORTH") || !direction.equals("SOUTH")
-				|| !direction.equals("EAST") || !direction.equals("WEST")) {
+		if (!(direction.equals("NORTH") || direction.equals("SOUTH")
+				|| direction.equals("EAST") || direction.equals("WEST"))) {
 			direction = "NORTH";
 		}
 		picturePath = picturePath + direction;
