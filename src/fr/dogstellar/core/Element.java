@@ -1,7 +1,8 @@
 package fr.dogstellar.core;
 /**
  * This class allows us to manage the element that interact 
- * with the player (like the enigme, trap, people, chest)
+ * with the player (like the enigme, trap, people, chest).
+ *
  *
  * @author Gp3
  * @version V0
@@ -25,6 +26,13 @@ public class Element
     /**
      * This method allows us to resolve an enigma
      * (an enigma is find in the chest or given by a people)
+     * 
+     * The answer of the object is his description, and his enigma is his name.
+     * You enter the answer of the player in the parameter, with the player involve in the parameter and
+     * the stuff to win. If the answer match the description the player win and the player earn the object. 
+     * Else the player win nothing. 
+     * 
+     * 
      * @param reponse the reponse of the player
      * @perso the perso which answer
      * @return true if the enigma is solved
@@ -47,7 +55,7 @@ public class Element
     /**
      * This method allows us to delete a lifePoint
      * when the player meet a trap
-     *
+     * 
      */
     public void lostLifePoint(Perso perso, int lost)
     {
