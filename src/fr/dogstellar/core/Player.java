@@ -22,7 +22,7 @@ public class Player extends Perso
      */
     public Player(String nameP)
     {
-        super(nameP,10,10);
+        super(nameP,10,5);
         inventory = new ArrayList();
     }
 
@@ -63,6 +63,7 @@ public class Player extends Perso
     public void addWeaponEquip(Weapon weaponEquip)
     {
     	weapon=weaponEquip;
+    	attackPoint=attackPoint+weapon.getDamage();
     }
     
     /**

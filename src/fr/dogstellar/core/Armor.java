@@ -74,6 +74,6 @@ public class Armor extends Stuff
      */
     public void decreaseArmorPoint (int point)
     {
-        armorPoint=armorPoint-point;
+        	armorPoint=armorPoint-point;
     }
 }
