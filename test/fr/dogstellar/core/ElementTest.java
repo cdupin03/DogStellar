@@ -15,22 +15,14 @@ import org.junit.Test;
  */
 public class ElementTest
 {
-    /**
-     * Default constructor for test class ElementTest
-     */
     Element element1;
     Player player;
     Weapon weap;
-    
-    public ElementTest()
-    {
-        
-    }
 
     /**
      * Sets up the test fixture.
      *
-     * Called before every test case method.
+     * Create good objects for future tests.
      */
     @Before
     public void setUp()
@@ -38,16 +30,6 @@ public class ElementTest
         element1 = new Element("Papier", "C'est un papier");
         player = new Player("Jean-Louis");
         weap = new Weapon("weapon", "Sword of life", 3);
-    }
-
-    /**
-     * Tears down the test fixture.
-     *
-     * Called after every test case method.
-     */
-    @After
-    public void tearDown()
-    {
     }
 
     /**
@@ -63,7 +45,9 @@ public class ElementTest
     
     /**
      * Method LostLifePoint
-     * Test if the perso really last lifePoint
+     * Test if the perso really last lifePoint. player has 10 lifePoint
+     * The element make the player lost 3 lifePoints
+     * Check if the player really has 7 lifePoints after.
      */
     @Test
     public void LostLifePoint ()
@@ -74,7 +58,7 @@ public class ElementTest
     
     /**
      * Method ResolveEnigma
-     * Test if the enigma return true when it is a good area
+     * Test if the enigma return true when the answer is good.
      */
     @Test
     public void ResolveEnigma ()

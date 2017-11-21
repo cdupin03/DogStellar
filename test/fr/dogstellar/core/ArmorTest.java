@@ -19,33 +19,6 @@ import org.junit.Test;
  */
 public class ArmorTest
 {
-    
-    /**
-     * Default constructor for test class ArmorTest
-     */
-    public ArmorTest()
-    {
-    }
-
-    /**
-     * Sets up the test fixture.
-     *
-     * Called before every test case method.
-     */
-    @Before
-    public void setUp()
-    {
-    }
-
-    /**
-     * Tears down the test fixture.
-     *
-     * Called after every test case method.
-     */
-    @After
-    public void tearDown()
-    {
-    }
 
     /**
      * This test is here see if the object creation work.
@@ -65,8 +38,8 @@ public class ArmorTest
     
      /**
       * This test is here to avoid armor with armorpoint above 25.
-       * Try to create a armor with a armorpoint above the range. The result must be 1
- * . If the armorPoint is 1 the test success.
+      * Try to create a armor with a armorpoint above the range. The result must be 1
+      * If the armorPoint is 1 the test success.
       */
      @Test
     public void armortest_more()
@@ -78,7 +51,7 @@ public class ArmorTest
       /**
        * This test is here to avoid armor with armorpoint under 0.
        * Try to create a armor with a armorpoint above the range. The result must be 1
- * . If the armorPoint is 1 the test success.
+       * If the armorPoint is 1 the test success.
        *
        */
       @Test
