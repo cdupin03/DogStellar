@@ -130,11 +130,16 @@ public class Perso
             attackPoint=attackPoint-Point;
     }
     
-    public void getInfoPerso(Perso perso)
+    /**
+     * This method allows us to display the information of the perso (name, LifePoint and AttackPoint)
+     */
+    public void displayInfoPerso()
     {
-    	System.out.println(perso.getNamePerso());
-    	System.out.println(perso.getLifePoint());
-    	System.out.println(perso.getAttackPoint());
+    	System.out.println(namePerso);
+    	System.out.println(lifePoint);
+    	System.out.println(attackPoint);
     }
+    
+    
    
 }
