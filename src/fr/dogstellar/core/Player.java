@@ -1,17 +1,20 @@
 package fr.dogstellar.core;
 import java.util.*;
 
+import javax.sound.midi.VoiceStatus;
+
 /**
  * This class gives the characteristics of the player (name lifePoint, attackPoint and inventory).
  * This class is an inheritance of the Perso class which we added a inventory that is a list of Stuffs.
  *
  * @author Gp3
- * @version 20/11/2017
+ * @version 21/11/2017
  */
 public class Player extends Perso
 {
     private ArrayList<Stuff> inventory;
-    
+    public Armor armor;
+    public Weapon weapon;
     /**
      * Constructor for objects of class Player
      * When a player is creating, a inventory (list of stuffs) is create and is empty
@@ -35,6 +38,38 @@ public class Player extends Perso
         for (int n=0; n<numberStuffAdd; n++){
             inventory.add(stuff);
         }
+    }
+    
+    /**
+     * this method allows to equip the player with a armor
+     * @param armorEquip
+     */
+    public void addArmorEquip(Armor armorEquip)
+    {
+    	armor=armorEquip;
+    }
+    
+    /**
+     * this method allows us to get the armor that the player has been equipped
+     */
+    public Armor getArmorEquip() {
+    	return armor;
+    }
+    
+    /**
+     * this method allows us to equip the player with a weapon
+     * @param weaponEquip
+     */
+    public void addWeaponEquip(Weapon weaponEquip)
+    {
+    	weapon=weaponEquip;
+    }
+    
+    /**
+     * this method allows us to get the weapon that the player has been equipped
+     */
+    public Weapon getWeaponEquip() {
+    	return weapon;
     }
     
     /**
@@ -73,5 +108,33 @@ public class Player extends Perso
              }
         }
         return(false);
+    }
+    
+    /**
+     * this method allows to know if the player has a armor or not
+     * @return true or false
+     */
+    public boolean hasArmor ()
+    {
+    	if (armor==null) {
+    		return(false);
+    	}else {
+    		return(true);
+		}
+    		
+    }
+    
+    /**
+     * this method allows to know if the player has a armor or not
+     * @return true or false
+     */
+    public boolean hasWeapon ()
+    {
+    	if (weapon==null) {
+    		return(false);
+    	}else {
+    		return(true);
+		}
+    		
     }
 }

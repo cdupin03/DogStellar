@@ -82,11 +82,11 @@ public class Perso
      * If we want to increase the number of lifePoint and the result is superior to 10, lifePoint take the value 10.
      * 
      */
-    public void increaseLifePoint(int newPoint)
+    public void increaseLifePoint(int Point)
     {
-        int addition = lifePoint+newPoint;
+        int addition = lifePoint+Point;
         if (addition<10)
-            lifePoint=lifePoint+newPoint;
+            lifePoint=lifePoint+Point;
         else
             lifePoint=10;
     }
@@ -95,24 +95,24 @@ public class Perso
      * This method allows us to delete a number of lifePoint.
      * If we want to decrease the number of lifePoint and the result is inferior to 0, lifePoint take the value 0.
      */
-    public void decreaseLifePoint(int newPoint)
+    public void decreaseLifePoint(int Point)
     {
-        int soustraction = lifePoint-newPoint;
+        int soustraction = lifePoint-Point;
         if (soustraction<0)
             lifePoint=0;
         else
-            lifePoint=lifePoint-newPoint;
+            lifePoint=lifePoint-Point;
     }
     
     /**
      * This method allows us to add a number of attackPoint.
      * If we want to increase the number of attackPoint and the result is superior to 10, attackPoint take the value 10.
      */
-    public void increaseAttackPoint(int newPoint)
+    public void increaseAttackPoint(int Point)
     {
-        int addition = attackPoint+newPoint;
+        int addition = attackPoint+Point;
         if (addition<10)
-            attackPoint=attackPoint+newPoint;
+            attackPoint=attackPoint+Point;
         else
             attackPoint=10;
     }
@@ -121,13 +121,25 @@ public class Perso
      * This method allows us to remove a number of attackPoint.
      * If we want to decrease the number of attackPoint and the result is inferior to 0, attackPoint take the value 0.
      */
-    public void decreaseAttackPoint(int newPoint)
+    public void decreaseAttackPoint(int Point)
     {
-        int soustraction = attackPoint-newPoint;
+        int soustraction = attackPoint-Point;
         if (soustraction<0)
             attackPoint=0;
         else
-            attackPoint=attackPoint-newPoint;
+            attackPoint=attackPoint-Point;
     }
     
+    /**
+     * This method allows us to display the information of the perso (name, LifePoint and AttackPoint)
+     */
+    public void displayInfoPerso()
+    {
+    	System.out.println(namePerso);
+    	System.out.println(lifePoint);
+    	System.out.println(attackPoint);
+    }
+    
+    
+   
 }
