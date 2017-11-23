@@ -67,6 +67,18 @@ public class PersoTest
         assertEquals(10, mauvais.getAttackPoint());
     }
     
+    
+    /** 
+     * Test if the modification of LifePoint is well working 
+     * The new LifePoint is 3 so perso1 have 3 lifePoint at this end of the test
+     */
+    @Test
+    public void setterLifePointOk() {
+    	Perso perso1 = new Perso ("Perso1", 1, 10);
+    	perso1.setLifePoint(3);
+    	assertEquals(3, perso1.getLifePoint());
+    }
+    
     /**
      * If we want to decrease lifePoint and the result in under 0, the variable is automatically
      * egals to 0.
@@ -90,6 +102,18 @@ public class PersoTest
         perso1.decreaseAttackPoint(2);
         assertEquals(0, perso1.getAttackPoint());
     }
+    
+    /**
+     * 
+     */
+    @Test
+    public void monsterFight()
+    {
+        Perso perso1 = new Perso("Perso1", 10, 1);
+        perso1.displayInfoPerso();
+        assertEquals(0, perso1.getAttackPoint());
+    }
+    
 }
 
 
