@@ -2,6 +2,7 @@ package fr.dogstellar;
 
 //import fr.dogstellar.core.Player;
 import fr.dogstellar.core.*;
+import fr.dogstellar.view.*;
 import fr.dogstellar.game.*;
 
 /**
@@ -13,8 +14,9 @@ public class Main {
 	/**
 	 * @param args
 	 */
-	
-	public static void main(String[] args) {
+// create a new window
+		Window wind = new Window();
+	  public static void main(String[] args) {
 // the part of Ship
 		QuestElement partOfShip1 = new QuestElement("The part of Ship 1" , "Is the part of Ship 1");
 		QuestElement partOfShip2 = new QuestElement("The part of Ship 2" , "Is the part of Ship 2");
@@ -24,6 +26,7 @@ public class Main {
 // other stuff
 		Weapon couteau = new Weapon("Couteau", "super arme", 2);
 		Armor bouclier = new Armor("Bouclier", "protection ultra", 10);
+
 //new player
 		Player player1 = new Player("toto");
 		//player1.displayInfoPerso();
