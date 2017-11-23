@@ -14,10 +14,21 @@ public class Main {
 	/**
 	 * @param args
 	 */
-	
-	public static void main(String[] args) {
 		
-		Window wind = new Window("Emma.jpeg");
+// create a new window
+	  public static void main(String[] args) {
+// the part of Ship
+		  
+	    Window wind = new Window("Emma.jpeg");
+		QuestElement partOfShip1 = new QuestElement("The part of Ship 1" , "Is the part of Ship 1");
+		QuestElement partOfShip2 = new QuestElement("The part of Ship 2" , "Is the part of Ship 2");
+		QuestElement partOfShip3 = new QuestElement("The part of Ship 3" , "Is the part of Ship 3");
+		QuestElement partOfShip4 = new QuestElement("The part of Ship 4" , "Is the part of Ship 4");
+		QuestElement partOfShip5 = new QuestElement("The part of Ship 5" , "Is the part of Ship 5");
+// other stuff
+		Weapon couteau = new Weapon("Couteau", "super arme", 2);
+		Armor bouclier = new Armor("Bouclier", "protection ultra", 10);
+
 //new player
 		Player player1 = new Player("toto");
 		//player1.displayInfoPerso();
@@ -25,38 +36,15 @@ public class Main {
 		Planet planet1 = new Planet("Rouge","planet de feu");
 		AreaPlanet area1 = new AreaPlanet("lave", "grosse eruption");
 		planet1.addArea(area1);
-//new montre		
-		Perso monster1 = new Perso("Mechant", 5, 6);
+//new monster		
+		Perso monster1 = new Perso("Mechant", 10, 2);
 //ajout du monstre1 et du player1 sur la zone area1 de planet1
 		area1.addPerso(monster1);
 		area1.addPerso(player1);
 		//area1.displayPersos();
-//Fight	(without armor and weapon)	
-		//Fight theFight = new Fight(monster1, player1);
-		//theFight.playerFight(2);
-		//monster1.displayInfoPerso();
-		//theFight.monsterFight(6);
-		//player1.displayInfoPerso();
-//add armor and add weapon
-		Armor bouclier = new Armor("Bouclier", "protection ultra", 10);
-		Weapon couteau = new Weapon("Couteau", "super arme", 2);
-		player1.addArmorEquip(bouclier);
-		player1.addWeaponEquip(couteau);
-		player1.displayInfoPerso();
-		System.out.println("Nombre de point de l'armure"+bouclier.getArmorPoint());
-//Fight	(with armor and weapon)	
-		Fight theFight = new Fight(monster1, player1);
-		theFight.playerFight(2);
-		monster1.displayInfoPerso();
-		theFight.monsterFight(6);
-		player1.displayInfoPerso();
-		System.out.println("Nombre de point de l'armure"+bouclier.getArmorPoint());
-//Fight	(with armor and weapon)	
-		theFight.playerFight(2);
-		monster1.displayInfoPerso();
-		theFight.monsterFight(6);
-		player1.displayInfoPerso();
-		System.out.println("Nombre de point de l'armure"+bouclier.getArmorPoint());
+//Fight	(without armor and weapon)	+ add a new partOfShip
+		Fight.theFight(monster1, player1, partOfShip1, couteau);
+		
 	}
 
 }
