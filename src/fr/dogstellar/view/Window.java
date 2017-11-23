@@ -13,7 +13,7 @@ package fr.dogstellar.view;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-
+import java.awt.event.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.util.*;
@@ -78,7 +78,14 @@ public class Window extends JFrame {
 		{
 			for (int i = 1; i <length-1 ; i++)
 			{
-				addComponentToGrid(new MonsterView(picturePath), i, j);
+				MonsterView newM = new MonsterView (picturePath);
+				newM.addActionListener (new ActionListener () {
+		            public void actionPerformed (ActionEvent e) {
+		                Window.this.newGrid(); //Ne fonctionnne pas attention !
+		                System.out.println("Coucou");
+		            }
+		        });
+				addComponentToGrid(newM, i, j);
 			}
 		}
 		
@@ -128,6 +135,7 @@ public class Window extends JFrame {
 				}
 			}
 		}
+
 	}
 	
 	
