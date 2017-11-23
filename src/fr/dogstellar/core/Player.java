@@ -13,8 +13,8 @@ import javax.sound.midi.VoiceStatus;
 public class Player extends Perso
 {
     private ArrayList<Stuff> inventory;
-    public Armor armor;
-    public Weapon weapon;
+    private Armor armor;
+    private Weapon weapon;
     /**
      * Constructor for objects of class Player
      * When a player is creating, a inventory (list of stuffs) is create and is empty
@@ -40,38 +40,6 @@ public class Player extends Perso
         }
     }
     
-    /**
-     * this method allows to equip the player with a armor
-     * @param armorEquip
-     */
-    public void addArmorEquip(Armor armorEquip)
-    {
-    	armor=armorEquip;
-    }
-    
-    /**
-     * this method allows us to get the armor that the player has been equipped
-     */
-    public Armor getArmorEquip() {
-    	return armor;
-    }
-    
-    /**
-     * this method allows us to equip the player with a weapon
-     * @param weaponEquip
-     */
-    public void addWeaponEquip(Weapon weaponEquip)
-    {
-    	weapon=weaponEquip;
-    	attackPoint=attackPoint+weapon.getDamage();
-    }
-    
-    /**
-     * this method allows us to get the weapon that the player has been equipped
-     */
-    public Weapon getWeaponEquip() {
-    	return weapon;
-    }
     
     /**
      * this method allows us to delete a stuff in the list of stuff (inventory) of the player when he lost a stuff
@@ -90,12 +58,47 @@ public class Player extends Perso
     }
     
     /**
+     * this method allows to equip the player with a armor
+     * @param armorEquip
+     */
+    public void addArmorEquip(Armor armorEquip)
+    {
+    	armor=armorEquip;
+    }
+    
+    /**
+     * this method allows us to equip the player with a weapon
+     * @param weaponEquip
+     */
+    public void addWeaponEquip(Weapon weaponEquip)
+    {
+    	weapon=weaponEquip;
+    	attackPoint=attackPoint+weapon.getDamage();
+    }
+    
+    /**
+     * this method allows us to get the armor that the player has been equipped
+     */
+    public Armor getArmorEquip() {
+    	return armor;
+    }
+    
+    /**
+     * this method allows us to get the weapon that the player has been equipped
+     */
+    public Weapon getWeaponEquip() {
+    	return weapon;
+    }
+    
+    /**
      * This method returns the list of stuff(inventory) of the user.
      *
      */
-    public ArrayList<Stuff> getStuff()
+    public void displayStuff()
     {
-        return(inventory);
+        for (Stuff stuff : inventory) {
+			System.out.println(stuff.getInformation().getName());
+		}
     }
     
     /**
@@ -138,4 +141,14 @@ public class Player extends Perso
 		}
     		
     }
+    
+    /**
+	 * The player attack a monster(Perso) with a number of attackPoint
+	 * @param attackPoint it is the number of attackPoint that it decided to play
+	 * @param monter it is a Perso who fighting with the player
+	 */
+	public void playerFight(Perso monster, int attackPoint)
+	{
+		monster.decreaseLifePoint(attackPoint);
+	}
 }

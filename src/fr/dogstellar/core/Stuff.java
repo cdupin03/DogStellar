@@ -12,6 +12,8 @@ public abstract class Stuff
 {
     // The informations about the stuff object
     private Info info;
+    //The owner of the stuff.
+    private Player player;
     
     /**
      * Stuff Constructor
@@ -30,11 +32,27 @@ public abstract class Stuff
      /**
       * Give the info from the stuff.
       */
-     public Info getInformation ()
+    public Info getInformation ()
     {
     return info;    
     }
     
+    /**
+     * Allows to set a player to the stuff. 
+     * @param Player which owns the stuff
+     */
+    public void setPlayer (Player newPlayer)
+    {
+    	player = newPlayer;
+    }
     
+    /**
+     * Give the owner of the stuff
+     * @return the player
+     */
+    protected Player getPlayer ()
+    {
+    	return player;
+    }
     
 }
