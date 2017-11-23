@@ -8,13 +8,13 @@ import javax.sound.midi.VoiceStatus;
  * This class is an inheritance of the Perso class which we added a inventory that is a list of Stuffs.
  *
  * @author Gp3
- * @version 20/11/2017
+ * @version 21/11/2017
  */
 public class Player extends Perso
 {
     private ArrayList<Stuff> inventory;
-    private Armor armor;
-    private Weapon weapon;
+    public Armor armor;
+    public Weapon weapon;
     /**
      * Constructor for objects of class Player
      * When a player is creating, a inventory (list of stuffs) is create and is empty
@@ -22,7 +22,7 @@ public class Player extends Perso
      */
     public Player(String nameP)
     {
-        super(nameP,10,10);
+        super(nameP,10,5);
         inventory = new ArrayList();
     }
 
@@ -50,14 +50,28 @@ public class Player extends Perso
     }
     
     /**
+     * this method allows us to get the armor that the player has been equipped
+     */
+    public Armor getArmorEquip() {
+    	return armor;
+    }
+    
+    /**
      * this method allows us to equip the player with a weapon
      * @param weaponEquip
      */
     public void addWeaponEquip(Weapon weaponEquip)
     {
     	weapon=weaponEquip;
+    	attackPoint=attackPoint+weapon.getDamage();
     }
     
+    /**
+     * this method allows us to get the weapon that the player has been equipped
+     */
+    public Weapon getWeaponEquip() {
+    	return weapon;
+    }
     
     /**
      * this method allows us to delete a stuff in the list of stuff (inventory) of the player when he lost a stuff
