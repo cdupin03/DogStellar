@@ -67,4 +67,13 @@ public class Armor extends Stuff
     {
         return armorPoint;
     }
+    
+    /**
+     * Method decreaseArmorPoint
+     *@param point it is the point that we lose when we fight monster
+     */
+    public void decreaseArmorPoint (int point)
+    {
+        	armorPoint=armorPoint-point;
+    }
 }

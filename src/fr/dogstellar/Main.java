@@ -2,8 +2,10 @@ package fr.dogstellar;
 
 //import fr.dogstellar.core.Player;
 import fr.dogstellar.core.*;
-import fr.dogstellar.view.Inventory;
-import fr.dogstellar.view.InventoryPanel;
+
+import fr.dogstellar.view.*;
+import fr.dogstellar.game.*;
+
 
 /**
  * @author GP3
@@ -16,6 +18,7 @@ public class Main {
 	 */
 	
 	public static void main(String[] args) {
+
 	Player player1 = new Player("Paul");
 	
 	

@@ -196,7 +196,7 @@ public class AreaPlanet
     }
     
     /**
-     * To search an element into the area.
+     * To search an Perso into the area.
      *
      * @param  thePerso is the perso to search in the list of persos
      * @return true if the perso exist in the list
@@ -219,6 +219,20 @@ public class AreaPlanet
     public void removePerso(Perso thePerso)
     {
         persos.remove(thePerso);
+    }
+    
+    /**
+     * To search an Perso into the area.
+     *
+     * @param  thePerso is the perso to search in the list of persos
+     * @return true if the perso exist in the list
+     */
+    public void displayPersos()
+    {
+        for(Perso i : persos)
+        {
+                System.out.println(i.getNamePerso());
+        }
     }
 
 }
