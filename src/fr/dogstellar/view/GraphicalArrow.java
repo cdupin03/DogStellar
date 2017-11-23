@@ -1,6 +1,6 @@
 package fr.dogstellar.view;
 
-/* 
+/** 
  * This class allows to display a graphique arrow. This arrow is clickable.
  * When the arrow is clicked, we change of area. 
  * There is 4 forms of arrows North, South, East West
@@ -19,7 +19,7 @@ import java.awt.event.*;
 
 public class GraphicalArrow  extends JButton{
 	
-	/*
+	/**
 	 * Set the picture of the graphical arrow. The arrow take the direction 
 	 * given in parameter. If the direction is not NORTH, SOUTH, EAST or WEST, 
 	 * then, the direction taken is NORTH by default.

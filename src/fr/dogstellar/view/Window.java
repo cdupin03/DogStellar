@@ -23,7 +23,7 @@ public class Window extends JFrame {
 	HashMap<Integer,Component> components; //The coordinates (xxyy) linked to a component (arrow for example)
 	int height;//The number of column
 	int length;//The number of lines
-	/*
+	/**
 	 * The constructor of Window.
 	 * Create the window with its components.
 	 * The heigh and length are initialized. If they are greater than 100 or lower than 0 they
@@ -52,7 +52,7 @@ public class Window extends JFrame {
         this.pack();
         this.setVisible(true);
 	}
-	/*
+	/**
 	 * Allow to add a component to components (hashmap). 
 	 * If x or y are not valid (>0 or >height||weight) the comp is not added.
 	 * @param comp The component to add
@@ -68,7 +68,7 @@ public class Window extends JFrame {
 		}
 	}
 	
-	/*
+	/**
 	 * Add each element previously put in the components map to the Window.
 	 */
 	private void drawGrid ()
@@ -92,7 +92,7 @@ public class Window extends JFrame {
 			}
 		}
 	}
-	/*
+	/**
 	 * Set the number of line of the grid.
 	 * If h <0 or >100 it is initialized to 3
 	 * @param h the height
@@ -108,7 +108,7 @@ public class Window extends JFrame {
 			height = 3;
 		}
 	}
-	/*
+	/**
 	 * Set the number of column of the grid.
 	 * If l <0 or >100 it is initialized to 3
 	 * @param l the length
