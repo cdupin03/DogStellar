@@ -16,12 +16,6 @@ import org.junit.Test;
 public class PotionTest
 {
     Potion po; // A good potion
-    /**
-     * Default constructor for test class PotionTest
-     */
-    public PotionTest()
-    {
-    }
 
     /**
      * Sets up the test fixture.
@@ -79,18 +73,21 @@ public class PotionTest
     public void wellDrink ()
     {
        Player player = new Player("Jean-Louis");
+       player.addStuff(po, 1);
        player.decreaseLifePoint(9);
-       po.drinkPotion(player);
+       po.drinkPotion();
        assertEquals(8, player.getLifePoint());
     }
     
     /**
-     * Tears down the test fixture.
-     *
-     * Called after every test case method.
+     * Check if the player added is the player contained in the potion.
+     * Test the stuff class.
      */
-    @After
-    public void tearDown()
+    @Test
+    public void playerWellAdded ()
     {
+    	Player player = new Player ("Jean-Louis");
+    	player.addStuff(po, 1);
+    	assertEquals(player, po.getPlayer());
     }
 }
