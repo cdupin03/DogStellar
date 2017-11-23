@@ -93,9 +93,11 @@ public class Player extends Perso
      * This method returns the list of stuff(inventory) of the user.
      *
      */
-    public ArrayList<Stuff> getStuff()
+    public void displayStuff()
     {
-        return(inventory);
+        for (Stuff stuff : inventory) {
+			System.out.println(stuff.getInformation().getName());
+		}
     }
     
     /**
@@ -138,4 +140,14 @@ public class Player extends Perso
 		}
     		
     }
+    
+    /**
+	 * The player attack a monster(Perso) with a number of attackPoint
+	 * @param attackPoint it is the number of attackPoint that it decided to play
+	 * @param monter it is a Perso who fighting with the player
+	 */
+	public void playerFight(Perso monster, int attackPoint)
+	{
+		monster.decreaseLifePoint(attackPoint);
+	}
 }
