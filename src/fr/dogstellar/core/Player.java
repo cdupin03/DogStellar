@@ -23,7 +23,7 @@ public class Player extends Perso
     public Player(String nameP)
     {
         super(nameP,10,5);
-        inventory = new ArrayList();
+        inventory = new ArrayList<Stuff>();
     }
 
     /**
@@ -37,6 +37,7 @@ public class Player extends Perso
     {
         for (int n=0; n<numberStuffAdd; n++){
             inventory.add(stuff);
+            stuff.setPlayer(this);
         }
     }
     
@@ -76,6 +77,8 @@ public class Player extends Perso
     /**
      * this method allows us to delete a stuff in the list of stuff (inventory) of the player when he lost a stuff
      * we can delete only one Stuff with this method
+     * If there is no other same stuff in the inventory,
+     * The attribute player of Stuff is set to null.
      *
      * @param  stuff is the name of the stuff
      */
@@ -84,6 +87,10 @@ public class Player extends Perso
         for(Stuff s : inventory){
              if(s==stuff){
                  inventory.remove(stuff);
+                 if (!(isInList(stuff)))
+                 {
+                	 stuff.setPlayer(null);
+                 }
                  break;
              }
         }
