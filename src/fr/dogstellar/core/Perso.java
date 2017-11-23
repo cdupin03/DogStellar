@@ -88,13 +88,13 @@ public class Perso
     /**
      * This method allows us to add lifePoint.
      * If we want to increase the number of lifePoint and the result is superior to 10, lifePoint take the value 10.
-     * 
+     * @param point it is the LifePoint that we add the the initial LifePoint
      */
-    public void increaseLifePoint(int Point)
+    public void increaseLifePoint(int point)
     {
-        int addition = lifePoint+Point;
+        int addition = lifePoint+point;
         if (addition<10)
-            lifePoint=lifePoint+Point;
+            lifePoint=lifePoint+point;
         else
             lifePoint=10;
     }
@@ -149,7 +149,8 @@ public class Perso
     }
     
     /**
-	 * The monster attack with a number of attackPoint
+	 * The monster attack the player with a number of attackPoint
+	 * @param player it is the player that the monster attack
 	 * @param attackPoint it is the number of attackPoint that it decided to play
 	 */
 	public void monsterFight(Player player, int attackPoint)

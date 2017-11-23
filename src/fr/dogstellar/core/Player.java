@@ -13,8 +13,8 @@ import javax.sound.midi.VoiceStatus;
 public class Player extends Perso
 {
     private ArrayList<Stuff> inventory;
-    public Armor armor;
-    public Weapon weapon;
+    private Armor armor;
+    private Weapon weapon;
     /**
      * Constructor for objects of class Player
      * When a player is creating, a inventory (list of stuffs) is create and is empty
@@ -40,38 +40,6 @@ public class Player extends Perso
         }
     }
     
-    /**
-     * this method allows to equip the player with a armor
-     * @param armorEquip
-     */
-    public void addArmorEquip(Armor armorEquip)
-    {
-    	armor=armorEquip;
-    }
-    
-    /**
-     * this method allows us to get the armor that the player has been equipped
-     */
-    public Armor getArmorEquip() {
-    	return armor;
-    }
-    
-    /**
-     * this method allows us to equip the player with a weapon
-     * @param weaponEquip
-     */
-    public void addWeaponEquip(Weapon weaponEquip)
-    {
-    	weapon=weaponEquip;
-    	attackPoint=attackPoint+weapon.getDamage();
-    }
-    
-    /**
-     * this method allows us to get the weapon that the player has been equipped
-     */
-    public Weapon getWeaponEquip() {
-    	return weapon;
-    }
     
     /**
      * this method allows us to delete a stuff in the list of stuff (inventory) of the player when he lost a stuff
@@ -87,6 +55,39 @@ public class Player extends Perso
                  break;
              }
         }
+    }
+    
+    /**
+     * this method allows to equip the player with a armor
+     * @param armorEquip
+     */
+    public void addArmorEquip(Armor armorEquip)
+    {
+    	armor=armorEquip;
+    }
+    
+    /**
+     * this method allows us to equip the player with a weapon
+     * @param weaponEquip
+     */
+    public void addWeaponEquip(Weapon weaponEquip)
+    {
+    	weapon=weaponEquip;
+    	attackPoint=attackPoint+weapon.getDamage();
+    }
+    
+    /**
+     * this method allows us to get the armor that the player has been equipped
+     */
+    public Armor getArmorEquip() {
+    	return armor;
+    }
+    
+    /**
+     * this method allows us to get the weapon that the player has been equipped
+     */
+    public Weapon getWeaponEquip() {
+    	return weapon;
     }
     
     /**
