@@ -25,21 +25,20 @@ public class GraphicalArrow  extends JButton{
 	 * then, the direction taken is NORTH by default.
 	 */
 	
-	private String picturePath;// The path of the picture.
+	private String ArrowPicturePath;// The path of the picture.
 	
-	public GraphicalArrow (String direction) {
+	public GraphicalArrow (String direction, String picturePath) {
 		super();
-		picturePath = System.getProperty("user.dir") + "/pictures/Fleche";
-		
+		ArrowPicturePath = picturePath + "Fleche";
 		direction = direction.toUpperCase();
 		if (!(direction.equals("NORTH") || direction.equals("SOUTH")
 				|| direction.equals("EAST") || direction.equals("WEST"))) {
 			direction = "NORTH";
 		}
-		picturePath = picturePath + direction;
-		System.out.println(picturePath);
-		this.setIcon(new ImageIcon(picturePath + ".png"));
-		this.setRolloverIcon(new ImageIcon (picturePath + "Roll.png"));
+		ArrowPicturePath = ArrowPicturePath + direction;
+		System.out.println(ArrowPicturePath);
+		this.setIcon(new ImageIcon(ArrowPicturePath + ".png"));
+		this.setRolloverIcon(new ImageIcon (ArrowPicturePath + "Roll.png"));
 		this.setBorder(BorderFactory.createEmptyBorder());
 		this.setContentAreaFilled(false);
 	}
