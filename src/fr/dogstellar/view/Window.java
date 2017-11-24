@@ -40,60 +40,65 @@ public class Window extends JFrame {
 	 */
 	public Window (String pictureName)
 	{
+            components = new HashMap<Integer,Component>();
+            setHeight(15);
+            setLength(21);
+            picturePath = new String(System.getProperty("user.dir") + "/pictures/");
+            nameOfFirstBackgroundPicture = pictureName;
 		
-		components = new HashMap<Integer,Component>();
-		setHeight(15);
-		setLength(21);
-		picturePath = new String(System.getProperty("user.dir") + "/pictures/");
-		nameOfFirstBackgroundPicture = pictureName;
+            try 
+            {
+                this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(picturePath + nameOfFirstBackgroundPicture )))));
+            }
+            catch (IOException e) 
+            {
+                e.printStackTrace();
+            }
 		
+            eastArrow = new GraphicalArrow ("east", picturePath);
+            westArrow = new GraphicalArrow ("west", picturePath);
+            northArrow = new GraphicalArrow ("north", picturePath);
+            southArrow = new GraphicalArrow ("south", picturePath);
 		
-		try 
+            int maxHeight = (height-1);
+            int maxLength = (length-1);
+		
+            int middleHeight = maxHeight/2;
+            int middleLength = maxLength/2;
+		
+            addComponentToGrid(eastArrow, maxLength, middleHeight);
+            addComponentToGrid(westArrow, 0, middleHeight);
+            addComponentToGrid(northArrow, middleLength, 0);
+            addComponentToGrid(southArrow, middleLength, maxHeight);
+            
+            for (int j = 1; j < height-1; j++)
+            {
+		for (int i = 1; i <length-1 ; i++)
 		{
-            this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(picturePath + nameOfFirstBackgroundPicture )))));
-        }
-		catch (IOException e) 
-		{
-            e.printStackTrace();
-        }
-		
-		
-		eastArrow = new GraphicalArrow ("east", picturePath);
-		westArrow = new GraphicalArrow ("west", picturePath);
-		northArrow = new GraphicalArrow ("north", picturePath);
-		southArrow = new GraphicalArrow ("south", picturePath);
-		
-		int maxHeight = (height-1);
-		int maxLength = (length-1);
-		
-		int middleHeight = maxHeight/2;
-		int middleLength = maxLength/2;
-		
-		
-		addComponentToGrid(eastArrow, maxLength, middleHeight);
-		addComponentToGrid(westArrow, 0, middleHeight);
-		addComponentToGrid(northArrow, middleLength, 0);
-		addComponentToGrid(southArrow, middleLength, maxHeight);
-		for (int j = 1; j < height-1; j++)
-		{
-			for (int i = 1; i <length-1 ; i++)
-			{
-				MonsterView newM = new MonsterView (picturePath);
-				newM.addActionListener (new ActionListener () {
-		            public void actionPerformed (ActionEvent e) {
-		                Window.this.newGrid(); //Ne fonctionnne pas attention !
-		                System.out.println("Coucou");
-		            }
-		        });
-				addComponentToGrid(newM, i, j);
-			}
+                    MonsterView newM = new MonsterView (picturePath);
+                    newM.addActionListener (new ActionListener () 
+                    {
+                        public void actionPerformed (ActionEvent e) 
+                        {
+		            Window.this.newGrid(); //Ne fonctionnne pas attention !
+		            System.out.println("Coucou");
+		        }
+		    });
+                    addComponentToGrid(newM, i, j);
 		}
+            }
 		
-		drawGrid();
-		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.pack();
-        this.setVisible(true);
+            drawGrid();
+            
+            
+            
+            //this.setLayout(new GridLayout(2,0));
+            //this.add(topPanel);
+            //this.add(bottomPanel);
+            
+            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.pack();
+            this.setVisible(true);
 	}
 	/**
 	 * Allow to add a component to components (hashmap). 
