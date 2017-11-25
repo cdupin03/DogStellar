@@ -17,6 +17,7 @@ import java.awt.event.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.util.*;
+import java.util.List;
 
 public class Window extends JFrame {
 
@@ -91,6 +92,12 @@ public class Window extends JFrame {
 		
 		drawGrid();
 		
+		
+		
+		
+		
+		
+		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
         this.setVisible(true);
@@ -118,6 +125,7 @@ public class Window extends JFrame {
 	{
 		
 		Container c = this.getContentPane();
+		c.removeAll();
 		c.setLayout(new GridLayout(height,length));
 		
 		for (int j = 0; j < height; j++)
@@ -145,6 +153,7 @@ public class Window extends JFrame {
 	 */
 	private void erraseGrid()
 	{
+		List<Integer> toRemove = new ArrayList<Integer>();
 		Container c = this.getContentPane();
 		for (Map.Entry<Integer,Component> e : components.entrySet()){
 		    e.getKey();
@@ -154,22 +163,16 @@ public class Window extends JFrame {
 		    		e.getValue() == northArrow ||
 		    		e.getValue() == southArrow))
 		    {
-		        	components.remove(e.getKey());
+		        	toRemove.add(e.getKey());
 		    }
 		}
 		
-		for (int j = 0; j < height; j++)
+		for (Integer i : toRemove)
 		{
-			for (int i = 0; i <length; i++)
-			{
-				int key = i*100+j;
-				if (components.containsKey(key))
-				{
-					
-					c.add(new JLabel());
-				}
-			}
+			components.remove(i);
 		}
+		
+		
 	}
 	
 	
@@ -177,6 +180,8 @@ public class Window extends JFrame {
 	{
 		erraseGrid();
 		drawGrid();
+		this.pack();
+
 	}
 	
 	/**

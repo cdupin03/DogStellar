@@ -19,7 +19,7 @@ public class Main {
 	  public static void main(String[] args) {
 // the part of Ship
 		  
-	    Window wind = new Window("Emma.jpeg");
+	    Window wind = new Window("champ.jpg");
 		QuestElement partOfShip1 = new QuestElement("The part of Ship 1" , "Is the part of Ship 1");
 		QuestElement partOfShip2 = new QuestElement("The part of Ship 2" , "Is the part of Ship 2");
 		QuestElement partOfShip3 = new QuestElement("The part of Ship 3" , "Is the part of Ship 3");
