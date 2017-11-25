@@ -18,7 +18,8 @@ public class Main {
 
 	  public static void main(String[] args) {
 // create a new window
-	    Window wind = new Window("Emma.jpeg");
+	    //Window wind = new Window("Emma.jpeg");
+		StartGame start = new StartGame("BackgroundStartGame.jpg");
 // the part of Ship
 		QuestElement partOfShip1 = new QuestElement("The part of Ship 1" , "Is the part of Ship 1");
 		QuestElement partOfShip2 = new QuestElement("The part of Ship 2" , "Is the part of Ship 2");
