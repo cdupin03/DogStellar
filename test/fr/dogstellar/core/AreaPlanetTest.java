@@ -38,11 +38,11 @@ public class AreaPlanetTest
     @Before
     public void setUp()
     {
-        areaPlan1 = new AreaPlanet("Zone", "Test1");
-        areaPlan2 = new AreaPlanet("Zone1", "Test2");
-        areaPlan3 = new AreaPlanet("Zone2", "Test3");
-        areaPlan4 = new AreaPlanet("Zone3", "Test4");
-        areaPlan5 = new AreaPlanet("Zone4", "Test5");
+        areaPlan1 = new AreaPlanet("Zone", "Test1", System.getProperty("user.dir") + "/pictures/champ.jpg");
+        areaPlan2 = new AreaPlanet("Zone1", "Test2", System.getProperty("user.dir") + "/pictures/champ.jpg");
+        areaPlan3 = new AreaPlanet("Zone2", "Test3", System.getProperty("user.dir") + "/pictures/champ.jpg");
+        areaPlan4 = new AreaPlanet("Zone3", "Test4", System.getProperty("user.dir") + "/pictures/champ.jpg");
+        areaPlan5 = new AreaPlanet("Zone4", "Test5", System.getProperty("user.dir") + "/pictures/champ.jpg");
         elem1 = new Element("TheElement1", "MyElementOne");
         elem2 = new Element("TheElement2", "MyElementTwo");
         areaPlan1.addElement(elem1);
@@ -86,6 +86,7 @@ public class AreaPlanetTest
         assertEquals(areaPlan2, areaPlan1.getArea("NORTH"));
         assertEquals(areaPlan5, areaPlan1.getArea("SOUTH"));
         assertEquals(areaPlan3, areaPlan1.getArea("WEST"));
+        assertEquals(System.getProperty("user.dir") + "/pictures/champ.jpg", areaPlan1.getPicture());
     }
 
     @Test
@@ -150,5 +151,6 @@ public class AreaPlanetTest
         areaPlan1.removePerso(perso1);
         assertEquals(false, areaPlan1.searchPerso(perso1));
     }
+    
     
 }

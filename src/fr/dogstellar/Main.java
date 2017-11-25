@@ -19,7 +19,7 @@ public class Main {
 	  public static void main(String[] args) {
 // the part of Ship
 		  
-	    Window wind = new Window("champ.jpg");
+
 		QuestElement partOfShip1 = new QuestElement("The part of Ship 1" , "Is the part of Ship 1");
 		QuestElement partOfShip2 = new QuestElement("The part of Ship 2" , "Is the part of Ship 2");
 		QuestElement partOfShip3 = new QuestElement("The part of Ship 3" , "Is the part of Ship 3");
@@ -34,7 +34,7 @@ public class Main {
 		//player1.displayInfoPerso();
 //new planet and areaPlanet		
 		Planet planet1 = new Planet("Rouge","planet de feu");
-		AreaPlanet area1 = new AreaPlanet("lave", "grosse eruption");
+		AreaPlanet area1 = new AreaPlanet("lave", "grosse eruption", System.getProperty("user.dir") + "/pictures/champ.jpg");
 		planet1.addArea(area1);
 //new monster		
 		Perso monster1 = new Perso("Mechant", 10, 2);
@@ -44,6 +44,7 @@ public class Main {
 		//area1.displayPersos();
 //Fight	(without armor and weapon)	+ add a new partOfShip
 		Fight.theFight(monster1, player1, partOfShip1, couteau);
+	    Window wind = new Window("champ.jpg", area1);
 		
 	}
 

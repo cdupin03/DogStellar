@@ -14,6 +14,7 @@ public class AreaPlanet
     private HashMap<String, AreaPlanet> areas;  //the hashmap allows to store the attached area to the current area
     private ArrayList<Element> elements;        //the list of elements in the current area like quest, chest, pieces...
     private ArrayList<Perso> persos;            //the list of persos in the current area (player or monsters)
+    private String picture;						//The picture of the area.
 
     /**
      * Constructor for objects of class AreaPlanet
@@ -21,12 +22,13 @@ public class AreaPlanet
      * @param name is the name of the area
      * @param descritption is the description of the area
      */
-    public AreaPlanet(String newName, String newDescription)
+    public AreaPlanet(String newName, String newDescription, String newPicture)
     {
         information = new Info(newName, newDescription);    //call the constructor of the Info class
         areas = new HashMap<>();                            //instanciation of the hashmap
         elements = new ArrayList<Element>();                //instanciation of the list of element
         persos = new ArrayList<Perso>();                    //instanciation of the list of persos
+        picture = newPicture;
     }
 
     /**
@@ -233,6 +235,34 @@ public class AreaPlanet
         {
                 System.out.println(i.getNamePerso());
         }
+    }
+    
+    /**
+     * Return the picture of the areaPlanet
+     * @return the picture
+     */
+    public String getPicture()
+    {
+    	return picture;
+    }
+    
+    
+    /**
+     * Return the elements of the area
+     * @return elements
+     */
+    public ArrayList<Element> getElement ()
+    {
+    	return elements;
+    }
+    
+    /**
+     * 
+     * @return the persos of the area
+     */
+    public ArrayList<Perso> getPerso ()
+    {
+    	return persos;
     }
 
 }

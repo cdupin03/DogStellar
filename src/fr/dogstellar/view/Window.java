@@ -16,6 +16,10 @@ import java.io.IOException;
 import java.awt.event.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import fr.dogstellar.core.AreaPlanet;
+import fr.dogstellar.core.Perso;
+
 import java.util.*;
 import java.util.List;
 
@@ -30,6 +34,7 @@ public class Window extends JFrame {
 	int length;//The number of lines
 	String picturePath;
 	String nameOfFirstBackgroundPicture;
+	AreaPlanet area; //The areaPlanet to show.
 	
 	/**
 	 * The constructor of Window.
@@ -39,13 +44,14 @@ public class Window extends JFrame {
 	 * The heigh and length are initialized. If they are greater than 100 or lower than 0 they
 	 * are initialized to 3. The height and length are managed by setHeight and setLength.
 	 */
-	public Window (String pictureName)
+	public Window (String pictureName, AreaPlanet firstArea)
 	{
             components = new HashMap<Integer,Component>();
             setHeight(15);
             setLength(21);
             picturePath = new String(System.getProperty("user.dir") + "/pictures/");
             nameOfFirstBackgroundPicture = pictureName;
+            area = firstArea;
 		
             try 
             {
@@ -72,7 +78,26 @@ public class Window extends JFrame {
             addComponentToGrid(northArrow, middleLength, 0);
             addComponentToGrid(southArrow, middleLength, maxHeight);
             
-            for (int j = 1; j < height-1; j++)
+            int nbComp = area.getPerso().size() + area.getElement().size();
+            
+            int j = middleHeight;
+            int i = 3;
+            for (Perso p : area.getPerso())
+            {
+            	addComponentToGrid(new MonsterView(picturePath), i, j);
+            	if (i < height)
+            	{
+            		i++;
+            	}
+            	else
+            	{
+            		i = 3;
+            		j++;
+            	}
+            }
+            
+            
+            /*for (int j = 1; j < height-1; j++)
             {
             	for (int i = 1; i <length-1 ; i++)
             	{
@@ -87,7 +112,7 @@ public class Window extends JFrame {
                     });
                     addComponentToGrid(newM, i, j);
             	}
-            }
+            }*/
                      
             //this.setLayout(new GridLayout(2,0));
             //this.add(topPanel);
