@@ -40,7 +40,6 @@ public class Player extends Perso
         }
     }
     
-    
     /**
      * this method allows us to delete a stuff in the list of stuff (inventory) of the player when he lost a stuff
      * we can delete only one Stuff with this method
@@ -74,6 +73,7 @@ public class Player extends Perso
     {
     	weapon=weaponEquip;
     	attackPoint=attackPoint+weapon.getDamage();
+    	System.out.println("point of attackPoint of the weapon" + weapon.getDamage());
     }
     
     /**

@@ -15,11 +15,11 @@ public class Main {
 	 * @param args
 	 */
 		
-// create a new window
+
 	  public static void main(String[] args) {
-// the part of Ship
-		  
+// create a new window
 	    Window wind = new Window("Emma.jpeg");
+// the part of Ship
 		QuestElement partOfShip1 = new QuestElement("The part of Ship 1" , "Is the part of Ship 1");
 		QuestElement partOfShip2 = new QuestElement("The part of Ship 2" , "Is the part of Ship 2");
 		QuestElement partOfShip3 = new QuestElement("The part of Ship 3" , "Is the part of Ship 3");
@@ -32,6 +32,11 @@ public class Main {
 //new player
 		Player player1 = new Player("toto");
 		//player1.displayInfoPerso();
+//add 2 couteau in the inventory
+		player1.addStuff(couteau, 2);
+//equip the player with 1 couteau
+		player1.addWeaponEquip(couteau);
+		
 //new planet and areaPlanet		
 		Planet planet1 = new Planet("Rouge","planet de feu");
 		AreaPlanet area1 = new AreaPlanet("lave", "grosse eruption");
@@ -42,7 +47,7 @@ public class Main {
 		area1.addPerso(monster1);
 		area1.addPerso(player1);
 		//area1.displayPersos();
-//Fight	(without armor and weapon)	+ add a new partOfShip
+//Fight		
 		Fight.theFight(monster1, player1, partOfShip1, couteau);
 		
 	}
