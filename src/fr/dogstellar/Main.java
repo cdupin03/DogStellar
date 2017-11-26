@@ -44,8 +44,16 @@ public class Main {
 		//area1.displayPersos();
 //Fight	(without armor and weapon)	+ add a new partOfShip
 		Fight.theFight(monster1, player1, partOfShip1, couteau);
-	    Window wind = new Window("champ.jpg", area1);
-		
+                
+//new chest
+                Element chest_close = new Element("Coffre","Je contient de l'or",false);
+                Element chest_open = new Element("Coffre2","Je ne contient plus or",true);
+		area1.addElement(chest_close);
+                area1.addElement(chest_open);
+                
+//display the windows 
+
+                Window wind = new Window("champ.jpg", area1);
 	}
 
 }
