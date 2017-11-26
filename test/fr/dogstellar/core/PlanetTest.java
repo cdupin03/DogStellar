@@ -35,9 +35,9 @@ public class PlanetTest
     @Before
     public void setUp()
     {
-        area1 = new AreaPlanet("Area1", "TheArea1");
-        area2 = new AreaPlanet("Area2", "TheArea2");
-        area3 = new AreaPlanet("Area2", "TheArea2");
+        area1 = new AreaPlanet("Area1", "TheArea1", System.getProperty("user.dir") + "/pictures/champ.jpg");
+        area2 = new AreaPlanet("Area2", "TheArea2", System.getProperty("user.dir") + "/pictures/champ.jpg");
+        area3 = new AreaPlanet("Area2", "TheArea2", System.getProperty("user.dir") + "/pictures/champ.jpg");
         planet1 = new Planet("MyPlanet", "MyDescriptionofThePlanet");
         planet3 = new Planet("MyPlanet3", "MyDescriptionofThePlanet");
     }
