@@ -19,6 +19,7 @@ import javax.swing.*;
 
 import fr.dogstellar.core.AreaPlanet;
 import fr.dogstellar.core.Perso;
+import fr.dogstellar.core.Element;
 
 import java.util.*;
 import java.util.List;
@@ -96,6 +97,25 @@ public class Window extends JFrame {
             	}
             }
             
+            i = 13;
+            j = 10;
+            
+            for (Element e : area.getElement())
+            {
+            
+                {
+                    addComponentToGrid(new ElementView(picturePath,e), i, j);
+                    if (i < height)
+                    {
+                            i++;
+                    }
+                    else
+                    {
+                            i = 10;
+                            j++;
+                    }
+                }
+            }
             
             /*for (int j = 1; j < height-1; j++)
             {
