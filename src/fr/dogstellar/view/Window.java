@@ -105,7 +105,7 @@ public class Window extends JPanel {
             
             i = 13;
             j = 10;
-            
+                    
             for (Element e : area.getElement())
             {
             
@@ -122,7 +122,7 @@ public class Window extends JPanel {
                     }
                 }
             }
-            
+                      
             /*for (int j = 1; j < height-1; j++)
             {
             	for (int i = 1; i <length-1 ; i++)
@@ -168,6 +168,7 @@ public class Window extends JPanel {
 	private void drawGrid ()
 	{
 		
+
 		this.removeAll();
 		this.setLayout(new GridLayout(height,length));
 		
@@ -188,8 +189,8 @@ public class Window extends JPanel {
 		}
 
 	}
-	
-	
+
+        
 	/**
 	 * Erase the component in the components hashmap.
 	 * Keep the arrows.
