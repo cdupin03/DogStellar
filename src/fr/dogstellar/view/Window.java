@@ -99,7 +99,7 @@ public class Window extends JFrame {
             
             i = 13;
             j = 10;
-            
+                    
             for (Element e : area.getElement())
             {
             
@@ -116,7 +116,7 @@ public class Window extends JFrame {
                     }
                 }
             }
-            
+                      
             /*for (int j = 1; j < height-1; j++)
             {
             	for (int i = 1; i <length-1 ; i++)
@@ -167,7 +167,7 @@ public class Window extends JFrame {
 		Container c = this.getContentPane();
 		c.removeAll();
 		c.setLayout(new GridLayout(height,length));
-		
+           
 		for (int j = 0; j < height; j++)
 		{
 			for (int i = 0; i <length; i++)
@@ -185,8 +185,8 @@ public class Window extends JFrame {
 		}
 
 	}
-	
-	
+
+        
 	/**
 	 * Erase the component in the components hashmap.
 	 * Keep the arrows.
