@@ -36,7 +36,7 @@ public class Main {
 		//player1.displayInfoPerso();
 //new planet and areaPlanet		
 		Planet planet1 = new Planet("Rouge","planet de feu");
-		AreaPlanet area1 = new AreaPlanet("lave", "grosse eruption", System.getProperty("user.dir") + "/pictures/champ.jpg");
+		AreaPlanet area1 = new AreaPlanet("lave", "grosse eruption", "champ.jpg");
 		planet1.addArea(area1);
 //new monster		
 		Perso monster1 = new Perso("Mechant", 10, 2);
@@ -46,7 +46,7 @@ public class Main {
 		//area1.displayPersos();
 //Fight	(without armor and weapon)	+ add a new partOfShip
 		Fight.theFight(monster1, player1, partOfShip1, couteau);
-	    Window wind = new Window("champ.jpg", area1);
+	    Window wind = new Window(area1);
 	    JFrame f = new JFrame();
 	    f.add(wind);
 	    f.pack();

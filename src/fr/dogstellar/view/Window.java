@@ -46,18 +46,19 @@ public class Window extends JPanel {
 	 * The heigh and length are initialized. If they are greater than 100 or lower than 0 they
 	 * are initialized to 3. The height and length are managed by setHeight and setLength.
 	 */
-	public Window (String pictureName, AreaPlanet firstArea)
+	public Window (AreaPlanet firstArea)
 	{
             components = new HashMap<Integer,Component>();
             setHeight(15);
             setLength(21);
             picturePath = new String(System.getProperty("user.dir") + "/pictures/");
-            nameOfFirstBackgroundPicture = pictureName;
             area = firstArea;
+            nameOfFirstBackgroundPicture = area.getPicture();
 		
             try 
             {
-                back = ImageIO.read(new File(picturePath + nameOfFirstBackgroundPicture ));
+                System.out.println(nameOfFirstBackgroundPicture );
+            	back = ImageIO.read(new File(picturePath + nameOfFirstBackgroundPicture ));
                 //draw
             }
             catch (IOException e) 
