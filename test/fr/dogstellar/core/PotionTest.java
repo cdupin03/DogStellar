@@ -72,7 +72,7 @@ public class PotionTest
     @Test
     public void wellDrink ()
     {
-       Player player = new Player("Jean-Louis");
+       Player player = new Player("Jean-Louis",10,5);
        player.addStuff(po, 1);
        player.decreaseLifePoint(9);
        po.drinkPotion();
@@ -86,7 +86,7 @@ public class PotionTest
     @Test
     public void playerWellAdded ()
     {
-    	Player player = new Player ("Jean-Louis");
+    	Player player = new Player ("Jean-Louis",5,5);
     	player.addStuff(po, 1);
     	assertEquals(player, po.getPlayer());
     }

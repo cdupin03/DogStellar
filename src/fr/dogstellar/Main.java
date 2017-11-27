@@ -1,5 +1,7 @@
 package fr.dogstellar;
 
+import javax.swing.JFrame;
+
 //import fr.dogstellar.core.Player;
 import fr.dogstellar.core.*;
 import fr.dogstellar.view.*;
@@ -7,7 +9,7 @@ import fr.dogstellar.game.*;
 
 /**
  * @author GP3
- *
+ * 
  */
 public class Main {
 
@@ -15,11 +17,11 @@ public class Main {
 	 * @param args
 	 */
 		
-// create a new window
-	  public static void main(String[] args) {
-// the part of Ship
-		  
 
+	  public static void main(String[] args) {
+// create a new window;
+		StartGame start = new StartGame();
+// the part of Ship
 		QuestElement partOfShip1 = new QuestElement("The part of Ship 1" , "Is the part of Ship 1");
 		QuestElement partOfShip2 = new QuestElement("The part of Ship 2" , "Is the part of Ship 2");
 		QuestElement partOfShip3 = new QuestElement("The part of Ship 3" , "Is the part of Ship 3");
@@ -28,36 +30,8 @@ public class Main {
 // other stuff
 		Weapon couteau = new Weapon("Couteau", "super arme", 2);
 		Armor bouclier = new Armor("Bouclier", "protection ultra", 10);
-
-//new player
-		Player player1 = new Player("toto");
-		//player1.displayInfoPerso();
-//new planet and areaPlanet		
-		Planet planet1 = new Planet("Rouge","planet de feu");
-		AreaPlanet area1 = new AreaPlanet("lave", "grosse eruption", System.getProperty("user.dir") + "/pictures/champ.jpg");
-		planet1.addArea(area1);
-//new monster		
-		Perso monster1 = new Perso("Mechant", 10, 2);
-//ajout du monstre1 et du player1 sur la zone area1 de planet1
-		area1.addPerso(monster1);
-		area1.addPerso(player1);
-		//area1.displayPersos();
-//Fight	(without armor and weapon)	+ add a new partOfShip
-		Fight.theFight(monster1, player1, partOfShip1, couteau);
+		//player1.displayInfoPerso
                 
-//new chest
-                Element chest_close = new Element("Coffre","Je contient de l'or",4);
-                Element chest_open = new Element("Coffre2","Je ne contient plus or",4);
-                chest_open.setDonee(); 
-                Element pnj = new Element("Toad","Il faut aller à gauche !!",3);
-                Element enigma = new Element("1 + 1 ?","2",1);
-		area1.addElement(chest_close);
-                area1.addElement(chest_open);
-                area1.addElement(pnj);
-                area1.addElement(enigma);
-//display the windows 
-
-                Window wind = new Window("champ.jpg", area1);
 	}
 
 }
