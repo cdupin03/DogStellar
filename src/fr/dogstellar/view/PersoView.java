@@ -4,7 +4,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class MonsterView extends JButton {
+public class PersoView extends JButton {
 
 		
 		/**
@@ -15,7 +15,7 @@ public class MonsterView extends JButton {
 		
 		private String MonsterPicturePath;// The path of the picture.
 		
-		public MonsterView (String picturePath) {
+		public PersoView (String picturePath) {
 			super();
 			MonsterPicturePath = new String(picturePath + "Monstre");
 			System.out.println(MonsterPicturePath);

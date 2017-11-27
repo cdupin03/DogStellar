@@ -85,7 +85,7 @@ public class Window extends JFrame {
             int i = 3;
             for (Perso p : area.getPerso())
             {
-            	addComponentToGrid(new MonsterView(picturePath), i, j);
+            	addComponentToGrid(new PersoView(picturePath), i, j);
             	if (i < height)
             	{
             		i++;
