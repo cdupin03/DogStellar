@@ -39,7 +39,7 @@ public class Main {
 		
 //new planet and areaPlanet		
 		Planet planet1 = new Planet("Rouge","planet de feu");
-		AreaPlanet area1 = new AreaPlanet("lave", "grosse eruption");
+		AreaPlanet area1 = new AreaPlanet("lave", "grosse eruption", System.getProperty("user.dir") + "/pictures/champ.jpg");
 		planet1.addArea(area1);
 //new monster		
 		Perso monster1 = new Perso("Mechant", 10, 2);
@@ -49,7 +49,16 @@ public class Main {
 		//area1.displayPersos();
 //Fight		
 		Fight.theFight(monster1, player1, partOfShip1, couteau);
-		
+                
+//new chest
+                Element chest_close = new Element("Coffre","Je contient de l'or",false);
+                Element chest_open = new Element("Coffre2","Je ne contient plus or",true);
+		area1.addElement(chest_close);
+                area1.addElement(chest_open);
+                
+//display the windows 
+
+                Window wind = new Window("champ.jpg", area1);
 	}
 
 }

@@ -11,16 +11,16 @@ public class Element
 {
     // instance variables - replace the example below with your own
     private Info information; //informations of the Element
-
+    private boolean Done;
     /**
      * This method is the constructor. 
      * It initialize the value of the Element. 
      * Give a name and a description to info attribute
      */
-    public Element(String name, String description)
+    public Element(String name, String description, boolean newDone )
     {
     information = new Info(name, description);
-    
+    Done = newDone;
     }
 
     /**
@@ -72,4 +72,10 @@ public class Element
     {
         return this.information;
     }
+    
+    public boolean getDone()
+    {
+        return this.Done;
+    }
+    
 }

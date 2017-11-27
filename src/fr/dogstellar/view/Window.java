@@ -16,7 +16,13 @@ import java.io.IOException;
 import java.awt.event.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import fr.dogstellar.core.AreaPlanet;
+import fr.dogstellar.core.Perso;
+import fr.dogstellar.core.Element;
+
 import java.util.*;
+import java.util.List;
 
 public class Window extends JFrame {
 
@@ -29,6 +35,7 @@ public class Window extends JFrame {
 	int length;//The number of lines
 	String picturePath;
 	String nameOfFirstBackgroundPicture;
+	AreaPlanet area; //The areaPlanet to show.
 	
 	/**
 	 * The constructor of Window.
@@ -38,62 +45,102 @@ public class Window extends JFrame {
 	 * The heigh and length are initialized. If they are greater than 100 or lower than 0 they
 	 * are initialized to 3. The height and length are managed by setHeight and setLength.
 	 */
-	public Window (String pictureName)
+	public Window (String pictureName, AreaPlanet firstArea)
 	{
+            components = new HashMap<Integer,Component>();
+            setHeight(15);
+            setLength(21);
+            picturePath = new String(System.getProperty("user.dir") + "/pictures/");
+            nameOfFirstBackgroundPicture = pictureName;
+            area = firstArea;
 		
-		components = new HashMap<Integer,Component>();
-		setHeight(15);
-		setLength(21);
-		picturePath = new String(System.getProperty("user.dir") + "/pictures/");
-		nameOfFirstBackgroundPicture = pictureName;
+            try 
+            {
+                this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(picturePath + nameOfFirstBackgroundPicture )))));
+            }
+            catch (IOException e) 
+            {
+                e.printStackTrace();
+            }
 		
+            eastArrow = new GraphicalArrow ("east", picturePath);
+            westArrow = new GraphicalArrow ("west", picturePath);
+            northArrow = new GraphicalArrow ("north", picturePath);
+            southArrow = new GraphicalArrow ("south", picturePath);
 		
-		try 
-		{
-            this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(picturePath + nameOfFirstBackgroundPicture )))));
-        }
-		catch (IOException e) 
-		{
-            e.printStackTrace();
-        }
+            int maxHeight = (height-1);
+            int maxLength = (length-1);
 		
+            int middleHeight = maxHeight/2;
+            int middleLength = maxLength/2;
 		
-		eastArrow = new GraphicalArrow ("east", picturePath);
-		westArrow = new GraphicalArrow ("west", picturePath);
-		northArrow = new GraphicalArrow ("north", picturePath);
-		southArrow = new GraphicalArrow ("south", picturePath);
-		
-		int maxHeight = (height-1);
-		int maxLength = (length-1);
-		
-		int middleHeight = maxHeight/2;
-		int middleLength = maxLength/2;
-		
-		
-		addComponentToGrid(eastArrow, maxLength, middleHeight);
-		addComponentToGrid(westArrow, 0, middleHeight);
-		addComponentToGrid(northArrow, middleLength, 0);
-		addComponentToGrid(southArrow, middleLength, maxHeight);
-		for (int j = 1; j < height-1; j++)
-		{
-			for (int i = 1; i <length-1 ; i++)
-			{
-				MonsterView newM = new MonsterView (picturePath);
-				newM.addActionListener (new ActionListener () {
-		            public void actionPerformed (ActionEvent e) {
-		                Window.this.newGrid(); //Ne fonctionnne pas attention !
-		                System.out.println("Coucou");
-		            }
-		        });
-				addComponentToGrid(newM, i, j);
-			}
-		}
-		
-		drawGrid();
-		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.pack();
-        this.setVisible(true);
+            addComponentToGrid(eastArrow, maxLength, middleHeight);
+            addComponentToGrid(westArrow, 0, middleHeight);
+            addComponentToGrid(northArrow, middleLength, 0);
+            addComponentToGrid(southArrow, middleLength, maxHeight);
+            
+            int nbComp = area.getPerso().size() + area.getElement().size();
+            
+            int j = middleHeight;
+            int i = 3;
+            for (Perso p : area.getPerso())
+            {
+            	addComponentToGrid(new PersoView(picturePath), i, j);
+            	if (i < height)
+            	{
+            		i++;
+            	}
+            	else
+            	{
+            		i = 3;
+            		j++;
+            	}
+            }
+            
+            i = 13;
+            j = 10;
+            
+            for (Element e : area.getElement())
+            {
+            
+                {
+                    addComponentToGrid(new ElementView(picturePath,e), i, j);
+                    if (i < height)
+                    {
+                            i++;
+                    }
+                    else
+                    {
+                            i = 10;
+                            j++;
+                    }
+                }
+            }
+            
+            /*for (int j = 1; j < height-1; j++)
+            {
+            	for (int i = 1; i <length-1 ; i++)
+            	{
+                    MonsterView newM = new MonsterView (picturePath);
+                    newM.addActionListener (new ActionListener () 
+                    {
+                        public void actionPerformed (ActionEvent e) 
+                        {
+                        	Window.this.newGrid();
+                        	System.out.println("Coucou");
+                        }
+                    });
+                    addComponentToGrid(newM, i, j);
+            	}
+            }*/
+                     
+            //this.setLayout(new GridLayout(2,0));
+            //this.add(topPanel);
+            //this.add(bottomPanel);
+            this.drawGrid();
+            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.pack();
+            this.setVisible(true);
 	}
 	/**
 	 * Allow to add a component to components (hashmap). 
@@ -118,6 +165,7 @@ public class Window extends JFrame {
 	{
 		
 		Container c = this.getContentPane();
+		c.removeAll();
 		c.setLayout(new GridLayout(height,length));
 		
 		for (int j = 0; j < height; j++)
@@ -145,7 +193,7 @@ public class Window extends JFrame {
 	 */
 	private void erraseGrid()
 	{
-		Container c = this.getContentPane();
+		List<Integer> toRemove = new ArrayList<Integer>();
 		for (Map.Entry<Integer,Component> e : components.entrySet()){
 		    e.getKey();
 		    
@@ -154,22 +202,16 @@ public class Window extends JFrame {
 		    		e.getValue() == northArrow ||
 		    		e.getValue() == southArrow))
 		    {
-		        	components.remove(e.getKey());
+		        	toRemove.add(e.getKey());
 		    }
 		}
 		
-		for (int j = 0; j < height; j++)
+		for (Integer i : toRemove)
 		{
-			for (int i = 0; i <length; i++)
-			{
-				int key = i*100+j;
-				if (components.containsKey(key))
-				{
-					
-					c.add(new JLabel());
-				}
-			}
+			components.remove(i);
 		}
+		
+		
 	}
 	
 	
@@ -177,6 +219,8 @@ public class Window extends JFrame {
 	{
 		erraseGrid();
 		drawGrid();
+		this.pack();
+
 	}
 	
 	/**
