@@ -20,10 +20,10 @@ import javax.swing.JTextArea;
  *
  * @author Albenss
  */
-public class Console
+public class Console extends JPanel
 {
-    private JFrame myFrame = new JFrame();              //The JFrame for the display
-    private JButton ok = new JButton();                 //Ok button to validate an entry
+    //private JFrame myFrame = new JFrame();              //The JFrame for the display
+	private JButton ok = new JButton();                 //Ok button to validate an entry
     private JPanel theConsolePanel = new JPanel();      //JPanel global for the console
     private JPanel display = new JPanel();              //Contain the display
     private JPanel write = new JPanel();                //Contain the area to write
@@ -31,17 +31,19 @@ public class Console
     private JTextField areaToWrite = new JTextField();  //An area to write text
     private String answer;                              //The last answer that is write
     
+    
     /**
      * The constructor
     */
     public Console() 
     {
-        myFrame.add(theConsolePanel);
-        myFrame.setSize(600,400);
+    	
+    	this.add(theConsolePanel);
+    	this.setSize(600,400);
         //Full screen size
         //myFrame.setDefaultLookAndFeelDecorated(true);
         //myFrame.setExtendedState(Frame.MAXIMIZED_BOTH);
-        
+    	this.setLayout(new FlowLayout()); //
         theConsolePanel.setLayout(new BorderLayout());
         theConsolePanel.add(display, BorderLayout.NORTH);
         theConsolePanel.add(write, BorderLayout.SOUTH); 
@@ -62,9 +64,9 @@ public class Console
         
         displayMessage.setPreferredSize(new Dimension(580,300));
         
-        myFrame.setTitle("The Console Interface");// Titre
-        myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        myFrame.setVisible(true);
+        //myPanel.setTitle("The Console Interface");// Titre
+        //myPanel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
 
         ok.addActionListener(new ActionListener ()
         {

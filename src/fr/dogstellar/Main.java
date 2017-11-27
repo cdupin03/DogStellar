@@ -1,5 +1,7 @@
 package fr.dogstellar;
 
+import javax.swing.JFrame;
+
 //import fr.dogstellar.core.Player;
 import fr.dogstellar.core.*;
 import fr.dogstellar.view.*;
