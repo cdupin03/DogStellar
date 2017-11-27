@@ -20,6 +20,7 @@ import java.awt.Graphics;
 
 import fr.dogstellar.core.AreaPlanet;
 import fr.dogstellar.core.Perso;
+import fr.dogstellar.core.Element;
 
 import java.util.*;
 import java.util.List;
@@ -105,9 +106,7 @@ public class Window extends JPanel {
             addComponentToGrid(northArrow, middleLength, 0);
             addComponentToGrid(southArrow, middleLength, maxHeight);
             
-            drawGrid();
-            this.setVisible(true);
-            interfac.pack();
+            this.drawGrid();
 	}
 	/**
 	 * Allow to add a component to components (hashmap). 
@@ -265,6 +264,26 @@ public class Window extends JPanel {
         		i = 3;
         		j++;
         	}
+        }
+        
+        i = 13;
+        j = 10;
+        
+        for (Element e : area.getElement())
+        {
+        
+            {
+                addComponentToGrid(new ElementView(picturePath,e), i, j);
+                if (i < height)
+                {
+                        i++;
+                }
+                else
+                {
+                        i = 10;
+                        j++;
+                }
+            }
         }
         
         

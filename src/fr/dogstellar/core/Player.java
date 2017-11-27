@@ -20,9 +20,9 @@ public class Player extends Perso
      * When a player is creating, a inventory (list of stuffs) is create and is empty
      * @param nameP corresponds to the name of the player
      */
-    public Player(String nameP)
+    public Player(String nameP, int lifePoint, int attackPoint)
     {
-        super(nameP,10,5);
+        super(nameP,lifePoint, attackPoint);
         inventory = new ArrayList();
     }
 
@@ -39,7 +39,6 @@ public class Player extends Perso
             inventory.add(stuff);
         }
     }
-    
     
     /**
      * this method allows us to delete a stuff in the list of stuff (inventory) of the player when he lost a stuff
@@ -74,6 +73,7 @@ public class Player extends Perso
     {
     	weapon=weaponEquip;
     	attackPoint=attackPoint+weapon.getDamage();
+    	System.out.println("point of attackPoint of the weapon" + weapon.getDamage());
     }
     
     /**

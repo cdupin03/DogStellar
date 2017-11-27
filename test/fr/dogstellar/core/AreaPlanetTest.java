@@ -1,6 +1,9 @@
 package fr.dogstellar.core;
  
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,6 +25,8 @@ public class AreaPlanetTest
     Element elem2;
     Perso perso1;
     Perso perso2;
+    ArrayList <Element> elems;
+    ArrayList<Perso> persos;
     
     /**
      * Default constructor for test class AreaPlanetTest
@@ -43,11 +48,17 @@ public class AreaPlanetTest
         areaPlan3 = new AreaPlanet("Zone2", "Test3", System.getProperty("user.dir") + "/pictures/champ.jpg");
         areaPlan4 = new AreaPlanet("Zone3", "Test4", System.getProperty("user.dir") + "/pictures/champ.jpg");
         areaPlan5 = new AreaPlanet("Zone4", "Test5", System.getProperty("user.dir") + "/pictures/champ.jpg");
-        elem1 = new Element("TheElement1", "MyElementOne");
-        elem2 = new Element("TheElement2", "MyElementTwo");
+        elem1 = new Element("TheElement1", "MyElementOne", false);
+        elem2 = new Element("TheElement2", "MyElementTwo", false);
+        elems = new ArrayList<Element>();
+        elems.add(elem1);
+        elems.add(elem2);
         areaPlan1.addElement(elem1);
         perso1 = new Perso("Player1",10, 10);
         perso2 = new Perso("Player2",10, 10);
+        persos = new ArrayList<Perso>();
+        persos.add(perso1);
+        persos.add(perso2);
     }
 
     /**
@@ -152,6 +163,10 @@ public class AreaPlanetTest
         assertEquals(false, areaPlan1.searchPerso(perso1));
     }
     
+    @Test
+    /**
+     * test if the area demanded in the direction is the good one.
+     */
     public void getTheDirectionArea ()
     {
     	AreaPlanet areaPlanx = new AreaPlanet("Zone", "Test1", System.getProperty("user.dir") + "/pictures/champ.jpg");
@@ -160,10 +175,42 @@ public class AreaPlanetTest
     	assertEquals(areaPlanx2, areaPlanx.getOrientationArea("SOUTH"));
     }
     
+    @Test
+    /**
+     * Test if the wrong direction is given, the local area is returned.
+     */
     public void getTheWrongDirectionArea ()
     {
     	AreaPlanet areaPlanx3 = new AreaPlanet("Zone", "Test1", System.getProperty("user.dir") + "/pictures/champ.jpg");
     	assertEquals(areaPlanx3, areaPlanx3.getOrientationArea("SOUTH"));
     }
+    @Test
+    /**
+     * Test if the list of perso is the expected one.
+     */
+    public void goodListPerso ()
+    {
+    	areaPlan1.getPerso().clear();
+    	for (Perso p : persos)
+    	{
+    	areaPlan1.addPerso(p);
+    	}
+    	assertEquals(true, persos.equals(areaPlan1.getPerso()));
+    }
+    
+    @Test
+    /**
+     * Test if the list of element is the expected one.
+     */
+    public void goodListElem ()
+    {
+    	areaPlan1.getElement().clear();
+    	for (Element e : elems)
+    	{
+    		areaPlan1.addElement(e);
+    	}
+    	assertEquals(true, elems.equals(areaPlan1.getElement()));
+    }
+    
     
 }
