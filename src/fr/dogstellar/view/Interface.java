@@ -63,9 +63,11 @@ public class Interface
         //bottom.add();
         bottom.add(console);
         
-        theInterface.add(top);
-        theInterface.add(bottom);
+        theInterface.setLayout(new BorderLayout());
+        theInterface.add(top, BorderLayout.CENTER);
+        theInterface.add(bottom, BorderLayout.SOUTH);
         theInterface.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        theInterface.pack();
         theInterface.setVisible(true);
 
         ok.addActionListener(new ActionListener ()
