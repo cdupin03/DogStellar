@@ -11,16 +11,18 @@ public class Element
 {
     // instance variables - replace the example below with your own
     private Info information; //informations of the Element
-    private boolean Done;
+    private boolean Done; //Identifier for the already used object 
+    private int type; //The type of objet :1- enigme,2- trap,3- people,4- chest
     /**
      * This method is the constructor. 
      * It initialize the value of the Element. 
      * Give a name and a description to info attribute
      */
-    public Element(String name, String description, boolean newDone )
+    public Element(String name, String description, int newType )
     {
     information = new Info(name, description);
-    Done = newDone;
+    type = newType;
+    Done = false;
     }
 
     /**
@@ -76,6 +78,18 @@ public class Element
     public boolean getDone()
     {
         return this.Done;
+    }
+
+    public int getType() {
+        return type;
+    }
+    
+    
+    
+    
+    public void setDonee()
+    {
+        Done = true;
     }
     
 }

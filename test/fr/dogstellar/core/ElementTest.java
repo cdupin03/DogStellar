@@ -27,7 +27,7 @@ public class ElementTest
     @Before
     public void setUp()
     {
-        element1 = new Element("Papier", "C'est un papier");
+        element1 = new Element("Papier", "C'est un papier", 1);
         player = new Player("Jean-Louis");
         weap = new Weapon("weapon", "Sword of life", 3);
     }
@@ -41,6 +41,7 @@ public class ElementTest
     {
         assertEquals("Papier", element1.getInformation().getName());
         assertEquals("C'est un papier", element1.getInformation().getDescription());
+        assertEquals(1, element1.getType());
     }
     
     /**

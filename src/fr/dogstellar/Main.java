@@ -46,11 +46,15 @@ public class Main {
 		Fight.theFight(monster1, player1, partOfShip1, couteau);
                 
 //new chest
-                Element chest_close = new Element("Coffre","Je contient de l'or",false);
-                Element chest_open = new Element("Coffre2","Je ne contient plus or",true);
+                Element chest_close = new Element("Coffre","Je contient de l'or",4);
+                Element chest_open = new Element("Coffre2","Je ne contient plus or",4);
+                chest_open.setDonee(); 
+                Element pnj = new Element("Toad","Il faut aller à gauche !!",3);
+                Element enigma = new Element("1 + 1 ?","2",1);
 		area1.addElement(chest_close);
                 area1.addElement(chest_open);
-                
+                area1.addElement(pnj);
+                area1.addElement(enigma);
 //display the windows 
 
                 Window wind = new Window("champ.jpg", area1);
