@@ -18,6 +18,7 @@ public class Interface
 {
     private final JFrame theInterface = new JFrame();
     private final JPanel console = new JPanel();
+    private final JPanel console1 = new JPanel();
     private final JPanel top = new JPanel();
     private final JPanel bottom = new JPanel();
     private final JButton ok = new JButton();                 //Ok button to validate an entry
@@ -32,10 +33,11 @@ public class Interface
     public Interface()
     {
         console.add(theConsolePanel);
-        console.setSize(600,400);
+        console.setLayout(new FlowLayout());
+        console.setPreferredSize(new Dimension(400,200));
         
         console.setLayout(new BorderLayout());
-        console.add(display, BorderLayout.NORTH);
+        console.add(display, BorderLayout.CENTER);
         console.add(write, BorderLayout.SOUTH); 
         
         display.add(displayMessage);
@@ -54,15 +56,18 @@ public class Interface
         
         displayMessage.setPreferredSize(new Dimension(580,300));
         
-        AreaPlanet test1 = new AreaPlanet("tyuiuyfv","rdytfuygiut", "ytfugyi");
+        AreaPlanet test1 = new AreaPlanet("tyuiuyfv","rdytfuygiut", "champ.jpg");
         
-        Window theWindow = new Window("rytu", test1);
+        Window theWindow = new Window(test1);
         top.add(theWindow);
         
         bottom.setLayout(new GridLayout(1,2));
         //bottom.add();
         bottom.add(console);
+        bottom.add(console1);
         
+        theInterface.setLayout(new FlowLayout());
+        theInterface.setPreferredSize(new Dimension(1200,700));
         theInterface.setLayout(new BorderLayout());
         theInterface.add(top, BorderLayout.CENTER);
         theInterface.add(bottom, BorderLayout.SOUTH);
