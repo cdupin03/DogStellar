@@ -49,8 +49,8 @@ public class Window extends JPanel {
 	public Window (AreaPlanet firstArea)
 	{
             components = new HashMap<Integer,Component>();
-            setHeight(15);
-            setLength(21);
+            setHeight(7); //
+            setLength(13);
             picturePath = new String(System.getProperty("user.dir") + "/pictures/");
             area = firstArea;
             nameOfFirstBackgroundPicture = area.getPicture();
@@ -76,6 +76,8 @@ public class Window extends JPanel {
 		
             int middleHeight = maxHeight/2;
             int middleLength = maxLength/2;
+            System.out.println(middleHeight);
+            System.out.println(middleLength);
 		
             addComponentToGrid(eastArrow, maxLength, middleHeight);
             addComponentToGrid(westArrow, 0, middleHeight);
