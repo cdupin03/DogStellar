@@ -7,6 +7,8 @@ import java.awt.event.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import fr.dogstellar.core.AreaPlanet;
+import fr.dogstellar.core.Planet;
 import fr.dogstellar.core.Player;
 
 import java.util.*;
@@ -17,21 +19,47 @@ public class StartGame{
 	private JPanel gridPlayer;
 	private JTextField t;
 	private String namePlayer = "";
+	private Player player;
 	
 	
 	public StartGame() {
 		myJFrame = new JFrame();
 		
-		//button start game (not enable if there is no name
-	    startGame = new JButton("Start Game");
-	    startGame.setEnabled(false);
-	    startGame.addActionListener(new ActionListener () {
+  		//action when clicked to button of a player
+  			//hulk have 2 life point and 8 attacked point
+		player1 = new JButton(new ImageIcon("C:\\Users\\clarisse\\git\\DogStellar\\pictures\\hulk.png"));
+        player1.addActionListener(new ActionListener () {
         	public void actionPerformed(ActionEvent evt) { 
-        		Window wind = new Window("Emma.jpeg");  //start the game with the a player a planet ...
+        		player = new Player(namePlayer, 2,8);
+        		t.setEnabled(true);
+        		player2.setEnabled(false);
+        		player3.setEnabled(false);
     	    }
         });
-	    
-	    //Text for enter the name of player (not enable if no player is choose)
+        
+        	//wonderwoman have 5 life point and 5 attacked point
+		player2 = new JButton(new ImageIcon("C:\\Users\\clarisse\\git\\DogStellar\\pictures\\wonderwoman.png"));
+        player2.addActionListener(new ActionListener () {
+        	public void actionPerformed(ActionEvent evt) {
+        		player = new Player(namePlayer, 5,5);
+        		t.setEnabled(true);
+        		player1.setEnabled(false);
+        		player3.setEnabled(false);
+    	    }
+        });
+        
+        	//spider have 8 life point and 2 attacked point
+		player3 = new JButton(new ImageIcon("C:\\Users\\clarisse\\git\\DogStellar\\pictures\\spiderman.png"));
+        player3.addActionListener(new ActionListener () {
+        	public void actionPerformed(ActionEvent evt) { 
+        		player = new Player(namePlayer,8,2);
+        		t.setEnabled(true);
+        		player1.setEnabled(false);
+        		player2.setEnabled(false);
+    	    }
+        });
+        
+        //Text for enter the name of player (not enable if no player is choose)
   		t = new JTextField("Name of Player");
         t.setPreferredSize(new Dimension(10,10));
 		t.setEnabled(false);
@@ -46,26 +74,17 @@ public class StartGame{
                   }
               }
           });
-		
-		//action when clicked to button of a player
-		player1 = new JButton(new ImageIcon("C:\\Users\\clarisse\\git\\DogStellar\\pictures\\hulk.png"));
-        player1.addActionListener(new ActionListener () {
-        	public void actionPerformed(ActionEvent evt) { 
-        		t.setEnabled(true);
-    	    }
-        });
         
-		player2 = new JButton(new ImageIcon("C:\\Users\\clarisse\\git\\DogStellar\\pictures\\wonderwoman.png"));
-        player2.addActionListener(new ActionListener () {
+        //button start game (not enable if there is no namePlayer)
+	    startGame = new JButton("Start Game");
+	    startGame.setEnabled(false);
+	    startGame.addActionListener(new ActionListener () {
         	public void actionPerformed(ActionEvent evt) { 
-        		t.setEnabled(true);
-    	    }
-        });
-        
-		player3 = new JButton(new ImageIcon("C:\\Users\\clarisse\\git\\DogStellar\\pictures\\spiderman.png"));
-        player3.addActionListener(new ActionListener () {
-        	public void actionPerformed(ActionEvent evt) { 
-        		t.setEnabled(true);
+        		Planet planet1 = new Planet("Rouge","planet de feu");
+        		AreaPlanet area1 = new AreaPlanet("lave", "grosse eruption", System.getProperty("user.dir") + "/pictures/champ.jpg");
+        		planet1.addArea(area1);
+        		area1.addPerso(player);
+        		Window wind = new Window("champ.jpg", area1);  //start the game with the a player a planet ...
     	    }
         });
         
