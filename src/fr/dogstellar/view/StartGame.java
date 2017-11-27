@@ -118,6 +118,7 @@ public class StartGame{
         		AreaPlanet area1 = new AreaPlanet("lave", "grosse eruption", System.getProperty("user.dir") + "/pictures/champ.jpg");
         		planet1.addArea(area1);
         		area1.addPerso(player);
+        		myJFrame.dispose();
         		Interface interf = new Interface();  //start the game with the a player a planet ...
     	    }
         });
