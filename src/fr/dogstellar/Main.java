@@ -1,5 +1,7 @@
 package fr.dogstellar;
 
+import javax.swing.JFrame;
+
 //import fr.dogstellar.core.Player;
 import fr.dogstellar.core.*;
 import fr.dogstellar.view.*;
@@ -45,6 +47,11 @@ public class Main {
 //Fight	(without armor and weapon)	+ add a new partOfShip
 		Fight.theFight(monster1, player1, partOfShip1, couteau);
 	    Window wind = new Window("champ.jpg", area1);
+	    JFrame f = new JFrame();
+	    f.add(wind);
+	    f.pack();
+	    f.setVisible(true);
+	    f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
 		
 	}
 

@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.awt.event.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.Graphics;
 
 import fr.dogstellar.core.AreaPlanet;
 import fr.dogstellar.core.Perso;
@@ -35,6 +36,7 @@ public class Window extends JPanel {
 	String picturePath;
 	String nameOfFirstBackgroundPicture;
 	AreaPlanet area; //The areaPlanet to show.
+	Image back;
 	
 	/**
 	 * The constructor of Window.
@@ -55,7 +57,8 @@ public class Window extends JPanel {
 		
             try 
             {
-                this.(new JLabel(new ImageIcon(ImageIO.read(new File(picturePath + nameOfFirstBackgroundPicture )))));
+                back = ImageIO.read(new File(picturePath + nameOfFirstBackgroundPicture ));
+                //draw
             }
             catch (IOException e) 
             {
@@ -232,6 +235,10 @@ public class Window extends JPanel {
 		{
 			length = 3;
 		}
+	}
+	
+	public void paintComponent(Graphics g){
+		   g.drawImage(back,0,0,this.getWidth(),this.getHeight(),this);
 	}
 	
 }
