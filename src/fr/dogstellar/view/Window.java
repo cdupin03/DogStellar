@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.awt.event.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.Graphics;
 
 import fr.dogstellar.core.AreaPlanet;
 import fr.dogstellar.core.Perso;
@@ -23,7 +24,7 @@ import fr.dogstellar.core.Perso;
 import java.util.*;
 import java.util.List;
 
-public class Window extends JFrame {
+public class Window extends JPanel {
 
 	GraphicalArrow eastArrow;//The east Arrow
 	GraphicalArrow westArrow;//The west Arrow
@@ -35,6 +36,7 @@ public class Window extends JFrame {
 	String picturePath;
 	String nameOfFirstBackgroundPicture;
 	AreaPlanet area; //The areaPlanet to show.
+	Image back;
 	
 	/**
 	 * The constructor of Window.
@@ -55,7 +57,8 @@ public class Window extends JFrame {
 		
             try 
             {
-                this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(picturePath + nameOfFirstBackgroundPicture )))));
+                back = ImageIO.read(new File(picturePath + nameOfFirstBackgroundPicture ));
+                //draw
             }
             catch (IOException e) 
             {
@@ -118,8 +121,6 @@ public class Window extends JFrame {
             //this.add(topPanel);
             //this.add(bottomPanel);
             this.drawGrid();
-            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            this.pack();
             this.setVisible(true);
 	}
 	/**
@@ -144,9 +145,8 @@ public class Window extends JFrame {
 	private void drawGrid ()
 	{
 		
-		Container c = this.getContentPane();
-		c.removeAll();
-		c.setLayout(new GridLayout(height,length));
+		this.removeAll();
+		this.setLayout(new GridLayout(height,length));
 		
 		for (int j = 0; j < height; j++)
 		{
@@ -155,11 +155,11 @@ public class Window extends JFrame {
 				int key = i*100+j;
 				if (components.containsKey(key))
 				{
-					c.add(components.get(key));
+					this.add(components.get(key));
 				}
 				else
 				{
-					c.add(new JLabel());
+					this.add(new JLabel());
 				}
 			}
 		}
@@ -199,7 +199,6 @@ public class Window extends JFrame {
 	{
 		erraseGrid();
 		drawGrid();
-		this.pack();
 
 	}
 	
@@ -236,6 +235,10 @@ public class Window extends JFrame {
 		{
 			length = 3;
 		}
+	}
+	
+	public void paintComponent(Graphics g){
+		   g.drawImage(back,0,0,this.getWidth(),this.getHeight(),this);
 	}
 	
 }
