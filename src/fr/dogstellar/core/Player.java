@@ -20,9 +20,9 @@ public class Player extends Perso
      * When a player is creating, a inventory (list of stuffs) is create and is empty
      * @param nameP corresponds to the name of the player
      */
-    public Player(String nameP)
+    public Player(String nameP, int lifePoint, int attackPoint)
     {
-        super(nameP,10,5);
+        super(nameP,lifePoint, attackPoint);
         inventory = new ArrayList();
     }
 
