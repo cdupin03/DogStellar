@@ -46,12 +46,7 @@ public class Main {
 		//area1.displayPersos();
 //Fight	(without armor and weapon)	+ add a new partOfShip
 		Fight.theFight(monster1, player1, partOfShip1, couteau);
-	    Window wind = new Window(area1);
-	    JFrame f = new JFrame();
-	    f.add(wind);
-	    f.pack();
-	    f.setVisible(true);
-	    f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
+            Interface i= new Interface();
 		
 	}
 
