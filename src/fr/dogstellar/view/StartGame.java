@@ -20,14 +20,17 @@ public class StartGame{
 	private JTextField t;
 	private String namePlayer = "";
 	private Player player;
+	private String picturePath;
 	
 	
 	public StartGame() {
+		picturePath = new String(System.getProperty("user.dir") + "/pictures/");
+		
 		myJFrame = new JFrame();
 		
   		//action when clicked to button of a player
   			//hulk have 2 life point and 8 attacked point
-		player1 = new JButton(new ImageIcon("C:\\Users\\clarisse\\git\\DogStellar\\pictures\\hulk.png"));
+		player1 = new JButton(new ImageIcon(picturePath + "hulk.png"));
         player1.addActionListener(new ActionListener () {
         	public void actionPerformed(ActionEvent evt) { 
         		player = new Player(namePlayer, 2,8);
@@ -38,7 +41,7 @@ public class StartGame{
         });
         
         	//wonderwoman have 5 life point and 5 attacked point
-		player2 = new JButton(new ImageIcon("C:\\Users\\clarisse\\git\\DogStellar\\pictures\\wonderwoman.png"));
+		player2 = new JButton(new ImageIcon(picturePath + "wonderwoman.png"));
         player2.addActionListener(new ActionListener () {
         	public void actionPerformed(ActionEvent evt) {
         		player = new Player(namePlayer, 5,5);
@@ -49,7 +52,7 @@ public class StartGame{
         });
         
         	//spider have 8 life point and 2 attacked point
-		player3 = new JButton(new ImageIcon("C:\\Users\\clarisse\\git\\DogStellar\\pictures\\spiderman.png"));
+		player3 = new JButton(new ImageIcon(picturePath + "spiderman.png"));
         player3.addActionListener(new ActionListener () {
         	public void actionPerformed(ActionEvent evt) { 
         		player = new Player(namePlayer,8,2);
@@ -84,7 +87,7 @@ public class StartGame{
         		AreaPlanet area1 = new AreaPlanet("lave", "grosse eruption", System.getProperty("user.dir") + "/pictures/champ.jpg");
         		planet1.addArea(area1);
         		area1.addPerso(player);
-        		Window wind = new Window("champ.jpg", area1);  //start the game with the a player a planet ...
+        		Interface interf = new Interface();  //start the game with the a player a planet ...
     	    }
         });
         
@@ -115,7 +118,7 @@ public class StartGame{
 	    gridPlayer.setOpaque(false);
 	    
         //image background
-        myJFrame.setContentPane(new JLabel(new ImageIcon("C:\\Users\\clarisse\\git\\DogStellar\\pictures\\BackgroundStartGame.jpg")));
+        myJFrame.setContentPane(new JLabel(new ImageIcon(picturePath + "BackgroundStartGame.jpg")));
 	    
 	    //BorderLayout
         BorderLayout myBorderL = new BorderLayout();
