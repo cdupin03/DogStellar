@@ -20,6 +20,7 @@ import java.awt.Graphics;
 
 import fr.dogstellar.core.AreaPlanet;
 import fr.dogstellar.core.Perso;
+import fr.dogstellar.core.Element;
 
 import java.util.*;
 import java.util.List;
@@ -90,7 +91,7 @@ public class Window extends JPanel {
             int i = 3;
             for (Perso p : area.getPerso())
             {
-            	addComponentToGrid(new MonsterView(picturePath), i, j);
+            	addComponentToGrid(new PersoView(picturePath), i, j);
             	if (i < height)
             	{
             		i++;
@@ -102,6 +103,25 @@ public class Window extends JPanel {
             	}
             }
             
+            i = 13;
+            j = 10;
+            
+            for (Element e : area.getElement())
+            {
+            
+                {
+                    addComponentToGrid(new ElementView(picturePath,e), i, j);
+                    if (i < height)
+                    {
+                            i++;
+                    }
+                    else
+                    {
+                            i = 10;
+                            j++;
+                    }
+                }
+            }
             
             /*for (int j = 1; j < height-1; j++)
             {
