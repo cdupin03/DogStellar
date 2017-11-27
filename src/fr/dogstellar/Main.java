@@ -46,7 +46,28 @@ public class Main {
 		//area1.displayPersos();
 //Fight	(without armor and weapon)	+ add a new partOfShip
 		Fight.theFight(monster1, player1, partOfShip1, couteau);
-            Interface i= new Interface();
+            //Interface i= new Interface();
+            
+		
+		AreaPlanet area2 = new AreaPlanet("lave", "grosse eruption", "lave.jpg");
+		planet1.addArea(area2);
+		area1.addAreaPlanet(area2,"SOUTH");
+//new monster		
+		Perso monster2 = new Perso("Mechant", 10, 2);
+//ajout du monstre1 et du player1 sur la zone area1 de planet1
+		area2.addPerso(monster1);
+		//area2.addPerso(player1);
+		
+		
+		
+            
+        JFrame f = new JFrame();
+        f.add(new Window(area1, f));
+        //g.add(g)
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.pack();
+        f.setVisible(true);
+        
 		
 	}
 

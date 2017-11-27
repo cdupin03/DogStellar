@@ -152,5 +152,18 @@ public class AreaPlanetTest
         assertEquals(false, areaPlan1.searchPerso(perso1));
     }
     
+    public void getTheDirectionArea ()
+    {
+    	AreaPlanet areaPlanx = new AreaPlanet("Zone", "Test1", System.getProperty("user.dir") + "/pictures/champ.jpg");
+        AreaPlanet areaPlanx2 = new AreaPlanet("Zone1", "Test2", System.getProperty("user.dir") + "/pictures/champ.jpg");
+    	areaPlanx.addAreaPlanet(areaPlanx2, "SOUTH");
+    	assertEquals(areaPlanx2, areaPlanx.getOrientationArea("SOUTH"));
+    }
+    
+    public void getTheWrongDirectionArea ()
+    {
+    	AreaPlanet areaPlanx3 = new AreaPlanet("Zone", "Test1", System.getProperty("user.dir") + "/pictures/champ.jpg");
+    	assertEquals(areaPlanx3, areaPlanx3.getOrientationArea("SOUTH"));
+    }
     
 }
