@@ -28,7 +28,7 @@ public class ElementTest
     public void setUp()
     {
         element1 = new Element("Papier", "C'est un papier");
-        player = new Player("Jean-Louis");
+        player = new Player("Jean-Louis",5,5);
         weap = new Weapon("weapon", "Sword of life", 3);
     }
 
