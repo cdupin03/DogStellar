@@ -7,7 +7,7 @@ import fr.dogstellar.game.*;
 
 /**
  * @author GP3
- *
+ * 
  */
 public class Main {
 
@@ -17,8 +17,7 @@ public class Main {
 		
 
 	  public static void main(String[] args) {
-// create a new window
-	    //Window wind = new Window("Emma.jpeg");
+// create a new window;
 		StartGame start = new StartGame();
 // the part of Ship
 		QuestElement partOfShip1 = new QuestElement("The part of Ship 1" , "Is the part of Ship 1");
