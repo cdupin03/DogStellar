@@ -25,7 +25,7 @@ public class PlayerTest
     @Test
     public void goodAddStuff()
     {
-        Player player1 = new Player("Player1");
+        Player player1 = new Player("Player1",5,5);
         Potion potion1 = new Potion("Potion1","Donne 2 points",1);
         player1.addStuff(potion1, 2);
         assertEquals(true, player1.isInList(potion1));
@@ -38,7 +38,7 @@ public class PlayerTest
     @Test
     public void addPlayerStuff()
     {
-    	Player player1 = new Player("Player1");
+    	Player player1 = new Player("Player1",5,5);
         Potion potion1 = new Potion("Potion1","Donne 2 points",1);
         player1.addStuff(potion1, 2);
         assertEquals(player1, potion1.getPlayer());
@@ -53,7 +53,7 @@ public class PlayerTest
     @Test
     public void badAddStuff()
     {
-        Player player1 = new Player("Player1");
+        Player player1 = new Player("Player1",5,5);
         Potion potion1 = new Potion("Potion1","Donne 2 points",1);
         Potion potion2 = new Potion("Potion2","Donne 3 points",1);
         player1.addStuff(potion1, 1);
@@ -67,7 +67,7 @@ public class PlayerTest
     @Test
     public void removePlayerFromPotion ()
     {
-        Player player1 = new Player("Player1");
+        Player player1 = new Player("Player1",5,5);
         Potion potion1 = new Potion("Potion1","Donne 2 points",1);
         player1.addStuff(potion1, 1);
         player1.deleteStuff(potion1);
@@ -82,7 +82,7 @@ public class PlayerTest
     @Test
     public void twoStuffsOnePlayer ()
     {
-        Player player1 = new Player("Player1");
+        Player player1 = new Player("Player1",5,5);
         Potion potion1 = new Potion("Potion1","Donne 2 points",1);
         player1.addStuff(potion1, 2);
         player1.deleteStuff(potion1);
@@ -96,7 +96,7 @@ public class PlayerTest
     @Test
     public void goodDeleteStuff()
     {
-        Player player1 = new Player("Player1");
+        Player player1 = new Player("Player1",5,5);
         Potion potion1 = new Potion("Potion1","Donne 2 points",2);
         player1.addStuff(potion1, 1);
         player1.deleteStuff(potion1);
@@ -111,7 +111,7 @@ public class PlayerTest
     @Test
     public void deleteStuffAmong2()
     {
-        Player player1 = new Player("Player1");
+        Player player1 = new Player("Player1",5,5);
         Potion potion1 = new Potion("Potion1","Donne 2 points",0);
         player1.addStuff(potion1, 2);
         player1.deleteStuff(potion1);
@@ -124,7 +124,7 @@ public class PlayerTest
     @Test
     public void goodAddArmorEquip()
     {
-        Player player1 = new Player("Player1");
+        Player player1 = new Player("Player1",5,5);
         Armor armor1 = new Armor("The armor1", "it is the armor2", 2);
         player1.addArmorEquip(armor1);
         assertEquals(true, player1.hasArmor());
@@ -136,7 +136,7 @@ public class PlayerTest
     @Test
     public void goodAddWeaponEquip()
     {
-        Player player1 = new Player("Player1");
+        Player player1 = new Player("Player1",5,5);
         Weapon weapon1 = new Weapon("The weapon1", "it is the weapon2", 2);
         player1.addWeaponEquip(weapon1);
         assertEquals(true, player1.hasWeapon());
@@ -148,7 +148,7 @@ public class PlayerTest
     @Test
     public void goodgetArmorEquip()
     {
-        Player player1 = new Player("Player1");
+        Player player1 = new Player("Player1",5,5);
         Armor armor1 = new Armor("The armor1", "it is the armor2", 2);
         player1.addArmorEquip(armor1);
         assertEquals(armor1, player1.getArmorEquip());
@@ -160,7 +160,7 @@ public class PlayerTest
     @Test
     public void goodgetWeaponEquip()
     {
-        Player player1 = new Player("Player1");
+        Player player1 = new Player("Player1",5,5);
         Weapon weapon1 = new Weapon("The weapon1", "it is the weapon2", 2);
         player1.addWeaponEquip(weapon1);
         assertEquals(weapon1, player1.getWeaponEquip());
@@ -173,7 +173,7 @@ public class PlayerTest
     @Test
     public void goodHasArmor()
     {
-        Player player1 = new Player("Player1");
+        Player player1 = new Player("Player1",5,5);
         Armor armor1 = new Armor("The armor1", "it is the armor2", 2);
         player1.addArmorEquip(armor1);
         assertEquals(true, player1.hasArmor());
@@ -186,7 +186,7 @@ public class PlayerTest
     @Test
     public void goodHasWeapon()
     {
-        Player player1 = new Player("Player1");
+        Player player1 = new Player("Player1",5,5);
         Weapon weapon1 = new Weapon("The weapon1", "it is the weapon2", 2);
         player1.addWeaponEquip(weapon1);
         assertEquals(true, player1.hasWeapon());
