@@ -38,6 +38,7 @@ public class Window extends JPanel {
 	String nameOfFirstBackgroundPicture;
 	AreaPlanet area; //The areaPlanet to show.
 	Image back;
+	JFrame interfac;
 	
 	/**
 	 * The constructor of Window.
@@ -47,30 +48,52 @@ public class Window extends JPanel {
 	 * The heigh and length are initialized. If they are greater than 100 or lower than 0 they
 	 * are initialized to 3. The height and length are managed by setHeight and setLength.
 	 */
-	public Window (AreaPlanet firstArea)
+	public Window (AreaPlanet firstArea, JFrame inter)
 	{
+			interfac = inter;
             components = new HashMap<Integer,Component>();
             setHeight(7); //
             setLength(13);
             picturePath = new String(System.getProperty("user.dir") + "/pictures/");
-            area = firstArea;
-            nameOfFirstBackgroundPicture = area.getPicture();
-		
-            try 
-            {
-                System.out.println(nameOfFirstBackgroundPicture );
-            	back = ImageIO.read(new File(picturePath + nameOfFirstBackgroundPicture ));
-                //draw
-            }
-            catch (IOException e) 
-            {
-                e.printStackTrace();
-            }
+            
+            adjustWindowToAreaPlanet(firstArea);
 		
             eastArrow = new GraphicalArrow ("east", picturePath);
             westArrow = new GraphicalArrow ("west", picturePath);
             northArrow = new GraphicalArrow ("north", picturePath);
             southArrow = new GraphicalArrow ("south", picturePath);
+            
+            southArrow.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					adjustWindowToAreaPlanet(area.getOrientationArea("SOUTH"));
+				}
+			});
+            
+            northArrow.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					adjustWindowToAreaPlanet(area.getOrientationArea("NORTH"));
+				}
+			});
+            
+            eastArrow.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					adjustWindowToAreaPlanet(area.getOrientationArea("EAST"));
+				}
+			});
+            
+            westArrow.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					adjustWindowToAreaPlanet(area.getOrientationArea("WEST"));
+				}
+			});
 		
             int maxHeight = (height-1);
             int maxLength = (length-1);
@@ -85,66 +108,7 @@ public class Window extends JPanel {
             addComponentToGrid(northArrow, middleLength, 0);
             addComponentToGrid(southArrow, middleLength, maxHeight);
             
-            int nbComp = area.getPerso().size() + area.getElement().size();
-            
-            int j = middleHeight;
-            int i = 3;
-            for (Perso p : area.getPerso())
-            {
-            	addComponentToGrid(new PersoView(picturePath), i, j);
-            	if (i < height)
-            	{
-            		i++;
-            	}
-            	else
-            	{
-            		i = 3;
-            		j++;
-            	}
-            }
-            
-            i = 13;
-            j = 10;
-                    
-            for (Element e : area.getElement())
-            {
-            
-                {
-                    addComponentToGrid(new ElementView(picturePath,e), i, j);
-                    if (i < height)
-                    {
-                            i++;
-                    }
-                    else
-                    {
-                            i = 10;
-                            j++;
-                    }
-                }
-            }
-                      
-            /*for (int j = 1; j < height-1; j++)
-            {
-            	for (int i = 1; i <length-1 ; i++)
-            	{
-                    MonsterView newM = new MonsterView (picturePath);
-                    newM.addActionListener (new ActionListener () 
-                    {
-                        public void actionPerformed (ActionEvent e) 
-                        {
-                        	Window.this.newGrid();
-                        	System.out.println("Coucou");
-                        }
-                    });
-                    addComponentToGrid(newM, i, j);
-            	}
-            }*/
-                     
-            //this.setLayout(new GridLayout(2,0));
-            //this.add(topPanel);
-            //this.add(bottomPanel);
             this.drawGrid();
-            this.setVisible(true);
 	}
 	/**
 	 * Allow to add a component to components (hashmap). 
@@ -187,7 +151,7 @@ public class Window extends JPanel {
 				}
 			}
 		}
-
+		interfac.pack();
 	}
 
         
@@ -263,6 +227,72 @@ public class Window extends JPanel {
 	
 	public void paintComponent(Graphics g){
 		   g.drawImage(back,0,0,this.getWidth(),this.getHeight(),this);
+	}
+	
+	public void adjustWindowToAreaPlanet(AreaPlanet newArea)
+	{
+		area = newArea;
+        nameOfFirstBackgroundPicture = area.getPicture();
+	
+        try 
+        {
+            System.out.println(nameOfFirstBackgroundPicture );
+        	back = ImageIO.read(new File(picturePath + nameOfFirstBackgroundPicture ));
+            //draw
+        }
+        catch (IOException e) 
+        {
+            e.printStackTrace();
+        }
+        
+        erraseGrid();
+        
+        int maxHeight = (height-1);
+        int maxLength = (length-1);
+	
+        int middleHeight = maxHeight/2;
+        int middleLength = maxLength/2;
+        
+        int j = middleHeight;
+        int i = 3;
+        for (Perso p : area.getPerso())
+        {
+        	addComponentToGrid(new MonsterView(picturePath), i, j);
+        	if (i < height)
+        	{
+        		i++;
+        	}
+        	else
+        	{
+        		i = 3;
+        		j++;
+        	}
+        }
+        
+        i = 13;
+        j = 10;
+        
+        for (Element e : area.getElement())
+        {
+        
+            {
+                addComponentToGrid(new ElementView(picturePath,e), i, j);
+                if (i < height)
+                {
+                        i++;
+                }
+                else
+                {
+                        i = 10;
+                        j++;
+                }
+            }
+        }
+        
+        
+        drawGrid();
+        
+        
 	}
 	
 }

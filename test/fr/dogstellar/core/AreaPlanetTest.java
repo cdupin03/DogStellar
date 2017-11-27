@@ -165,6 +165,27 @@ public class AreaPlanetTest
     
     @Test
     /**
+     * test if the area demanded in the direction is the good one.
+     */
+    public void getTheDirectionArea ()
+    {
+    	AreaPlanet areaPlanx = new AreaPlanet("Zone", "Test1", System.getProperty("user.dir") + "/pictures/champ.jpg");
+        AreaPlanet areaPlanx2 = new AreaPlanet("Zone1", "Test2", System.getProperty("user.dir") + "/pictures/champ.jpg");
+    	areaPlanx.addAreaPlanet(areaPlanx2, "SOUTH");
+    	assertEquals(areaPlanx2, areaPlanx.getOrientationArea("SOUTH"));
+    }
+    
+    @Test
+    /**
+     * Test if the wrong direction is given, the local area is returned.
+     */
+    public void getTheWrongDirectionArea ()
+    {
+    	AreaPlanet areaPlanx3 = new AreaPlanet("Zone", "Test1", System.getProperty("user.dir") + "/pictures/champ.jpg");
+    	assertEquals(areaPlanx3, areaPlanx3.getOrientationArea("SOUTH"));
+    }
+    @Test
+    /**
      * Test if the list of perso is the expected one.
      */
     public void goodListPerso ()
