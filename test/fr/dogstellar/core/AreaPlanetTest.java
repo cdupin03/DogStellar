@@ -48,8 +48,8 @@ public class AreaPlanetTest
         areaPlan3 = new AreaPlanet("Zone2", "Test3", System.getProperty("user.dir") + "/pictures/champ.jpg");
         areaPlan4 = new AreaPlanet("Zone3", "Test4", System.getProperty("user.dir") + "/pictures/champ.jpg");
         areaPlan5 = new AreaPlanet("Zone4", "Test5", System.getProperty("user.dir") + "/pictures/champ.jpg");
-        elem1 = new Element("TheElement1", "MyElementOne", false);
-        elem2 = new Element("TheElement2", "MyElementTwo", false);
+        elem1 = new Element("TheElement1", "MyElementOne", 1);
+        elem2 = new Element("TheElement2", "MyElementTwo", 1);
         elems = new ArrayList<Element>();
         elems.add(elem1);
         elems.add(elem2);

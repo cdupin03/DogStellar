@@ -2,6 +2,7 @@ package fr.dogstellar.core;
 /**
  * This class allows us to manage the element that interact 
  * with the player (like the enigme, trap, people, chest).
+ * The king of element is determined by its type : 1- enigme,2- trap,3- people,4- chest
  *
  *
  * @author Gp3

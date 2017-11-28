@@ -57,8 +57,10 @@ public class Interface
         displayMessage.setPreferredSize(new Dimension(400,150));
         
         AreaPlanet test1 = new AreaPlanet("tyuiuyfv","rdytfuygiut", "champ.jpg");
+        AreaPlanet test2 = new AreaPlanet("Bqzld","rdytfiut", "lave.jpg");
+        test1.addAreaPlanet(test2, "south");
         
-        Window theWindow = new Window(test1);
+        Window theWindow = new Window(test1, theInterface);
         top.setLayout(new BorderLayout());
         top.add(theWindow, BorderLayout.CENTER);
         

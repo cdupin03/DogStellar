@@ -182,7 +182,10 @@ public class Window extends JPanel {
 		
 	}
 	
-	
+	/**
+	 * Reinitialise the grid.
+	 */
+	@Deprecated
 	public void newGrid ()
 	{
 		erraseGrid();
@@ -224,11 +227,16 @@ public class Window extends JPanel {
 			length = 3;
 		}
 	}
-	
+	/**
+	 * draw the background of this panel.
+	 */
 	public void paintComponent(Graphics g){
 		   g.drawImage(back,0,0,this.getWidth(),this.getHeight(),this);
 	}
-	
+	/**
+	 * This method display a new area in the window.
+	 * @param newArea the new area to display in the window
+	 */
 	public void adjustWindowToAreaPlanet(AreaPlanet newArea)
 	{
 		area = newArea;
@@ -257,7 +265,7 @@ public class Window extends JPanel {
         int i = 3;
         for (Perso p : area.getPerso())
         {
-        	addComponentToGrid(new MonsterView(picturePath), i, j);
+        	addComponentToGrid(new PersoView(picturePath), i, j);
         	if (i < height)
         	{
         		i++;
