@@ -6,6 +6,9 @@
 package fr.dogstellar.view;
 
 import fr.dogstellar.core.AreaPlanet;
+import fr.dogstellar.core.Element;
+import fr.dogstellar.core.Perso;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -57,6 +60,11 @@ public class Interface
         displayMessage.setPreferredSize(new Dimension(400,150));
         
         AreaPlanet test1 = new AreaPlanet("tyuiuyfv","rdytfuygiut", "champ.jpg");
+        test1.addPerso(new Perso("Monstre", 10, 5));
+        test1.addPerso(new Perso("Monstre2", 5, 2));
+        test1.addElement(new Element("Coffre", "Petit coffre", 1));
+        test1.addElement(new Element("Enigme", "Une enigme", 4));
+        
         AreaPlanet test2 = new AreaPlanet("Bqzld","rdytfiut", "lave.jpg");
         test1.addAreaPlanet(test2, "south");
         
