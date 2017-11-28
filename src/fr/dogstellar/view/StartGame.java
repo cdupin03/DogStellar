@@ -108,7 +108,7 @@ public class StartGame{
                   }
               }
           });
-        
+         
         //button start game (not enable if there is no namePlayer)
 	    startGame = new JButton("Start Game");
 	    startGame.setEnabled(false);
