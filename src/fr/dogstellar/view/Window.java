@@ -28,18 +28,18 @@ import java.util.List;
 
 public class Window extends JPanel {
 
-	private GraphicalArrow eastArrow;//The east Arrow
-	private GraphicalArrow westArrow;//The west Arrow
-	private GraphicalArrow northArrow;//The north Arrow
-	private GraphicalArrow southArrow;//The south Arrow
+	private final GraphicalArrow eastArrow;//The east Arrow
+	private final GraphicalArrow westArrow;//The west Arrow
+	private final GraphicalArrow northArrow;//The north Arrow
+	private final GraphicalArrow southArrow;//The south Arrow
 	private HashMap<Integer,Component> components; //The coordinates (xxyy) linked to a component (arrow for example)
 	private int height;//The number of column
 	private int length;//The number of lines
-	private String picturePath;
+	private final String picturePath;
 	private String nameOfFirstBackgroundPicture;
 	private AreaPlanet area; //The areaPlanet to show.
 	private Image back;
-	private JFrame interfac;
+	private final JFrame interfac;
 	private final String south = "SOUTH";
 	private final String north = "NORTH";
 	private final String east = "EAST";
@@ -57,7 +57,7 @@ public class Window extends JPanel {
 	{
 			interfac = inter;
             components = new HashMap<Integer,Component>();
-            setHeight(7); //
+            setHeight(7);
             setLength(13);
             picturePath = new String(System.getProperty("user.dir") + "/pictures/");
             
@@ -336,7 +336,6 @@ public class Window extends JPanel {
         {
         	addRandomlyComponent(new ElementView(picturePath, e));
         }
-
         drawGrid();
         
 	}
