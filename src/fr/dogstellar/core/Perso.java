@@ -18,8 +18,8 @@ public class Perso
 {
     // instance variables - replace the example below with your own
     private String namePerso;
-    protected int lifePoint;
-    protected int attackPoint;
+    private int lifePoint; //ATTTTTTTTTTTTTTTENEEEEEEEEEEEEEEEEEEEEEEEEEENNNNNNNNNNNNNNNNNNNNTIIIIIIIIIIIIONNNNNNNNNNNN
+    private int attackPoint;//ATTTTTTTTTTTTTTTENEEEEEEEEEEEEEEEEEEEEEEEEEENNNNNNNNNNNNNNNNNNNNTIIIIIIIIIIIIONNNNNNNNNNNN
     
 
     /**
