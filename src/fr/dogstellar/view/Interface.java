@@ -29,6 +29,7 @@ public class Interface
     private final JPanel display = new JPanel();              //Contain the display
     private final JPanel write = new JPanel();                //Contain the area to write
     private final JTextArea displayMessage = new JTextArea(); //An area to display text
+    private final JScrollPane scrollMessage;
     private JTextField areaToWrite = new JTextField();  //An area to write text
     private String answer;                              //The last answer that is write
     
@@ -43,8 +44,6 @@ public class Interface
         console.add(display, BorderLayout.CENTER);
         console.add(write, BorderLayout.SOUTH); 
         
-        display.add(displayMessage);
-        
         write.setLayout(new BorderLayout());
         write.add(areaToWrite, BorderLayout.WEST);
         write.add(ok, BorderLayout.EAST);
@@ -57,7 +56,14 @@ public class Interface
         areaToWrite.setPreferredSize(new Dimension(340,30));
         areaToWrite.setFont(new Font(Font.SERIF,Font.PLAIN,18));
         
-        displayMessage.setPreferredSize(new Dimension(400,150));
+        displayMessage.setPreferredSize(new Dimension(380,150));
+        displayMessage.setLineWrap(true);
+        displayMessage.setEditable(false);
+        scrollMessage = new JScrollPane(displayMessage);
+        scrollMessage.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS); //VERTICAL_SCROLLBAR_AS_NEEDED
+
+        display.scrollRectToVisible(display.getBounds());
+        display.add(scrollMessage);        
         
         AreaPlanet test1 = new AreaPlanet("tyuiuyfv","rdytfuygiut", "champ.jpg");
         test1.addPerso(new Perso("Monstre", 10, 5));
