@@ -264,5 +264,32 @@ public class AreaPlanet
     {
     	return persos;
     }
+    
+    /**
+     * get the area corresponding to the direction. If there is no area in the direction specified, the current area is 
+     * returned.
+     * @param direction "NORTH", "SOUTH", "EAST", "WEST" the direction of the area to return.
+     * @return the area in the specified direction or the current area if there is no area in the direction.
+     */
+    public AreaPlanet getOrientationArea (String direction)
+    {
+    	direction = direction.toUpperCase();
+    	if (direction.equals("SOUTH") || direction.equals("NORTH") || direction.equals("WEST") || direction.equals("EAST"))
+    	{
+    		if (areas.containsKey(direction))
+    		{
+    			return areas.get(direction);
+    		}
+    		else
+    		{
+    			return this;
+    		}
+    	}
+    	else
+    	{
+    		return this;
+    	}
+    	
+    }
 
 }

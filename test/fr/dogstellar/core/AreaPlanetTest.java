@@ -48,8 +48,8 @@ public class AreaPlanetTest
         areaPlan3 = new AreaPlanet("Zone2", "Test3", System.getProperty("user.dir") + "/pictures/champ.jpg");
         areaPlan4 = new AreaPlanet("Zone3", "Test4", System.getProperty("user.dir") + "/pictures/champ.jpg");
         areaPlan5 = new AreaPlanet("Zone4", "Test5", System.getProperty("user.dir") + "/pictures/champ.jpg");
-        elem1 = new Element("TheElement1", "MyElementOne", false);
-        elem2 = new Element("TheElement2", "MyElementTwo", false);
+        elem1 = new Element("TheElement1", "MyElementOne", 1);
+        elem2 = new Element("TheElement2", "MyElementTwo", 1);
         elems = new ArrayList<Element>();
         elems.add(elem1);
         elems.add(elem2);
@@ -163,6 +163,27 @@ public class AreaPlanetTest
         assertEquals(false, areaPlan1.searchPerso(perso1));
     }
     
+    @Test
+    /**
+     * test if the area demanded in the direction is the good one.
+     */
+    public void getTheDirectionArea ()
+    {
+    	AreaPlanet areaPlanx = new AreaPlanet("Zone", "Test1", System.getProperty("user.dir") + "/pictures/champ.jpg");
+        AreaPlanet areaPlanx2 = new AreaPlanet("Zone1", "Test2", System.getProperty("user.dir") + "/pictures/champ.jpg");
+    	areaPlanx.addAreaPlanet(areaPlanx2, "SOUTH");
+    	assertEquals(areaPlanx2, areaPlanx.getOrientationArea("SOUTH"));
+    }
+    
+    @Test
+    /**
+     * Test if the wrong direction is given, the local area is returned.
+     */
+    public void getTheWrongDirectionArea ()
+    {
+    	AreaPlanet areaPlanx3 = new AreaPlanet("Zone", "Test1", System.getProperty("user.dir") + "/pictures/champ.jpg");
+    	assertEquals(areaPlanx3, areaPlanx3.getOrientationArea("SOUTH"));
+    }
     @Test
     /**
      * Test if the list of perso is the expected one.
