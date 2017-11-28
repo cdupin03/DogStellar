@@ -173,17 +173,17 @@ public class Window extends JPanel {
 		{
 			x=1;
 		}
-		else if (x>height-1)
+		else if (x>length-1)
 		{
 			x=1;
 			y++;
 		}
-		if (y>-1 || y>length-1)
+		if (y<1 || y>height-1)
 		{
 			y=1;
 		}
 		
-		int key = x*100+y;
+		int key = generateKey(x, y);
 		
 		if (components.containsKey(key))
 		{
@@ -204,11 +204,11 @@ public class Window extends JPanel {
 		this.removeAll();
 		this.setLayout(new GridLayout(height,length));
 		
-		for (int j = 0; j < height; j++)
+		for (int y = 0; y < height; y++)
 		{
-			for (int i = 0; i <length; i++)
+			for (int x = 0; x <length; x++)
 			{
-				int key = i*100+j;
+				int key = generateKey(x, y);
 				if (components.containsKey(key))
 				{
 					this.add(components.get(key));
@@ -336,9 +336,6 @@ public class Window extends JPanel {
         	addRandomlyComponent(new PersoView(picturePath));
         }
         
-        i = 13;
-        j = 10;
-        
         for (Element e : area.getElement())
         {
         	addRandomlyComponent(new ElementView(picturePath, e));
@@ -359,6 +356,8 @@ public class Window extends JPanel {
 		Random r = new Random();
 		int x = r.nextInt(length-2);//Take x between 0 and length-2
 		int y = r.nextInt(height-2);//Take y between 0 and height-2
+		System.out.println("X : " + x);
+		System.out.println("Y : " + y);
 		x++;
 		y++;
 		addComponentToGrid(comp, x, y);
