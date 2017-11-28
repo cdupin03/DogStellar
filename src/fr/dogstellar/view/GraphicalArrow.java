@@ -42,5 +42,9 @@ public class GraphicalArrow  extends JButton{
 		this.setBorder(BorderFactory.createEmptyBorder());
 		this.setContentAreaFilled(false);
 	}
+	
+	public void direCoucou () {
+		System.out.println("dlfkjdflkj");
+	}
 
 }

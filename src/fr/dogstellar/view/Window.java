@@ -131,8 +131,6 @@ public class Window extends JPanel {
 	 */
 	private void drawGrid ()
 	{
-		
-
 		this.removeAll();
 		this.setLayout(new GridLayout(height,length));
 		
@@ -296,10 +294,8 @@ public class Window extends JPanel {
                 }
             }
         }
-        
-        
+
         drawGrid();
-        
         
 	}
 	
