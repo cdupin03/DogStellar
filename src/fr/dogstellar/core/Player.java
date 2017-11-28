@@ -72,7 +72,7 @@ public class Player extends Perso
     public void addWeaponEquip(Weapon weaponEquip)
     {
     	weapon=weaponEquip;
-    	attackPoint=attackPoint+weapon.getDamage();
+    	decreaseAttackPoint(weapon.getDamage());
     	System.out.println("point of attackPoint of the weapon" + weapon.getDamage());
     }
     

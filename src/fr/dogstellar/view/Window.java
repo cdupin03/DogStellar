@@ -312,7 +312,6 @@ public class Window extends JPanel {
 	
         try 
         {
-            System.out.println(nameOfFirstBackgroundPicture );
         	back = ImageIO.read(new File(picturePath + nameOfFirstBackgroundPicture ));
             //draw
         }
@@ -356,8 +355,6 @@ public class Window extends JPanel {
 		Random r = new Random();
 		int x = r.nextInt(length-2);//Take x between 0 and length-2
 		int y = r.nextInt(height-2);//Take y between 0 and height-2
-		System.out.println("X : " + x);
-		System.out.println("Y : " + y);
 		x++;
 		y++;
 		addComponentToGrid(comp, x, y);

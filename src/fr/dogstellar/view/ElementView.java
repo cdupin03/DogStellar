@@ -38,8 +38,6 @@ public class ElementView extends JButton {
 			PicturePath = new String(picturePath + "");
                         E = newE;
                         
-			System.out.println(PicturePath);
-                        
                          if (E.getType() == 1)
                         {   
                             
