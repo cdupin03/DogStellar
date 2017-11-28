@@ -145,7 +145,7 @@ public class Player extends Perso
     /**
 	 * The player attack a monster(Perso) with a number of attackPoint
 	 * @param attackPoint it is the number of attackPoint that it decided to play
-	 * @param monter it is a Perso who fighting with the player
+	 * @param monster it is a Perso who fighting with the player
 	 */
 	public void playerFight(Perso monster, int attackPoint)
 	{
