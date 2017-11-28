@@ -36,7 +36,6 @@ public class GraphicalArrow  extends JButton{
 			direction = "NORTH";
 		}
 		ArrowPicturePath = ArrowPicturePath + direction;
-		System.out.println(ArrowPicturePath);
 		this.setIcon(new ImageIcon(ArrowPicturePath + ".png"));
 		this.setRolloverIcon(new ImageIcon (ArrowPicturePath + "Roll.png"));
 		this.setBorder(BorderFactory.createEmptyBorder());

@@ -18,7 +18,6 @@ public class PersoView extends JButton {
 		public PersoView (String picturePath) {
 			super();
 			MonsterPicturePath = new String(picturePath + "Monstre");
-			System.out.println(MonsterPicturePath);
 			this.setIcon(new ImageIcon(MonsterPicturePath + ".png"));
 			this.setRolloverIcon(new ImageIcon (MonsterPicturePath + "2.png"));
 			this.setBorder(BorderFactory.createEmptyBorder());

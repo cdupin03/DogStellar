@@ -6,6 +6,9 @@
 package fr.dogstellar.view;
 
 import fr.dogstellar.core.AreaPlanet;
+import fr.dogstellar.core.Element;
+import fr.dogstellar.core.Perso;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -51,20 +54,30 @@ public class Interface
         ok.setSize(50,30);
         ok.setFont(new java.awt.Font(Font.SERIF,Font.BOLD,16));
         
-        areaToWrite.setPreferredSize(new Dimension(520,30));
+        areaToWrite.setPreferredSize(new Dimension(340,30));
         areaToWrite.setFont(new Font(Font.SERIF,Font.PLAIN,18));
         
-        displayMessage.setPreferredSize(new Dimension(580,300));
+        displayMessage.setPreferredSize(new Dimension(400,150));
         
         AreaPlanet test1 = new AreaPlanet("tyuiuyfv","rdytfuygiut", "champ.jpg");
+        test1.addPerso(new Perso("Monstre", 10, 5));
+        test1.addPerso(new Perso("Monstre2", 5, 2));
+        test1.addElement(new Element("Coffre", "Petit coffre", 1));
+        test1.addElement(new Element("Enigme", "Une enigme", 4));
         
-        Window theWindow = new Window(test1);
-        top.add(theWindow);
+        AreaPlanet test2 = new AreaPlanet("Bqzld","rdytfiut", "lave.jpg");
+        test1.addAreaPlanet(test2, "south");
         
-        bottom.setLayout(new GridLayout(1,2));
+        Window theWindow = new Window(test1, theInterface);
+        top.setLayout(new BorderLayout());
+        top.add(theWindow, BorderLayout.CENTER);
+        
+        //bottom.setLayout(new GridLayout(1,2));
         //bottom.add();
-        bottom.add(console);
-        bottom.add(console1);
+        bottom.setLayout(new BorderLayout());
+        bottom.add(console1, BorderLayout.CENTER);
+        bottom.add(console, BorderLayout.EAST);
+        
         
         theInterface.setLayout(new FlowLayout());
         theInterface.setPreferredSize(new Dimension(1200,700));
@@ -90,7 +103,7 @@ public class Interface
             {
                 if(e.getSource() == areaToWrite) 
                 {
-                    //ok.doClick(0); //if we press the key "enter", we have the same response that when we click on OK button
+                    ok.doClick(0); //if we press the key "enter", we have the same response that when we click on OK button
                 }
             }
         });

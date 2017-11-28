@@ -29,5 +29,5 @@ public class Main {
 		QuestElement partOfShip5 = new QuestElement("The part of Ship 5" , "Is the part of Ship 5");
 // other stuff
 	}
-
 }
+

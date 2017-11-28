@@ -15,53 +15,87 @@ import java.util.*;
 
 public class StartGame{
 	private JFrame myJFrame;
+	private JLabel title, infoP;
 	private JButton player1, player2, player3, startGame;
-	private JPanel gridPlayer;
+	private JPanel panelPlayer,titlePlayer;
 	private JTextField t;
 	private String namePlayer = "";
 	private Player player;
+	private String picturePath;
+	private int lP, aP;
 	
 	
 	public StartGame() {
+		picturePath = new String(System.getProperty("user.dir") + "/pictures/");
+		
 		myJFrame = new JFrame();
 		
+		infoP = new JLabel("This player has " + String.valueOf(lP) + " life Point" + " and " + String.valueOf(aP) + " attack Point", JLabel.CENTER);
+		infoP.setFont(new java.awt.Font(Font.SERIF,Font.BOLD,18));
+		infoP.setForeground(Color.black);
+		
+		title = new JLabel("Dog Stellar",JLabel.CENTER);
+	    title.setFont(new java.awt.Font(Font.SERIF,Font.BOLD,75));
+	    title.setForeground(Color.black);
+	    
   		//action when clicked to button of a player
   			//hulk have 2 life point and 8 attacked point
-		player1 = new JButton(new ImageIcon("C:\\Users\\clarisse\\git\\DogStellar\\pictures\\hulk.png"));
-        player1.addActionListener(new ActionListener () {
-        	public void actionPerformed(ActionEvent evt) { 
-        		player = new Player(namePlayer, 2,8);
+		player1 = new JButton(new ImageIcon(picturePath + "hulk.png"));
+        player1.addMouseListener(new MouseAdapter () {
+    	    public void mouseClicked(MouseEvent evt) {
+    	        player = new Player(namePlayer, 2,8);
         		t.setEnabled(true);
         		player2.setEnabled(false);
         		player3.setEnabled(false);
     	    }
+    	    public void mouseEntered(MouseEvent evt) {
+    	    	player = new Player(namePlayer, 2,8);
+    	    	lP = player.getLifePoint();
+    	    	aP = player.getAttackPoint();
+    	    	majInfoP(lP, aP);
+    	    	System.out.println("entrer");
+    	    }
         });
         
         	//wonderwoman have 5 life point and 5 attacked point
-		player2 = new JButton(new ImageIcon("C:\\Users\\clarisse\\git\\DogStellar\\pictures\\wonderwoman.png"));
-        player2.addActionListener(new ActionListener () {
-        	public void actionPerformed(ActionEvent evt) {
+		player2 = new JButton(new ImageIcon(picturePath + "wonderwoman.png"));
+        player2.addMouseListener(new MouseAdapter () {
+    	    public void mouseClicked(MouseEvent evt) {
         		player = new Player(namePlayer, 5,5);
         		t.setEnabled(true);
         		player1.setEnabled(false);
         		player3.setEnabled(false);
     	    }
+    	    public void mouseEntered(MouseEvent evt) {
+    	    	player = new Player(namePlayer, 5,5);
+    	    	lP = player.getLifePoint();
+    	    	aP = player.getAttackPoint();
+    	    	majInfoP(lP, aP);
+    	    	System.out.println("entrer");
+    	    }
         });
         
         	//spider have 8 life point and 2 attacked point
-		player3 = new JButton(new ImageIcon("C:\\Users\\clarisse\\git\\DogStellar\\pictures\\spiderman.png"));
-        player3.addActionListener(new ActionListener () {
-        	public void actionPerformed(ActionEvent evt) { 
+		player3 = new JButton(new ImageIcon(picturePath + "spiderman.png"));
+        player3.addMouseListener(new MouseAdapter () {
+    	    public void mouseClicked(MouseEvent evt) { 
         		player = new Player(namePlayer,8,2);
         		t.setEnabled(true);
         		player1.setEnabled(false);
         		player2.setEnabled(false);
     	    }
+    	    public void mouseEntered(MouseEvent evt) {
+    	    	player = new Player(namePlayer, 8,2);
+    	    	lP = player.getLifePoint();
+    	    	aP = player.getAttackPoint();
+    	    	majInfoP(lP, aP);
+    	    	System.out.println("entrer");
+    	    }
         });
         
         //Text for enter the name of player (not enable if no player is choose)
   		t = new JTextField("Name of Player");
-        t.setPreferredSize(new Dimension(10,10));
+        t.setPreferredSize(new Dimension(100,100));
 		t.setEnabled(false);
   		t.addActionListener(new ActionListener (){
               public void actionPerformed(ActionEvent e){
@@ -74,7 +108,7 @@ public class StartGame{
                   }
               }
           });
-        
+         
         //button start game (not enable if there is no namePlayer)
 	    startGame = new JButton("Start Game");
 	    startGame.setEnabled(false);
@@ -84,10 +118,11 @@ public class StartGame{
         		AreaPlanet area1 = new AreaPlanet("lave", "grosse eruption", System.getProperty("user.dir") + "/pictures/champ.jpg");
         		planet1.addArea(area1);
         		area1.addPerso(player);
-        		Window wind = new Window("champ.jpg", area1);  //start the game with the a player a planet ...
+        		myJFrame.dispose();
+        		Interface interf = new Interface();  //start the game with the a player a planet ...
     	    }
         });
-        
+	    
         //transparent button
         player1.setOpaque(false);
 	    player1.setContentAreaFilled(false);
@@ -104,28 +139,39 @@ public class StartGame{
 	    startGame.setOpaque(false);
 	    startGame.setContentAreaFilled(false);
 	    startGame.setBorderPainted(false);
+	    startGame.setFont(new java.awt.Font(Font.SERIF,Font.BOLD,50));
+		startGame.setForeground(Color.black);
         
         //grid of player
-	    gridPlayer = new JPanel();
-	    gridPlayer.setLayout(new FlowLayout());
-	    gridPlayer.add(player1);
-	    gridPlayer.add(player2);
-	    gridPlayer.add(player3);
+	    panelPlayer = new JPanel();
+	    panelPlayer.setLayout(new FlowLayout());
+	    panelPlayer.add(player1);
+	    panelPlayer.add(player2);
+	    panelPlayer.add(player3);
 	    //transparent flowLayout
-	    gridPlayer.setOpaque(false);
+	    panelPlayer.setOpaque(false);
 	    
         //image background
-        myJFrame.setContentPane(new JLabel(new ImageIcon("C:\\Users\\clarisse\\git\\DogStellar\\pictures\\BackgroundStartGame.jpg")));
+        myJFrame.setContentPane(new JLabel(new ImageIcon(picturePath + "BackgroundStartGame.jpg")));
 	    
+        titlePlayer = new JPanel();
+        titlePlayer.setLayout(new BorderLayout());
+        titlePlayer.add(title, BorderLayout.NORTH);
+        titlePlayer.add(panelPlayer, BorderLayout.CENTER);
+        if (infoP!=null) {
+        	titlePlayer.add(infoP, BorderLayout.SOUTH);
+        }
+        titlePlayer.setOpaque(false);
+        
 	    //BorderLayout
         BorderLayout myBorderL = new BorderLayout();
         myJFrame.setLayout(myBorderL);
-        myJFrame.add(gridPlayer, BorderLayout.NORTH);
+        myJFrame.add(titlePlayer, BorderLayout.NORTH);
         myJFrame.add(t, BorderLayout.CENTER);
         myJFrame.add(startGame, BorderLayout.SOUTH);
         
 	    // size of JPanel
-        gridPlayer.setPreferredSize(new Dimension(300,500));
+        panelPlayer.setPreferredSize(new Dimension(200,400));
 	    startGame.setPreferredSize(new Dimension(200,100));
 	    
 	    //size of frame
@@ -133,6 +179,11 @@ public class StartGame{
 	    
 	    myJFrame.setLocationRelativeTo(null);
 	    myJFrame.setVisible(true);
+	    }
+	
+		public void majInfoP (int lP, int aP)
+	    {
+	        infoP.setText("This player has " + String.valueOf(lP) + " life Point" + " and " + String.valueOf(aP) + " attack Point");
 	    }
 	}
 	
