@@ -17,9 +17,6 @@ import java.awt.event.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.util.Random;
-
-import com.sun.java.swing.plaf.gtk.GTKConstants.ArrowType;
-
 import java.awt.Graphics;
 
 import fr.dogstellar.core.AreaPlanet;
