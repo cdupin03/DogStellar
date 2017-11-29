@@ -15,7 +15,6 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.BorderFactory;
 import java.lang.String;
-import java.awt.event.*;
 
 public class GraphicalArrow  extends JButton{
 	

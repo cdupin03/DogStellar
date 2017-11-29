@@ -3,7 +3,8 @@ package fr.dogstellar.view;
 /**
  * This class is the representation of a simple Window of the game.
  * The window is made as a grid with a background.
- * The grid contains Components.
+ * The grid contains the arrows to move,
+ * the element and monsters to interact with
  * 
  * @author (G3)
  * @version (21/11/17)
@@ -20,18 +21,16 @@ import java.util.Random;
 import java.awt.Graphics;
 
 import fr.dogstellar.core.AreaPlanet;
-import fr.dogstellar.core.Perso;
-import fr.dogstellar.core.Element;
 
 import java.util.*;
 import java.util.List;
 
-public class Window extends JPanel {
+public final class Window extends JPanel {
 
-	private final GraphicalArrow eastArrow;//The east Arrow
-	private final GraphicalArrow westArrow;//The west Arrow
-	private final GraphicalArrow northArrow;//The north Arrow
-	private final GraphicalArrow southArrow;//The south Arrow
+	public static GraphicalArrow eastArrow;//The east Arrow
+	public static GraphicalArrow westArrow;//The west Arrow
+	public static GraphicalArrow northArrow;//The north Arrow
+	public static GraphicalArrow southArrow;//The south Arrow
 	private HashMap<Integer,Component> components; //The coordinates (xxyy) linked to a component (arrow for example)
 	private int height;//The number of column
 	private int length;//The number of lines
@@ -46,64 +45,25 @@ public class Window extends JPanel {
 	private final String west =  "WEST";
 	
 	/**
-	 * The constructor of Window.
-	 * Create the window with its components.
-	 * Set set the background image of the world.
-	 * Set all elements in in the window.
-	 * The heigh and length are initialized. If they are greater than 100 or lower than 0 they
-	 * are initialized to 3. The height and length are managed by setHeight and setLength.
-	 */
+	* The constructor of Window.
+	* Create the window with its components.
+	* Set set the background image of the world.
+	* Set all elements in in the window.
+	* The heigh and length are initialized. If they are greater than 100 or lower than 0 they
+	* are initialized to 3. The height and length are managed by setHeight and setLength.
+        * @param firstArea the first area of the player
+        * @param inter the interface.
+	*/
 	public Window (AreaPlanet firstArea, JFrame inter)
 	{
 			interfac = inter;
-            components = new HashMap<Integer,Component>();
+            components = new HashMap<>();
             setHeight(7);
             setLength(13);
-            picturePath = new String(System.getProperty("user.dir") + "/pictures/");
+            picturePath = System.getProperty("user.dir") + "/pictures/";
             
             adjustWindowToAreaPlanet(firstArea);
-		
-            eastArrow = new GraphicalArrow (east, picturePath);
-            westArrow = new GraphicalArrow (west, picturePath);
-            northArrow = new GraphicalArrow (north, picturePath);
-            southArrow = new GraphicalArrow (south, picturePath);
-            
-            southArrow.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					adjustWindowToAreaPlanet(area.getOrientationArea(south));
-				}
-			});
-            
-            northArrow.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					adjustWindowToAreaPlanet(area.getOrientationArea(north));
-				}
-			});
-            
-            eastArrow.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					adjustWindowToAreaPlanet(area.getOrientationArea(east));
-				}
-			});
-            
-            westArrow.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					adjustWindowToAreaPlanet(area.getOrientationArea(west));
-				}
-			});
-		
-            addArrow(northArrow, north);
-            addArrow(southArrow, south);
-            addArrow(eastArrow, east);
-            addArrow(westArrow, west);
+            addArrows();
             
             this.drawGrid();
 	}
@@ -125,9 +85,10 @@ public class Window extends JPanel {
 	 * @param arrow the arrow to add
 	 * @param direction the direction of the arrow
 	 */
+        @Deprecated 
 	private void addArrow (GraphicalArrow arrow, String direction)
 	{
-		int maxHeight = (height-1);
+	int maxHeight = (height-1);
         int maxLength = (length-1);
 	
         int middleHeight = maxHeight/2;
@@ -153,6 +114,87 @@ public class Window extends JPanel {
 				+ "It was not added to the window.");
 		}
 	}
+        
+        /**
+         * Create and add all arrows to the components.
+         * The arrows are conected to to their click.
+         * If there is no areas in the arrow direction, the arrow is disabled.
+         */
+        public void addArrows ()
+        {
+            eastArrow = new GraphicalArrow (east, picturePath);
+            westArrow = new GraphicalArrow (west, picturePath);
+            northArrow = new GraphicalArrow (north, picturePath);
+            southArrow = new GraphicalArrow (south, picturePath);
+            
+            int maxHeight = (height-1);
+            int maxLength = (length-1);
+	
+            int middleHeight = maxHeight/2;
+            int middleLength = maxLength/2;
+            
+            int key;
+            
+            if(area.getOrientationArea (south).equals(area))
+            {
+                southArrow.setEnabled(false);
+            }
+            else
+            {
+                southArrow.addActionListener((ActionEvent e) -> {
+                    adjustWindowToAreaPlanet(area.getOrientationArea(south));
+                });
+            }
+            
+            if(area.getOrientationArea (north).equals(area))
+            {
+                northArrow.setEnabled(false);
+            }
+            else
+            {
+                northArrow.addActionListener((ActionEvent e) -> {
+                    adjustWindowToAreaPlanet(area.getOrientationArea(north));
+                });
+            }
+            
+            if(area.getOrientationArea (east).equals(area))
+            {
+                eastArrow.setEnabled(false);
+            }
+            else
+            {
+                eastArrow.addActionListener((ActionEvent e) -> {
+                    adjustWindowToAreaPlanet(area.getOrientationArea(east));
+                });
+            }
+            
+            if(area.getOrientationArea (west).equals(area))
+            {
+                westArrow.setEnabled(false);
+            }
+            else
+            {
+                westArrow.addActionListener((ActionEvent e) -> {
+                    adjustWindowToAreaPlanet(area.getOrientationArea(west));
+                });
+            }
+		
+            
+            key = generateKey(middleLength, maxHeight);
+            components.put(key, southArrow);
+            
+            key = generateKey(middleLength, 0);
+            components.put(key, northArrow);
+            
+            key = generateKey(maxLength, middleHeight);
+            components.put(key, eastArrow);
+            
+            key = generateKey(0,  middleHeight);
+            components.put(key, westArrow);
+            
+        }
+        
+        
 	
 	
 	/**
@@ -226,23 +268,14 @@ public class Window extends JPanel {
 	 */
 	private void erraseGrid()
 	{
-		List<Integer> toRemove = new ArrayList<Integer>();
-		for (Map.Entry<Integer,Component> e : components.entrySet()){
-		    e.getKey();
-		    
-		    if(!(e.getValue() == eastArrow ||
-		    		e.getValue() == westArrow ||
-		    		e.getValue() == northArrow ||
-		    		e.getValue() == southArrow))
-		    {
-		        	toRemove.add(e.getKey());
-		    }
-		}
+		List<Integer> toRemove = new ArrayList<>();
+                components.entrySet().stream().forEach((e) -> {
+                    toRemove.add(e.getKey());
+            });
 		
-		for (Integer i : toRemove)
-		{
-			components.remove(i);
-		}
+                toRemove.stream().forEach((i) -> {
+                    components.remove(i);
+            });
 		
 		
 	}
@@ -295,17 +328,19 @@ public class Window extends JPanel {
 	/**
 	 * draw the background of this panel.
 	 */
+        @Override
 	public void paintComponent(Graphics g){
 		   g.drawImage(back,0,0,this.getWidth(),this.getHeight(),this);
 	}
+        
 	/**
 	 * This method display a new area in the window.
 	 * @param newArea the new area to display in the window
 	 */
 	public void adjustWindowToAreaPlanet(AreaPlanet newArea)
 	{
-		area = newArea;
-        nameOfFirstBackgroundPicture = area.getPicture();
+            area = newArea;
+            nameOfFirstBackgroundPicture = area.getPicture();
 	
         try 
         {
@@ -319,23 +354,15 @@ public class Window extends JPanel {
         
         erraseGrid();
         
-        int maxHeight = (height-1);
-        int maxLength = (length-1);
-	
-        int middleHeight = maxHeight/2;
-        int middleLength = maxLength/2;
+        addArrows();
         
-        int j = middleHeight;
-        int i = 3;
-        for (Perso p : area.getPerso())
-        {
-        	addRandomlyComponent(new PersoView(picturePath));
-        }
+        area.getPerso().stream().forEach((_item) -> {
+            addRandomlyComponent(new PersoView(picturePath));
+            });
         
-        for (Element e : area.getElement())
-        {
-        	addRandomlyComponent(new ElementView(picturePath, e));
-        }
+        area.getElement().stream().forEach((e) -> {
+            addRandomlyComponent(new ElementView(picturePath, e));
+            });
         drawGrid();
         
 	}
@@ -355,5 +382,32 @@ public class Window extends JPanel {
 		y++;
 		addComponentToGrid(comp, x, y);
 	}
+        
+        /**
+         * Call the function setEnabled(ena) of all arrows.
+         * If it is true, the arrow is enabled, so it is colored and clickable
+         * If it is false, the arrow is disabled, so it is greyed and not clickable
+         * @param ena If true enable if false disable.
+         */
+        public void setEnableArrows (boolean ena)
+        {
+            southArrow.setEnabled(ena);
+            northArrow.setEnabled(ena);
+            eastArrow.setEnabled(ena);
+            westArrow.setEnabled(ena);
+        }
+        
+        /**
+         * Call the function setEnabled(ena) of all componenents in the map.
+         * If it is true, the arrow is enabled, so it is colored and clickable
+         * If it is false, the arrow is disabled, so it is greyed and not clickable
+         * @param ena If true enable if false disable.
+         */
+        public void setAllComponentEnabled (boolean ena)
+        {
+            components.entrySet().stream().forEach((e) -> {
+                e.getValue().setEnabled(ena);
+            });
+        }
 	
 }
