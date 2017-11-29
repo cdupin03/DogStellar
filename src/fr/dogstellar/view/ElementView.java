@@ -8,6 +8,8 @@ package fr.dogstellar.view;
 import fr.dogstellar.core.*;
 import java.awt.Container;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.BorderFactory;
@@ -61,6 +63,16 @@ public class ElementView extends JButton {
                             this.setRolloverIcon(imageIcon2);
                             this.setBorder(BorderFactory.createEmptyBorder());
                             this.setContentAreaFilled(false);
+                            
+                            this.addMouseListener(new MouseAdapter () 
+                            {
+                                public void mouseClicked(MouseEvent evt) 
+                                {
+                                Popup newPopup = new Popup();
+                                }
+                                    
+
+                            });
                         }
                          else if (E.getType() == 2) // If trap
                         {  
