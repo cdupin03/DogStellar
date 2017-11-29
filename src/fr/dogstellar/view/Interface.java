@@ -75,7 +75,8 @@ public class Interface
         test1.addPerso(new Perso("Monstre2", 5, 2));
         test1.addElement(new Element("Coffre", "Petit coffre", 1));
         test1.addElement(new Element("Enigme", "Une enigme", 4));
-        
+        test1.addElement(new Element("Trap", "Un piege déguisé", 2));
+        test1.addElement(new Element("PNJ", "Un pnj champu", 3));
         AreaPlanet test2 = new AreaPlanet("Bqzld","rdytfiut", "lave.jpg");
         test1.addAreaPlanet(test2, "south");
         
