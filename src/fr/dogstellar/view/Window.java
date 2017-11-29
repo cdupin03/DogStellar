@@ -27,10 +27,10 @@ import java.util.List;
 
 public final class Window extends JPanel {
 
-	private GraphicalArrow eastArrow;//The east Arrow
-	private GraphicalArrow westArrow;//The west Arrow
-	private GraphicalArrow northArrow;//The north Arrow
-	private GraphicalArrow southArrow;//The south Arrow
+	public static GraphicalArrow eastArrow;//The east Arrow
+	public static GraphicalArrow westArrow;//The west Arrow
+	public static GraphicalArrow northArrow;//The north Arrow
+	public static GraphicalArrow southArrow;//The south Arrow
 	private HashMap<Integer,Component> components; //The coordinates (xxyy) linked to a component (arrow for example)
 	private int height;//The number of column
 	private int length;//The number of lines
