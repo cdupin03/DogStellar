@@ -15,7 +15,6 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.BorderFactory;
 import java.lang.String;
-import java.awt.event.*;
 
 public class GraphicalArrow  extends JButton{
 	
@@ -36,15 +35,10 @@ public class GraphicalArrow  extends JButton{
 			direction = "NORTH";
 		}
 		ArrowPicturePath = ArrowPicturePath + direction;
-		System.out.println(ArrowPicturePath);
 		this.setIcon(new ImageIcon(ArrowPicturePath + ".png"));
 		this.setRolloverIcon(new ImageIcon (ArrowPicturePath + "Roll.png"));
 		this.setBorder(BorderFactory.createEmptyBorder());
 		this.setContentAreaFilled(false);
-	}
-	
-	public void direCoucou () {
-		System.out.println("dlfkjdflkj");
 	}
 
 }
