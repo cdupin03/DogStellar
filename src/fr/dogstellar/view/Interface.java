@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.dogstellar.view;
 
 import fr.dogstellar.core.AreaPlanet;
@@ -12,107 +7,142 @@ import fr.dogstellar.core.Perso;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.text.DefaultCaret;
 
 /**
- *
- * @author Albenss
+ * The Class Interface is the main Interface of the game, it allows to interract with a specific area,
+ * with the inventory, and also with the console
+ * @author G3
+ * @version V05
  */
 public class Interface 
 {
-    private final JFrame theInterface = new JFrame();
-    private final JPanel console = new JPanel();
-    private final JPanel console1 = new JPanel();
-    private final JPanel top = new JPanel();
-    private final JPanel bottom = new JPanel();
-    private final JButton ok = new JButton();                 //Ok button to validate an entry
-    private final JPanel theConsolePanel = new JPanel();      //JPanel global for the console
-    private final JPanel display = new JPanel();              //Contain the display
-    private final JPanel write = new JPanel();                //Contain the area to write
-    private final JTextArea displayMessage = new JTextArea(); //An area to display text
-    private JTextField areaToWrite = new JTextField();  //An area to write text
-    private String answer;                              //The last answer that is write
+    private final JFrame theInterface = new JFrame();           //The main frame of the interface
+    private final JPanel console = new JPanel();                //The main panel for the console
+    private final JPanel console1 = new JPanel();               //A test console
+    private final JPanel top = new JPanel();                    //The top part of the interface that contain the display of area
+    private final JPanel bottom = new JPanel();                 //The bottom part of the interface that contain the global informations, inventory, attack button, and the console
+    private final JButton ok = new JButton();                   //The button to validate an entry in the console
+    private final JPanel display = new JPanel();                //The panel in the console that contain the JTextArea displayMessage
+    private final JPanel write = new JPanel();                  //The panel in the console that contain the JTextField to write answer and the button of validation
+    private final JTextArea displayMessage = new JTextArea();   //The area to display message
+    private JTextField areaToWrite = new JTextField();          //The area to write answer
+    private String answer;                                      //The last answer that is write
     
-    
+    /**
+     * The constructor of the class Interface
+     */
     public Interface()
     {
-        console.add(theConsolePanel);
-        console.setLayout(new FlowLayout());
-        console.setPreferredSize(new Dimension(400,200));
+        areaToWrite.setPreferredSize(new Dimension(340,30));        //Set the size of the area to write
+        areaToWrite.setFont(new Font(Font.SERIF,Font.PLAIN,18));    //Font of the area to write
         
-        console.setLayout(new BorderLayout());
-        console.add(display, BorderLayout.CENTER);
-        console.add(write, BorderLayout.SOUTH); 
+        ok.setText("OK");                                           //Set the button text
+        ok.setForeground(Color.black);                              //Set the color of the button
+        ok.setSize(50,30);                                          //Set the size of the button
+        ok.setFont(new java.awt.Font(Font.SERIF,Font.BOLD,16));     //Set the font of the button
+        ok.setEnabled(false);                                       //Disable the button
         
-        display.add(displayMessage);
+        write.setLayout(new BorderLayout());                        //The layout of the write pannel
+        write.add(areaToWrite, BorderLayout.WEST);                  //Add the areaToWrite in the write pannel
+        write.add(ok, BorderLayout.EAST);                           //Add the validation button in the write pannel
+
+        displayMessage.setLineWrap(true);                           //When a sentence is too long, the sentence is cut and there is a new line that is created
+        displayMessage.setEditable(false);                          //Do not allow to write text directly in the JTextArea
         
-        write.setLayout(new BorderLayout());
-        write.add(areaToWrite, BorderLayout.WEST);
-        write.add(ok, BorderLayout.EAST);
+        //Declaration and instantiation of the container JScrollPane named scrollMessage that allows to scroll in the display area
+        JScrollPane scrollMessage = new JScrollPane(displayMessage, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollMessage.setPreferredSize(new Dimension(380, 150));    //Set the size of the container scrollMessage
+
+        DefaultCaret caret = (DefaultCaret) displayMessage.getCaret();  //This element allows to make the scroll when we want
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);          //The scroll is always on bottom
         
-        ok.setText("OK");
-        ok.setForeground(Color.black);
-        ok.setSize(50,30);
-        ok.setFont(new java.awt.Font(Font.SERIF,Font.BOLD,16));
+        display.add(scrollMessage);                                 //Add the container scrollMessage to the display panel
+              
+        console.setPreferredSize(new Dimension(400,200));           //Set the size of the global console
+        console.setLayout(new BorderLayout());                      //Set the layout of the console
+        console.add(display, BorderLayout.CENTER);                  //Add the panel display in the console
+        console.add(write, BorderLayout.SOUTH);                     //Add the panel write in the console
         
-        areaToWrite.setPreferredSize(new Dimension(340,30));
-        areaToWrite.setFont(new Font(Font.SERIF,Font.PLAIN,18));
         
-        displayMessage.setPreferredSize(new Dimension(400,150));
-        
+        /*
+         *  *****   *  *   *****      ** **   *****   *****                                          
+         *    *     ****   **         * * *   *****   *****                                                       
+         *    *     *  *   *****      *   *   *   *   *                                     
+        */
         AreaPlanet test1 = new AreaPlanet("tyuiuyfv","rdytfuygiut", "champ.jpg");
         test1.addPerso(new Perso("Monstre", 10, 5));
         test1.addPerso(new Perso("Monstre2", 5, 2));
         test1.addElement(new Element("Coffre", "Petit coffre", 1));
         test1.addElement(new Element("Enigme", "Une enigme", 4));
-        
+        test1.addElement(new Element("Trap", "Un piege déguisé", 2));
+        test1.addElement(new Element("PNJ", "Un pnj champu", 3));
         AreaPlanet test2 = new AreaPlanet("Bqzld","rdytfiut", "lave.jpg");
         test1.addAreaPlanet(test2, "south");
         
         Window theWindow = new Window(test1, theInterface);
-        top.setLayout(new BorderLayout());
-        top.add(theWindow, BorderLayout.CENTER);
-        
-        //bottom.setLayout(new GridLayout(1,2));
-        //bottom.add();
-        bottom.setLayout(new BorderLayout());
-        bottom.add(console1, BorderLayout.CENTER);
-        bottom.add(console, BorderLayout.EAST);
-        
-        
-        theInterface.setLayout(new FlowLayout());
-        theInterface.setPreferredSize(new Dimension(1200,700));
-        theInterface.setLayout(new BorderLayout());
-        theInterface.add(top, BorderLayout.CENTER);
-        theInterface.add(bottom, BorderLayout.SOUTH);
-        theInterface.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        theInterface.pack();
-        theInterface.setVisible(true);
+        /*
+         *
+         *
+        */
 
+        
+        top.setLayout(new BorderLayout());                          //Set the layout of the top part       
+        top.add(theWindow, BorderLayout.CENTER);                    //Add the area map in the top part
+        
+        bottom.setLayout(new BorderLayout());                       //Set the layout of the bottom part
+        bottom.add(console1, BorderLayout.CENTER);                  //Add the false console to the left part of the bottom
+        bottom.add(console, BorderLayout.EAST);                     //Add the console to the right part of the bottom
+        
+        theInterface.setPreferredSize(new Dimension(1200,700));     //Set the size of the frame
+        theInterface.setLayout(new BorderLayout());                 //Set the display of the frame
+        theInterface.add(top, BorderLayout.CENTER);                 //Add the top part in the frame
+        theInterface.add(bottom, BorderLayout.SOUTH);               //Add the bottom part in the frame
+        theInterface.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Closing the frame close the application
+        theInterface.pack();                                        //Sizes the frame so that all its contents are at or above their preferred sizes
+        theInterface.setVisible(true);                              //To display the frame
+
+        //The actions of the button "OK" = save the answer, clear the area, add the message to the display console, disable the button
         ok.addActionListener(new ActionListener ()
         {
             public void actionPerformed (ActionEvent e){
                 answer = areaToWrite.getText();
                 areaToWrite.setText("");
                 addMessageToConsole(answer);
+                ok.setEnabled(false);
             }
         });
         
+        //The button "OK" is enabled only if the JTextField areaToWrite have at least one character
+        areaToWrite.addKeyListener(new KeyAdapter()
+        {
+            public void keyReleased(KeyEvent event)
+            {
+                if (!areaToWrite.getText().isEmpty())
+                {
+                    ok.setEnabled(true);
+                }
+                else
+                    ok.setEnabled(false);
+            }
+        });
+        
+        //If we press the key "enter", we have the same response that when we click on OK button
         areaToWrite.addActionListener(new ActionListener ()
         {
             public void actionPerformed(ActionEvent e) 
             {
                 if(e.getSource() == areaToWrite) 
                 {
-                    ok.doClick(0); //if we press the key "enter", we have the same response that when we click on OK button
+                    ok.doClick(0);
                 }
             }
         });
         
     }
     
-    
     /**
-     * Add a message to the console
+     * Add a message to the display console
      * @param theString is the string to add
     */
     public void addMessageToConsole(String theString)
@@ -122,20 +152,11 @@ public class Interface
     
     /**
      * The getter of the attribute answer
+     * @return answer is the last thing that is written in the console
     */
     public String getAnswer()
     {
         answer.toUpperCase();
         return answer;
     }
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) 
-    {
-        Interface test = new Interface();
-        test.addMessageToConsole("Welcome on our game !");
-    }
-    
 }
