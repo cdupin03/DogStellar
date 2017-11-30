@@ -3,6 +3,8 @@ import java.util.*;
 
 import javax.sound.midi.VoiceStatus;
 
+import com.sun.xml.internal.ws.api.pipe.NextAction;
+
 /**
  * This class gives the characteristics of the player (name lifePoint, attackPoint and inventory).
  * This class is an inheritance of the Perso class which we added a inventory that is a list of Stuffs.
@@ -37,7 +39,7 @@ public class Player extends Perso
     {
         for (int n=0; n<numberStuffAdd; n++){
             inventory.add(stuff);
-            stuff.setPlayer(this);
+            //stuff.setPlayer(this);
         }
     }
     
@@ -56,7 +58,15 @@ public class Player extends Perso
     public Armor getArmorEquip() {
     	return armor;
     }
+    public void desequipArmor() {
+    addStuff((Stuff)armor,1);
+    	armor=null ;
+    }
+    public void desequipWeapon() {
+    this.addStuff((Stuff)weapon,1);
     
+    	weapon=null;
+    }
     /**
      * this method allows us to equip the player with a weapon
      * @param weaponEquip
@@ -65,6 +75,7 @@ public class Player extends Perso
     {
     	weapon=weaponEquip;
     	attackPoint=attackPoint+weapon.getDamage();
+    	
     }
     
     /**
@@ -95,7 +106,7 @@ public class Player extends Perso
              }
         }
     }
-    
+ 
     /**
      * This method returns the list of stuff(inventory) of the user.
      *
