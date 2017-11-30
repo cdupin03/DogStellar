@@ -144,7 +144,8 @@ public final class Window extends GeneralWindow {
                 ship.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        getInterfac().setWindow(new InShip(getInterfac(), planets));
+                        InShip theShip = new InShip(getInterfac(), planets);
+                        getInterfac().setWindow(theShip);
                     }
                 });
                 addComponentToGrid(ship, (getLengthGrid()-1)/2, (getHeightGrid()-1)/2);

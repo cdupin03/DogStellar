@@ -193,9 +193,10 @@ public class Interface
     
     public void setWindow (GeneralWindow newWindow)
     {
+        theWindow.setVisible(false);
         theWindow = newWindow;
+        theWindow.setVisible(true);
         top.add(theWindow, BorderLayout.CENTER);
-        theInterface.pack();
     }
     
     public JFrame getInterface ()

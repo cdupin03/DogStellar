@@ -50,7 +50,7 @@ public class InShip extends GeneralWindow {
                 pView = new PlanetView(getPicturePath(), planets.get(i));
                 pView.addActionListener(new ActionListener() {
                     @Override
-                    public void actionPerformed(ActionEvent e) {
+                    public void actionPerformed(ActionEvent e) { //Interchanger avant les planetes
                         getInterfac().setWindow(new Window(planets, getInterfac()));
                     }
                 });

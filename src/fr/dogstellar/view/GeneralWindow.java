@@ -298,6 +298,7 @@ public abstract class GeneralWindow extends JPanel {
     public void paintComponent(Graphics g)
     {
         g.drawImage(back,0,0,this.getWidth(),this.getHeight(),this);
+        System.out.println("Je repains");
     }
     
     /**
