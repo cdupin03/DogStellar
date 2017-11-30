@@ -23,7 +23,7 @@ public class StartGame{
 	private Player player;
 	private String picturePath;
 	private int lP, aP;
-	public static Interface interf;
+	private static Interface interf;
 	
 	
 	public StartGame() {
@@ -186,5 +186,22 @@ public class StartGame{
 	    {
 	        infoP.setText("This player has " + String.valueOf(lP) + " life Point" + " and " + String.valueOf(aP) + " attack Point");
 	    }
+
+            /**
+             * Get the player
+             * @return player
+             */
+            public Player getPlayer() {
+                return player;
+            }
+            /**
+             * the interface
+             * @return interface
+             */
+            public static Interface getInterf() {
+                return interf;
+            }
+                
+            
 	}
 	

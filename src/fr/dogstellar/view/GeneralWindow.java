@@ -34,15 +34,14 @@ public abstract class GeneralWindow extends JPanel {
     private String nameOfFirstBackgroundPicture;
     private final String picturePath;
     private Image back;
-    private final JFrame interfac;
+    private final Interface interfac;
     
-    public GeneralWindow (JFrame inter)
+    public GeneralWindow (Interface inter)
 	{
             super();
             interfac = inter;
             picturePath = System.getProperty("user.dir") + "/pictures/";
-            nameOfFirstBackgroundPicture = "champ.jpg";
-            catchPicture ();
+            nameOfFirstBackgroundPicture = "";
             components = new HashMap<>();
             setHeight(7);
             setLength(13); 
@@ -120,7 +119,7 @@ public abstract class GeneralWindow extends JPanel {
                             }
                     }
             }
-            interfac.pack();
+            interfac.getInterface().pack();
     }
 
 
@@ -286,9 +285,10 @@ public abstract class GeneralWindow extends JPanel {
      * get the Interface which contain the window
      * @return interfac
      */
-    public JFrame getInterfac() {
+    public Interface getInterfac() {
         return interfac;
     }
+    
    
    
     /**
@@ -300,6 +300,10 @@ public abstract class GeneralWindow extends JPanel {
         g.drawImage(back,0,0,this.getWidth(),this.getHeight(),this);
     }
     
+    /**
+    * Allows to get the picture of the area.
+    * @param newArea the new Area to display
+    */
     protected void catchPicture ()
     {
             try 
@@ -314,6 +318,14 @@ public abstract class GeneralWindow extends JPanel {
             }
 
     }
+    
+    /**
+         * Call the function setEnabled(ena) of all arrows of Window
+         * If it is true, the arrow is enabled, so it is colored and clickable
+         * If it is false, the arrow is disabled, so it is greyed and not clickable
+         * @param ena If true enable if false disable.
+         */
+        public abstract void setEnableArrows (boolean ena);
 
     
 }

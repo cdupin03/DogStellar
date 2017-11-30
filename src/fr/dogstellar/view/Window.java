@@ -22,10 +22,10 @@ import java.util.ArrayList;
 
 public final class Window extends GeneralWindow {
 
-	public GraphicalArrow eastArrow;//The east Arrow
-	public GraphicalArrow westArrow;//The west Arrow
-	public GraphicalArrow northArrow;//The north Arrow
-	public GraphicalArrow southArrow;//The south Arrow
+	private GraphicalArrow eastArrow;//The east Arrow
+	private GraphicalArrow westArrow;//The west Arrow
+	private GraphicalArrow northArrow;//The north Arrow
+	private GraphicalArrow southArrow;//The south Arrow
 	private AreaPlanet area; //The areaPlanet to show.
         private ArrayList<Planet> planets; //The planet
 	private final String south = "SOUTH";
@@ -42,7 +42,7 @@ public final class Window extends GeneralWindow {
 	* are initialized to 3. The height and length are managed by setHeight and setLength.
         * @param inter the interface.
 	*/
-	public Window (ArrayList<Planet> thePlanets, JFrame inter)
+	public Window (ArrayList<Planet> thePlanets, Interface inter)
 	{
             super(inter);
             planets = thePlanets;
@@ -141,6 +141,12 @@ public final class Window extends GeneralWindow {
             if (planets.get(0).getAreas().equals(newArea))
             {
                 ShipView ship = new ShipView(getPicturePath());
+                ship.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        getInterfac().setWindow(new InShip(getInterfac(), planets));
+                    }
+                });
                 addComponentToGrid(ship, (getLengthGrid()-1)/2, (getHeightGrid()-1)/2);
             }
 
@@ -155,7 +161,7 @@ public final class Window extends GeneralWindow {
                 });
             drawGrid();
         
-	};
+	}
 	
         /**
          * Call the function setEnabled(ena) of all arrows.
@@ -171,6 +177,10 @@ public final class Window extends GeneralWindow {
             westArrow.setEnabled(ena);
         }
         
+        /**
+         * Allows to get the picture of the area.
+         * @param newArea the new Area to display
+         */
         protected void catchPicture (AreaPlanet newArea)
         {
             area = newArea;
