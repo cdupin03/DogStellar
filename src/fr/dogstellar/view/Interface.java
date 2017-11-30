@@ -23,15 +23,15 @@ public class Interface
     private final JPanel top = new JPanel();                    //The top part of the interface that contain the display of area
     private final JPanel bottom = new JPanel();                 //The bottom part of the interface that contain the global informations, inventory, attack button, and the console
     private final JButton ok = new JButton();                   //The button to validate an entry in the console
-    public static JButton attack = new JButton("Attack");				//The button to start attack a monster
+    public JButton attack = new JButton("Attack");				//The button to start attack a monster
     private final JPanel display = new JPanel();                //The panel in the console that contain the JTextArea displayMessage
     private final JPanel write = new JPanel();                  //The panel in the console that contain the JTextField to write answer and the button of validation
     private final JTextArea displayMessage = new JTextArea();   //The area to display message
     private JTextField areaToWrite = new JTextField();          //The area to write answer
-    public static String answer;                                      //The last answer that is write
-    public static Perso monstre1 = new Perso("Monstre", 10, 5);
-    public static Perso monstre2 = new Perso("Monstre2", 5, 2);
-    
+    public String answer;                                      //The last answer that is write
+    public Perso monstre1 = new Perso("Monstre", 10, 5);
+    public Perso monstre2 = new Perso("Monstre2", 5, 2);
+    public Window theWindow;
     /**
      * The constructor of the class Interface
      */
@@ -85,7 +85,7 @@ public class Interface
         AreaPlanet test2 = new AreaPlanet("Bqzld","rdytfiut", "lave.jpg");
         test1.addAreaPlanet(test2, "south");
         
-        Window theWindow = new Window(test1, theInterface);
+        theWindow = new Window(test1, theInterface);
         /*
          *
          *
