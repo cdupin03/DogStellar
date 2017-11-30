@@ -15,17 +15,17 @@ import com.sun.xml.internal.ws.api.pipe.NextAction;
 public class Player extends Perso
 {
     private ArrayList<Stuff> inventory;
-    public Armor armor;
-    public Weapon weapon;
+    private Armor armor;
+    private Weapon weapon;
     /**
      * Constructor for objects of class Player
      * When a player is creating, a inventory (list of stuffs) is create and is empty
      * @param nameP corresponds to the name of the player
      */
-    public Player(String nameP)
+    public Player(String nameP, int lifePoint, int attackPoint)
     {
-        super(nameP,10,5);
-        inventory = new ArrayList<Stuff>();
+        super(nameP,lifePoint, attackPoint);
+        inventory = new ArrayList();
     }
 
     /**
@@ -39,7 +39,24 @@ public class Player extends Perso
     {
         for (int n=0; n<numberStuffAdd; n++){
             inventory.add(stuff);
-            //stuff.setPlayer(this);
+<
+        }
+    }
+    
+    /**
+     * this method allows us to delete a stuff in the list of stuff (inventory) of the player when he lost a stuff
+     * we can delete only one Stuff with this method
+     *
+     * @param  stuff is the name of the stuff
+     */
+    public void deleteStuff(Stuff stuff)
+    {   
+        for(Stuff s : inventory){
+             if(s==stuff){
+                 inventory.remove(stuff);
+                 break;
+             }
+
         }
     }
     
@@ -52,12 +69,9 @@ public class Player extends Perso
     	armor=armorEquip;
     }
     
-    /**
-     * this method allows us to get the armor that the player has been equipped
-     */
-    public Armor getArmorEquip() {
-    	return armor;
-    }
+  
+
+ 
     public void desequipArmor() {
     addStuff((Stuff)armor,1);
     	armor=null ;
@@ -67,15 +81,25 @@ public class Player extends Perso
     
     	weapon=null;
     }
-    /**
+ 
+
      * this method allows us to equip the player with a weapon
      * @param weaponEquip
      */
     public void addWeaponEquip(Weapon weaponEquip)
     {
     	weapon=weaponEquip;
+
     	attackPoint=attackPoint+weapon.getDamage();
     	
+
+    }
+    
+    /**
+     * this method allows us to get the armor that the player has been equipped
+     */
+    public Armor getArmorEquip() {
+    	return armor;
     }
     
     /**
@@ -84,36 +108,16 @@ public class Player extends Perso
     public Weapon getWeaponEquip() {
     	return weapon;
     }
-    
-    /**
-     * this method allows us to delete a stuff in the list of stuff (inventory) of the player when he lost a stuff
-     * we can delete only one Stuff with this method
-     * If there is no other same stuff in the inventory,
-     * The attribute player of Stuff is set to null.
-     *
-     * @param  stuff is the name of the stuff
-     */
-    public void deleteStuff(Stuff stuff)
-    {   
-        for(Stuff s : inventory){
-             if(s==stuff){
-                 inventory.remove(stuff);
-                 if (!(isInList(stuff)))
-                 {
-                	 stuff.setPlayer(null);
-                 }
-                 break;
-             }
-        }
-    }
  
     /**
      * This method returns the list of stuff(inventory) of the user.
      *
      */
-    public ArrayList<Stuff> getStuff()
+    public void displayStuff()
     {
-        return(inventory);
+        for (Stuff stuff : inventory) {
+			System.out.println(stuff.getInformation().getName());
+		}
     }
     
     /**
@@ -156,4 +160,14 @@ public class Player extends Perso
 		}
     		
     }
+    
+    /**
+	 * The player attack a monster(Perso) with a number of attackPoint
+	 * @param attackPoint it is the number of attackPoint that it decided to play
+	 * @param monster it is a Perso who fighting with the player
+	 */
+	public void playerFight(Perso monster, int attackPoint)
+	{
+		monster.decreaseLifePoint(attackPoint);
+	}
 }

@@ -3,126 +3,230 @@ package fr.dogstellar.view;
 /**
  * This class is the representation of a simple Window of the game.
  * The window is made as a grid with a background.
- * The grid contains Components.
+ * The grid contains the arrows to move,
+ * the element and monsters to interact with
  * 
  * @author (G3)
  * @version (21/11/17)
  *
  */
 
-import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.awt.event.*;
+import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import fr.dogstellar.core.AreaPlanet;
+import fr.dogstellar.core.Planet;
+import java.awt.Graphics;;
+
 import java.util.*;
 
-public class Window extends JFrame {
+public class Window extends GeneralWindow {
 
-	GraphicalArrow eastArrow;//The east Arrow
-	GraphicalArrow westArrow;//The west Arrow
-	GraphicalArrow northArrow;//The north Arrow
-	GraphicalArrow southArrow;//The south Arrow
-	HashMap<Integer,Component> components; //The coordinates (xxyy) linked to a component (arrow for example)
-	int height;//The number of column
-	int length;//The number of lines
-	/**
-	 * The constructor of Window.
-	 * Create the window with its components.
-	 * The heigh and length are initialized. If they are greater than 100 or lower than 0 they
-	 * are initialized to 3.
-	 */
-	public Window ()
-	{
-		components = new HashMap<Integer,Component>();
-		setHeight(3);
-		setLength(3);
-		
-		
-		eastArrow = new GraphicalArrow ("east");
-		westArrow = new GraphicalArrow ("west");
-		northArrow = new GraphicalArrow ("north");
-		southArrow = new GraphicalArrow ("south");
-		
-		addComponentToGrid(eastArrow, 2, 1);
-		addComponentToGrid(westArrow, 0, 1);
-		addComponentToGrid(northArrow, 1, 0);
-		addComponentToGrid(southArrow, 1, 2);
-		
-		drawGrid();
-		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.pack();
-        this.setVisible(true);
-	}
-	/**
-	 * Allow to add a component to components (hashmap). 
-	 * If x or y are not valid (>0 or >height||weight) the comp is not added.
-	 * @param comp The component to add
-	 * @param x the x coordonate
-	 * @param y the y coordonate
-	 */
-	private void addComponentToGrid(Component comp, int x, int y)
-	{
-		if (x>-1 && x<length && y>-1 && y <height)
-		{
-			int key = x*100+y;
-			components.put(key, comp);
-		}
-	}
+	private GraphicalArrow eastArrow;//The east Arrow
+	private GraphicalArrow westArrow;//The west Arrow
+	private GraphicalArrow northArrow;//The north Arrow
+	private GraphicalArrow southArrow;//The south Arrow
+	private AreaPlanet area; //The areaPlanet to show.
+        private ArrayList<Planet> planets; //The planet
+	private final String south = "SOUTH";
+	private final String north = "NORTH";
+	private final String east = "EAST";
+	private final String west =  "WEST";
 	
 	/**
-	 * Add each element previously put in the components map to the Window.
-	 */
-	private void drawGrid ()
+	* The constructor of Window.
+	* Create the window with its components.
+	* Set set the background image of the world.
+	* Set all elements in in the window.
+	* The heigh and length are initialized. If they are greater than 100 or lower than 0 they
+	* are initialized to 3. The height and length are managed by setHeight and setLength.
+        * Add the vaisseault to the first area
+        * @param firstArea the first area of the player
+        * @param inter the interface.
+	*/
+	public Window (ArrayList<Planet> thePlanets, JFrame inter)
 	{
-		Container c = this.getContentPane();
-		c.setLayout(new GridLayout(height,length));
-		
-		for (int j = 0; j < height; j++)
-		{
-			for (int i = 0; i <length; i++)
-			{
-				int key = i*100+j;
-				if (components.containsKey(key))
-				{
-					c.add(components.get(key));
-				}
-				else
-				{
-					c.add(new Label());
-				}
-			}
-		}
-	}
-	/**
-	 * Set the number of line of the grid.
-	 * If h <0 or >100 it is initialized to 3
-	 * @param h the height
-	 */
-	private void setHeight (int h)
-	{
-		if (h>0 && h < 100)
-		{
-			height = h;
-		}
-		else
-		{
-			height = 3;
-		}
-	}
-	/**
-	 * Set the number of column of the grid.
-	 * If l <0 or >100 it is initialized to 3
-	 * @param l the length
-	 */
-	private void setLength (int l)
-	{
-		if (l>0 && l < 100)
-		{
-			length = l;
-		}
-		else
-		{
-			length = 3;
-		}
+            super(inter);
+            planets = thePlanets;
+            area = planets.get(0).getAreas();
+            adjustWindowToAreaPlanet(area);
 	}
 	
+	
+	/**
+	 * Add the arrows to the hashmap components. It add them according 
+	 * to their direction.
+	 * @param arrow the arrow to add
+	 * @param direction the direction of the arrow
+	 */
+        @Deprecated 
+	private void addArrow (GraphicalArrow arrow, String direction)
+	{
+	int maxHeight = (getHeightGrid()-1);
+        int maxLength = (getLengthGrid()-1);
+	
+        int middleHeight = maxHeight/2;
+        int middleLength = maxLength/2;
+        
+        int key;
+        
+		switch (direction)
+		{
+		case south:  key = generateKey(middleLength, maxHeight);
+					getComponentsMap().put(key, arrow);
+			break;
+		case north: key = generateKey(middleLength, 0);
+					getComponentsMap().put(key, arrow);
+			break;
+		case east: key = generateKey(maxLength, middleHeight);
+					getComponentsMap().put(key, arrow);
+			break;
+		case west: key = generateKey(0,  middleHeight);
+					getComponentsMap().put(key, arrow);
+			break;
+		default : System.out.println("Warning ! One arrow does not take the good direction."
+				+ "It was not added to the window.");
+		}
+	}
+        
+        /**
+         * Create and add all arrows to the components.
+         * The arrows are conected to to their click.
+         * If there is no areas in the arrow direction, the arrow is disabled.
+         */
+        public void addArrows ()
+        {
+            eastArrow = new GraphicalArrow (east, getPicturePath());
+            westArrow = new GraphicalArrow (west, getPicturePath());
+            northArrow = new GraphicalArrow (north, getPicturePath());
+            southArrow = new GraphicalArrow (south, getPicturePath());
+            
+            int maxHeight = (getHeightGrid()-1);
+            int maxLength = (getLengthGrid()-1);
+	
+            int middleHeight = maxHeight/2;
+            int middleLength = maxLength/2;
+            
+            int key;
+            
+            if(area.getOrientationArea (south).equals(area))
+            {
+                southArrow.setEnabled(false);
+            }
+            else
+            {
+                southArrow.addActionListener((ActionEvent e) -> {
+                    adjustWindowToAreaPlanet(area.getOrientationArea(south));
+                });
+            }
+            
+            if(area.getOrientationArea (north).equals(area))
+            {
+                northArrow.setEnabled(false);
+            }
+            else
+            {
+                northArrow.addActionListener((ActionEvent e) -> {
+                    adjustWindowToAreaPlanet(area.getOrientationArea(north));
+                });
+            }
+            
+            if(area.getOrientationArea (east).equals(area))
+            {
+                eastArrow.setEnabled(false);
+            }
+            else
+            {
+                eastArrow.addActionListener((ActionEvent e) -> {
+                    adjustWindowToAreaPlanet(area.getOrientationArea(east));
+                });
+            }
+            
+            if(area.getOrientationArea (west).equals(area))
+            {
+                westArrow.setEnabled(false);
+            }
+            else
+            {
+                westArrow.addActionListener((ActionEvent e) -> {
+                    adjustWindowToAreaPlanet(area.getOrientationArea(west));
+                });
+            }
+		
+            
+            key = generateKey(middleLength, maxHeight);
+            getComponentsMap().put(key, southArrow);
+            
+            key = generateKey(middleLength, 0);
+            getComponentsMap().put(key, northArrow);
+            
+            key = generateKey(maxLength, middleHeight);
+            getComponentsMap().put(key, eastArrow);
+            
+            key = generateKey(0,  middleHeight);
+            getComponentsMap().put(key, westArrow);
+            
+        }
+        
+	
+
+	/**
+	 * This method display a new area in the window.
+	 * @param newArea the new area to display in the window
+	 */
+	public void adjustWindowToAreaPlanet(AreaPlanet newArea)
+	{
+            catchPicture(newArea);
+
+            erraseGrid();
+            if (planets.get(0).getAreas().equals(newArea))
+            {
+                ShipView ship = new ShipView(getPicturePath());
+                addComponentToGrid(ship, (getLengthGrid()-1)/2, (getHeightGrid()-1)/2);
+            }
+
+            addArrows();
+
+            area.getPerso().stream().forEach((_item) -> {
+                addRandomlyComponent(new PersoView(getPicturePath()));
+                });
+
+            area.getElement().stream().forEach((e) -> {
+                addRandomlyComponent(new ElementView(getPicturePath(), e));
+                });
+
+            drawGrid();
+        
+	}
+	
+	
+        
+        /**
+         * Call the function setEnabled(ena) of all arrows.
+         * If it is true, the arrow is enabled, so it is colored and clickable
+         * If it is false, the arrow is disabled, so it is greyed and not clickable
+         * @param ena If true enable if false disable.
+         */
+        public void setEnableArrows (boolean ena)
+        {
+            southArrow.setEnabled(ena);
+            northArrow.setEnabled(ena);
+            eastArrow.setEnabled(ena);
+            westArrow.setEnabled(ena);
+        }
+        
+
+        protected void catchPicture (AreaPlanet newArea)
+        {
+            area = newArea;
+            setNameOfFirstBackgroundPicture(area.getPicture());
+            super.catchPicture();
+        }
+        
+        
+        
+        
 }

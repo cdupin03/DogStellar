@@ -12,7 +12,7 @@ package fr.dogstellar.core;
 public class Potion extends Stuff
 {
     //The number of potion carried by the player. 
-    int lifePoint;
+    private int lifePoint;
     
     /**
      * Potion Constructor

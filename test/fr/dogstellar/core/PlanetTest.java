@@ -35,9 +35,9 @@ public class PlanetTest
     @Before
     public void setUp()
     {
-        area1 = new AreaPlanet("Area1", "TheArea1");
-        area2 = new AreaPlanet("Area2", "TheArea2");
-        area3 = new AreaPlanet("Area2", "TheArea2");
+        area1 = new AreaPlanet("Area1", "TheArea1", System.getProperty("user.dir") + "/pictures/champ.jpg");
+        area2 = new AreaPlanet("Area2", "TheArea2", System.getProperty("user.dir") + "/pictures/champ.jpg");
+        area3 = new AreaPlanet("Area2", "TheArea2", System.getProperty("user.dir") + "/pictures/champ.jpg");
         planet1 = new Planet("MyPlanet", "MyDescriptionofThePlanet");
         planet3 = new Planet("MyPlanet3", "MyDescriptionofThePlanet");
     }
@@ -100,6 +100,25 @@ public class PlanetTest
      {
         planet3.addArea(area2);
         assertEquals(true, planet3.searchArea(area2.getInformation().getName()));
+     }
+     
+     @Test
+     /**
+      * Test the getAreas method
+      */
+     public void goodAreaGetter ()
+     {
+         planet3.addArea(area1);
+         assertEquals(area1, planet3.getAreas());
+     }
+     
+     @Test
+     /**
+      * Test the getInformation method
+      */
+     public void goodInfoGetter ()
+     {
+         assertEquals("MyPlanet", planet3.getInformation().getName());
      }
 
  

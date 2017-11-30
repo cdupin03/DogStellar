@@ -17,7 +17,7 @@ public class Armor extends Stuff
 {
     // the number of armor point given to the player. 
     //It should be inferior to 25 and superior to 1.
-    int armorPoint;
+    private int armorPoint;
     /**
      * Constructor for objects of class Armor
      * The constructor of the  Armor.  A piece of armor for a player.

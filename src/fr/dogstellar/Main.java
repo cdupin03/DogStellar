@@ -1,5 +1,7 @@
 package fr.dogstellar;
 
+import javax.swing.JFrame;
+
 //import fr.dogstellar.core.Player;
 import fr.dogstellar.core.*;
 
@@ -9,23 +11,28 @@ import fr.dogstellar.game.*;
 
 /**
  * @author GP3
- *
+ * 
  */
 public class Main {
 
 	/**
 	 * @param args
 	 */
-	
-	public static void main(String[] args) {
 
-	Player player1 = new Player("Paul");
-	
-	
-	 Weapon stuff1= new Weapon("Excalibur","l'epe de legende",3); 
-	 Weapon stuff2= new Weapon("Sword of shadow","l'epe de tenebre",3); 
-	 player1.addStuff(stuff1,1);
-	 player1.addStuff(stuff2,1);
-	 Inventory aInventory = new Inventory(player1);
 
-	}}
+		
+
+	  public static void main(String[] args) {
+// create a new window;
+		StartGame start = new StartGame();
+// the part of Ship
+		QuestElement partOfShip1 = new QuestElement("The part of Ship 1" , "Is the part of Ship 1");
+		QuestElement partOfShip2 = new QuestElement("The part of Ship 2" , "Is the part of Ship 2");
+		QuestElement partOfShip3 = new QuestElement("The part of Ship 3" , "Is the part of Ship 3");
+		QuestElement partOfShip4 = new QuestElement("The part of Ship 4" , "Is the part of Ship 4");
+		QuestElement partOfShip5 = new QuestElement("The part of Ship 5" , "Is the part of Ship 5");
+// other stuff
+	}
+}
+
+
