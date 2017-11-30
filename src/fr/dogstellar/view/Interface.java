@@ -20,17 +20,20 @@ import javax.swing.text.DefaultCaret;
 public class Interface 
 {
     private final JFrame theInterface = new JFrame();           //The main frame of the interface
-    private final JPanel console = new JPanel();                //The main panel for the console
+    public final JPanel console = new JPanel();                //The main panel for the console
     private final JPanel console1 = new JPanel();               //A test console
     private final JPanel top = new JPanel();                    //The top part of the interface that contain the display of area
     private final JPanel bottom = new JPanel();                 //The bottom part of the interface that contain the global informations, inventory, attack button, and the console
     private final JButton ok = new JButton();                   //The button to validate an entry in the console
+    public JButton attack = new JButton("Attack");				//The button to start attack a monster
     private final JPanel display = new JPanel();                //The panel in the console that contain the JTextArea displayMessage
     private final JPanel write = new JPanel();                  //The panel in the console that contain the JTextField to write answer and the button of validation
     private final JTextArea displayMessage = new JTextArea();   //The area to display message
     private JTextField areaToWrite = new JTextField();          //The area to write answer
-    private String answer;                                      //The last answer that is write
-    
+    public String answer;                                      //The last answer that is write
+    public Perso monstre1 = new Perso("Monstre", 10, 5);
+    public Perso monstre2 = new Perso("Monstre2", 5, 2);
+    public Window theWindow;
     /**
      * The constructor of the class Interface
      */
@@ -65,6 +68,8 @@ public class Interface
         console.setLayout(new BorderLayout());                      //Set the layout of the console
         console.add(display, BorderLayout.CENTER);                  //Add the panel display in the console
         console.add(write, BorderLayout.SOUTH);                     //Add the panel write in the console
+
+        
         
         
         /*
@@ -78,9 +83,10 @@ public class Interface
                                                               //If we change planet, the new planet exchange its place with the first.
         planets.add(planet1);
         planets.add(planet2);
+
         AreaPlanet test1 = new AreaPlanet("tyuiuyfv","rdytfuygiut", "champ.jpg");
-        test1.addPerso(new Perso("Monstre", 10, 5));
-        test1.addPerso(new Perso("Monstre2", 5, 2));
+        test1.addPerso(monstre1);
+        test1.addPerso(monstre2);
         test1.addElement(new Element("Coffre", "Petit coffre", 1));
         test1.addElement(new Element("Enigme", "Une enigme", 4));
         test1.addElement(new Element("Trap", "Un piege déguisé", 2));
@@ -89,12 +95,14 @@ public class Interface
         test1.addAreaPlanet(test2, "south");
         planet1.addArea(test1);
         
+
         Window theWindow = new Window(planets, theInterface);
+
         /*
          *
          *
         */
-
+        attack.setEnabled(false);
         
         top.setLayout(new BorderLayout());                          //Set the layout of the top part       
         top.add(theWindow, BorderLayout.CENTER);                    //Add the area map in the top part
@@ -102,7 +110,7 @@ public class Interface
         bottom.setLayout(new BorderLayout());                       //Set the layout of the bottom part
         bottom.add(console1, BorderLayout.CENTER);                  //Add the false console to the left part of the bottom
         bottom.add(console, BorderLayout.EAST);                     //Add the console to the right part of the bottom
-        
+        bottom.add(attack, BorderLayout.WEST);
         theInterface.setPreferredSize(new Dimension(1200,700));     //Set the size of the frame
         theInterface.setLayout(new BorderLayout());                 //Set the display of the frame
         theInterface.add(top, BorderLayout.CENTER);                 //Add the top part in the frame

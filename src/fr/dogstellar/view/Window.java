@@ -11,24 +11,21 @@ package fr.dogstellar.view;
  *
  */
 
-import java.io.File;
-import java.io.IOException;
 import java.awt.event.*;
-import javax.imageio.ImageIO;
 import javax.swing.*;
+
 
 import fr.dogstellar.core.AreaPlanet;
 import fr.dogstellar.core.Planet;
-import java.awt.Graphics;;
+import java.util.ArrayList;
 
-import java.util.*;
 
-public class Window extends GeneralWindow {
+public final class Window extends GeneralWindow {
 
-	private GraphicalArrow eastArrow;//The east Arrow
-	private GraphicalArrow westArrow;//The west Arrow
-	private GraphicalArrow northArrow;//The north Arrow
-	private GraphicalArrow southArrow;//The south Arrow
+	public GraphicalArrow eastArrow;//The east Arrow
+	public GraphicalArrow westArrow;//The west Arrow
+	public GraphicalArrow northArrow;//The north Arrow
+	public GraphicalArrow southArrow;//The south Arrow
 	private AreaPlanet area; //The areaPlanet to show.
         private ArrayList<Planet> planets; //The planet
 	private final String south = "SOUTH";
@@ -43,8 +40,6 @@ public class Window extends GeneralWindow {
 	* Set all elements in in the window.
 	* The heigh and length are initialized. If they are greater than 100 or lower than 0 they
 	* are initialized to 3. The height and length are managed by setHeight and setLength.
-        * Add the vaisseault to the first area
-        * @param firstArea the first area of the player
         * @param inter the interface.
 	*/
 	public Window (ArrayList<Planet> thePlanets, JFrame inter)
@@ -53,43 +48,6 @@ public class Window extends GeneralWindow {
             planets = thePlanets;
             area = planets.get(0).getAreas();
             adjustWindowToAreaPlanet(area);
-	}
-	
-	
-	/**
-	 * Add the arrows to the hashmap components. It add them according 
-	 * to their direction.
-	 * @param arrow the arrow to add
-	 * @param direction the direction of the arrow
-	 */
-        @Deprecated 
-	private void addArrow (GraphicalArrow arrow, String direction)
-	{
-	int maxHeight = (getHeightGrid()-1);
-        int maxLength = (getLengthGrid()-1);
-	
-        int middleHeight = maxHeight/2;
-        int middleLength = maxLength/2;
-        
-        int key;
-        
-		switch (direction)
-		{
-		case south:  key = generateKey(middleLength, maxHeight);
-					getComponentsMap().put(key, arrow);
-			break;
-		case north: key = generateKey(middleLength, 0);
-					getComponentsMap().put(key, arrow);
-			break;
-		case east: key = generateKey(maxLength, middleHeight);
-					getComponentsMap().put(key, arrow);
-			break;
-		case west: key = generateKey(0,  middleHeight);
-					getComponentsMap().put(key, arrow);
-			break;
-		default : System.out.println("Warning ! One arrow does not take the good direction."
-				+ "It was not added to the window.");
-		}
 	}
         
         /**
@@ -170,8 +128,6 @@ public class Window extends GeneralWindow {
             getComponentsMap().put(key, westArrow);
             
         }
-        
-	
 
 	/**
 	 * This method display a new area in the window.
@@ -180,8 +136,8 @@ public class Window extends GeneralWindow {
 	public void adjustWindowToAreaPlanet(AreaPlanet newArea)
 	{
             catchPicture(newArea);
-
             erraseGrid();
+            
             if (planets.get(0).getAreas().equals(newArea))
             {
                 ShipView ship = new ShipView(getPicturePath());
@@ -197,13 +153,10 @@ public class Window extends GeneralWindow {
             area.getElement().stream().forEach((e) -> {
                 addRandomlyComponent(new ElementView(getPicturePath(), e));
                 });
-
             drawGrid();
         
-	}
+	};
 	
-	
-        
         /**
          * Call the function setEnabled(ena) of all arrows.
          * If it is true, the arrow is enabled, so it is colored and clickable
@@ -218,7 +171,6 @@ public class Window extends GeneralWindow {
             westArrow.setEnabled(ena);
         }
         
-
         protected void catchPicture (AreaPlanet newArea)
         {
             area = newArea;
@@ -226,7 +178,5 @@ public class Window extends GeneralWindow {
             super.catchPicture();
         }
         
-        
-        
-        
+	
 }
