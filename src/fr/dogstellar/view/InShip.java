@@ -4,20 +4,16 @@
  * and open the template in the editor.
  */
 package fr.dogstellar.view;
-
-import fr.dogstellar.core.AreaPlanet;
-import fr.dogstellar.core.Planet;
-import java.util.ArrayList;
 import javax.swing.JFrame;
 
 /**
  *
  * @author alexandre
  */
-public class InShip extends Window {
+public class InShip extends GeneralWindow {
 
-    public InShip(ArrayList<Planet> thePlanets, JFrame inter) {
-        super(thePlanets, inter);
+    public InShip(JFrame interfac) {
+        super(interfac);
     }
     
     
