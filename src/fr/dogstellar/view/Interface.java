@@ -3,9 +3,11 @@ package fr.dogstellar.view;
 import fr.dogstellar.core.AreaPlanet;
 import fr.dogstellar.core.Element;
 import fr.dogstellar.core.Perso;
+import fr.dogstellar.core.Planet;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.text.DefaultCaret;
 
@@ -70,6 +72,12 @@ public class Interface
          *    *     ****   **         * * *   *****   *****                                                       
          *    *     *  *   *****      *   *   *   *   *                                     
         */
+        Planet planet1 = new Planet("Planet1", "Etrange");
+        Planet planet2 = new Planet ("Planet2", "Tout aussi etrange");
+        ArrayList<Planet> planets = new ArrayList<Planet> (); //The list of planets the first planet is the actual planet.
+                                                              //If we change planet, the new planet exchange its place with the first.
+        planets.add(planet1);
+        planets.add(planet2);
         AreaPlanet test1 = new AreaPlanet("tyuiuyfv","rdytfuygiut", "champ.jpg");
         test1.addPerso(new Perso("Monstre", 10, 5));
         test1.addPerso(new Perso("Monstre2", 5, 2));
@@ -79,8 +87,9 @@ public class Interface
         test1.addElement(new Element("PNJ", "Un pnj champu", 3));
         AreaPlanet test2 = new AreaPlanet("Bqzld","rdytfiut", "lave.jpg");
         test1.addAreaPlanet(test2, "south");
+        planet1.addArea(test1);
         
-        Window theWindow = new Window(test1, theInterface);
+        Window theWindow = new Window(planets, theInterface);
         /*
          *
          *

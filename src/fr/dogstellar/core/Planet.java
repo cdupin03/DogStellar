@@ -62,6 +62,20 @@ public class Planet
        else
           return false;
    }
+
+   /**
+    * @return the main area of the planet.
+    */ 
+   public AreaPlanet getAreas() {
+        return areas;
+    }
+
+   /**
+    * @return the information from the planet. 
+    */ 
+   public Info getInformation() {
+        return information;
+    }
   
 
 }
