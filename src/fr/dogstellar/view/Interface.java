@@ -84,19 +84,17 @@ public class Interface
         planets.add(planet1);
         planets.add(planet2);
 
-//        AreaPlanet test1 = new AreaPlanet("tyuiuyfv","rdytfuygiut", "champ.jpg");
-//        test1.addPerso(monstre1);
-//        test1.addPerso(monstre2);
-//        test1.addElement(new Element("Coffre", "Petit coffre", 1));
-//        test1.addElement(new Element("Enigme", "Une enigme", 4));
-//        test1.addElement(new Element("Trap", "Un piege déguisé", 2));
-//        test1.addElement(new Element("PNJ", "Un pnj champu", 3));
-//        AreaPlanet test2 = new AreaPlanet("Bqzld","rdytfiut", "lave.jpg");
-//        test1.addAreaPlanet(test2, "south");
-//        planet1.addArea(test1);
+        AreaPlanet test1 = new AreaPlanet("tyuiuyfv","rdytfuygiut", "champ.jpg");
+        test1.addPerso(monstre1);
+        test1.addPerso(monstre2);
+        test1.addElement(new Element("Coffre", "Petit coffre", 1));
+        test1.addElement(new Element("Enigme", "Une enigme", 4));
+        test1.addElement(new Element("Trap", "Un piege déguisé", 2));
+        test1.addElement(new Element("PNJ", "Un pnj champu", 3));
+        AreaPlanet test2 = new AreaPlanet("Bqzld","rdytfiut", "lave.jpg");
+        test1.addAreaPlanet(test2, "south");
+        planet1.addArea(test1);
         
-
-        theWindow = new Window(planets, theInterface);
 
         Window theWindow = new Window(planets, theInterface);
 
