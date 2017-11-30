@@ -111,7 +111,7 @@ public class Interface
         ok.addActionListener(new ActionListener ()
         {
             public void actionPerformed (ActionEvent e){
-                answer = areaToWrite.getText();
+                answer = areaToWrite.getText().trim().toUpperCase();
                 areaToWrite.setText("");
                 addMessageToConsole(answer);
                 ok.setEnabled(false);
