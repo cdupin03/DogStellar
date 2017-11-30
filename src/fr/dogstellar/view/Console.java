@@ -12,6 +12,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener; //pour ajouter une action lors de la pression de la touche entrée par exemple 
+import java.util.Scanner;
+
 import javax.swing.*;
 import javax.swing.JTextArea;
 
@@ -87,6 +89,8 @@ public class Console extends JPanel
     {
         displayMessage.append("> " + theString + "\n" );    //We add the string in parameter
     }
+
+
     
     /**
      * The getter of the attribute answer
@@ -96,7 +100,6 @@ public class Console extends JPanel
         answer.toUpperCase();
         return answer;
     }
-    
     
     /**
      * @param args the command line arguments

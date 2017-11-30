@@ -23,6 +23,7 @@ public class StartGame{
 	private Player player;
 	private String picturePath;
 	private int lP, aP;
+	public static Interface interf;
 	
 	
 	public StartGame() {
@@ -119,7 +120,7 @@ public class StartGame{
         		planet1.addArea(area1);
         		area1.addPerso(player);
         		myJFrame.dispose();
-        		Interface interf = new Interface();  //start the game with the a player a planet ...
+        		interf = new Interface();  //start the game with the a player a planet ...
     	    }
         });
 	    

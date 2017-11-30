@@ -19,16 +19,16 @@ import javax.swing.*;
 
 import fr.dogstellar.core.AreaPlanet;
 import fr.dogstellar.core.Planet;
-import java.awt.Graphics;;
+import java.awt.Graphics;
 
 import java.util.*;
 
 public class Window extends GeneralWindow {
 
-	private GraphicalArrow eastArrow;//The east Arrow
-	private GraphicalArrow westArrow;//The west Arrow
-	private GraphicalArrow northArrow;//The north Arrow
-	private GraphicalArrow southArrow;//The south Arrow
+	public GraphicalArrow eastArrow;//The east Arrow
+	public GraphicalArrow westArrow;//The west Arrow
+	public GraphicalArrow northArrow;//The north Arrow
+	public GraphicalArrow southArrow;//The south Arrow
 	private AreaPlanet area; //The areaPlanet to show.
         private ArrayList<Planet> planets; //The planet
 	private final String south = "SOUTH";
