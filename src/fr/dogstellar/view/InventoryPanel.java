@@ -16,15 +16,9 @@ import java.awt.GridLayout;
 import javax.swing.*;
 import javax.swing.text.StyledEditorKit.ForegroundAction;
 
-import org.junit.validator.PublicClassValidator;
 import org.omg.CORBA.PRIVATE_MEMBER;
 import org.omg.CORBA.PUBLIC_MEMBER;
 
-import com.sun.media.jai.opimage.SubtractFromConstCRIF;
-import com.sun.media.jfxmedia.events.NewFrameEvent;
-import com.sun.medialib.mlib.Image;
-import com.sun.org.apache.bcel.internal.generic.RETURN;
-import com.sun.xml.internal.ws.api.model.wsdl.editable.EditableWSDLService;
 import fr.dogstellar.core.*;
 
 public class InventoryPanel extends JFrame {
