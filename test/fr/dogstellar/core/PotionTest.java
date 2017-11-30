@@ -75,9 +75,10 @@ public class PotionTest
        Player player = new Player("Jean-Louis",10,5);
        player.addStuff(po, 1);
        player.decreaseLifePoint(9);
-       po.drinkPotion();
+       po.drinkPotion(player);
        assertEquals(8, player.getLifePoint());
     }
+    
     
     /**
      * Check if the player added is the player contained in the potion.

@@ -24,8 +24,6 @@ public class Player extends Perso
         super(nameP,lifePoint, attackPoint);
         inventory = new ArrayList();
     }
-
-    
     
     /**
      * this method allows to equip the player with a armor
@@ -37,14 +35,35 @@ public class Player extends Perso
     }
     
     /**
+     * This method returns the list of stuff(inventory) of the user.
+     *
+     */
+    public ArrayList<Stuff> getStuff() 
+    {
+        return (inventory);
+    }
+
+ 
+    public void desequipArmor() 
+    {
+        addStuff((Stuff)armor,1);
+    	armor=null;
+    }
+    public void desequipWeapon() 
+    {
+        this.addStuff((Stuff)weapon,1);
+    	weapon=null;
+    }
+ 
+    /*
      * this method allows us to equip the player with a weapon
      * @param weaponEquip
      */
     public void addWeaponEquip(Weapon weaponEquip)
     {
     	weapon=weaponEquip;
-    	decreaseAttackPoint(weapon.getDamage());
-    	System.out.println("point of attackPoint of the weapon" + weapon.getDamage());
+    	increaseAttackPoint(weapon.getDamage());
+
     }
     
     /**
@@ -59,10 +78,7 @@ public class Player extends Perso
      */
     public Weapon getWeaponEquip() {
     	return weapon;
-    }
-    
-    
-    
+    } 
     
     /**
      * this method allows to know if the player has a armor or not

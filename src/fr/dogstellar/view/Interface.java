@@ -3,9 +3,11 @@ package fr.dogstellar.view;
 import fr.dogstellar.core.AreaPlanet;
 import fr.dogstellar.core.Element;
 import fr.dogstellar.core.Perso;
+import fr.dogstellar.core.Planet;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.text.DefaultCaret;
 
@@ -75,17 +77,29 @@ public class Interface
          *    *     ****   **         * * *   *****   *****                                                       
          *    *     *  *   *****      *   *   *   *   *                                     
         */
+        Planet planet1 = new Planet("Planet1", "Etrange");
+        Planet planet2 = new Planet ("Planet2", "Tout aussi etrange");
+        ArrayList<Planet> planets = new ArrayList<Planet> (); //The list of planets the first planet is the actual planet.
+                                                              //If we change planet, the new planet exchange its place with the first.
+        planets.add(planet1);
+        planets.add(planet2);
 
         AreaPlanet test1 = new AreaPlanet("tyuiuyfv","rdytfuygiut", "champ.jpg");
         test1.addPerso(monstre1);
         test1.addPerso(monstre2);
         test1.addElement(new Element("Coffre", "Petit coffre", 1));
         test1.addElement(new Element("Enigme", "Une enigme", 4));
-        
+        test1.addElement(new Element("Trap", "Un piege déguisé", 2));
+        test1.addElement(new Element("PNJ", "Un pnj champu", 3));
         AreaPlanet test2 = new AreaPlanet("Bqzld","rdytfiut", "lave.jpg");
         test1.addAreaPlanet(test2, "south");
+        planet1.addArea(test1);
         
+
         theWindow = new Window(test1, theInterface);
+
+        Window theWindow = new Window(planets, theInterface);
+
         /*
          *
          *
@@ -111,7 +125,7 @@ public class Interface
         ok.addActionListener(new ActionListener ()
         {
             public void actionPerformed (ActionEvent e){
-                answer = areaToWrite.getText();
+                answer = areaToWrite.getText().trim().toUpperCase();
                 areaToWrite.setText("");
                 addMessageToConsole(answer);
                 ok.setEnabled(false);

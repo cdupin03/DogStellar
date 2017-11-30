@@ -101,6 +101,25 @@ public class PlanetTest
         planet3.addArea(area2);
         assertEquals(true, planet3.searchArea(area2.getInformation().getName()));
      }
+     
+     @Test
+     /**
+      * Test the getAreas method
+      */
+     public void goodAreaGetter ()
+     {
+         planet3.addArea(area1);
+         assertEquals(area1, planet3.getAreas());
+     }
+     
+     @Test
+     /**
+      * Test the getInformation method
+      */
+     public void goodInfoGetter ()
+     {
+         assertEquals("MyPlanet", planet3.getInformation().getName());
+     }
 
  
 }
