@@ -20,7 +20,7 @@ public class StartGame{
 	private JPanel panelPlayer,titlePlayer;
 	private JTextField t;
 	private String namePlayer = "";
-	private Player player;
+	private static Player player;
 	private String picturePath;
 	private int lP, aP;
 	
@@ -185,5 +185,12 @@ public class StartGame{
 	    {
 	        infoP.setText("This player has " + String.valueOf(lP) + " life Point" + " and " + String.valueOf(aP) + " attack Point");
 	    }
+                /*
+                getter for the player of the game
+                @return player from type Player
+                */
+                public static Player getPlayer(){
+                    return player;
+                }
 	}
 	
