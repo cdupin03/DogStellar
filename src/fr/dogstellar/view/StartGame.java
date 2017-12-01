@@ -21,7 +21,7 @@ public class StartGame {
     private JPanel panelPlayer, titlePlayer;
     private JTextField t;
     private String namePlayer = "";
-    private Player player;
+    private static Player player;
     private String picturePath;
     private int lP, aP;
     private static Interface interf;
@@ -203,7 +203,7 @@ public class StartGame {
      *
      * @return player
      */
-    public Player getPlayer() {
+    public static Player getPlayer() {
         return player;
     }
 
