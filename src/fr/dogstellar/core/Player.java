@@ -4,15 +4,14 @@ import java.util.*;
 import javax.sound.midi.VoiceStatus;
 
 /**
- * This class gives the characteristics of the player (name lifePoint, attackPoint and inventory).
- * This class is an inheritance of the Perso class which we added a inventory that is a list of Stuffs.
+ * The class Player. A player have a name, a number of LifePoint and number of AttackPoint and an inventory (inherit to perso)
+ * He can use the stuff in the inventory to equipped him
  *
  * @author Gp3
  * @version 21/11/2017
  */
 public class Player extends Perso
 {
-    private ArrayList<Stuff> inventory;
     private Armor armor;
     private Weapon weapon;
     /**
@@ -24,38 +23,6 @@ public class Player extends Perso
     {
         super(nameP,lifePoint, attackPoint);
         inventory = new ArrayList();
-    }
-
-    /**
-     * this method allows us to add a stuff in the list of stuff (the inventory) of the player when he wins a stuff
-     * we can add several same stuff
-     *
-     * @param  Stuff is the name of the stuff
-     * @param numberStuffAdd is a number of stuff that we add to the inventory when the player win it
-     */
-    public void addStuff(Stuff stuff, int numberStuffAdd)
-    {
-        for (int n=0; n<numberStuffAdd; n++)
-        {
-            inventory.add(stuff);
-        }
-    }
-    
-    /**
-     * this method allows us to delete a stuff in the list of stuff (inventory) of the player when he lost a stuff
-     * we can delete only one Stuff with this method
-     *
-     * @param  stuff is the name of the stuff
-     */
-    public void deleteStuff(Stuff stuff)
-    {   
-        for(Stuff s : inventory){
-             if(s==stuff){
-                 inventory.remove(stuff);
-                 break;
-             }
-
-        }
     }
     
     /**
@@ -111,31 +78,7 @@ public class Player extends Perso
      */
     public Weapon getWeaponEquip() {
     	return weapon;
-    }
- 
-    /**
-     * This method returns the list of stuff(inventory) of the user.
-     *
-     */
-    public void displayStuff()
-    {
-        for (Stuff stuff : inventory) {
-			System.out.println(stuff.getInformation().getName());
-		}
-    }
-    
-    /**
-     * This method allows us to know if a stuff is in inventory or not.
-     */
-    public boolean isInList(Stuff stuff)
-    {
-        for(Stuff s : inventory){
-             if(s==stuff){
-                 return(true);
-             }
-        }
-        return(false);
-    }
+    } 
     
     /**
      * this method allows to know if the player has a armor or not

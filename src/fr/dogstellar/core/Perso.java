@@ -1,7 +1,9 @@
 package fr.dogstellar.core;
 
+import java.util.ArrayList;
+
 /**
- * This class gives the characteristics of the character (name, lifePoint and attackPoint).
+ * The class Perso. He has a name, a number of LifePoint and number of AttackPoint and an inventory.
  * 
  * When a Perso is creating, it is not possible to not have a name and to have negative lifePoint and attackPoint.
  * So at the beginning of the game :
@@ -18,9 +20,9 @@ public class Perso
 {
     // instance variables - replace the example below with your own
     private String namePerso;
-    private int lifePoint; //ATTTTTTTTTTTTTTTENEEEEEEEEEEEEEEEEEEEEEEEEEENNNNNNNNNNNNNNNNNNNNTIIIIIIIIIIIIONNNNNNNNNNNN
-    private int attackPoint;//ATTTTTTTTTTTTTTTENEEEEEEEEEEEEEEEEEEEEEEEEEENNNNNNNNNNNNNNNNNNNNTIIIIIIIIIIIIONNNNNNNNNNNN
-    
+    protected int lifePoint; //ATTTTTTTTTTTTTTTENEEEEEEEEEEEEEEEEEEEEEEEEEENNNNNNNNNNNNNNNNNNNNTIIIIIIIIIIIIONNNNNNNNNNNN
+    protected int attackPoint;//ATTTTTTTTTTTTTTTENEEEEEEEEEEEEEEEEEEEEEEEEEENNNNNNNNNNNNNNNNNNNNTIIIIIIIIIIIIONNNNNNNNNNNN
+    protected ArrayList<Stuff> inventory;
 
     /**
      * Constructor of the Perso class
@@ -48,6 +50,7 @@ public class Perso
             attackPoint=10;
         else
             attackPoint=attackP;
+        inventory = new ArrayList();
     }
     
     /**
@@ -174,6 +177,60 @@ public class Perso
 			}
 		}
 	}
+	
+	/**
+     * this method allows us to add a stuff in the list of stuff (the inventory) of the player when he wins a stuff
+     * we can add several same stuff
+     *
+     * @param  Stuff is the name of the stuff
+     * @param numberStuffAdd is a number of stuff that we add to the inventory when the player win it
+     */
+    public void addStuff(Stuff stuff, int numberStuffAdd)
+    {
+        for (int n=0; n<numberStuffAdd; n++){
+            inventory.add(stuff);
+        }
+    }
+    
+    /**
+     * this method allows us to delete a stuff in the list of stuff (inventory) of the player when he lost a stuff
+     * we can delete only one Stuff with this method
+     *
+     * @param  stuff is the name of the stuff
+     */
+    public void deleteStuff(Stuff stuff)
+    {   
+        for(Stuff s : inventory){
+             if(s==stuff){
+                 inventory.remove(stuff);
+                 break;
+             }
+        }
+    }
+    
+    /**
+     * This method returns the list of stuff(inventory) of the user.
+     *
+     */
+    public void displayStuff()
+    {
+        for (Stuff stuff : inventory) {
+			System.out.println(stuff.getInformation().getName());
+		}
+    }
+    
+    /**
+     * This method allows us to know if a stuff is in inventory or not.
+     */
+    public boolean isInList(Stuff stuff)
+    {
+        for(Stuff s : inventory){
+             if(s==stuff){
+                 return(true);
+             }
+        }
+        return(false);
+    }
     
    
 }

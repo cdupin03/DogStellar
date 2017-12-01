@@ -18,7 +18,7 @@ import javax.swing.ImageIcon;
  * @author G3
  * @version V05
  */
-public class Interface 
+public class Interface
 {
     private final JFrame theInterface = new JFrame();           //The main frame of the interface
     private final JPanel console = new JPanel();                //The main panel for the console
@@ -26,13 +26,19 @@ public class Interface
     private final JPanel top = new JPanel();                    //The top part of the interface that contain the display of area
     private final JPanel bottom = new JPanel();                 //The bottom part of the interface that contain the global informations, inventory, attack button, and the console
     private final JButton ok = new JButton();                   //The button to validate an entry in the console
+    private final JButton attack = new JButton("Attack");				//The button to start attack a monster
     private final JPanel display = new JPanel();                //The panel in the console that contain the JTextArea displayMessage
     private final JPanel write = new JPanel();                  //The panel in the console that contain the JTextField to write answer and the button of validation
     private final JTextArea displayMessage = new JTextArea();   //The area to display message
     private JTextField areaToWrite = new JTextField();          //The area to write answer
     private String answer;                                      //The last answer that is write
+    
     private final JButton inventory;                            //Button wich allow to open the inventory
     
+    private Perso monstre1 = new Perso("Monstre", 10, 5);
+    private Perso monstre2 = new Perso("Monstre2", 5, 2);
+    private GeneralWindow theWindow;
+
     /**
      * The constructor of the class Interface
      */
@@ -67,6 +73,8 @@ public class Interface
         console.setLayout(new BorderLayout());                      //Set the layout of the console
         console.add(display, BorderLayout.CENTER);                  //Add the panel display in the console
         console.add(write, BorderLayout.SOUTH);                     //Add the panel write in the console
+
+        
         
         //left part
          String picturePath = System.getProperty("user.dir") + "/pictures/"; //variable containing the path for the inventory image
@@ -95,9 +103,10 @@ public class Interface
                                                               //If we change planet, the new planet exchange its place with the first.
         planets.add(planet1);
         planets.add(planet2);
+
         AreaPlanet test1 = new AreaPlanet("tyuiuyfv","rdytfuygiut", "champ.jpg");
-        test1.addPerso(new Perso("Monstre", 10, 5));
-        test1.addPerso(new Perso("Monstre2", 5, 2));
+        test1.addPerso(monstre1);
+        test1.addPerso(monstre2);
         test1.addElement(new Element("Coffre", "Petit coffre", 1));
         test1.addElement(new Element("Enigme", "Une enigme", 4));
         test1.addElement(new Element("Trap", "Un piege déguisé", 2));
@@ -106,12 +115,11 @@ public class Interface
         test1.addAreaPlanet(test2, "south");
         planet1.addArea(test1);
         
-        Window theWindow = new Window(planets, theInterface);
-        /*
-         *
-         *
-        */
 
+        theWindow = new Window(planets, this);
+        //theWindow = new InShip(this, planets);
+
+        attack.setEnabled(false);
         
         top.setLayout(new BorderLayout());                          //Set the layout of the top part       
         top.add(theWindow, BorderLayout.CENTER);                    //Add the area map in the top part
@@ -119,7 +127,7 @@ public class Interface
         bottom.setLayout(new BorderLayout());                       //Set the layout of the bottom part
         bottom.add(console1, BorderLayout.CENTER);                  //Add the false console to the left part of the bottom
         bottom.add(console, BorderLayout.EAST);                     //Add the console to the right part of the bottom
-        
+        bottom.add(attack, BorderLayout.WEST);
         theInterface.setPreferredSize(new Dimension(1200,700));     //Set the size of the frame
         theInterface.setLayout(new BorderLayout());                 //Set the display of the frame
         theInterface.add(top, BorderLayout.CENTER);                 //Add the top part in the frame
@@ -185,4 +193,35 @@ public class Interface
         answer.toUpperCase();
         return answer;
     }
+
+    /**
+     * 
+     * @return the window of the interface
+     */
+    public fr.dogstellar.view.GeneralWindow getTheWindow() {
+        return theWindow;
+    }
+    
+    /**
+     * Set the enable of attack JButton
+     * @param ena true if the button is enabled, else false
+     */
+    public void isAttackEnabled (boolean ena)
+    {
+        attack.setEnabled(ena);
+    }
+    
+    public void setWindow (GeneralWindow newWindow)
+    {
+        theWindow.setVisible(false);
+        theWindow = newWindow;
+        theWindow.setVisible(true);
+        top.add(theWindow, BorderLayout.CENTER);
+    }
+    
+    public JFrame getInterface ()
+    {
+        return theInterface;
+    }
+    
 }

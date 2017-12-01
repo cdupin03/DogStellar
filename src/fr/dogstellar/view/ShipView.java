@@ -17,21 +17,14 @@ import javax.swing.ImageIcon;
 import javax.swing.BorderFactory;
 import java.lang.String;
 
-public class ShipView  extends JButton{
+public class ShipView  extends PictureButton{
 	
 	/**
 	 * Set the picture of the graphical ship.
 	 */
 	
-	private final String ShipPicturePath;// The path of the picture.
-	
 	public ShipView (String picturePath) {
-		super();
-		ShipPicturePath = picturePath + "Ship";
-		this.setIcon(new ImageIcon(ShipPicturePath + ".png"));
-		this.setRolloverIcon(new ImageIcon (ShipPicturePath + "Roll.png"));
-		this.setBorder(BorderFactory.createEmptyBorder());
-		this.setContentAreaFilled(false);
+		super(picturePath, "Ship", ".png");
 	}
 
 }
