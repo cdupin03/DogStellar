@@ -59,6 +59,7 @@ public class StartGame {
                 majInfoP(lP, aP);
                 System.out.println("entrer");
             }
+
         });
 
         //wonderwoman have 5 life point and 5 attacked point
@@ -179,6 +180,7 @@ public class StartGame {
         myJFrame.add(titlePlayer, BorderLayout.NORTH);
         myJFrame.add(t, BorderLayout.CENTER);
         myJFrame.add(startGame, BorderLayout.SOUTH);
+
 
         // size of JPanel
         panelPlayer.setPreferredSize(new Dimension(200, 400));
