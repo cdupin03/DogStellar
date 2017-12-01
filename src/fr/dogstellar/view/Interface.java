@@ -10,6 +10,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.text.DefaultCaret;
+import javax.swing.ImageIcon;
 
 /**
  * The Class Interface is the main Interface of the game, it allows to interract with a specific area,
@@ -31,9 +32,13 @@ public class Interface
     private final JTextArea displayMessage = new JTextArea();   //The area to display message
     private JTextField areaToWrite = new JTextField();          //The area to write answer
     private String answer;                                      //The last answer that is write
+    
+    private final JButton inventory;                            //Button wich allow to open the inventory
+    
     private Perso monstre1 = new Perso("Monstre", 10, 5);
     private Perso monstre2 = new Perso("Monstre2", 5, 2);
     private GeneralWindow theWindow;
+
     /**
      * The constructor of the class Interface
      */
@@ -70,6 +75,21 @@ public class Interface
         console.add(write, BorderLayout.SOUTH);                     //Add the panel write in the console
 
         
+        
+        //left part
+         String picturePath = System.getProperty("user.dir") + "/pictures/"; //variable containing the path for the inventory image
+         ImageIcon picture = new ImageIcon (picturePath+"inventory.png");// image for the inventory button
+        inventory = new JButton (picture);// create the button
+        console1.add(inventory);// add the button to the inventory
+        inventory.setToolTipText("click here to acess to you inventory");// set a descritpion text
+        // action listenener for generate the inventory frame in one click
+        inventory.addActionListener(new ActionListener() {
+            @Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					InventoryPanel ip = new InventoryPanel(StartGame.getPlayer());
+
+				}});
         
         
         /*
