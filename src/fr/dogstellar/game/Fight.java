@@ -36,13 +36,9 @@ public class Fight {
 		int pointLifeMonster = monster.getLifePoint();//It is the lifePoint of Monster in the beginning the fight
 		
 		
-		while(monster.getLifePoint()!=0 && player.getLifePoint()!=0) {
-			System.out.print("player attack");
+		while(monster.getLifePoint()!=0 && player.getLifePoint()!=0) { //while the monster or the player have lifePoint the fight continue
 			player.playerFight(monster, player.getAttackPoint());
-			monster.displayInfoPerso();
-			player.displayInfoPerso();
 			if (monster.getLifePoint()==0) {
-				System.out.println(monster.getNamePerso() + " is dead ! You are the winner");
 				player.addStuff(partOfShip,1); //The player win a partOfShip when he win
 				boolean percent = r.nextBoolean();  //The player can win a otherStuff or not according to a random boolean
 				if (percent==true) {
@@ -52,15 +48,10 @@ public class Fight {
 			}
 			System.out.print("monster attack");
 			monster.monsterFight(player, myMonster.getAttackPoint());
-			monster.displayInfoPerso();
-			player.displayInfoPerso();
 			if (player.getLifePoint()==0) {
 				monster.setLifePoint(pointLifeMonster); // If the player lost the fight, the monster LifePoint is reinitialized as the beginning of the fight
-				System.out.println(player.getNamePerso() + " is dead ! You are returned in your ship");
 				break;
 			}
 		}
-		System.out.println("The invotory of the player");
-		player.displayStuff();
 	}
 }

@@ -30,7 +30,9 @@ public class PersoView extends PictureButton {
         this.addActionListener(new ActionListener (){
         @Override
         public void actionPerformed(ActionEvent e) {
+        	// open a window with YES NO choice to know if the player wants to fight the monster (the monster that has been selected)
             int result = JOptionPane.showConfirmDialog(null,"Are you sure you want to attack the monster ?", "choose one", JOptionPane.YES_NO_OPTION);
+            //if he wants, all button is block during the fight and the fight begin with the monster that has been selected
             if (result==JOptionPane.YES_OPTION) {
                     StartGame.getInterf().isAttackEnabled(true);
                     StartGame.getInterf().getTheWindow().setEnableArrows(false);
