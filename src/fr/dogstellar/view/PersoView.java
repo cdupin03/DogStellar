@@ -15,39 +15,29 @@ import fr.dogstellar.core.Player;
 import fr.dogstellar.core.QuestElement;
 import fr.dogstellar.core.Stuff;
 
-public class PersoView extends JButton {
+public class PersoView extends PictureButton {
 
-		
-		/**
-		 * Set the picture of the graphical arrow. The arrow take the direction 
-		 * given in parameter. If the direction is not NORTH, SOUTH, EAST or WEST, 
-		 * then, the direction taken is NORTH by default.
-		 */
-		
-		private String MonsterPicturePath;
-		private Window wind;		
-		
-		public PersoView (String picturePath) {
-			super();
-			MonsterPicturePath = new String(picturePath + "Monstre");
-			this.setIcon(new ImageIcon(MonsterPicturePath + ".png"));
-			this.setRolloverIcon(new ImageIcon (MonsterPicturePath + "2.png"));
-			this.setBorder(BorderFactory.createEmptyBorder());
-			this.setContentAreaFilled(false);
 
-			 
+    /**
+     * Set the picture of the graphical arrow. The arrow take the direction 
+     * given in parameter. If the direction is not NORTH, SOUTH, EAST or WEST, 
+     * then, the direction taken is NORTH by default.
+     */
 
-			this.addActionListener(new ActionListener (){
-	            public void actionPerformed(ActionEvent e) {
-	            	int result = JOptionPane.showConfirmDialog(null,"Are you sure you want to attack the monster ?", "choose one", JOptionPane.YES_NO_OPTION);
-	            	if (result==JOptionPane.YES_OPTION) {
-	            		StartGame.interf.attack.setEnabled(true);
-	            		StartGame.interf.theWindow.eastArrow.setEnabled(false);
-	            		StartGame.interf.theWindow.westArrow.setEnabled(false);
-	            		StartGame.interf.theWindow.northArrow.setEnabled(false);
-	            		StartGame.interf.theWindow.southArrow.setEnabled(false);
-	            	}
-	    	    }
-	        });
-		}
+    private Window wind;		
+
+    public PersoView (String picturePath) {
+        super(picturePath, "Monstre", ".png");
+
+        this.addActionListener(new ActionListener (){
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int result = JOptionPane.showConfirmDialog(null,"Are you sure you want to attack the monster ?", "choose one", JOptionPane.YES_NO_OPTION);
+            if (result==JOptionPane.YES_OPTION) {
+                    StartGame.getInterf().isAttackEnabled(true);
+                    StartGame.getInterf().getTheWindow().setEnableArrows(false);
+            }
+        }
+    });
+    }
 }

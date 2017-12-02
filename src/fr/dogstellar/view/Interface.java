@@ -10,6 +10,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.text.DefaultCaret;
+import javax.swing.ImageIcon;
 
 /**
  * The Class Interface is the main Interface of the game, it allows to interract with a specific area,
@@ -17,23 +18,27 @@ import javax.swing.text.DefaultCaret;
  * @author G3
  * @version V05
  */
-public class Interface 
+public class Interface
 {
     private final JFrame theInterface = new JFrame();           //The main frame of the interface
-    public final JPanel console = new JPanel();                //The main panel for the console
+    private final JPanel console = new JPanel();                //The main panel for the console
     private final JPanel console1 = new JPanel();               //A test console
     private final JPanel top = new JPanel();                    //The top part of the interface that contain the display of area
     private final JPanel bottom = new JPanel();                 //The bottom part of the interface that contain the global informations, inventory, attack button, and the console
     private final JButton ok = new JButton();                   //The button to validate an entry in the console
-    public JButton attack = new JButton("Attack");				//The button to start attack a monster
+    private final JButton attack = new JButton("Attack");				//The button to start attack a monster
     private final JPanel display = new JPanel();                //The panel in the console that contain the JTextArea displayMessage
     private final JPanel write = new JPanel();                  //The panel in the console that contain the JTextField to write answer and the button of validation
     private final JTextArea displayMessage = new JTextArea();   //The area to display message
     private JTextField areaToWrite = new JTextField();          //The area to write answer
-    public String answer;                                      //The last answer that is write
-    public Perso monstre1 = new Perso("Monstre", 10, 5);
-    public Perso monstre2 = new Perso("Monstre2", 5, 2);
-    public Window theWindow;
+    private String answer;                                      //The last answer that is write
+    
+    private final JButton inventory;                            //Button wich allow to open the inventory
+    
+    private Perso monstre1 = new Perso("Monstre", 10, 5);
+    private Perso monstre2 = new Perso("Monstre2", 5, 2);
+    private GeneralWindow theWindow;
+
     /**
      * The constructor of the class Interface
      */
@@ -71,6 +76,21 @@ public class Interface
 
         
         
+        //left part
+         String picturePath = System.getProperty("user.dir") + "/pictures/"; //variable containing the path for the inventory image
+         ImageIcon picture = new ImageIcon (picturePath+"inventory.png");// image for the inventory button
+        inventory = new JButton (picture);// create the button
+        console1.add(inventory);// add the button to the inventory
+        inventory.setToolTipText("click here to acess to you inventory");// set a descritpion text
+        // action listenener for generate the inventory frame in one click
+        inventory.addActionListener(new ActionListener() {
+            @Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					InventoryPanel ip = new InventoryPanel(StartGame.getPlayer());
+
+				}});
+        
         
         /*
          *  *****   *  *   *****      ** **   *****   *****                                          
@@ -96,12 +116,9 @@ public class Interface
         planet1.addArea(test1);
         
 
-        Window theWindow = new Window(planets, theInterface);
+        theWindow = new Window(planets, this);
+        //theWindow = new InShip(this, planets);
 
-        /*
-         *
-         *
-        */
         attack.setEnabled(false);
         
         top.setLayout(new BorderLayout());                          //Set the layout of the top part       
@@ -176,4 +193,35 @@ public class Interface
         answer.toUpperCase();
         return answer;
     }
+
+    /**
+     * 
+     * @return the window of the interface
+     */
+    public fr.dogstellar.view.GeneralWindow getTheWindow() {
+        return theWindow;
+    }
+    
+    /**
+     * Set the enable of attack JButton
+     * @param ena true if the button is enabled, else false
+     */
+    public void isAttackEnabled (boolean ena)
+    {
+        attack.setEnabled(ena);
+    }
+    
+    public void setWindow (GeneralWindow newWindow)
+    {
+        theWindow.setVisible(false);
+        theWindow = newWindow;
+        theWindow.setVisible(true);
+        top.add(theWindow, BorderLayout.CENTER);
+    }
+    
+    public JFrame getInterface ()
+    {
+        return theInterface;
+    }
+    
 }
