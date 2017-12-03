@@ -43,9 +43,9 @@ public class Potion extends Stuff
      * Add life points to the perso’s life and remove the potion from the perso’s inventory.
      * @param perso the perso which drink potion
      */
-     public void drinkPotion()
+     public void drinkPotion(Player play)
     {
-        Player play = getPlayer();
+         
         play.increaseLifePoint(lifePoint);
         play.deleteStuff(this);
     }
