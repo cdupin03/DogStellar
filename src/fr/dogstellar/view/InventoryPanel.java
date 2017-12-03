@@ -1,43 +1,40 @@
 package fr.dogstellar.view;
 
-import java.awt.color.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.image.*;
-import java.io.File;
+import java.awt.event.*;
 import java.util.ArrayList;
-import java.awt.Color;
-import java.awt.Event;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.GridLayout;
+import java.awt.*;
 import javax.swing.*;
-import javax.swing.text.StyledEditorKit.ForegroundAction;
-
-import org.omg.CORBA.PRIVATE_MEMBER;
-import org.omg.CORBA.PUBLIC_MEMBER;
 
 import fr.dogstellar.core.*;
-import java.util.Iterator;
 
+/**
+ * The InventoryPanel allows to create a JFrame to display the player inventory
+ * 
+ * @author Group 3
+ * @version V04
+ */
 public class InventoryPanel extends JFrame {
 
-    int gridCaseHeight1 = ((300) / (2)); // the heght of a equiped item grid
-    int gridCaseWidth1 = ((175) / (2)); //  the heght of a equiped item grid
-    private final Player thePlayer; // the owner of the inventory
-    private JPanel inventory;// Jpanel containing all unequiped objects
-    private JPanel equipedInventory;// Jpanel containing the equiped objects 
-    JLabel lbl1 = new JLabel("Equiped items");
-    JLabel lbl2 = new JLabel("Your Inventory");
+    int gridCaseHeight1 = ((300) / (2));                                        // The heght of a equiped item grid
+    int gridCaseWidth1 = ((175) / (2));                                         // The heght of a equiped item grid
+    private final Player thePlayer;                                             // The owner of the inventory
+    private JPanel inventory;                                                   // Jpanel containing all unequiped objects
+    private JPanel equipedInventory;                                            // Jpanel containing the equiped objects 
+    JLabel lbl1 = new JLabel("Equiped items");                                  // The name of the top part of the inventory
+    JLabel lbl2 = new JLabel("Your Inventory");                                 // The name of the botom part of the inventory
 
+    /**
+     * The constructor of the class, take a player in parameter to set his
+     * inventory
+     *
+     * @param thePlayer
+     */
     public InventoryPanel(Player thePlayer) {
         // TODO Auto-generated constructor stub
         this.setLayout(new GridLayout(0, 2, 20, 20));
         this.thePlayer = thePlayer;
         generateInventory();
-        this.setTitle("Inventory");
+        this.setTitle("Inventory");                                             //The name of the JFrame
         this.setSize(1200, 700);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,6 +42,9 @@ public class InventoryPanel extends JFrame {
         this.pack();
     }
 
+    /**
+     * This method generate the player inventory
+     */
     public void generateInventory() {
 
         // test si le joueur à un équipement + creation du label "Equiped item"
@@ -60,23 +60,24 @@ public class InventoryPanel extends JFrame {
         lbl1.setFont(new Font("Blippo", Font.PLAIN, 28));
         this.add(equipedInventory);
 
-        // creation du Jpanel de l'équipement
+        // Creation of the equipment Jpanel
         //test if the player has no equiped armor 
         if (!thePlayer.hasArmor()) {
-            ImageIcon theImage1 = new ImageIcon(picturePath + "void.jpg");// set the default image 
+            ImageIcon theImage1 = new ImageIcon(picturePath + "void.jpg");                  // set the default image 
 
-            theImage1 = resyze(theImage1, gridCaseHeight1, gridCaseWidth1);//resize the image
-            JButton equipedArmor = new JButton(theImage1);//create a new JButton
-            equipedInventory.add(equipedArmor);//add the Jbutton to the JPanel 
-            equipedArmor.setToolTipText("There is no item equiped on this slot");//set the tooltiptext
+            theImage1 = resyze(theImage1, gridCaseHeight1, gridCaseWidth1);                 //resize the image
+            JButton equipedArmor = new JButton(theImage1);                                  //create a new JButton
+            equipedInventory.add(equipedArmor);                                             //add the Jbutton to the JPanel 
+            equipedArmor.setToolTipText("There is no item equiped on this slot");           //set the tooltiptext
         } //if the player have an equiped weapon
         else {
             ImageIcon theImage1 = new ImageIcon(associationImage(thePlayer.getArmorEquip()));//generate the image path corresponding to the weapon 
 
-            theImage1 = resyze(theImage1, gridCaseHeight1, gridCaseWidth1);//resize the image 
-            JButton equipedArmor = new JButton(theImage1);//create a JButton
-            equipedInventory.add(equipedArmor);//add the button to the JPanel
-            equipedArmor.setToolTipText(associationLabel(thePlayer.getArmorEquip()));//set the corresponding tooltiptext
+            theImage1 = resyze(theImage1, gridCaseHeight1, gridCaseWidth1);                 //resize the image 
+            JButton equipedArmor = new JButton(theImage1);                                  //create a JButton
+            equipedInventory.add(equipedArmor);                                             //add the button to the JPanel
+            equipedArmor.setToolTipText(associationLabel(thePlayer.getArmorEquip()));       //set the corresponding tooltiptext
+
             //the action listener to unequip a weapon 
             equipedArmor.addActionListener(new ActionListener() {
 
@@ -85,8 +86,8 @@ public class InventoryPanel extends JFrame {
                     // TODO Auto-generated method stub
                     if (thePlayer.hasArmor()) {
 
-                        thePlayer.desequipArmor();//remove the armor
-                        refreshInventory();// refresh the inventory 
+                        thePlayer.desequipArmor();                                          //remove the armor
+                        refreshInventory();                                                 // refresh the inventory 
                     }
 
                 }
@@ -94,28 +95,28 @@ public class InventoryPanel extends JFrame {
         }
         // comportment if the player has no weapon equiped 
         if (!thePlayer.hasWeapon()) {
-            ImageIcon theImage2 = new ImageIcon(picturePath + "void.jpg");// load a default image
+            ImageIcon theImage2 = new ImageIcon(picturePath + "void.jpg");                  // load a default image
 
-            theImage2 = resyze(theImage2, gridCaseHeight1, gridCaseWidth1); //resize the image
-            JButton equipedWeapon = new JButton(theImage2);//put the image in a button
-            equipedInventory.add(equipedWeapon);//add the button to the panel 
+            theImage2 = resyze(theImage2, gridCaseHeight1, gridCaseWidth1);                 //resize the image
+            JButton equipedWeapon = new JButton(theImage2);                                 //put the image in a button
+            equipedInventory.add(equipedWeapon);                                            //add the button to the panel 
 
-            equipedWeapon.setToolTipText("There is no equiped item on this slot");// set is tooltiptext
+            equipedWeapon.setToolTipText("There is no equiped item on this slot");          // set is tooltiptext
         } //if the player has a equiped weapon
         else {
             ImageIcon theImage2 = new ImageIcon(associationImage(thePlayer.getWeaponEquip()));//associate the good image corresponding to the weapon equiped
 
-            theImage2 = resyze(theImage2, gridCaseHeight1, gridCaseWidth1); //resize the image 
-            JButton equipedWeapon = new JButton(theImage2);//create a JButton with this image
-            equipedInventory.add(equipedWeapon);//add tje JButton to the JPanel
+            theImage2 = resyze(theImage2, gridCaseHeight1, gridCaseWidth1);                 //resize the image 
+            JButton equipedWeapon = new JButton(theImage2);                                 //create a JButton with this image
+            equipedInventory.add(equipedWeapon);                                            //add tje JButton to the JPanel
 
-            equipedWeapon.setToolTipText(associationLabel(thePlayer.getWeaponEquip()));//set the right tooltiptext
+            equipedWeapon.setToolTipText(associationLabel(thePlayer.getWeaponEquip()));     //set the right tooltiptext
             //action listener to unequip the weapon
             equipedWeapon.addActionListener((ActionEvent e) -> {
                 // TODO Auto-generated method stub
                 if (thePlayer.hasWeapon()) {
-                    thePlayer.desequipWeapon();//remove the weapon
-                    refreshInventory();//refresh the inventoy
+                    thePlayer.desequipWeapon();                                             //remove the weapon
+                    refreshInventory();                                                     //refresh the inventoy
                 }
             });
         }
@@ -130,8 +131,8 @@ public class InventoryPanel extends JFrame {
         this.add(inventory);
         // check if the inventory is empty
         if (thePlayer.getStuff().isEmpty() == false) {
-            ArrayList<Stuff> stuffs = Factorise(thePlayer.getStuff());//create a list with only one occurence of each item 
-            int j = stuffs.size(); // the size of the facotrised list 
+            ArrayList<Stuff> stuffs = Factorise(thePlayer.getStuff());                      //create a list with only one occurence of each item 
+            int j = stuffs.size();                                                          // the size of the facotrised list 
 
             // creating a grid to put the items
             GridLayout Disposition = new GridLayout(j / 3, 3);
@@ -143,18 +144,18 @@ public class InventoryPanel extends JFrame {
 
             // foreach item of the list if it is different of the one who is equiped
             stuffs.stream().map((i) -> {
-                ImageIcon theImage = new ImageIcon(associationImage(i)); //affecting the good image
-                theImage = resyze(theImage, gridCaseHeight, gridCaseWidth);// resize the image
-                JButton X = new JButton(theImage);//create a button with the image inside
-                X.setToolTipText(associationLabel(i));// set a tooltiptext with the items informations
-                JLabel Y = new JLabel(":" + nbOccurence(i, thePlayer.getStuff()));// affect the value of the number of the item in the inventory
+                ImageIcon theImage = new ImageIcon(associationImage(i));                    //affecting the good image
+                theImage = resyze(theImage, gridCaseHeight, gridCaseWidth);                 // resize the image
+                JButton X = new JButton(theImage);                                          //create a button with the image inside
+                X.setToolTipText(associationLabel(i));                                      // set a tooltiptext with the items informations
+                JLabel Y = new JLabel(":" + nbOccurence(i, thePlayer.getStuff()));          // affect the value of the number of the item in the inventory
                 //the action listemer to equip an item or take a potion
                 X.addActionListener((ActionEvent e) -> {
                     // TODO Auto-generated method stub
                     //management for a weapon
                     if (isWeapon(i)) {
                         if (thePlayer.hasWeapon()) {
-                            
+
                             thePlayer.desequipWeapon();
                         }
                         thePlayer.addWeaponEquip((Weapon) i);
@@ -189,10 +190,12 @@ public class InventoryPanel extends JFrame {
         }
     }
 
-    /*
-        *This method compt the number of occurence in a list 
-        @param Stuff i: the stuff to search,ArrayList<Stuff> inventory: the list where the item is looked for
-        @return int compteur : the number of occurence of the item 
+    /**
+     * This method compt the number of occurence in a list
+     *
+     * @param i = the stuff to search
+     * @param inventory = the list where the item is looked for
+     * @return compteur = the number of occurence of the item
      */
     public int nbOccurence(Stuff i, ArrayList<Stuff> inventory) {
         int compteur = 0;
@@ -225,59 +228,69 @@ public class InventoryPanel extends JFrame {
         return compteur;
     }
 
-    /*
-        * Check if a stuff is a weapon 
-        @param Stuff theStuff : the Stuff to test 
-        @return boolean true if the item is a armor else false
+    /**
+     * Check if a stuff is a weapon
+     *
+     * @param theStuff = the Stuff to test
+     * @return boolean = true if the item is a armor else false
      */
     public boolean isWeapon(Stuff theStuff) {
         return theStuff instanceof Weapon;
     }
 
-    /*
-        * Check if a stuff is a QuestElement 
-        @param Stuff theStuff : the Stuff to test 
-        @return boolean true if the item is a QuestElement else false
+    /**
+     * Check if a stuff is a QuestElement
+     *
+     * @param theStuff = the Stuff to test
+     * @return boolean true if the item is a QuestElement else false
      */
     public boolean isQuestElement(Stuff theStuff) {
         return theStuff instanceof QuestElement;
     }
 
-    /*
-        * This method take a list and return a list without dupplicate
-        @param ArrayList<Stuff> inventory the list to test
-        @return ArrayList<Stuff> factorised list ,the treated list 
+    /**
+     * This method take a list and return a list without dupplicate
+     *
+     * @param inventory = the list to test
+     * @return factorised list = the treated list
      */
     public ArrayList<Stuff> Factorise(ArrayList<Stuff> inventory) {
         ArrayList<Stuff> factorisedList = new ArrayList<>();
+
+        // test if the item is not already in the factorised list
         inventory.stream().filter((j) -> (nbOccurence(j, factorisedList) == 0)).forEachOrdered((j) -> {
             factorisedList.add(j);
-        }); // test if the item is not already in the factorised list
+        });
         return factorisedList;
     }
 
-    /*
-        * Check if a stuff is a armor 
-        @param Stuff theStuff : the Stuff to test 
-        @return boolean true if the item is a armor else false
+    /**
+     * Check if a stuff is a armor
+     *
+     * @param theStuff = the Stuff to test
+     * @return boolean true if the item is a armor else false
      */
     public boolean isArmor(Stuff theStuff) {
         return theStuff instanceof Armor;
     }
 
-    /*
-        * Check if a stuff is a potion 
-        @param Stuff theStuff : the Stuff to test 
-        @return boolean true if the item is a potion else false
+    /**
+     * Check if a stuff is a potion
+     *
+     * @param theStuff = the Stuff to test
+     * @return boolean true if the item is a potion else false
      */
     public boolean isPotion(Stuff theStuff) {
         return theStuff instanceof Potion;
     }
 
-    /*
-        *This method allow to resize an ImageIcon by returning a new one
-        @param int height the heigth of the new image, int width the width of the new image, ImageIcon theImage the input image
-        @return ImageIcon newImg1 , ImageIcon theImage (only if the height or the width are set to 0)
+    /**
+     * This method allow to resize an ImageIcon by returning a new one
+     *
+     * @param theImage = the input image
+     * @param height = the heigth of the new image
+     * @param width = the width of the new image
+     * @return theImage is the resized image
      */
     public ImageIcon resyze(ImageIcon theImage, int height, int width) {
         java.awt.Image image = theImage.getImage();
@@ -287,15 +300,17 @@ public class InventoryPanel extends JFrame {
             ImageIcon newImg1 = new ImageIcon(newimg);
             return newImg1;
         } else {
+            // transform it back
             return theImage;
-        } // transform it back
+        }
     }
 
-    /*
-        *check the stuff type and return a string who correspond to the path file of the image to load on 
-        *the JButton
-        @param   Stuff :theStuff the stuff who need a path 
-        @return String: filePath the file path for the image 
+    /**
+     * Check the stuff type and return a string who correspond to the path file
+     * of the image to load on the JButton
+     *
+     * @param theStuff = the stuff who need a path
+     * @return filePath = the file path for the image
      */
     public String associationImage(Stuff theStuff) {
         String piImageIcon = null;
@@ -360,10 +375,11 @@ public class InventoryPanel extends JFrame {
         return filePath;
     }
 
-    /*
-        *the method who associate a string  to a stuff 
-        * @param i stuff who need the label 
-        * @return result the string corresponding to the stuff
+    /**
+     * The method who associate a string to a stuff
+     *
+     * @param i = stuff who need the label
+     * @return result = the string corresponding to the stuff
      */
     public String associationLabel(Stuff i) {
         String result = "";
@@ -402,8 +418,9 @@ public class InventoryPanel extends JFrame {
         return (result);
     }
 
-    /*
-        the method who allow to refresh the inventory (all the element of the frame are droped and reloaded exept the player data 
+    /**
+     * The method who allow to refresh the inventory (all the element of the
+     * frame are droped and reloaded exept the player data
      */
     public void refreshInventory() {
         remove(lbl1);

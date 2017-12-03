@@ -13,6 +13,12 @@ import fr.dogstellar.core.Player;
 
 import java.util.*;
 
+/**
+ * The start game allows to choose a perso and a name for the player in a dedicated window
+ * 
+ * @author Group 3
+ * @version V03
+ */
 public class StartGame {
 
     private JFrame myJFrame;
@@ -26,6 +32,9 @@ public class StartGame {
     private int lP, aP;
     private static Interface interf;
 
+    /**
+     * The constructor of this class
+     */
     public StartGame() {
         picturePath = new String(System.getProperty("user.dir") + "/pictures/");
 
@@ -181,7 +190,6 @@ public class StartGame {
         myJFrame.add(t, BorderLayout.CENTER);
         myJFrame.add(startGame, BorderLayout.SOUTH);
 
-
         // size of JPanel
         panelPlayer.setPreferredSize(new Dimension(200, 400));
         startGame.setPreferredSize(new Dimension(200, 100));
@@ -194,6 +202,11 @@ public class StartGame {
         myJFrame.setVisible(true);
     }
 
+    /**
+     * 
+     * @param lP
+     * @param aP 
+     */
     public void majInfoP(int lP, int aP) {
         infoP.setText("This player has " + String.valueOf(lP) + " life Point" + " and " + String.valueOf(aP) + " attack Point");
     }
