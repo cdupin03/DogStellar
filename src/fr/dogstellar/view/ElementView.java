@@ -27,14 +27,14 @@ public class ElementView extends JButton {
      * The constructor of the ElementViewClass
      *
      * @param picturePath the path of the picture
-     * @param newE element which needs a picture 
+     * @param newE element which needs a picture
      */
     public ElementView(String picturePath, Element newE) {
         super();                                                                //call the constructor of the JButton
         PicturePath = new String(picturePath + "");                             //Define the path of the picture
         E = newE;                                                               //Define the element
 
-        if (E.getType() == 1)                                                   //If the element is a enigma 
+        if (E.getType() == 1) //If the element is a enigma 
         {
 
             ImageIcon imageIcon = new ImageIcon(PicturePath + "enigma.png");
@@ -54,21 +54,21 @@ public class ElementView extends JButton {
                 }
 
             });
-        } else if (E.getType() == 2)                                            //If the element is a trap
+        } else if (E.getType() == 2) //If the element is a trap
         {
             int randomNum = ThreadLocalRandom.current().nextInt(0, 3);          // initialize random number
             String randompic;
             String randompic2;
 
-            if (randomNum == 0)                                                 //enigma display
+            if (randomNum == 0) //enigma display
             {
                 randompic = new String("enigma.png");
                 randompic2 = new String("enigma2.png");
-            } else if (randomNum == 1)                                          // pnj display
+            } else if (randomNum == 1) // pnj display
             {
                 randompic = new String("toad1.jpg");
                 randompic2 = new String("toad2.jpg");
-            } else                                                              // chest display
+            } else // chest display
             {
                 randompic = new String("Coffre_fermer.jpg");
                 randompic2 = new String("Coffre_selection.jpg");
@@ -85,7 +85,7 @@ public class ElementView extends JButton {
             this.setBorder(BorderFactory.createEmptyBorder());
             this.setContentAreaFilled(false);
 
-        } else if (E.getType() == 3)                                            //If the element is a pnj
+        } else if (E.getType() == 3) //If the element is a pnj
         {
 
             ImageIcon imageIcon = new ImageIcon(PicturePath + "toad1.jpg");
@@ -98,7 +98,7 @@ public class ElementView extends JButton {
             this.setRolloverIcon(imageIcon2);
             this.setBorder(BorderFactory.createEmptyBorder());
             this.setContentAreaFilled(false);
-        } else if (E.getType() == 4)                                            //If the element is a chest
+        } else if (E.getType() == 4) //If the element is a chest
         {
             if (!E.getDone()) {
                 ImageIcon imageIcon = new ImageIcon(PicturePath + "Coffre_fermer.jpg");
@@ -122,7 +122,7 @@ public class ElementView extends JButton {
             }
         }
     }
-    
+
     /**
      * Allow to resized a picture
      *

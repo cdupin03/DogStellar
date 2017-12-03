@@ -8,8 +8,8 @@ import java.util.*;
  * @author G3
  * @version V04
  */
-public class AreaPlanet
-{
+public class AreaPlanet {
+
     private Info information;                   //the name and the description store in a Info object 
     private HashMap<String, AreaPlanet> areas;  //the hashmap allows to store the attached area to the current area
     private ArrayList<Element> elements;        //the list of elements in the current area like quest, chest, pieces...
@@ -22,8 +22,7 @@ public class AreaPlanet
      * @param name is the name of the area
      * @param descritption is the description of the area
      */
-    public AreaPlanet(String newName, String newDescription, String newPicture)
-    {
+    public AreaPlanet(String newName, String newDescription, String newPicture) {
         information = new Info(newName, newDescription);    //call the constructor of the Info class
         areas = new HashMap<>();                            //instanciation of the hashmap
         elements = new ArrayList<Element>();                //instanciation of the list of element
@@ -36,260 +35,239 @@ public class AreaPlanet
      *
      * @return the area
      */
-    public AreaPlanet getArea(String theOrientation)
-    {
+    public AreaPlanet getArea(String theOrientation) {
         theOrientation = theOrientation.trim().toUpperCase();
         return areas.get(theOrientation);
     }
- 
+
     /**
      * Define every direction either leads to another area or leave it empty.
      *
-     * @param  north, west, east, south are the different area around
+     * @param north, west, east, south are the different area around
      */
-    public void addAreaPlanet(AreaPlanet theAreaToAdd, String theOrientation)
-    {
+    public void addAreaPlanet(AreaPlanet theAreaToAdd, String theOrientation) {
         theOrientation = theOrientation.trim().toUpperCase();
-        
-        if(theOrientation.equals("NORTH") || theOrientation.equals("WEST") || theOrientation.equals("EAST") || theOrientation.equals("SOUTH"))
-        {
+
+        if (theOrientation.equals("NORTH") || theOrientation.equals("WEST") || theOrientation.equals("EAST") || theOrientation.equals("SOUTH")) {
             String oppositeOrientation = "";
             this.areas.put(theOrientation, theAreaToAdd);
-                
-            if(theOrientation.equals("NORTH"))
+
+            if (theOrientation.equals("NORTH")) {
                 oppositeOrientation = "SOUTH";
-            if(theOrientation.equals("WEST"))
+            }
+            if (theOrientation.equals("WEST")) {
                 oppositeOrientation = "EAST";
-            if(theOrientation.equals("EAST"))
+            }
+            if (theOrientation.equals("EAST")) {
                 oppositeOrientation = "WEST";
-            if(theOrientation.equals("SOUTH"))
+            }
+            if (theOrientation.equals("SOUTH")) {
                 oppositeOrientation = "NORTH";
+            }
 
             theAreaToAdd.areas.put(oppositeOrientation, this);
         }
     }
-    
+
     /**
      * To add an element into the area.
      *
-     * @param  newElement is the element to add to the list of element
+     * @param newElement is the element to add to the list of element
      */
-    public void addElement(Element newElement)
-    {
+    public void addElement(Element newElement) {
         elements.add(newElement);
     }
-    
+
     /**
      * To search an element into the area.
      *
-     * @param  theElement is the element to search in the list of element
+     * @param theElement is the element to search in the list of element
      * @return if the element exist in the list
      */
-    public boolean searchElement(Element theElement)
-    {
-        for(Element i : elements)
-        {
-            if(i.equals(theElement))
+    public boolean searchElement(Element theElement) {
+        for (Element i : elements) {
+            if (i.equals(theElement)) {
                 return true;
+            }
         }
         return false;
     }
-    
+
     /**
      * To remove an element into the area.
      *
-     * @param  theElement is the element to remove to the list of element
+     * @param theElement is the element to remove to the list of element
      */
-    public void removeElement(Element theElement)
-    {
+    public void removeElement(Element theElement) {
         elements.remove(theElement);
     }
-    
+
     /**
      * To show all elements in the area. A listing of all element
      *
      */
-    public void displayElement()
-    {
-        for(Element i : elements)
-        {
+    public void displayElement() {
+        for (Element i : elements) {
             System.out.println("Name of the element : " + i.getInformation().getName());
             System.out.println("    Description : " + i.getInformation().getDescription());
         }
     }
-    
+
     /**
      * To get all the infos.
      *
      * @return the object Info (his name and the description)
      */
-    public Info getInformation()
-    {
+    public Info getInformation() {
         return information;
     }
-    
+
     /**
      * To get the name of the Area.
      *
      * @return the name of the Area
      */
-    public String getNameArea()
-    {
+    public String getNameArea() {
         return this.information.getName();
     }
-    
+
     /**
      * To get the name of the Area.
      *
      * @return the name of the Area
      */
-    public String getDescriptionArea()
-    {
+    public String getDescriptionArea() {
         return this.information.getDescription();
     }
-    
+
     /**
-     * Display the name and the orientation of all areas connected to the current area
+     * Display the name and the orientation of all areas connected to the
+     * current area
      *
      */
-    public void displayAreasConnected()
-    {    
-        for (HashMap.Entry<String, AreaPlanet> currentArea: areas.entrySet())
-        {
+    public void displayAreasConnected() {
+        for (HashMap.Entry<String, AreaPlanet> currentArea : areas.entrySet()) {
             System.out.printf("Orientation : " + currentArea.getKey() + " / ");
-            System.out.printf("Name : "+currentArea.getValue().getInformation().getName());
+            System.out.printf("Name : " + currentArea.getValue().getInformation().getName());
         }
     }
-    
+
     /**
      * Getter of the areas of the planet
      *
      * @return areas is the hashmap of the areas around
      */
-    public HashMap<String,AreaPlanet> getAreaPlanet()
-    {    
+    public HashMap<String, AreaPlanet> getAreaPlanet() {
         return areas;
     }
-    
+
     /**
      * Getter of the areas of the planet
      *
      * @return areas is the hashmap of the areas around
      */
-    public boolean searchAreaPlanet(String theName)
-    {    
-        for(Map.Entry<String, AreaPlanet> i : areas.entrySet())
-        {
+    public boolean searchAreaPlanet(String theName) {
+        for (Map.Entry<String, AreaPlanet> i : areas.entrySet()) {
             AreaPlanet value = i.getValue();
-            if(value.getNameArea().equals(theName))
+            if (value.getNameArea().equals(theName)) {
                 return true;
+            }
         }
         return false;
     }
-    
+
     /**
      * To add a perso into the area.
      *
-     * @param  newPerso is the perso to add to the list of persos
+     * @param newPerso is the perso to add to the list of persos
      */
-    public void addPerso(Perso newPerso)
-    {
+    public void addPerso(Perso newPerso) {
         persos.add(newPerso);
     }
-    
+
     /**
      * To search an Perso into the area.
      *
-     * @param  thePerso is the perso to search in the list of persos
+     * @param thePerso is the perso to search in the list of persos
      * @return true if the perso exist in the list
      */
-    public boolean searchPerso(Perso thePerso)
-    {
-        for(Perso i : persos)
-        {
-            if(i.equals(thePerso))
+    public boolean searchPerso(Perso thePerso) {
+        for (Perso i : persos) {
+            if (i.equals(thePerso)) {
                 return true;
+            }
         }
         return false;
     }
-    
+
     /**
      * To remove an element into the area.
      *
      * @param thePerso is the perso to remove to the list of persos
      */
-    public void removePerso(Perso thePerso)
-    {
+    public void removePerso(Perso thePerso) {
         persos.remove(thePerso);
     }
-    
+
     /**
      * To search an Perso into the area.
      *
-     * @param  thePerso is the perso to search in the list of persos
+     * @param thePerso is the perso to search in the list of persos
      * @return true if the perso exist in the list
      */
-    public void displayPersos()
-    {
-        for(Perso i : persos)
-        {
-                System.out.println(i.getNamePerso());
+    public void displayPersos() {
+        for (Perso i : persos) {
+            System.out.println(i.getNamePerso());
         }
     }
-    
+
     /**
      * Return the picture of the areaPlanet
+     *
      * @return the picture
      */
-    public String getPicture()
-    {
-    	return picture;
+    public String getPicture() {
+        return picture;
     }
-    
-    
+
     /**
      * Return the elements of the area
+     *
      * @return elements
      */
-    public ArrayList<Element> getElement ()
-    {
-    	return elements;
+    public ArrayList<Element> getElement() {
+        return elements;
     }
-    
+
     /**
-     * 
+     *
      * @return the persos of the area
      */
-    public ArrayList<Perso> getPerso ()
-    {
-    	return persos;
+    public ArrayList<Perso> getPerso() {
+        return persos;
     }
-    
+
     /**
-     * get the area corresponding to the direction. If there is no area in the direction specified, the current area is 
-     * returned.
-     * @param direction "NORTH", "SOUTH", "EAST", "WEST" the direction of the area to return.
-     * @return the area in the specified direction or the current area if there is no area in the direction.
+     * get the area corresponding to the direction. If there is no area in the
+     * direction specified, the current area is returned.
+     *
+     * @param direction "NORTH", "SOUTH", "EAST", "WEST" the direction of the
+     * area to return.
+     * @return the area in the specified direction or the current area if there
+     * is no area in the direction.
      */
-    public AreaPlanet getOrientationArea (String direction)
-    {
-    	direction = direction.toUpperCase();
-    	if (direction.equals("SOUTH") || direction.equals("NORTH") || direction.equals("WEST") || direction.equals("EAST"))
-    	{
-    		if (areas.containsKey(direction))
-    		{
-    			return areas.get(direction);
-    		}
-    		else
-    		{
-    			return this;
-    		}
-    	}
-    	else
-    	{
-    		return this;
-    	}
-    	
+    public AreaPlanet getOrientationArea(String direction) {
+        direction = direction.toUpperCase();
+        if (direction.equals("SOUTH") || direction.equals("NORTH") || direction.equals("WEST") || direction.equals("EAST")) {
+            if (areas.containsKey(direction)) {
+                return areas.get(direction);
+            } else {
+                return this;
+            }
+        } else {
+            return this;
+        }
+
     }
 
 }

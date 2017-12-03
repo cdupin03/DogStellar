@@ -1,4 +1,5 @@
 package fr.dogstellar.view;
+
 import java.awt.ItemSelectable;
 import java.awt.event.*;
 
@@ -45,4 +46,3 @@ import fr.dogstellar.core.Stuff;
 		menu.add (features);
 		menu.add(desc);
 }*/
-

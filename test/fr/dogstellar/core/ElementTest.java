@@ -1,7 +1,5 @@
 package fr.dogstellar.core;
 
-
-
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
@@ -10,11 +8,11 @@ import org.junit.Test;
 /**
  * The test class ElementTest.
  *
- * @author  (your name)
+ * @author (your name)
  * @version (a version number or a date)
  */
-public class ElementTest
-{
+public class ElementTest {
+
     Element element1;
     Player player;
     Weapon weap;
@@ -25,57 +23,48 @@ public class ElementTest
      * Create good objects for future tests.
      */
     @Before
-    public void setUp()
-    {
+    public void setUp() {
 
         element1 = new Element("Papier", "C'est un papier", 1);
-        player = new Player("Jean-Louis",5,5);
+        player = new Player("Jean-Louis", 5, 5);
         weap = new Weapon("weapon", "Sword of life", 3);
     }
 
     /**
-     * Method NormalConstructor
-     * Test the normal behavior of the constructor
+     * Method NormalConstructor Test the normal behavior of the constructor
      */
     @Test
-    public void NormalConstructor()
-    {
+    public void NormalConstructor() {
         assertEquals("Papier", element1.getInformation().getName());
         assertEquals("C'est un papier", element1.getInformation().getDescription());
         assertEquals(1, element1.getType());
     }
-    
+
     /**
-     * Method LostLifePoint
-     * Test if the perso really last lifePoint. player has 10 lifePoint
-     * The element make the player lost 3 lifePoints
-     * Check if the player really has 7 lifePoints after.
+     * Method LostLifePoint Test if the perso really last lifePoint. player has
+     * 10 lifePoint The element make the player lost 3 lifePoints Check if the
+     * player really has 7 lifePoints after.
      */
     @Test
-    public void LostLifePoint ()
-    {
+    public void LostLifePoint() {
         element1.lostLifePoint(player, 3);
         assertEquals(7, player.getLifePoint());
     }
-    
+
     /**
-     * Method ResolveEnigma
-     * Test if the enigma return true when the answer is good.
+     * Method ResolveEnigma Test if the enigma return true when the answer is
+     * good.
      */
     @Test
-    public void ResolveEnigma ()
-    {
+    public void ResolveEnigma() {
         assertEquals(true, element1.resolveEnigma("C'est un papier", player, weap));
     }
-    
+
     /**
-     * Method WrongEnigma
-     * Test if the enigma detects when the response is wrong.
+     * Method WrongEnigma Test if the enigma detects when the response is wrong.
      */
     @Test
-    public void WrongEnigma ()
-    {
+    public void WrongEnigma() {
         assertEquals(false, element1.resolveEnigma("C'est un", player, weap));
     }
 }
-
