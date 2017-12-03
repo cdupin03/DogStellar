@@ -99,8 +99,8 @@ public class Interface {
          *    *     ****   **         * * *   *****   *****                                                       
          *    *     *  *   *****      *   *   *   *   *                                     
          */
-        Planet planet1 = new Planet("Planet1", "Etrange");
-        Planet planet2 = new Planet("Planet2", "Tout aussi etrange");
+        Planet planet1 = new Planet("Planet1", "Etrange", 0);
+        Planet planet2 = new Planet("Planet2", "Tout aussi etrange", 3);
         ArrayList<Planet> planets = new ArrayList<Planet>(); //The list of planets the first planet is the actual planet.
         //If we change planet, the new planet exchange its place with the first.
         planets.add(planet1);
@@ -114,8 +114,10 @@ public class Interface {
         test1.addElement(new Element("Trap", "Un piege déguisé", 2));
         test1.addElement(new Element("PNJ", "Un pnj champu", 3));
         AreaPlanet test2 = new AreaPlanet("Bqzld", "rdytfiut", "lave.jpg");
+        AreaPlanet test3 = new AreaPlanet("Nouvelle planete", "hum ...", "mario.jpeg");
         test1.addAreaPlanet(test2, "south");
         planet1.addArea(test1);
+        planet2.addArea(test3);
 
         theWindow = new Window(planets, this);
         //theWindow = new InShip(this, planets);

@@ -36,8 +36,8 @@ public class PlanetTest {
         area1 = new AreaPlanet("Area1", "TheArea1", System.getProperty("user.dir") + "/pictures/champ.jpg");
         area2 = new AreaPlanet("Area2", "TheArea2", System.getProperty("user.dir") + "/pictures/champ.jpg");
         area3 = new AreaPlanet("Area2", "TheArea2", System.getProperty("user.dir") + "/pictures/champ.jpg");
-        planet1 = new Planet("MyPlanet", "MyDescriptionofThePlanet");
-        planet3 = new Planet("MyPlanet3", "MyDescriptionofThePlanet");
+        planet1 = new Planet("MyPlanet", "MyDescriptionofThePlanet", 0);
+        planet3 = new Planet("MyPlanet3", "MyDescriptionofThePlanet", 0);
     }
 
     /**
@@ -67,7 +67,7 @@ public class PlanetTest {
      */
     public void searchUnexistingArea() {
         String planetName = "Toto";
-        Planet planet1 = new Planet("MyPlanet", "MyDescriptionofThePlanet");
+        Planet planet1 = new Planet("MyPlanet", "MyDescriptionofThePlanet", 0);
         planet1.addArea(area1);
         assertEquals(false, planet1.searchArea(planetName));
     }
@@ -79,7 +79,7 @@ public class PlanetTest {
      *
      */
     public void addAreaOnOccupedPlanet() {
-        Planet planet1 = new Planet("MyPlanet", "MyDescriptionofThePlanet");
+        Planet planet1 = new Planet("MyPlanet", "MyDescriptionofThePlanet", 0);
         planet1.addArea(area1);
         planet1.addArea(area2);
         assertEquals(false, planet1.searchArea(area2.getInformation().getName()));
@@ -109,7 +109,26 @@ public class PlanetTest {
      * Test the getInformation method
      */
     public void goodInfoGetter() {
-        assertEquals("MyPlanet", planet3.getInformation().getName());
+        assertEquals("MyPlanet3", planet3.getInformation().getName());
+    }
+    
+    @Test
+    /**
+     * Test the getNbQuestElement method
+     */
+    public void goodQuestGetter ()
+    {
+        assertEquals(0, planet1.getNbQuestElement());
+    }
+    
+    @Test
+    /**
+     * Test if the nbQuestElement could not be inferior to 0
+     */
+    public void questEltInfTo0 ()
+    {
+        Planet planetDer = new Planet("MyPlanet", "MyDescriptionofThePlanet", -5);
+        assertEquals(0, planetDer.getNbQuestElement());
     }
 
 }

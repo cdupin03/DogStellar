@@ -25,7 +25,6 @@ public class Player extends Perso {
      */
     public Player(String nameP, int lifePoint, int attackPoint) {
         super(nameP, lifePoint, attackPoint);
-        inventory = new ArrayList();
     }
 
     /**
@@ -37,13 +36,6 @@ public class Player extends Perso {
         armor = armorEquip;
     }
 
-    /**
-     * This method returns the list of stuff(inventory) of the user.
-     *
-     */
-    public ArrayList<Stuff> getStuff() {
-        return (inventory);
-    }
 
     public void desequipArmor() {
         addStuff((Stuff) armor, 1);
@@ -116,5 +108,18 @@ public class Player extends Perso {
      */
     public void playerFight(Perso monster, int attackPoint) {
         monster.decreaseLifePoint(attackPoint);
+    }
+    
+    public int getNumberQuestElement ()
+    {
+        int compteurQuestElement = 0;
+        for (Stuff s : this.getStuff())
+        {
+            if (s instanceof QuestElement)
+            {
+                compteurQuestElement ++;
+            }
+        }
+        return compteurQuestElement;
     }
 }

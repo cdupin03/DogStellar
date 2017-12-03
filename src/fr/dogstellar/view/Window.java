@@ -5,6 +5,7 @@ import javax.swing.*;
 
 import fr.dogstellar.core.AreaPlanet;
 import fr.dogstellar.core.Planet;
+import fr.dogstellar.core.Player;
 import java.util.ArrayList;
 
 /**

@@ -14,14 +14,15 @@ public class Planet {
     // instance variables - replace the example below with your own
 
     private AreaPlanet areas;    //all the areas are defined by the main area 
-    private Info information;               //the name and the description store in an object of Info type setted by the information class constructor
-
+    private Info information;    //the name and the description store in an object of Info type setted by the information class constructor
+    private int nbQuestElement;  //The number of quest element needed to visit the planet
     /**
      * Constructor for objects of class Planet the only setted attributes are
      * the informations
      */
-    public Planet(String newName, String newDescription) {
+    public Planet(String newName, String newDescription, int theNbQuestElement) {
         information = new Info(newName, newDescription);
+        nbQuestElement = (theNbQuestElement<0?0:theNbQuestElement);
     }
 
     /**
@@ -77,6 +78,15 @@ public class Planet {
      */
     public Info getInformation() {
         return information;
+    }
+    
+    /**
+     * Get the number of quest element needed to visit the planet
+     * @return nbQuestElement
+     */
+    public int getNbQuestElement ()
+    {
+        return nbQuestElement;
     }
 
 }

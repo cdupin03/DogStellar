@@ -21,9 +21,9 @@ public class Perso {
 
     // instance variables - replace the example below with your own
     private String namePerso;
-    protected int lifePoint; //ATTTTTTTTTTTTTTTENEEEEEEEEEEEEEEEEEEEEEEEEEENNNNNNNNNNNNNNNNNNNNTIIIIIIIIIIIIONNNNNNNNNNNN
-    protected int attackPoint;//ATTTTTTTTTTTTTTTENEEEEEEEEEEEEEEEEEEEEEEEEEENNNNNNNNNNNNNNNNNNNNTIIIIIIIIIIIIONNNNNNNNNNNN
-    protected ArrayList<Stuff> inventory;
+    private int lifePoint; //ATTTTTTTTTTTTTTTENEEEEEEEEEEEEEEEEEEEEEEEEEENNNNNNNNNNNNNNNNNNNNTIIIIIIIIIIIIONNNNNNNNNNNN
+    private int attackPoint;//ATTTTTTTTTTTTTTTENEEEEEEEEEEEEEEEEEEEEEEEEEENNNNNNNNNNNNNNNNNNNNTIIIIIIIIIIIIONNNNNNNNNNNN
+    private ArrayList<Stuff> inventory;
 
     /**
      * Constructor of the Perso class The user can give a name to the player. If
@@ -238,5 +238,15 @@ public class Perso {
         }
         return (false);
     }
+
+    /**
+     * Get the inventory of the perso
+     * @return inventory
+     */
+    public ArrayList<Stuff> getStuff() {
+        return inventory;
+    }
+    
+    
 
 }
