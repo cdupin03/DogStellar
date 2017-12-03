@@ -21,7 +21,7 @@ public class Fight {
     /**
      * Is the constructor of Fight
      */
-    private Fight(Perso monster1, Player player1) {
+    public Fight(Perso monster1, Player player1) {
         player = player1;
         monster = monster1;
     }
