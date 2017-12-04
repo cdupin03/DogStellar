@@ -45,7 +45,6 @@ public final class Window extends GeneralWindow {
         super(inter);
         planets = thePlanets;
         area = planets.get(0).getAreas();
-        adjustWindowToAreaPlanet(area);
     }
 
     /**
@@ -134,11 +133,13 @@ public final class Window extends GeneralWindow {
         }
 
         addArrows();
-
+        
         area.getPerso().stream().forEach((_item) -> {
-            addRandomlyComponent(new PersoView(getPicturePath(), _item));
+            if (Fight.getMonsterDead()!=_item) {
+	            addRandomlyComponent(new PersoView(getPicturePath(), _item));
+	        }
         });
-
+        
         area.getElement().stream().forEach((e) -> {
             addRandomlyComponent(new ElementView(getPicturePath(), e));
         });

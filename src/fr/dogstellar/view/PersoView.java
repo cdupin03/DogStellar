@@ -26,6 +26,7 @@ import fr.dogstellar.game.Fight;
  */
 public class PersoView extends PictureButton {
 
+	
     /**
      * The constructor of this class
      *
@@ -40,11 +41,8 @@ public class PersoView extends PictureButton {
             public void actionPerformed(ActionEvent e) {
                 int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to attack the monster ?", "choose one", JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
-                    StartGame.getInterf().isAttackEnabled(true);
                     StartGame.getInterf().getTheWindow().setEnableArrows(false);
                     Fight theFight = new Fight(monster, StartGame.getPlayer());
-                    theFight.theFight(monster, StartGame.getPlayer(), monster.getMonsterElementQuest(), monster.getTheMonsterStuff());
-                            //theFight(monster, StartGame.getPlayer(), monster.getMonsterElementQuest(), monster.getTheMonsterStuff());
                 }
             }
         });

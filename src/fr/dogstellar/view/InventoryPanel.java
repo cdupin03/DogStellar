@@ -17,6 +17,8 @@ public class InventoryPanel extends JFrame {
 
     private int gridCaseHeight1 = ((300) / (2));                                        // The heght of a equiped item grid
     private int gridCaseWidth1 = ((175) / (2));                                         // The heght of a equiped item grid
+    private int gridCaseHeight = ((300) / (2));                                        // The heght of inventory item grid
+    private int gridCaseWidth = ((175) / (2));                                         // The heght of inventory item grid
     private final Player thePlayer;                                             // The owner of the inventory
     private JPanel inventory;                                                   // Jpanel containing all unequiped objects
     private JPanel equipedInventory;                                            // Jpanel containing the equiped objects 
@@ -136,10 +138,18 @@ public class InventoryPanel extends JFrame {
             // creating a grid to put the items
             GridLayout Disposition = new GridLayout(j / 3, 3);
             inventory.setLayout(Disposition);
-
-            // variables of the syze of each item case
-            int gridCaseHeight = ((300) / (j / 3));
-            int gridCaseWidth = ((175) / (j / (j / 3)));
+            
+            System.out.println(j);
+            
+            // variables of the size of each item case
+            if(j<3) {
+            	int gridCaseHeight = ((300) / (j / 1));
+            	int gridCaseWidth = ((175) / (j / 1));
+            } else {
+            	int gridCaseHeight = ((300) / (j / 3));
+            	int gridCaseWidth = ((175) / (j / 3));
+            }
+            
 
             // foreach item of the list if it is different of the one who is equiped
             stuffs.stream().map((i) -> {
@@ -148,7 +158,7 @@ public class InventoryPanel extends JFrame {
                 JButton X = new JButton(theImage);                                          //create a button with the image inside
                 X.setToolTipText(associationLabel(i));                                      // set a tooltiptext with the items informations
                 JLabel Y = new JLabel(":" + nbOccurence(i, thePlayer.getStuff()));          // affect the value of the number of the item in the inventory
-                //the action listemer to equip an item or take a potion
+                //the action listener to equip an item or take a potion
                 X.addActionListener((ActionEvent e) -> {
                     // TODO Auto-generated method stub
                     //management for a weapon
