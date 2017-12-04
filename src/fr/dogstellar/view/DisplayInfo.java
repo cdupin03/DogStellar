@@ -31,7 +31,7 @@ public class DisplayInfo extends JPanel{
 
 		nameP = new JLabel("Pseudo : " + StartGame.getPlayer().getNamePerso());
 		lifeP = new JLabel("PointLife : "+ StartGame.getPlayer().getLifePoint());
-		attackP = new JLabel("AttackLife : "+ player.getAttackPoint());		
+		attackP = new JLabel("AttackPoint : "+ player.getAttackPoint());		
 		
 		infoPlayer.add(nameP);
 		infoPlayer.add(lifeP);

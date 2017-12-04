@@ -147,8 +147,12 @@ public class Interface {
         displayP.add(infoPlayer, BorderLayout.CENTER);
         displayP.add(inventory, BorderLayout.WEST);
         
+        JLabel test = new JLabel();
+        test.setText(theWindow.getCurrentArea());
+        
         displayA.setLayout(new BorderLayout());
         //displayA.add(infoArea, BorderLayout.CENTER);
+        displayA.add(test);
         displayA.add(attack, BorderLayout.EAST);
         
         theInterface.setPreferredSize(new Dimension(1200, 700));     //Set the size of the frame
@@ -248,5 +252,4 @@ public class Interface {
     public JFrame getInterface() {
         return theInterface;
     }
-
 }
