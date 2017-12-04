@@ -84,7 +84,7 @@ public class StartGame {
                 player2.setEnabled(true);
                 player3.setEnabled(false);
                 t.requestFocusInWindow();
-            }
+            }  
 
             public void mouseEntered(MouseEvent evt) {
                 //player = new Player(namePlayer, 5, 5);
