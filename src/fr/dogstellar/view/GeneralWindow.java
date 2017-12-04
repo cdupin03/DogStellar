@@ -1,7 +1,6 @@
 package fr.dogstellar.view;
 
-import fr.dogstellar.core.Planet;
-import fr.dogstellar.core.Player;
+import fr.dogstellar.core.*;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -13,9 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 /**
  * The general window allows to display the map and the element on the map
@@ -32,7 +29,8 @@ public abstract class GeneralWindow extends JPanel {
     private final String picturePath;                                           //The path of the pictures
     private Image back;                                                         //The back Image
     private final Interface interfac;                                           //The interface that display this window
-
+    protected String theCurrentZone;
+    
     /**
      * The constructor of the GeneralWindow Class
      *
@@ -304,5 +302,10 @@ public abstract class GeneralWindow extends JPanel {
      * @param ena If true enable if false disable.
      */
     public abstract void setEnableArrows(boolean ena);
+    
+    public String getCurrentArea()
+    {
+        return theCurrentZone;
+    }
 
 }
