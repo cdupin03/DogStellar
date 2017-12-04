@@ -36,9 +36,9 @@ public class Interface {
     private String answer;                                      //The last answer that is write
 
     private final JButton inventory;                            //Button wich allow to open the inventory
-
-    private Perso monstre1 = new Perso("Monstre", 10, 5);
-    private Perso monstre2 = new Perso("Monstre2", 5, 2);
+    
+    private Perso monstre1 = new Perso("Monstre1", 10, 5);		//monster1 is instantiate
+    private Perso monstre2 = new Perso("Monstre2", 5, 2);		  //monster2 is instantiate
     private GeneralWindow theWindow;
 
     private DisplayInfo infoPlayer, infoArea; 					//

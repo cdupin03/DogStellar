@@ -78,6 +78,4 @@ public class Fight {
 
         //if no : break
     }
-    
-    
 }

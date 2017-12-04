@@ -10,10 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import fr.dogstellar.core.Perso;
-import fr.dogstellar.core.Player;
-import fr.dogstellar.core.QuestElement;
-import fr.dogstellar.core.Stuff;
+import fr.dogstellar.core.*;
+import fr.dogstellar.game.*;
 
 /**
  * This class allows to set an image for a perso
