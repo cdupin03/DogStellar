@@ -136,7 +136,7 @@ public class Interface {
         bottom.add(console, BorderLayout.EAST);                     //Add the console to the right part of the bottom
         bottom.add(displayInfo, BorderLayout.CENTER);
         
-        infoPlayer = new DisplayInfo(StartGame.getPlayer());
+        infoPlayer = new DisplayInfo();
         
         displayInfo.setLayout(new BorderLayout());					//Set the layout of the displayInfo part
         displayInfo.add(displayP, BorderLayout.WEST);				//Add the information of the player in the displayInfo Panel

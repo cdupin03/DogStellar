@@ -19,7 +19,7 @@ public class DisplayInfo extends JPanel{
 	private JPanel infoPlayer = new JPanel();			//Panel for the information of the player
 	private JPanel infoArea = new JPanel();				//Panel for the information of the Area
 	
-	public DisplayInfo(Player player) {
+	public DisplayInfo() {
 		
 		this.setVisible(true); 
 		this.setLayout(new BorderLayout());
@@ -31,7 +31,7 @@ public class DisplayInfo extends JPanel{
 
 		nameP = new JLabel("Pseudo : " + StartGame.getPlayer().getNamePerso());
 		lifeP = new JLabel("PointLife : "+ StartGame.getPlayer().getLifePoint());
-		attackP = new JLabel("AttackPoint : "+ player.getAttackPoint());		
+		attackP = new JLabel("AttackPoint : "+ StartGame.getPlayer().getAttackPoint());		
 		
 		infoPlayer.add(nameP);
 		infoPlayer.add(lifeP);
