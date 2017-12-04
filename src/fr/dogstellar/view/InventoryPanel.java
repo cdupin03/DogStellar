@@ -15,13 +15,13 @@ import fr.dogstellar.core.*;
  */
 public class InventoryPanel extends JFrame {
 
-    int gridCaseHeight1 = ((300) / (2));                                        // The heght of a equiped item grid
-    int gridCaseWidth1 = ((175) / (2));                                         // The heght of a equiped item grid
+    private int gridCaseHeight1 = ((300) / (2));                                        // The heght of a equiped item grid
+    private int gridCaseWidth1 = ((175) / (2));                                         // The heght of a equiped item grid
     private final Player thePlayer;                                             // The owner of the inventory
     private JPanel inventory;                                                   // Jpanel containing all unequiped objects
     private JPanel equipedInventory;                                            // Jpanel containing the equiped objects 
-    JLabel lbl1 = new JLabel("Equiped items");                                  // The name of the top part of the inventory
-    JLabel lbl2 = new JLabel("Your Inventory");                                 // The name of the botom part of the inventory
+    private JLabel lbl1 = new JLabel("Equiped items");                                  // The name of the top part of the inventory
+    private JLabel lbl2 = new JLabel("Your Inventory");                                 // The name of the botom part of the inventory
 
     /**
      * The constructor of the class, take a player in parameter to set his
@@ -37,7 +37,6 @@ public class InventoryPanel extends JFrame {
         this.setTitle("Inventory");                                             //The name of the JFrame
         this.setSize(1200, 700);
         this.setResizable(false);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         this.pack();
     }

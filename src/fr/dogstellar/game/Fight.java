@@ -13,10 +13,10 @@ import fr.dogstellar.core.*;
  */
 public class Fight {
 
-    public static Perso monster;
-    public static Player player;
-    public static Armor armorOfPlayer;
-    public static Weapon weaponOfPlayer;
+//    public static Perso monster;
+//    public static Player player;
+//    public static Armor armorOfPlayer;
+//    public static Weapon weaponOfPlayer;
 
     /**
      * Is the constructor of Fight
@@ -46,7 +46,7 @@ public class Fight {
         System.out.println("Ask to the player if he want to accept the fight");
         Random r = new Random();
         //if yes :
-        Fight newFight = new Fight(myMonster, myPlayer);
+        //Fight newFight = new Fight(myMonster, myPlayer);
         int pointLifeMonster = myMonster.getLifePoint();//It is the lifePoint of Monster in the beginning the fight
 
         while (myMonster.getLifePoint() != 0 && myPlayer.getLifePoint() != 0) {

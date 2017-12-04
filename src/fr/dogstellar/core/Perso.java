@@ -264,6 +264,7 @@ public class Perso {
     }
 
     /**
+
      * To get a the stuff element that the monster have
      * 
      * @return aMonsterStuff is the stuff of the monster

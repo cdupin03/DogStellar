@@ -48,7 +48,7 @@ public class ElementTest {
     @Test
     public void LostLifePoint() {
         element1.lostLifePoint(player, 3);
-        assertEquals(7, player.getLifePoint());
+        assertEquals(2, player.getLifePoint());
     }
 
     /**

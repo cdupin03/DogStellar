@@ -26,9 +26,10 @@ public class Interface {
 
     private final JFrame theInterface = new JFrame();           //The main frame of the interface
     private final JPanel console = new JPanel();                //The main panel for the console
-    private final JPanel console1 = new JPanel();               //A test console
     private final JPanel top = new JPanel();                    //The top part of the interface that contain the display of area
     private final JPanel bottom = new JPanel();                 //The bottom part of the interface that contain the global informations, inventory, attack button, and the console
+    private final JPanel displayP = new JPanel();				//Contains the information of the player(inventory + personal information)
+    private final JPanel displayA = new JPanel();				//Contains the information about the localization of the player(names of the planet and the area)
     private final JButton ok = new JButton();                   //The button to validate an entry in the console
     private final JButton attack = new JButton("Attack");	//The button to start attack a monster
     private final JPanel display = new JPanel();                //The panel in the console that contain the JTextArea displayMessage
@@ -39,10 +40,14 @@ public class Interface {
 
     private final JButton inventory;                            //Button wich allow to open the inventory
 
+
     private Perso monstre1 = new Perso("Monstre", 10, 5, new QuestElement("A Piece","that same piece"), new Armor("MyGreatArmor", "sfddghfxhfgd", 3));
     private Perso monstre2 = new Perso("Monstre2", 5, 2, new QuestElement("Another piece","that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6));
+
     private GeneralWindow theWindow;
 
+    private DisplayInfo infoPlayer, infoArea; 					//
+    private JPanel displayInfo = new JPanel();					//
     /**
      * The constructor of the class Interface
      */
@@ -81,7 +86,7 @@ public class Interface {
         String picturePath = System.getProperty("user.dir") + "/pictures/";     //variable containing the path for the inventory image
         ImageIcon picture = new ImageIcon(picturePath + "inventory.png");       //image for the inventory button
         inventory = new JButton(picture);                                       // create the button
-        console1.add(inventory);                                                // add the button to the inventory
+        displayP.add(inventory);                                                // add the button to the inventory
         inventory.setToolTipText("click here to acess to you inventory");       // set a descritpion text
 
         //ActionListenener for generate the inventory frame in one click
@@ -99,8 +104,8 @@ public class Interface {
          *    *     ****   **         * * *   *****   *****                                                       
          *    *     *  *   *****      *   *   *   *   *                                     
          */
-        Planet planet1 = new Planet("Planet1", "Etrange");
-        Planet planet2 = new Planet("Planet2", "Tout aussi etrange");
+        Planet planet1 = new Planet("Planet1", "Etrange", 0);
+        Planet planet2 = new Planet("Planet2", "Tout aussi etrange", 3);
         ArrayList<Planet> planets = new ArrayList<Planet>(); //The list of planets the first planet is the actual planet.
         //If we change planet, the new planet exchange its place with the first.
         planets.add(planet1);
@@ -114,8 +119,10 @@ public class Interface {
         test1.addElement(new Element("Trap", "Un piege déguisé", 2));
         test1.addElement(new Element("PNJ", "Un pnj champu", 3));
         AreaPlanet test2 = new AreaPlanet("Bqzld", "rdytfiut", "lave.jpg");
+        AreaPlanet test3 = new AreaPlanet("Nouvelle planete", "hum ...", "mario.jpeg");
         test1.addAreaPlanet(test2, "south");
         planet1.addArea(test1);
+        planet2.addArea(test3);
 
         theWindow = new Window(planets, this);
         //theWindow = new InShip(this, planets);
@@ -126,9 +133,24 @@ public class Interface {
         top.add(theWindow, BorderLayout.CENTER);                    //Add the area map in the top part
 
         bottom.setLayout(new BorderLayout());                       //Set the layout of the bottom part
-        bottom.add(console1, BorderLayout.CENTER);                  //Add the false console to the left part of the bottom
         bottom.add(console, BorderLayout.EAST);                     //Add the console to the right part of the bottom
-        bottom.add(attack, BorderLayout.WEST);
+        bottom.add(displayInfo, BorderLayout.CENTER);
+        
+        infoPlayer = new DisplayInfo(StartGame.getPlayer());
+        
+        displayInfo.setLayout(new BorderLayout());					//Set the layout of the displayInfo part
+        displayInfo.add(displayP, BorderLayout.WEST);				//Add the information of the player in the displayInfo Panel
+        displayInfo.add(displayA, BorderLayout.CENTER);			   // Add the information of the area in the displayInfo Panel
+        
+        // Information of the player and his localization on the map
+        displayP.setLayout(new BorderLayout());
+        displayP.add(infoPlayer, BorderLayout.CENTER);
+        displayP.add(inventory, BorderLayout.WEST);
+        
+        displayA.setLayout(new BorderLayout());
+        //displayA.add(infoArea, BorderLayout.CENTER);
+        displayA.add(attack, BorderLayout.EAST);
+        
         theInterface.setPreferredSize(new Dimension(1200, 700));     //Set the size of the frame
         theInterface.setLayout(new BorderLayout());                 //Set the display of the frame
         theInterface.add(top, BorderLayout.CENTER);                 //Add the top part in the frame
