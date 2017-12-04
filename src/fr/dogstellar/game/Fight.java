@@ -13,18 +13,16 @@ import fr.dogstellar.core.*;
  */
 public class Fight {
 
-//    public static Perso monster;
-//    public static Player player;
-//    public static Armor armorOfPlayer;
-//    public static Weapon weaponOfPlayer;
+    private static Perso monster;
+    private static Player player;
 
-//    /**
-//     * Is the constructor of Fight
-//     */
-//    private Fight(Perso monster1, Player player1) {
-//        player = player1;
-//        monster = monster1;
-//    }
+    /**
+     * Is the constructor of Fight
+     */
+    public Fight(Perso monster1, Player player1) {
+        player = player1;
+        monster = monster1;
+    }
 
     /**
      * This method allow to play the fight between a monster and a player At the
@@ -78,6 +76,4 @@ public class Fight {
 
         //if no : break
     }
-    
-    
 }

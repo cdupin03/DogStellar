@@ -21,9 +21,11 @@ public class Perso {
 
     // instance variables - replace the example below with your own
     private String namePerso;
-    private int lifePoint; //ATTTTTTTTTTTTTTTENEEEEEEEEEEEEEEEEEEEEEEEEEENNNNNNNNNNNNNNNNNNNNTIIIIIIIIIIIIONNNNNNNNNNNN
-    private int attackPoint;//ATTTTTTTTTTTTTTTENEEEEEEEEEEEEEEEEEEEEEEEEEENNNNNNNNNNNNNNNNNNNNTIIIIIIIIIIIIONNNNNNNNNNNN
-    private ArrayList<Stuff> inventory;
+    protected int lifePoint; //ATTTTTTTTTTTTTTTENEEEEEEEEEEEEEEEEEEEEEEEEEENNNNNNNNNNNNNNNNNNNNTIIIIIIIIIIIIONNNNNNNNNNNN
+    protected int attackPoint;//ATTTTTTTTTTTTTTTENEEEEEEEEEEEEEEEEEEEEEEEEEENNNNNNNNNNNNNNNNNNNNTIIIIIIIIIIIIONNNNNNNNNNNN
+    protected ArrayList<Stuff> inventory;
+    private QuestElement aMonsterQuest;
+    private Stuff aMonsterStuff;
 
     /**
      * Constructor of the Perso class The user can give a name to the player. If
@@ -53,6 +55,28 @@ public class Perso {
             attackPoint = attackP;
         }
         inventory = new ArrayList();
+    }
+    
+    //The monster constructor
+    public Perso(String nameP, int lifeP, int attackP, QuestElement aQuestElement, Stuff aStuffElement)
+    {
+        if (nameP.isEmpty())
+            namePerso="Perso1";
+        else
+            namePerso=nameP;
+        
+        if (lifeP<=0 || lifeP>10)
+            lifePoint=10;
+        else
+            lifePoint=lifeP;
+        
+        if (attackP<=0 || attackP>10)
+            attackPoint=10;
+        else
+            attackPoint=attackP;
+        
+        aMonsterQuest = aQuestElement;
+        aMonsterStuff = aStuffElement;
     }
 
     /**
@@ -216,6 +240,11 @@ public class Perso {
             }
         }
     }
+    
+    public ArrayList<Stuff> getStuff()
+    {
+        return inventory;
+    }
 
     /**
      * This method returns the list of stuff(inventory) of the user.
@@ -240,13 +269,23 @@ public class Perso {
     }
 
     /**
-     * Get the inventory of the perso
-     * @return inventory
+
+     * To get a the stuff element that the monster have
+     * 
+     * @return aMonsterStuff is the stuff of the monster
      */
-    public ArrayList<Stuff> getStuff() {
-        return inventory;
+    public Stuff getTheMonsterStuff()
+    {
+        return aMonsterStuff;
     }
     
-    
-
+    /**
+     * To get a the quest element that the monster have
+     * 
+     * @return aMonsterQuest is the element of the monster
+     */
+    public QuestElement getMonsterElementQuest()
+    {
+        return aMonsterQuest;
+    }
 }

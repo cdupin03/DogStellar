@@ -10,10 +10,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+
 import fr.dogstellar.core.Perso;
 import fr.dogstellar.core.Player;
 import fr.dogstellar.core.QuestElement;
 import fr.dogstellar.core.Stuff;
+import fr.dogstellar.game.Fight;
+
 
 /**
  * This class allows to set an image for a perso
@@ -28,7 +31,7 @@ public class PersoView extends PictureButton {
      *
      * @param picturePath is the path of the pictures
      */
-    public PersoView(String picturePath) {
+    public PersoView(String picturePath, Perso monster) {
         super(picturePath, "Monstre", ".png");
 
         //Add  an action listener for this Perso button
@@ -39,6 +42,9 @@ public class PersoView extends PictureButton {
                 if (result == JOptionPane.YES_OPTION) {
                     StartGame.getInterf().isAttackEnabled(true);
                     StartGame.getInterf().getTheWindow().setEnableArrows(false);
+                    Fight theFight = new Fight(monster, StartGame.getPlayer());
+                    theFight.theFight(monster, StartGame.getPlayer(), monster.getMonsterElementQuest(), monster.getTheMonsterStuff());
+                            //theFight(monster, StartGame.getPlayer(), monster.getMonsterElementQuest(), monster.getTheMonsterStuff());
                 }
             }
         });
