@@ -1,6 +1,7 @@
 package fr.dogstellar.view;
 
 import fr.dogstellar.core.Planet;
+import fr.dogstellar.core.Player;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -278,7 +279,6 @@ public abstract class GeneralWindow extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         g.drawImage(back, 0, 0, this.getWidth(), this.getHeight(), this);
-        System.out.println("Je repains");
     }
 
     /**
@@ -289,7 +289,6 @@ public abstract class GeneralWindow extends JPanel {
     protected void catchPicture() {
         try {
             back = ImageIO.read(new File(getPicturePath() + getNameOfFirstBackgroundPicture()));
-            System.out.println(getPicturePath() + getNameOfFirstBackgroundPicture());
             //draw
         } catch (IOException e) {
             e.printStackTrace();

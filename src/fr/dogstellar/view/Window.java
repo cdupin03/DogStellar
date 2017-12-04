@@ -5,6 +5,9 @@ import javax.swing.*;
 
 import fr.dogstellar.core.AreaPlanet;
 import fr.dogstellar.core.Planet;
+
+import fr.dogstellar.game.*;
+
 import java.util.ArrayList;
 
 /**
@@ -27,6 +30,7 @@ public final class Window extends GeneralWindow {
     private final String north = "NORTH";
     private final String east = "EAST";
     private final String west = "WEST";
+    private PersoView thisPerso;
 
     /**
      * The constructor of Window. Create the window with its components. Set set
@@ -132,7 +136,7 @@ public final class Window extends GeneralWindow {
         addArrows();
 
         area.getPerso().stream().forEach((_item) -> {
-            addRandomlyComponent(new PersoView(getPicturePath()));
+            addRandomlyComponent(new PersoView(getPicturePath(), _item));
         });
 
         area.getElement().stream().forEach((e) -> {

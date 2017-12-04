@@ -134,10 +134,10 @@ public class StartGame {
         startGame.setEnabled(false);
         startGame.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                Planet planet1 = new Planet("Rouge", "planet de feu");
-                AreaPlanet area1 = new AreaPlanet("lave", "grosse eruption", System.getProperty("user.dir") + "/pictures/champ.jpg");
-                planet1.addArea(area1);
-                area1.addPerso(player);
+//                Planet planet1 = new Planet("Rouge", "planet de feu");
+//                AreaPlanet area1 = new AreaPlanet("lave", "grosse eruption", System.getProperty("user.dir") + "/pictures/champ.jpg");
+//                planet1.addArea(area1);
+//                area1.addPerso(player);
                 myJFrame.dispose();
                 interf = new Interface();  //start the game with the a player a planet ...
             }

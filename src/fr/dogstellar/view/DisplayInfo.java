@@ -60,7 +60,7 @@ public class DisplayInfo extends JPanel{
 		
 		/*System.out.println("Boucle for:");
         for (Map.Entry<String,AreaPlanet> map : area.entrySet()) {
-        	System.out.println("clé: "+map.getKey() 
+        	System.out.println("cle: "+map.getKey() 
         		+ " | valeur: " + map.getValue());
         	nArea = new JLabel("and on the Area : "+ map.getValue());
        

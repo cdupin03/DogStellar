@@ -24,6 +24,8 @@ public class Perso {
     protected int lifePoint; //ATTTTTTTTTTTTTTTENEEEEEEEEEEEEEEEEEEEEEEEEEENNNNNNNNNNNNNNNNNNNNTIIIIIIIIIIIIONNNNNNNNNNNN
     protected int attackPoint;//ATTTTTTTTTTTTTTTENEEEEEEEEEEEEEEEEEEEEEEEEEENNNNNNNNNNNNNNNNNNNNTIIIIIIIIIIIIONNNNNNNNNNNN
     protected ArrayList<Stuff> inventory;
+    private QuestElement aMonsterQuest;
+    private Stuff aMonsterStuff;
 
     /**
      * Constructor of the Perso class The user can give a name to the player. If
@@ -53,6 +55,28 @@ public class Perso {
             attackPoint = attackP;
         }
         inventory = new ArrayList();
+    }
+    
+    //The monster constructor
+    public Perso(String nameP, int lifeP, int attackP, QuestElement aQuestElement, Stuff aStuffElement)
+    {
+        if (nameP.isEmpty())
+            namePerso="Perso1";
+        else
+            namePerso=nameP;
+        
+        if (lifeP<=0 || lifeP>10)
+            lifePoint=10;
+        else
+            lifePoint=lifeP;
+        
+        if (attackP<=0 || attackP>10)
+            attackPoint=10;
+        else
+            attackPoint=attackP;
+        
+        aMonsterQuest = aQuestElement;
+        aMonsterStuff = aStuffElement;
     }
 
     /**
@@ -239,4 +263,24 @@ public class Perso {
         return (false);
     }
 
+    /**
+
+     * To get a the stuff element that the monster have
+     * 
+     * @return aMonsterStuff is the stuff of the monster
+     */
+    public Stuff getTheMonsterStuff()
+    {
+        return aMonsterStuff;
+    }
+    
+    /**
+     * To get a the quest element that the monster have
+     * 
+     * @return aMonsterQuest is the element of the monster
+     */
+    public QuestElement getMonsterElementQuest()
+    {
+        return aMonsterQuest;
+    }
 }

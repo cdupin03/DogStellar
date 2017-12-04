@@ -1,9 +1,12 @@
 package fr.dogstellar.view;
 
 import fr.dogstellar.core.AreaPlanet;
+import fr.dogstellar.core.Armor;
 import fr.dogstellar.core.Element;
 import fr.dogstellar.core.Perso;
 import fr.dogstellar.core.Planet;
+import fr.dogstellar.core.Potion;
+import fr.dogstellar.core.QuestElement;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -37,8 +40,10 @@ public class Interface {
 
     private final JButton inventory;                            //Button wich allow to open the inventory
 
-    private Perso monstre1 = new Perso("Monstre", 10, 5);
-    private Perso monstre2 = new Perso("Monstre2", 5, 2);
+
+    private Perso monstre1 = new Perso("Monstre", 10, 5, new QuestElement("A Piece","that same piece"), new Armor("MyGreatArmor", "sfddghfxhfgd", 3));
+    private Perso monstre2 = new Perso("Monstre2", 5, 2, new QuestElement("Another piece","that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6));
+
     private GeneralWindow theWindow;
 
     private DisplayInfo infoPlayer, infoArea; 					//
@@ -99,8 +104,8 @@ public class Interface {
          *    *     ****   **         * * *   *****   *****                                                       
          *    *     *  *   *****      *   *   *   *   *                                     
          */
-        Planet planet1 = new Planet("Planet1", "Etrange");
-        Planet planet2 = new Planet("Planet2", "Tout aussi etrange");
+        Planet planet1 = new Planet("Planet1", "Etrange", 0);
+        Planet planet2 = new Planet("Planet2", "Tout aussi etrange", 3);
         ArrayList<Planet> planets = new ArrayList<Planet>(); //The list of planets the first planet is the actual planet.
         //If we change planet, the new planet exchange its place with the first.
         planets.add(planet1);
@@ -114,8 +119,10 @@ public class Interface {
         test1.addElement(new Element("Trap", "Un piege déguisé", 2));
         test1.addElement(new Element("PNJ", "Un pnj champu", 3));
         AreaPlanet test2 = new AreaPlanet("Bqzld", "rdytfiut", "lave.jpg");
+        AreaPlanet test3 = new AreaPlanet("Nouvelle planete", "hum ...", "mario.jpeg");
         test1.addAreaPlanet(test2, "south");
         planet1.addArea(test1);
+        planet2.addArea(test3);
 
         theWindow = new Window(planets, this);
         //theWindow = new InShip(this, planets);
