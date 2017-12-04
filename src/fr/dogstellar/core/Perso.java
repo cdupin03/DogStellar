@@ -25,6 +25,7 @@ public class Perso {
     protected int attackPoint;//ATTTTTTTTTTTTTTTENEEEEEEEEEEEEEEEEEEEEEEEEEENNNNNNNNNNNNNNNNNNNNTIIIIIIIIIIIIONNNNNNNNNNNN
     private QuestElement aMonsterQuest;
     private Stuff aMonsterStuff;
+    private boolean isDead = false;
 
     /**
      * Constructor of the Perso class The user can give a name to the player. If
@@ -229,5 +230,13 @@ public class Perso {
     public QuestElement getMonsterElementQuest()
     {
         return aMonsterQuest;
+    }
+    
+    public boolean getIsDead() {
+    	return(isDead);
+    }
+    
+    public void setIsDead() {
+    	isDead=true;
     }
 }

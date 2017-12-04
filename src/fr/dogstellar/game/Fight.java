@@ -5,6 +5,7 @@ import java.util.Random;
 import fr.dogstellar.core.*;
 import fr.dogstellar.view.GeneralWindow;
 import fr.dogstellar.view.StartGame;
+import fr.dogstellar.view.Window;
 /**
      * This method allow to play the fight between a monster and a player At the
      * beginning of the fight the player can decide to fight or not the monster.
@@ -54,7 +55,8 @@ public class Fight {
                     player.addStuff(monster.getTheMonsterStuff(), 1);
                     StartGame.getInterf().addMessageToConsole("You win also a stuff ! Look your inventory");
                 }
-                monsterDead= monster; //to know who is the monster that is dead
+                monster.setIsDead();
+                System.out.println("the monster is dead" + monster.getIsDead());
                 end = new Boolean(true);
                 break;
             }
@@ -78,12 +80,10 @@ public class Fight {
     
     public void endFight() {
     	if (getEnd() == true) {
+    		GeneralWindow myNewWindow= StartGame.getInterf().getTheWindow();   		
+    		StartGame.getInterf().setWindow(myNewWindow);
     		//StartGame.getInterf().getTheWindow().setEnableArrows(true); // AAAAAAAAATTTTTTTTTTEEEEEEEENNNNNNNNTTTTTTIIIIIIOOOOOOOOOONNNNNNNN
-//    		StartGame.getInterf().getTheWindow();
+    		
     	}
-    }
-    
-    public static Perso getMonsterDead() {
-    	return(monsterDead); //return the monster that is dead
     }
 }

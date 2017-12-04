@@ -45,6 +45,8 @@ public final class Window extends GeneralWindow {
         super(inter);
         planets = thePlanets;
         area = planets.get(0).getAreas();
+        //this.remove();
+        adjustWindowToAreaPlanet(area);
     }
 
     /**
@@ -116,7 +118,7 @@ public final class Window extends GeneralWindow {
      *
      * @param newArea the new area to display in the window
      */
-    public void adjustWindowToAreaPlanet(AreaPlanet newArea) {
+    public String adjustWindowToAreaPlanet(AreaPlanet newArea) {
         catchPicture(newArea);
         erraseGrid();
 
@@ -135,7 +137,8 @@ public final class Window extends GeneralWindow {
         addArrows();
         
         area.getPerso().stream().forEach((_item) -> {
-            if (Fight.getMonsterDead()!=_item) {
+            if (_item.getIsDead()==false) {
+            	System.out.println("Monster : "+ _item.getNamePerso() + _item.getIsDead());
 	            addRandomlyComponent(new PersoView(getPicturePath(), _item));
 	        }
         });
@@ -144,6 +147,7 @@ public final class Window extends GeneralWindow {
             addRandomlyComponent(new ElementView(getPicturePath(), e));
         });
         drawGrid();
+        return newArea.getNameArea();
     }
 
     /**
