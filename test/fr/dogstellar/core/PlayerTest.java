@@ -89,4 +89,24 @@ public class PlayerTest {
         assertEquals(true, player1.hasWeapon());
     }
 
+    /**
+     * Test if the weapon has been well unequiped by the method desequipWeapon
+     * null if the item is well unequiped
+     */
+    public void goodgdesequipWeapon() {
+        Player player1 = new Player("Player1", 5, 5);
+        Weapon weapon1 = new Weapon("The weapon1", "it is the weapon2", 2);
+        player1.desequipWeapon();
+        assertEquals(null, player1.getWeaponEquip());
+    }
+    /**
+     * Test if the armor has been well unequiped by the method desequipWeapon
+     * null if the item is well unequiped
+     */
+  public void goodgdesequipArmor() {
+        Player player1 = new Player("Player1", 5, 5);
+        Armor armor1 = new Armor("The armor1", "it is the armor1", 2);
+        player1.desequipArmor();
+        assertEquals(null, player1.getArmorEquip());
+    }  
 }
