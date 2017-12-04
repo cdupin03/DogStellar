@@ -1,9 +1,12 @@
 package fr.dogstellar.view;
 
 import fr.dogstellar.core.AreaPlanet;
+import fr.dogstellar.core.Armor;
 import fr.dogstellar.core.Element;
 import fr.dogstellar.core.Perso;
 import fr.dogstellar.core.Planet;
+import fr.dogstellar.core.Potion;
+import fr.dogstellar.core.QuestElement;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -36,9 +39,11 @@ public class Interface {
     private String answer;                                      //The last answer that is write
 
     private final JButton inventory;                            //Button wich allow to open the inventory
-    
-    private Perso monstre1 = new Perso("Monstre1", 10, 5);		//monster1 is instantiate
-    private Perso monstre2 = new Perso("Monstre2", 5, 2);		  //monster2 is instantiate
+
+
+    private Perso monstre1 = new Perso("Monstre", 10, 5, new QuestElement("A Piece","that same piece"), new Armor("MyGreatArmor", "sfddghfxhfgd", 3));
+    private Perso monstre2 = new Perso("Monstre2", 5, 2, new QuestElement("Another piece","that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6));
+
     private GeneralWindow theWindow;
 
     private DisplayInfo infoPlayer, infoArea; 					//
