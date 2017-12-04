@@ -248,5 +248,8 @@ public class Interface {
     public JFrame getInterface() {
         return theInterface;
     }
-
+/*public void returnToShip(){
+    
+new InShip theShip(this,planets);
+setWindow (theShip);*/
 }
