@@ -18,13 +18,13 @@ public class Fight {
 //    public static Armor armorOfPlayer;
 //    public static Weapon weaponOfPlayer;
 
-//    /**
-//     * Is the constructor of Fight
-//     */
-//    private Fight(Perso monster1, Player player1) {
-//        player = player1;
-//        monster = monster1;
-//    }
+    /**
+     * Is the constructor of Fight
+     */
+    public Fight(Perso monster1, Player player1) {
+        player = player1;
+        monster = monster1;
+    }
 
     /**
      * This method allow to play the fight between a monster and a player At the
