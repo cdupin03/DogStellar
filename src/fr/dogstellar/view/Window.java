@@ -46,6 +46,7 @@ public final class Window extends GeneralWindow {
         super(inter);
         planets = thePlanets;
         area = planets.get(0).getAreas();
+
         theCurrentZone = adjustWindowToAreaPlanet(area);
     }
 
@@ -135,11 +136,14 @@ public final class Window extends GeneralWindow {
         }
 
         addArrows();
-
+        
         area.getPerso().stream().forEach((_item) -> {
-            addRandomlyComponent(new PersoView(getPicturePath(), _item));
+            if (_item.getIsDead()==false) {
+            	System.out.println("Monster : "+ _item.getNamePerso() + _item.getIsDead());
+	            addRandomlyComponent(new PersoView(getPicturePath(), _item));
+	        }
         });
-
+        
         area.getElement().stream().forEach((e) -> {
             addRandomlyComponent(new ElementView(getPicturePath(), e));
         });

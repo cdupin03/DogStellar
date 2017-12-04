@@ -31,18 +31,17 @@ public class Interface {
     private final JPanel displayP = new JPanel();				//Contains the information of the player(inventory + personal information)
     private final JPanel displayA = new JPanel();				//Contains the information about the localization of the player(names of the planet and the area)
     private final JButton ok = new JButton();                   //The button to validate an entry in the console
-    private final JButton attack = new JButton("Attack");	//The button to start attack a monster
     private final JPanel display = new JPanel();                //The panel in the console that contain the JTextArea displayMessage
     private final JPanel write = new JPanel();                  //The panel in the console that contain the JTextField to write answer and the button of validation
     private final JTextArea displayMessage = new JTextArea();   //The area to display message
     private JTextField areaToWrite = new JTextField();          //The area to write answer
     private String answer;                                      //The last answer that is write
 
-    private final JButton inventory;                            //Button wich allow to open the inventory
+    private final JButton inventory;                            //Button which allow to open the inventory
 
 
-    private Perso monstre1 = new Perso("Monstre", 10, 5, new QuestElement("A Piece","that same piece"), new Armor("MyGreatArmor", "sfddghfxhfgd", 3));
-    private Perso monstre2 = new Perso("Monstre2", 5, 2, new QuestElement("Another piece","that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6));
+    private Perso monstre1 = new Perso("Monstre", 2, 5, new QuestElement("A Piece","that same piece"), new Armor("MyGreatArmor", "sfddghfxhfgd", 3));
+    private Perso monstre2 = new Perso("Monstre2", 3, 2, new QuestElement("Another piece","that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6));
 
     private GeneralWindow theWindow;
 
@@ -127,7 +126,6 @@ public class Interface {
         theWindow = new Window(planets, this);
         //theWindow = new InShip(this, planets);
 
-        attack.setEnabled(false);
 
         top.setLayout(new BorderLayout());                          //Set the layout of the top part       
         top.add(theWindow, BorderLayout.CENTER);                    //Add the area map in the top part
@@ -152,8 +150,8 @@ public class Interface {
         
         displayA.setLayout(new BorderLayout());
         //displayA.add(infoArea, BorderLayout.CENTER);
-        displayA.add(test);
-        displayA.add(attack, BorderLayout.EAST);
+
+        //displayA.add(test);
         
         theInterface.setPreferredSize(new Dimension(1200, 700));     //Set the size of the frame
         theInterface.setLayout(new BorderLayout());                 //Set the display of the frame
@@ -221,15 +219,6 @@ public class Interface {
      */
     public GeneralWindow getTheWindow() {
         return theWindow;
-    }
-
-    /**
-     * Set the enable of attack JButton
-     *
-     * @param ena true if the button is enabled, else false
-     */
-    public void isAttackEnabled(boolean ena) {
-        attack.setEnabled(ena);
     }
 
     /**
