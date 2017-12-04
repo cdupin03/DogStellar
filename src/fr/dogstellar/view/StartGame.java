@@ -29,7 +29,7 @@ public class StartGame {
     private String namePlayer = "";
     private static Player player;
     private String picturePath;
-    private int lP, aP;
+    private int lP, aP, tmplP, tmpaP;
     private static Interface interf;
 
     /**
@@ -53,7 +53,9 @@ public class StartGame {
         player1 = new JButton(new ImageIcon(picturePath + "hulk.png"));
         player1.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
-                player = new Player(namePlayer, 2, 8);
+                //player = new Player(namePlayer, 2, 8);
+            	lP = 2;
+                aP = 8;
                 t.setEnabled(true);
                 player1.setEnabled(true);
                 player2.setEnabled(false);
@@ -62,10 +64,9 @@ public class StartGame {
             }
 
             public void mouseEntered(MouseEvent evt) {
-                player = new Player(namePlayer, 2, 8);
-                lP = player.getLifePoint();
-                aP = player.getAttackPoint();
-                majInfoP(lP, aP);
+                tmplP = 2;
+                tmpaP = 8;
+                majInfoP(tmplP, tmpaP);
                 System.out.println("entrer");
             }
 
@@ -75,19 +76,21 @@ public class StartGame {
         player2 = new JButton(new ImageIcon(picturePath + "wonderwoman.png"));
         player2.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
-                player = new Player(namePlayer, 5, 5);
+                //player = new Player(namePlayer, 5, 5);
+            	lP = 5;
+            	aP = 5;
                 t.setEnabled(true);
                 player1.setEnabled(false);
                 player2.setEnabled(true);
                 player3.setEnabled(false);
                 t.requestFocusInWindow();
-            }
+            }  
 
             public void mouseEntered(MouseEvent evt) {
-                player = new Player(namePlayer, 5, 5);
-                lP = player.getLifePoint();
-                aP = player.getAttackPoint();
-                majInfoP(lP, aP);
+                //player = new Player(namePlayer, 5, 5);
+                tmplP = 5;
+                tmpaP = 5;
+                majInfoP(tmplP, tmpaP);
                 System.out.println("entrer");
             }
         });
@@ -96,7 +99,9 @@ public class StartGame {
         player3 = new JButton(new ImageIcon(picturePath + "spiderman.png"));
         player3.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
-                player = new Player(namePlayer, 8, 2);
+                //player = new Player(namePlayer, 8, 2);
+            	lP = 8;
+            	aP = 2;
                 t.setEnabled(true);
                 player1.setEnabled(false);
                 player2.setEnabled(false);
@@ -105,10 +110,10 @@ public class StartGame {
             }
 
             public void mouseEntered(MouseEvent evt) {
-                player = new Player(namePlayer, 8, 2);
-                lP = player.getLifePoint();
-                aP = player.getAttackPoint();
-                majInfoP(lP, aP);
+                //player = new Player(namePlayer, 8, 2);
+            	tmplP = 8;
+                tmpaP = 2;
+                majInfoP(tmplP, tmpaP);
                 System.out.println("entrer");
             }
         });
@@ -121,7 +126,6 @@ public class StartGame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == t) {
                     namePlayer = t.getText();
-                    System.out.println(namePlayer);
                     if (!namePlayer.equals("")) {
                         startGame.setEnabled(true);
                     }
@@ -138,6 +142,10 @@ public class StartGame {
 //                AreaPlanet area1 = new AreaPlanet("lave", "grosse eruption", System.getProperty("user.dir") + "/pictures/champ.jpg");
 //                planet1.addArea(area1);
 //                area1.addPerso(player);
+            	player = new Player(namePlayer, lP, aP);
+            	//System.out.println(namePlayer);
+            	//System.out.println(player.getLifePoint());
+            	//System.out.println(player.getAttackPoint());
                 myJFrame.dispose();
                 interf = new Interface();  //start the game with the a player a planet ...
             }

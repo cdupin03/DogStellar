@@ -16,7 +16,9 @@ public class Player extends Perso {
 
     private Armor armor;
     private Weapon weapon;
+
     private ArrayList<Stuff> inventory;
+
 
     /**
      * Constructor for objects of class Player When a player is creating, a

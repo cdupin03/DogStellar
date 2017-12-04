@@ -30,7 +30,8 @@ public final class Window extends GeneralWindow {
     private final String north = "NORTH";
     private final String east = "EAST";
     private final String west = "WEST";
-    private PersoView thisPerso;
+    //private PersoView thisPerso;
+
 
     /**
      * The constructor of Window. Create the window with its components. Set set
@@ -45,8 +46,8 @@ public final class Window extends GeneralWindow {
         super(inter);
         planets = thePlanets;
         area = planets.get(0).getAreas();
-        //this.remove();
-        adjustWindowToAreaPlanet(area);
+
+        theCurrentZone = adjustWindowToAreaPlanet(area);
     }
 
     /**
@@ -175,4 +176,8 @@ public final class Window extends GeneralWindow {
         super.catchPicture();
     }
 
+    public String getCurrentArea()
+    {
+        return theCurrentZone;
+    }
 }
