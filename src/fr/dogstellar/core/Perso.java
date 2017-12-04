@@ -240,6 +240,11 @@ public class Perso {
             }
         }
     }
+    
+    public ArrayList<Stuff> getStuff()
+    {
+        return inventory;
+    }
 
     /**
      * This method returns the list of stuff(inventory) of the user.

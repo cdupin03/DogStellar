@@ -13,10 +13,8 @@ import fr.dogstellar.core.*;
  */
 public class Fight {
 
-//    public static Perso monster;
-//    public static Player player;
-//    public static Armor armorOfPlayer;
-//    public static Weapon weaponOfPlayer;
+    private static Perso monster;
+    private static Player player;
 
     /**
      * Is the constructor of Fight
