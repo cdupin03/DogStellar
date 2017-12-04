@@ -13,32 +13,32 @@ import javax.swing.JOptionPane;
 import fr.dogstellar.core.*;
 import fr.dogstellar.game.*;
 
+/**
+ * This class allows to set an image for a perso
+ *
+ * @author Group 3
+ * @version V02
+ */
 public class PersoView extends PictureButton {
 
-
     /**
-     * Set the picture of the graphical arrow. The arrow take the direction 
-     * given in parameter. If the direction is not NORTH, SOUTH, EAST or WEST, 
-     * then, the direction taken is NORTH by default.
+     * The constructor of this class
+     *
+     * @param picturePath is the path of the pictures
      */
-
-    private Window wind;		
-
-    public PersoView (String picturePath) {
+    public PersoView(String picturePath) {
         super(picturePath, "Monstre", ".png");
 
-        this.addActionListener(new ActionListener (){
-        @Override
-        public void actionPerformed(ActionEvent e) {
-        	// open a window with YES NO choice to know if the player wants to fight the monster (the monster that has been selected)
-            int result = JOptionPane.showConfirmDialog(null,"Are you sure you want to attack the monster ?", "choose one", JOptionPane.YES_NO_OPTION);
-            //if he wants, all button is block during the fight and the fight begin with the monster that has been selected
-            if (result==JOptionPane.YES_OPTION) {
+        //Add  an action listener for this Perso button
+        this.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to attack the monster ?", "choose one", JOptionPane.YES_NO_OPTION);
+                if (result == JOptionPane.YES_OPTION) {
                     StartGame.getInterf().isAttackEnabled(true);
                     StartGame.getInterf().getTheWindow().setEnableArrows(false);
-                    Fight theFight = new Fight();
+                }
             }
-        }
-    });
+        });
     }
 }

@@ -13,6 +13,12 @@ import fr.dogstellar.core.Player;
 
 import java.util.*;
 
+/**
+ * The start game allows to choose a perso and a name for the player in a dedicated window
+ * 
+ * @author Group 3
+ * @version V03
+ */
 public class StartGame {
 
     private JFrame myJFrame;
@@ -26,6 +32,9 @@ public class StartGame {
     private int lP, aP;
     private static Interface interf;
 
+    /**
+     * The constructor of this class
+     */
     public StartGame() {
         picturePath = new String(System.getProperty("user.dir") + "/pictures/");
 
@@ -125,10 +134,10 @@ public class StartGame {
         startGame.setEnabled(false);
         startGame.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                Planet planet1 = new Planet("Rouge", "planet de feu");
-                AreaPlanet area1 = new AreaPlanet("lave", "grosse eruption", System.getProperty("user.dir") + "/pictures/champ.jpg");
-                planet1.addArea(area1);
-                area1.addPerso(player);
+//                Planet planet1 = new Planet("Rouge", "planet de feu");
+//                AreaPlanet area1 = new AreaPlanet("lave", "grosse eruption", System.getProperty("user.dir") + "/pictures/champ.jpg");
+//                planet1.addArea(area1);
+//                area1.addPerso(player);
                 myJFrame.dispose();
                 interf = new Interface();  //start the game with the a player a planet ...
             }
@@ -181,7 +190,6 @@ public class StartGame {
         myJFrame.add(t, BorderLayout.CENTER);
         myJFrame.add(startGame, BorderLayout.SOUTH);
 
-
         // size of JPanel
         panelPlayer.setPreferredSize(new Dimension(200, 400));
         startGame.setPreferredSize(new Dimension(200, 100));
@@ -194,6 +202,11 @@ public class StartGame {
         myJFrame.setVisible(true);
     }
 
+    /**
+     * 
+     * @param lP
+     * @param aP 
+     */
     public void majInfoP(int lP, int aP) {
         infoP.setText("This player has " + String.valueOf(lP) + " life Point" + " and " + String.valueOf(aP) + " attack Point");
     }

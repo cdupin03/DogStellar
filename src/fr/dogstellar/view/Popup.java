@@ -1,28 +1,28 @@
 package fr.dogstellar.view;
 
-/**
- * This class allows to create a Pop-up window.
- * @author G3
- */
 import javax.swing.*;
 
-
+/**
+ * This class allows to create a Pop-up window.
+ *
+ * @author Group 3
+ * @version V01
+ */
 public class Popup {
 
-	private String picturePath;
+    private String picturePath;                                                     //The path of the pictures
 
-	public Popup() {
-		
-		picturePath = new String(System.getProperty("user.dir") + "/pictures/");
-		
-		ImageIcon img = new ImageIcon(picturePath + "message.png");
-		JOptionPane.showMessageDialog(null, "You have a new message in the dialog box !", "Information", JOptionPane.INFORMATION_MESSAGE, img);      
-		
-	}
-	
-	public static void main(String[] args) 
-	{
-		Popup newPopup = new Popup();	
-	}
-	
+    /**
+     * The constructor of the PopUp class that allow to display a message in a
+     * pop up window
+     */
+    public Popup() {
+
+        picturePath = new String(System.getProperty("user.dir") + "/pictures/");    //Initialize the path of the pictures
+
+        ImageIcon img = new ImageIcon(picturePath + "message.png");                 //Set the message image
+        JOptionPane.showMessageDialog(null, "You have a new message in the dialog box !", "Information", JOptionPane.INFORMATION_MESSAGE, img);
+
+    }
+
 }
