@@ -138,10 +138,12 @@ public class Interface {
  */
         Planet planet1 = new Planet("Planet1", "Etrange", 0);
         Planet planet2 = new Planet("Planet2", "Tout aussi etrange", 3);
-        ArrayList<Planet> planets = new ArrayList<Planet>(); //The list of planets the first planet is the actual planet.
+        Planet theLastPlanet = new Planet ("Honvaonauti", "Your goal", 1);
+        ArrayList<Planet> planets = new ArrayList<>(); //The list of planets the first planet is the actual planet.
         //If we change planet, the new planet exchange its place with the first.
         planets.add(planet1);
         planets.add(planet2);
+        planets.add(theLastPlanet);
 
         AreaPlanet test1 = new AreaPlanet("tyuiuyfv", "rdytfuygiut", "champ.jpg");
         test1.addPerso(monstre1);
@@ -152,6 +154,8 @@ public class Interface {
         test1.addElement(new Element("PNJ", "Un pnj champu", 3));
         AreaPlanet test2 = new AreaPlanet("Bqzld", "rdytfiut", "lave.jpg");
         AreaPlanet test3 = new AreaPlanet("Nouvelle planete", "hum ...", "mario.jpeg");
+        AreaPlanet theLastArea = new AreaPlanet("The last area", "The big night club", "finText.jpg");
+        theLastPlanet.addArea(theLastArea);
         test1.addAreaPlanet(test2, "south");
         planet1.addArea(test1);
         planet2.addArea(test3);
@@ -254,5 +258,10 @@ public class Interface {
      */
     public JFrame getInterface() {
         return theInterface;
+    }
+    
+    public DisplayInfo getDisplay()
+    {
+        return infoPlayer;
     }
 }

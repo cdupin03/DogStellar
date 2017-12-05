@@ -19,7 +19,6 @@ public class Player extends Perso {
 
     private ArrayList<Stuff> inventory;
 
-
     /**
      * Constructor for objects of class Player When a player is creating, a
      * inventory (list of stuffs) is create and is empty
@@ -39,7 +38,6 @@ public class Player extends Perso {
     public void addArmorEquip(Armor armorEquip) {
         armor = armorEquip;
     }
-
 
     public void desequipArmor() {
         addStuff((Stuff) armor, 1);
@@ -102,7 +100,6 @@ public class Player extends Perso {
         }
 
     }
-    
 
     /**
      * this method allows us to add a stuff in the list of stuff (the inventory)
@@ -133,9 +130,13 @@ public class Player extends Perso {
             }
         }
     }
-    
-    public ArrayList<Stuff> getStuff()
-    {
+
+    /**
+     * To get the stuff of the monster
+     *
+     * @return inventory = the list of Stuff
+     */
+    public ArrayList<Stuff> getStuff() {
         return inventory;
     }
 
@@ -151,6 +152,9 @@ public class Player extends Perso {
 
     /**
      * This method allows us to know if a stuff is in inventory or not.
+     *
+     * @param stuff = the stuff to compare at the list
+     * @return true if the stuff is in the inventory
      */
     public boolean isInList(Stuff stuff) {
         for (Stuff s : inventory) {
@@ -171,19 +175,20 @@ public class Player extends Perso {
     public void playerFight(Perso monster, int attackPoint) {
         monster.decreaseLifePoint(attackPoint);
     }
-    
-    public int getNumberQuestElement ()
-    {
+
+    /**
+     * To get the number of quest element (part of ship)
+     *
+     * @return compteurQuestElement = the nomber of quest element
+     */
+    public int getNumberQuestElement() {
         int compteurQuestElement = 0;
-        for (Stuff s : this.getStuff())
-        {
-            if (s instanceof QuestElement)
-            {
-                compteurQuestElement ++;
+        for (Stuff s : this.getStuff()) {
+            if (s instanceof QuestElement) {
+                compteurQuestElement++;
             }
         }
         return compteurQuestElement;
     }
-    
-    
+
 }

@@ -30,7 +30,6 @@ public final class Window extends GeneralWindow {
     private final String north = "NORTH";
     private final String east = "EAST";
     private final String west = "WEST";
-    //private PersoView thisPerso;
 
 
     /**
@@ -45,9 +44,7 @@ public final class Window extends GeneralWindow {
     public Window(ArrayList<Planet> thePlanets, Interface inter) {
         super(inter);
         planets = thePlanets;
-        area = planets.get(0).getAreas();
-
-        theCurrentZone = adjustWindow(area);
+        returnToFirstMap();
     }
 
     /**
@@ -119,12 +116,16 @@ public final class Window extends GeneralWindow {
      *
      * @param newArea the new area to display in the window
      */
-    public String adjustWindow(AreaPlanet newArea) {
+    public void adjustWindow(AreaPlanet newArea) {
         catchPicture(newArea);
-        return adjustWindow();
+        adjustWindow();
     }
     
-    public String adjustWindow()
+    /**
+     * This method refresh the area
+     */
+    @Override
+    public void adjustWindow()
     {
         erraseGrid();
 
@@ -153,7 +154,6 @@ public final class Window extends GeneralWindow {
             addRandomlyComponent(new ElementView(getPicturePath(), e));
         });
         drawGrid();
-        return area.getNameArea();
     }
 
     /**
@@ -180,9 +180,21 @@ public final class Window extends GeneralWindow {
         setNameOfFirstBackgroundPicture(area.getPicture());
         super.catchPicture();
     }
-
-    public String getCurrentArea()
+    
+    @Override
+    public void returnToFirstMap ()
     {
-        return theCurrentZone;
+        area = planets.get(0).getAreas();
+        adjustWindow(area);
     }
+    
+
+//    /**
+//     * get the current area.
+//     * @return theCurrentZone
+//     */
+//    public String getCurrentArea()
+//    {
+//        return theCurrentZone;
+//    }
 }

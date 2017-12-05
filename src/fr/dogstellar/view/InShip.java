@@ -43,7 +43,7 @@ public class InShip extends GeneralWindow implements ActionListener {
      * This method display a new area in the window.
      */
     @Override
-    public String adjustWindow() {
+    public void adjustWindow() {
         catchPicture();
         erraseGrid();
 
@@ -65,7 +65,6 @@ public class InShip extends GeneralWindow implements ActionListener {
             }
         }
         drawGrid();
-        return "In the ship";
     }
 
     /**
@@ -116,5 +115,11 @@ public class InShip extends GeneralWindow implements ActionListener {
                 getInterfac().setWindow(new Window(planets, getInterfac()));
             }
         }
+    }
+    
+    @Override
+    public void returnToFirstMap ()
+    {
+        
     }
 }
