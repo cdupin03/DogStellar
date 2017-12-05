@@ -22,9 +22,9 @@ import java.util.*;
 public class StartGame {
 
     private JFrame myJFrame;
-    private JLabel title, infoP;
+    private JLabel title, infoPLife, infoPAttack, description;
     private JButton player1, player2, player3, startGame;
-    private JPanel panelPlayer, titlePlayer;
+    private JPanel panelPlayer, infoP, infoPlayer, rightIcon, menu;
     private JTextField t;
     private String namePlayer = "";
     private static Player player;
@@ -41,10 +41,22 @@ public class StartGame {
 
         myJFrame = new JFrame();
 
-        infoP = new JLabel("This player has " + String.valueOf(lP) + " life Point" + " and " + String.valueOf(aP) + " attack Point", JLabel.CENTER);
-        infoP.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 30));
-        infoP.setForeground(Color.white);
+        description = new JLabel("Description", JLabel.CENTER);
+        description.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 25));
+        description.setForeground(Color.white);
+        
+        infoPLife = new JLabel("This player has " + String.valueOf(lP) + " life Point", JLabel.CENTER);
+        infoPAttack = new JLabel(" and " + String.valueOf(aP) + " attack Point", JLabel.CENTER);
+        infoPLife.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 25));
+        infoPLife.setForeground(Color.white);
+        infoPAttack.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 25));
+        infoPAttack.setForeground(Color.white);
 
+        infoP = new JPanel(new BorderLayout());
+        infoP.add(infoPLife, BorderLayout.NORTH);
+        infoP.add(infoPAttack, BorderLayout.SOUTH);
+        infoP.setOpaque(false);
+        
         title = new JLabel("Dog Stellar", JLabel.CENTER);
         title.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 75));
         title.setForeground(Color.white);
@@ -180,32 +192,36 @@ public class StartGame {
         panelPlayer.add(player1, BorderLayout.NORTH);
         panelPlayer.add(player2, BorderLayout.CENTER);
         panelPlayer.add(player3, BorderLayout.SOUTH);
-        //transparent
+        //transparent borderLayout
         panelPlayer.setOpaque(false);
 
-        JPanel rightIcon = new JPanel();
-        rightIcon.setLayout(new GridLayout(1,2));
-        //rightIcon.add();
-        rightIcon.add(panelPlayer);
+        infoPlayer = new JPanel(new BorderLayout());
+        infoPlayer.add(panelPlayer, BorderLayout.CENTER);
+        infoPlayer.add(infoP, BorderLayout.SOUTH);
+        infoPlayer.setOpaque(false);
+        
+        menu = new JPanel(new BorderLayout());
+        menu.add(title, BorderLayout.NORTH);
+        menu.add(description, BorderLayout.CENTER);
+        menu.add(t, BorderLayout.SOUTH);
+        menu.setOpaque(false);
+        
+        rightIcon = new JPanel();
+        rightIcon.setLayout(new BorderLayout());
+        rightIcon.add(menu, BorderLayout.CENTER);
+        rightIcon.add(infoPlayer, BorderLayout.EAST);
+        rightIcon.add(startGame, BorderLayout.SOUTH);
+        rightIcon.setOpaque(false);
+        
+        //transparent BorderLayout
+        rightIcon.setOpaque(false);
         
         //image background
-        myJFrame.setContentPane(new JLabel(new ImageIcon(picturePath + "BackgroundStartGame.jpg")));
-
-        titlePlayer = new JPanel();
-        titlePlayer.setLayout(new BorderLayout());
-        titlePlayer.add(title, BorderLayout.NORTH);
-        titlePlayer.add(panelPlayer, BorderLayout.CENTER);
-        if (infoP != null) {
-            titlePlayer.add(infoP, BorderLayout.SOUTH);
-        }
-        titlePlayer.setOpaque(false);
+        myJFrame.setContentPane(new JLabel(new ImageIcon(picturePath + "BackgroundStartGame.png")));
 
         //BorderLayout
-        BorderLayout myBorderL = new BorderLayout();
-        myJFrame.setLayout(myBorderL);
-        myJFrame.add(titlePlayer, BorderLayout.NORTH);
-        myJFrame.add(t, BorderLayout.CENTER);
-        myJFrame.add(startGame, BorderLayout.SOUTH);
+        myJFrame.setLayout(new BorderLayout());
+        myJFrame.add(rightIcon);
 
         // size of JPanel
         panelPlayer.setPreferredSize(new Dimension(200, 400));
@@ -225,7 +241,8 @@ public class StartGame {
      * @param aP 
      */
     public void majInfoP(int lP, int aP) {
-        infoP.setText("This player has " + String.valueOf(lP) + " life Point" + " and " + String.valueOf(aP) + " attack Point");
+        infoPLife.setText("This player has " + String.valueOf(lP) + " life Point");
+        infoPAttack.setText(" and " + String.valueOf(aP) + " attack Point");
     }
 
     /**
