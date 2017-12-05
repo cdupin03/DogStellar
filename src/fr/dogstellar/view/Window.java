@@ -30,7 +30,6 @@ public final class Window extends GeneralWindow {
     private final String north = "NORTH";
     private final String east = "EAST";
     private final String west = "WEST";
-    //private PersoView thisPerso;
 
 
     /**
@@ -193,12 +192,12 @@ public final class Window extends GeneralWindow {
     }
     
 
-//    /**
-//     * get the current area.
-//     * @return theCurrentZone
-//     */
-//    public String getCurrentArea()
-//    {
-//        return theCurrentZone;
-//    }
+    /**
+     * get the current area.
+     * @return theCurrentZone
+     */
+    public String getCurrentArea()
+    {
+        return theCurrentZone;
+    }
 }
