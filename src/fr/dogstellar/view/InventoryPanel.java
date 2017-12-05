@@ -185,6 +185,7 @@ public class InventoryPanel extends JFrame {
                         ((Potion) i).drinkPotion(thePlayer);
                         thePlayer.getStuff().remove(i);
                         refreshInventory();
+                        StartGame.getInterf().getDisplay().refreshDisplay();
                     }
                 });
                 JPanel inventoryCase = new JPanel();
