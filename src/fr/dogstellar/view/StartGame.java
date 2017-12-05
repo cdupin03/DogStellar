@@ -42,20 +42,20 @@ public class StartGame {
         myJFrame = new JFrame();
 
         infoP = new JLabel("This player has " + String.valueOf(lP) + " life Point" + " and " + String.valueOf(aP) + " attack Point", JLabel.CENTER);
-        infoP.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 18));
-        infoP.setForeground(Color.black);
+        infoP.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 30));
+        infoP.setForeground(Color.white);
 
         title = new JLabel("Dog Stellar", JLabel.CENTER);
         title.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 75));
-        title.setForeground(Color.WHITE);
+        title.setForeground(Color.white);
 
         //action when clicked to button of a player
         //hulk have 2 life point and 8 attacked point
-        player1 = new JButton(new ImageIcon(picturePath + "hulk.png"));
+        player1 = new JButton(new ImageIcon(picturePath + "Ranger.png"));
         player1.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 //player = new Player(namePlayer, 2, 8);
-            	imagePlayer= new ImageIcon(picturePath + "hulk.png");
+            	imagePlayer= new ImageIcon(picturePath + "Ranger.png");
             	lP = 2;
                 aP = 8;
                 t.setEnabled(true);
@@ -75,11 +75,11 @@ public class StartGame {
         });
 
         //wonderwoman have 5 life point and 5 attacked point
-        player2 = new JButton(new ImageIcon(picturePath + "wonderwoman.png"));
+        player2 = new JButton(new ImageIcon(picturePath + "Engineer.png"));
         player2.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 //player = new Player(namePlayer, 5, 5);
-            	imagePlayer= new ImageIcon(picturePath + "wonderwoman.png");
+            	imagePlayer= new ImageIcon(picturePath + "Engineer.png");
             	lP = 5;
             	aP = 5;
                 t.setEnabled(true);
@@ -99,11 +99,11 @@ public class StartGame {
         });
 
         //spider have 8 life point and 2 attacked point
-        player3 = new JButton(new ImageIcon(picturePath + "spiderman.png"));
+        player3 = new JButton(new ImageIcon(picturePath + "Scientist.png"));
         player3.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 //player = new Player(namePlayer, 8, 2);
-            	imagePlayer= new ImageIcon(picturePath + "spiderman.png");
+            	imagePlayer= new ImageIcon(picturePath + "Scientist.png");
             	lP = 8;
             	aP = 2;
                 t.setEnabled(true);
@@ -171,18 +171,23 @@ public class StartGame {
         startGame.setOpaque(false);
         startGame.setContentAreaFilled(false);
         startGame.setBorderPainted(false);
-        startGame.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 50));
-        startGame.setForeground(Color.black);
+        startGame.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 55));
+        startGame.setForeground(Color.white);
 
-        //grid of player
+        //BorderLayout of player
         panelPlayer = new JPanel();
-        panelPlayer.setLayout(new FlowLayout());
-        panelPlayer.add(player1);
-        panelPlayer.add(player2);
-        panelPlayer.add(player3);
-        //transparent flowLayout
+        panelPlayer.setLayout(new BorderLayout());
+        panelPlayer.add(player1, BorderLayout.NORTH);
+        panelPlayer.add(player2, BorderLayout.CENTER);
+        panelPlayer.add(player3, BorderLayout.SOUTH);
+        //transparent
         panelPlayer.setOpaque(false);
 
+        JPanel rightIcon = new JPanel();
+        rightIcon.setLayout(new GridLayout(1,2));
+        //rightIcon.add();
+        rightIcon.add(panelPlayer);
+        
         //image background
         myJFrame.setContentPane(new JLabel(new ImageIcon(picturePath + "BackgroundStartGame.jpg")));
 
