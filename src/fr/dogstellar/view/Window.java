@@ -45,7 +45,7 @@ public final class Window extends GeneralWindow {
     public Window(ArrayList<Planet> thePlanets, Interface inter) {
         super(inter);
         planets = thePlanets;
-        area = planets.get(0).getAreas();
+        returnToFirstMap();
     }
 
     /**
@@ -188,7 +188,8 @@ public final class Window extends GeneralWindow {
     @Override
     public void returnToFirstMap ()
     {
-        
+        area = planets.get(0).getAreas();
+        adjustWindow(area);
     }
     
 
