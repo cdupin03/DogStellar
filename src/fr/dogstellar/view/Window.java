@@ -46,8 +46,6 @@ public final class Window extends GeneralWindow {
         super(inter);
         planets = thePlanets;
         area = planets.get(0).getAreas();
-
-        theCurrentZone = adjustWindow(area);
     }
 
     /**
@@ -129,6 +127,7 @@ public final class Window extends GeneralWindow {
      * 
      * @return area.getNameArea() = name of this area
      */
+    @Override
     public String adjustWindow()
     {
         erraseGrid();
@@ -185,9 +184,20 @@ public final class Window extends GeneralWindow {
         setNameOfFirstBackgroundPicture(area.getPicture());
         super.catchPicture();
     }
-
-    public String getCurrentArea()
+    
+    @Override
+    public void returnToFirstMap ()
     {
-        return theCurrentZone;
+        
     }
+    
+
+//    /**
+//     * get the current area.
+//     * @return theCurrentZone
+//     */
+//    public String getCurrentArea()
+//    {
+//        return theCurrentZone;
+//    }
 }
