@@ -32,7 +32,8 @@ public class StartGame {
     private int lP, aP, tmplP, tmpaP;
     private static Interface interf;
     private static ImageIcon imagePlayer;
-
+    private VideoPlayer intro;
+    
     /**
      * The constructor of this class
      */
@@ -166,6 +167,7 @@ public class StartGame {
             	//System.out.println(player.getAttackPoint());
                 myJFrame.dispose();
                 interf = new Interface();  //start the game with the a player a planet ...
+                intro = new VideoPlayer();
             }
         });
 
