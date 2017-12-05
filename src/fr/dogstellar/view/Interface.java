@@ -231,19 +231,20 @@ public class Interface {
         //theWindow = new InShip(this, planets);
 
 
-        top.setLayout(new BorderLayout());                          //Set the layout of the top part       
-        top.add(theWindow, BorderLayout.CENTER);                    //Add the area map in the top part
+        top.setLayout(new BorderLayout());                              //Set the layout of the top part       
+        top.add(theWindow, BorderLayout.CENTER);                        //Add the area map in the top part
 
 //theInterface        
         theInterface.setBackground(Color.BLACK);
-        theInterface.setPreferredSize(new Dimension(1200, 700));     //Set the size of the frame
-        theInterface.setLayout(new BorderLayout());                 //Set the display of the frame
-        theInterface.add(top, BorderLayout.CENTER);                 //Add the top part in the frame
-        theInterface.add(bottom, BorderLayout.SOUTH);               //Add the bottom part in the frame
-        theInterface.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Closing the frame close the application
-        theInterface.pack();                                        //Sizes the frame so that all its contents are at or above their preferred sizes
-        theInterface.setLocationRelativeTo(null);
-        theInterface.setVisible(true);                              //To display the frame
+        theInterface.setPreferredSize(new Dimension(1200, 700));        //Set the size of the frame
+        theInterface.setLayout(new BorderLayout());                     //Set the display of the frame
+        theInterface.add(top, BorderLayout.CENTER);                     //Add the top part in the frame
+        theInterface.add(bottom, BorderLayout.SOUTH);                   //Add the bottom part in the frame
+        theInterface.setResizable(false);                               //This JFrame is not resizable
+        theInterface.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    //Closing the frame close the application
+        theInterface.pack();                                            //Sizes the frame so that all its contents are at or above their preferred sizes
+        theInterface.setLocationRelativeTo(null);                       //The JFrame is on the screen center
+        theInterface.setVisible(true);                                  //To display the frame
 
 //The actions of the button "OK" = save the answer, clear the area, add the message to the display console, disable the button
         ok.addActionListener(new ActionListener() {
