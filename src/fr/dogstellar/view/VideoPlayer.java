@@ -2,8 +2,7 @@ package fr.dogstellar.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.File;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
@@ -44,7 +43,15 @@ public class VideoPlayer extends JFrame implements ActionListener {
         jPanel1.setLayout(new BorderLayout());                                                      //The Layout of the panel
         jPanel1.add(jfxPanel, BorderLayout.CENTER);                                                 //The media player is add to the panel
 
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);                                     //Closing the frame not the application
+        this.addWindowListener(new WindowAdapter(){
+            public void windowClosing(WindowEvent e){
+                oracleVid.stop();                                                           //With any action (closing the frame or when the video is finished) the video is stoped
+                dispose();                                                             //Closing the frame
+            }
+        });
+        
+        
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);                                  //Closing the frame not the application
         this.add(jPanel1);                                                                          //The panel is add to the JFrame
         this.pack();                                                                                //Sizes the frame so that all its contents are at or above their preferred sizes
         this.setLocationRelativeTo(null);                                                           //The display on the JFrame is on center of the screen
