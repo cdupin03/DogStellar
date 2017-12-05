@@ -15,29 +15,86 @@ import javax.swing.*;
 
 public class DisplayInfo extends JPanel{
 	
-	private JLabel nameP,lifeP,attackP, nPlanet, nArea;
-	private JPanel infoPlayer = new JPanel();			//Panel for the information of the player
-	private JPanel infoArea = new JPanel();				//Panel for the information of the Area
+	private JLabel namePlayer, nameBarLife, nameBarAttack, nPlanet, nArea;
+    private JProgressBar progressLife = new JProgressBar();
+    private JProgressBar progressAttack = new JProgressBar();
+	private JPanel barLife = new JPanel();							//Panel for the information of the player
+	private JPanel barAttack = new JPanel();							//Panel for the information of the player
+	private JPanel bar = new JPanel();							//Panel for the information of the player
+	private JPanel infoArea = new JPanel();						//Panel for the information of the Area
 	
 	public DisplayInfo() {
 		
-		this.setVisible(true); 
-		this.setLayout(new BorderLayout());
-		this.setOpaque(isOpaque());
-		this.setBackground(Color.cyan);
+		namePlayer = new JLabel("Name : " + StartGame.getPlayer().getNamePerso());
+		nameBarLife = new JLabel ("Life Point      : ");
+		nameBarAttack = new JLabel ("Attack Point : ");
 		
-		infoPlayer.setPreferredSize(new Dimension(200,200)); 
-		this.add(infoPlayer, BorderLayout.WEST);
+		if (StartGame.getPlayer().getLifePoint()==1) {
+			progressLife.setValue(10);
+		} else if (StartGame.getPlayer().getLifePoint()==2) {
+			progressLife.setValue(20);
+		} else if (StartGame.getPlayer().getLifePoint()==3) {
+			progressLife.setValue(30);
+		} else if (StartGame.getPlayer().getLifePoint()==4) {
+			progressLife.setValue(40);
+		}else if (StartGame.getPlayer().getLifePoint()==5) {
+			progressLife.setValue(50);
+		}else if (StartGame.getPlayer().getLifePoint()==6) {
+			progressLife.setValue(60);
+		}else if (StartGame.getPlayer().getLifePoint()==7) {
+			progressLife.setValue(70);
+		}else if (StartGame.getPlayer().getLifePoint()==8) {
+			progressLife.setValue(80);
+		}else if (StartGame.getPlayer().getLifePoint()==9) {
+			progressLife.setValue(90);
+		}else if (StartGame.getPlayer().getLifePoint()==10) {
+			progressLife.setValue(100);
+		} else {
+			System.out.println("ERROR");
+		}
+			progressLife.setStringPainted(true);
+        
 
-		nameP = new JLabel("Pseudo : " + StartGame.getPlayer().getNamePerso());
-		lifeP = new JLabel("PointLife : "+ StartGame.getPlayer().getLifePoint());
-		attackP = new JLabel("AttackPoint : "+ StartGame.getPlayer().getAttackPoint());		
-		
-		infoPlayer.add(nameP);
-		infoPlayer.add(lifeP);
-		infoPlayer.add(attackP);
-		
-
+		if (StartGame.getPlayer().getAttackPoint()==1) {
+			progressAttack.setValue(10);
+		} else if (StartGame.getPlayer().getAttackPoint()==2) {
+			progressAttack.setValue(20);
+		} else if (StartGame.getPlayer().getAttackPoint()==3) {
+			progressAttack.setValue(30);
+		} else if (StartGame.getPlayer().getAttackPoint()==4) {
+			progressAttack.setValue(40);
+		}else if (StartGame.getPlayer().getAttackPoint()==5) {
+			progressAttack.setValue(50);
+		}else if (StartGame.getPlayer().getAttackPoint()==6) {
+			progressAttack.setValue(60);
+		}else if (StartGame.getPlayer().getAttackPoint()==7) {
+			progressAttack.setValue(70);
+		}else if (StartGame.getPlayer().getAttackPoint()==8) {
+			progressAttack.setValue(80);
+		}else if (StartGame.getPlayer().getAttackPoint()==9) {
+			progressAttack.setValue(90);
+		}else if (StartGame.getPlayer().getAttackPoint()==10) {
+			progressAttack.setValue(100);
+		} else {
+			System.out.println("ERROR");
+		}
+        progressAttack.setStringPainted(true);
+        
+        barLife.setLayout(new BorderLayout());
+        barLife.add(nameBarLife, BorderLayout.WEST);
+        barLife.add(progressLife, BorderLayout.CENTER);
+        
+        barAttack.setLayout(new BorderLayout());
+        barAttack.add(nameBarAttack, BorderLayout.WEST);
+        barAttack.add(progressAttack, BorderLayout.CENTER);
+        
+        bar.setLayout(new BorderLayout());
+        bar.add(barLife, BorderLayout.NORTH);
+        bar.add(barAttack, BorderLayout.SOUTH);
+        
+        this.setLayout(new BorderLayout());
+        this.add(namePlayer, BorderLayout.CENTER);
+        this.add(bar, BorderLayout.SOUTH);
 	}
 	
 	public DisplayInfo(ArrayList<Planet> planets, AreaPlanet area) {/*HashMap<String, AreaPlanet>*/

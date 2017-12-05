@@ -31,6 +31,7 @@ public class StartGame {
     private String picturePath;
     private int lP, aP, tmplP, tmpaP;
     private static Interface interf;
+    private static ImageIcon imagePlayer;
 
     /**
      * The constructor of this class
@@ -54,6 +55,7 @@ public class StartGame {
         player1.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 //player = new Player(namePlayer, 2, 8);
+            	imagePlayer= new ImageIcon(picturePath + "hulk.png");
             	lP = 2;
                 aP = 8;
                 t.setEnabled(true);
@@ -77,6 +79,7 @@ public class StartGame {
         player2.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 //player = new Player(namePlayer, 5, 5);
+            	imagePlayer= new ImageIcon(picturePath + "wonderwoman.png");
             	lP = 5;
             	aP = 5;
                 t.setEnabled(true);
@@ -100,6 +103,7 @@ public class StartGame {
         player3.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 //player = new Player(namePlayer, 8, 2);
+            	imagePlayer= new ImageIcon(picturePath + "spiderman.png");
             	lP = 8;
             	aP = 2;
                 t.setEnabled(true);
@@ -235,6 +239,15 @@ public class StartGame {
      */
     public static Interface getInterf() {
         return interf;
+    }
+    
+    /**
+     * the image of player
+     *
+     * @return interface
+     */
+    public static ImageIcon getImagePlayer() {
+        return (imagePlayer);
     }
 
 }
