@@ -29,7 +29,7 @@ public abstract class GeneralWindow extends JPanel {
     private final String picturePath;                                           //The path of the pictures
     private Image back;                                                         //The back Image
     private final Interface interfac;                                           //The interface that display this window
-   // private String theCurrentZone;
+    protected String theCurrentZone;
     
     /**
      * The constructor of the GeneralWindow Class
@@ -303,10 +303,10 @@ public abstract class GeneralWindow extends JPanel {
      */
     public abstract void setEnableArrows(boolean ena);
     
-//    public String getCurrentArea()
-//    {
-//        return theCurrentZone;
-//    }
+    public String getCurrentArea()
+    {
+        return theCurrentZone;
+    }
     
     /**
      * Adjust the window to its current environment, actualize the grid and components.
