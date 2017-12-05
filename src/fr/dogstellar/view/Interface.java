@@ -172,6 +172,7 @@ public class Interface {
         theInterface.add(bottom, BorderLayout.SOUTH);               //Add the bottom part in the frame
         theInterface.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Closing the frame close the application
         theInterface.pack();                                        //Sizes the frame so that all its contents are at or above their preferred sizes
+        theInterface.setLocationRelativeTo(null);
         theInterface.setVisible(true);                              //To display the frame
 
 //The actions of the button "OK" = save the answer, clear the area, add the message to the display console, disable the button
