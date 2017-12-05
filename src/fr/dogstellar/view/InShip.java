@@ -36,13 +36,14 @@ public class InShip extends GeneralWindow implements ActionListener {
         planetViews = new ArrayList<>();
         test = new JButton();
         test2 = new JButton();
-        adjustWindowToPlanets();
+        adjustWindow();
     }
 
     /**
      * This method display a new area in the window.
      */
-    public void adjustWindowToPlanets() {
+    @Override
+    public String adjustWindow() {
         catchPicture();
         erraseGrid();
 
@@ -64,6 +65,7 @@ public class InShip extends GeneralWindow implements ActionListener {
             }
         }
         drawGrid();
+        return "In the ship";
     }
 
     /**
