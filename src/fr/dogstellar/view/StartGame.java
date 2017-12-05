@@ -47,7 +47,7 @@ public class StartGame {
 
         title = new JLabel("Dog Stellar", JLabel.CENTER);
         title.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 75));
-        title.setForeground(Color.black);
+        title.setForeground(Color.WHITE);
 
         //action when clicked to button of a player
         //hulk have 2 life point and 8 attacked point
