@@ -22,9 +22,9 @@ import java.util.*;
 public class StartGame {
 
     private JFrame myJFrame;
-    private JLabel title, infoPLife, infoPAttack, description;
+    private JLabel title, infoPLife, infoPAttack, description, chooseAName;
     private JButton player1, player2, player3, startGame;
-    private JPanel panelPlayer, infoP, infoPlayer, rightIcon, menu;
+    private JPanel panelPlayer, infoP, infoPlayer, rightIcon, menu, nameText;
     private JTextField t;
     private String namePlayer = "";
     private static Player player;
@@ -40,34 +40,14 @@ public class StartGame {
     public StartGame() {
         picturePath = new String(System.getProperty("user.dir") + "/pictures/");
 
+        //Instantiate my JFrame
         myJFrame = new JFrame();
 
-        description = new JLabel("Description",  JLabel.CENTER);
-        description.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 25));
-        description.setForeground(Color.white);
-        
-        infoPLife = new JLabel("This player has " + String.valueOf(lP) + " life Point", JLabel.CENTER);
-        infoPAttack = new JLabel(" and " + String.valueOf(aP) + " attack Point", JLabel.CENTER);
-        infoPLife.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 25));
-        infoPLife.setForeground(Color.white);
-        infoPAttack.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 25));
-        infoPAttack.setForeground(Color.white);
-
-        infoP = new JPanel(new BorderLayout());
-        infoP.add(infoPLife, BorderLayout.NORTH);
-        infoP.add(infoPAttack, BorderLayout.SOUTH);
-        infoP.setOpaque(false);
-        
-        title = new JLabel("Dog Stellar", JLabel.CENTER);
-        title.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 75));
-        title.setForeground(Color.white);
-
         //action when clicked to button of a player
-        //hulk have 2 life point and 8 attacked point
+        	//ranger have 2 life point and 8 attacked point
         player1 = new JButton(new ImageIcon(picturePath + "Ranger.png"));
         player1.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
-                //player = new Player(namePlayer, 2, 8);
             	imagePlayer= new ImageIcon(picturePath + "Ranger.png");
             	lP = 2;
                 aP = 8;
@@ -87,11 +67,10 @@ public class StartGame {
 
         });
 
-        //wonderwoman have 5 life point and 5 attacked point
+        	//engineer have 5 life point and 5 attacked point
         player2 = new JButton(new ImageIcon(picturePath + "Engineer.png"));
         player2.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
-                //player = new Player(namePlayer, 5, 5);
             	imagePlayer= new ImageIcon(picturePath + "Engineer.png");
             	lP = 5;
             	aP = 5;
@@ -103,7 +82,6 @@ public class StartGame {
             }  
 
             public void mouseEntered(MouseEvent evt) {
-                //player = new Player(namePlayer, 5, 5);
                 tmplP = 5;
                 tmpaP = 5;
                 majInfoP(tmplP, tmpaP);
@@ -111,11 +89,10 @@ public class StartGame {
             }
         });
 
-        //spider have 8 life point and 2 attacked point
+        	//scientist have 8 life point and 2 attacked point
         player3 = new JButton(new ImageIcon(picturePath + "Scientist.png"));
         player3.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
-                //player = new Player(namePlayer, 8, 2);
             	imagePlayer= new ImageIcon(picturePath + "Scientist.png");
             	lP = 8;
             	aP = 2;
@@ -127,51 +104,15 @@ public class StartGame {
             }
 
             public void mouseEntered(MouseEvent evt) {
-                //player = new Player(namePlayer, 8, 2);
             	tmplP = 8;
                 tmpaP = 2;
                 majInfoP(tmplP, tmpaP);
                 System.out.println("entrer");
             }
         });
-
-        //Text for enter the name of player (not enable if no player is choose)
-        t = new JTextField("Name of Player");
-        t.setPreferredSize(new Dimension(100, 100));
-        t.setEnabled(false);
-        t.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == t) {
-                    namePlayer = t.getText();
-                    if (!namePlayer.equals("")) {
-                        startGame.setEnabled(true);
-                    }
-                }
-            }
-        });
         
-        t.setPreferredSize(new Dimension(10, 40));
-
-        //button start game (not enable if there is no namePlayer)
-        startGame = new JButton("Start Game");
-        startGame.setEnabled(false);
-        startGame.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-//                Planet planet1 = new Planet("Rouge", "planet de feu");
-//                AreaPlanet area1 = new AreaPlanet("lave", "grosse eruption", System.getProperty("user.dir") + "/pictures/champ.jpg");
-//                planet1.addArea(area1);
-//                area1.addPerso(player);
-            	player = new Player(namePlayer, lP, aP);
-            	//System.out.println(namePlayer);
-            	//System.out.println(player.getLifePoint());
-            	//System.out.println(player.getAttackPoint());
-                myJFrame.dispose();
-                interf = new Interface();  //start the game with the a player a planet ...
-                intro = new VideoPlayer();
-            }
-        });
-
-        //transparent button
+        
+      //transparent button
         player1.setOpaque(false);
         player1.setContentAreaFilled(false);
         player1.setBorderPainted(false);
@@ -184,32 +125,88 @@ public class StartGame {
         player3.setContentAreaFilled(false);
         player3.setBorderPainted(false);
 
+        //Player
+        	//BorderLayout of different type of player
+        panelPlayer = new JPanel();
+        panelPlayer.setLayout(new BorderLayout());
+        panelPlayer.add(player1, BorderLayout.NORTH);
+        panelPlayer.add(player2, BorderLayout.CENTER);
+        panelPlayer.add(player3, BorderLayout.SOUTH);
+        panelPlayer.setOpaque(false);        
+        	//info for a player (life point and attack point)
+        infoPLife = new JLabel("This player has " + String.valueOf(lP) + " life Point", JLabel.CENTER);
+        infoPAttack = new JLabel(" and " + String.valueOf(aP) + " attack Point", JLabel.CENTER);
+        infoPLife.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 25));
+        infoPLife.setForeground(Color.white);
+        infoPAttack.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 25));
+        infoPAttack.setForeground(Color.white);
+        infoP = new JPanel(new BorderLayout());
+        infoP.add(infoPLife, BorderLayout.NORTH);
+        infoP.add(infoPAttack, BorderLayout.SOUTH);
+        infoP.setOpaque(false);
+        	//player + info of a player
+        infoPlayer = new JPanel(new BorderLayout());
+        infoPlayer.add(panelPlayer, BorderLayout.CENTER);
+        infoPlayer.add(infoP, BorderLayout.SOUTH);
+        infoPlayer.setOpaque(false);
+        
+        //title
+        title = new JLabel("Dog Stellar", JLabel.CENTER);
+        title.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 75));
+        title.setForeground(Color.white);
+        
+        //description of the game
+        description = new JLabel("Description",  JLabel.CENTER);
+        description.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 25));
+        description.setForeground(Color.white);
+        
+        //Text for enter the name of player (not enable if no player is choose)
+        t = new JTextField(30);
+        t.setPreferredSize(new Dimension(10, 40));
+        t.setEnabled(false);
+        t.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == t) {
+                    namePlayer = t.getText();
+                    if (!namePlayer.equals("")) {
+                        startGame.setEnabled(true);
+                    }
+                }
+            }
+        });
+        chooseAName = new JLabel("Choose a name");
+        chooseAName.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 25));
+        chooseAName.setForeground(Color.white);
+        nameText = new JPanel();
+        nameText.add(chooseAName);
+        nameText.add(t);
+        nameText.setOpaque(false);
+
+        //button start game (not enable if there is no namePlayer)
+        startGame = new JButton("Start Game");
+        startGame.setEnabled(false);
+        startGame.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	player = new Player(namePlayer, lP, aP);
+                myJFrame.dispose();
+                interf = new Interface();  //start the game with the a player a planet ...
+                intro = new VideoPlayer();
+            }
+        });
         startGame.setOpaque(false);
         startGame.setContentAreaFilled(false);
         startGame.setBorderPainted(false);
         startGame.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 55));
         startGame.setForeground(Color.white);
 
-        //BorderLayout of player
-        panelPlayer = new JPanel();
-        panelPlayer.setLayout(new BorderLayout());
-        panelPlayer.add(player1, BorderLayout.NORTH);
-        panelPlayer.add(player2, BorderLayout.CENTER);
-        panelPlayer.add(player3, BorderLayout.SOUTH);
-        //transparent borderLayout
-        panelPlayer.setOpaque(false);
-
-        infoPlayer = new JPanel(new BorderLayout());
-        infoPlayer.add(panelPlayer, BorderLayout.CENTER);
-        infoPlayer.add(infoP, BorderLayout.SOUTH);
-        infoPlayer.setOpaque(false);
-        
+        //JPanel menu with title description and nameText
         menu = new JPanel(new BorderLayout());
         menu.add(title, BorderLayout.NORTH);
         menu.add(description, BorderLayout.CENTER);
-        menu.add(t, BorderLayout.SOUTH);
+        menu.add(nameText, BorderLayout.SOUTH);
         menu.setOpaque(false);
         
+        //JPanel with menu, infoPlayer and button start game
         rightIcon = new JPanel();
         rightIcon.setLayout(new BorderLayout());
         rightIcon.add(menu, BorderLayout.CENTER);
@@ -217,19 +214,10 @@ public class StartGame {
         rightIcon.add(startGame, BorderLayout.SOUTH);
         rightIcon.setOpaque(false);
         
-        //transparent BorderLayout
-        rightIcon.setOpaque(false);
-        
-        //image background
+        //myJFrame with an image background
         myJFrame.setContentPane(new JLabel(new ImageIcon(picturePath + "BackgroundStartGame.png")));
-
-        //BorderLayout
         myJFrame.setLayout(new BorderLayout());
         myJFrame.add(rightIcon);
-
-        // size of JPanel
-        panelPlayer.setPreferredSize(new Dimension(200, 400));
-        startGame.setPreferredSize(new Dimension(200, 100));
 
         //size of frame
         myJFrame.setSize(1200, 700);

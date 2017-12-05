@@ -47,7 +47,7 @@ public final class Window extends GeneralWindow {
         planets = thePlanets;
         area = planets.get(0).getAreas();
 
-        theCurrentZone = adjustWindowToAreaPlanet(area);
+        theCurrentZone = adjustWindow(area);
     }
 
     /**
@@ -73,7 +73,7 @@ public final class Window extends GeneralWindow {
             southArrow.setEnabled(false);
         } else {
             southArrow.addActionListener((ActionEvent e) -> {
-                adjustWindowToAreaPlanet(area.getOrientationArea(south));
+                adjustWindow(area.getOrientationArea(south));
             });
         }
 
@@ -81,7 +81,7 @@ public final class Window extends GeneralWindow {
             northArrow.setEnabled(false);
         } else {
             northArrow.addActionListener((ActionEvent e) -> {
-                adjustWindowToAreaPlanet(area.getOrientationArea(north));
+                adjustWindow(area.getOrientationArea(north));
             });
         }
 
@@ -89,7 +89,7 @@ public final class Window extends GeneralWindow {
             eastArrow.setEnabled(false);
         } else {
             eastArrow.addActionListener((ActionEvent e) -> {
-                adjustWindowToAreaPlanet(area.getOrientationArea(east));
+                adjustWindow(area.getOrientationArea(east));
             });
         }
 
@@ -97,7 +97,7 @@ public final class Window extends GeneralWindow {
             westArrow.setEnabled(false);
         } else {
             westArrow.addActionListener((ActionEvent e) -> {
-                adjustWindowToAreaPlanet(area.getOrientationArea(west));
+                adjustWindow(area.getOrientationArea(west));
             });
         }
 
@@ -119,11 +119,16 @@ public final class Window extends GeneralWindow {
      *
      * @param newArea the new area to display in the window
      */
-    public String adjustWindowToAreaPlanet(AreaPlanet newArea) {
+    public String adjustWindow(AreaPlanet newArea) {
         catchPicture(newArea);
+        return adjustWindow();
+    }
+    
+    public String adjustWindow()
+    {
         erraseGrid();
 
-        if (planets.get(0).getAreas().equals(newArea)) {
+        if (planets.get(0).getAreas().equals(area)) {
             ShipView ship = new ShipView(getPicturePath());
             ship.addActionListener(new ActionListener() {
                 @Override
@@ -148,7 +153,7 @@ public final class Window extends GeneralWindow {
             addRandomlyComponent(new ElementView(getPicturePath(), e));
         });
         drawGrid();
-        return newArea.getNameArea();
+        return area.getNameArea();
     }
 
     /**

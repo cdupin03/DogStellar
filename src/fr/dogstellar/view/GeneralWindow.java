@@ -307,5 +307,7 @@ public abstract class GeneralWindow extends JPanel {
     {
         return theCurrentZone;
     }
+    
+    public abstract String adjustWindow();
 
 }
