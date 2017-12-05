@@ -2,8 +2,7 @@ package fr.dogstellar.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.File;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
@@ -25,6 +24,8 @@ public class VideoPlayer extends JFrame implements ActionListener {
     private final JFXPanel jfxPanel = new JFXPanel();
     private final JPanel jPanel1 = new JPanel();
     private String picturePath;
+    private File file;
+    private MediaPlayer oracleVid;
 
     /**
      * The JFrame of the video contain the MediaPlayer created in the createScene method
@@ -42,6 +43,15 @@ public class VideoPlayer extends JFrame implements ActionListener {
         jPanel1.setLayout(new BorderLayout());                                                      //The Layout of the panel
         jPanel1.add(jfxPanel, BorderLayout.CENTER);                                                 //The media player is add to the panel
 
+        this.addWindowListener(new WindowAdapter(){
+            public void windowClosing(WindowEvent e){
+                oracleVid.stop();                                                           //With any action (closing the frame or when the video is finished) the video is stoped
+                dispose();                                                             //Closing the frame
+            }
+        });
+        
+        
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);                                  //Closing the frame not the application
         this.add(jPanel1);                                                                          //The panel is add to the JFrame
         this.pack();                                                                                //Sizes the frame so that all its contents are at or above their preferred sizes
         this.setLocationRelativeTo(null);                                                           //The display on the JFrame is on center of the screen
@@ -53,8 +63,8 @@ public class VideoPlayer extends JFrame implements ActionListener {
      */
     private void createScene() {
         Platform.runLater(() -> {
-            File file = new File(picturePath + "Intro.mp4");
-            MediaPlayer oracleVid = new MediaPlayer(new Media(file.toURI().toString()));
+            file = new File(picturePath + "Intro.mp4");
+            oracleVid = new MediaPlayer(new Media(file.toURI().toString()));
             
             //Initialise the JFXPanel with the scene inside
             jfxPanel.setScene(new Scene(new Group(new MediaView(oracleVid))));
@@ -65,11 +75,12 @@ public class VideoPlayer extends JFrame implements ActionListener {
     }
 
     /**
-     * When the time of the timer is finished, the JFrame of the video is leaved
+     * When the time of the timer is finished or when the JFrame is closed, the video stopped and the JFrame disappear
      * @param ae the action
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
-        this.dispose();
+        oracleVid.stop();                                                           //With any action (closing the frame or when the video is finished) the video is stoped
+        this.dispose();                                                             //Closing the frame
     }
 }

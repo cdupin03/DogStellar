@@ -1,17 +1,14 @@
 package fr.dogstellar.view;
 
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 import java.awt.event.*;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import fr.dogstellar.core.AreaPlanet;
-import fr.dogstellar.core.Planet;
 import fr.dogstellar.core.Player;
+import java.awt.Font;
 
 import java.util.*;
+import java.awt.GraphicsEnvironment;
 
 /**
  * The start game allows to choose a perso and a name for the player in a dedicated window
@@ -21,18 +18,30 @@ import java.util.*;
  */
 public class StartGame {
 
-    private JFrame myJFrame;
-    private JLabel title, infoPLife, infoPAttack, description, chooseAName;
-    private JButton player1, player2, player3, startGame;
-    private JPanel panelPlayer, infoP, infoPlayer, rightIcon, menu, nameText;
-    private JTextField t;
-    private String namePlayer = "";
-    private static Player player;
-    private String picturePath;
-    private int lP, aP, tmplP, tmpaP;
-    private static Interface interf;
-    private static ImageIcon imagePlayer;
-    private VideoPlayer intro;
+    private JFrame myJFrame;			
+    private JLabel title; 						//It is the title of the Game (DogStellar)
+    private JLabel infoPLife; 					//display the info (life Point) of the player (different between 3 types of player)
+    private JLabel infoPAttack;					//display the info (Attack Point) of the player (different between 3 types of player)
+    private JLabel description;					//Description of the game
+    private JLabel chooseAName;					//name of the JTextField
+    private JTextField t;						//Is the area to right the name of the player
+    private JButton player1,player2,player3; 	//JButton for the 3 types of player
+    private JButton startGame;					//JButton for start the game
+    private JPanel panelPlayer;					//JPanel contain the 3 types of player
+    private JPanel infoP;						//JPanel that display the infoPLife and infoPAttack
+    private JPanel infoPlayer;					//JPanel that display the 3 players + infoPLife and Attack
+    private JPanel nameText;					//JPanel with chooseAName and the JtextFiels
+    private JPanel menu;						//JPanel menu with title description and nameText
+    private JPanel rightIcon;					//JPanel with menu, infoPlayer and button start game
+
+    
+    private String namePlayer = "";				//Initialize the name of the player to ""
+    private static Player player;				//It is the player
+    private String picturePath;					//To know where the picture are in the computer
+    private int lP, aP, tmplP, tmpaP;			// integer to the lifePoint, attackPoint, ?????????????????????????
+    private static Interface interf;			//Is the interface
+    private static ImageIcon imagePlayer;		//Is the image of the player that is select
+    private VideoPlayer intro;					//Is the video that is start when the game is start
     
     /**
      * The constructor of this class
@@ -136,9 +145,9 @@ public class StartGame {
         	//info for a player (life point and attack point)
         infoPLife = new JLabel("This player has " + String.valueOf(lP) + " life Point", JLabel.CENTER);
         infoPAttack = new JLabel(" and " + String.valueOf(aP) + " attack Point", JLabel.CENTER);
-        infoPLife.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 25));
+        infoPLife.setFont(new java.awt.Font(Font.DIALOG, Font.BOLD, 25));
         infoPLife.setForeground(Color.white);
-        infoPAttack.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 25));
+        infoPAttack.setFont(new java.awt.Font(Font.DIALOG, Font.BOLD, 25));
         infoPAttack.setForeground(Color.white);
         infoP = new JPanel(new BorderLayout());
         infoP.add(infoPLife, BorderLayout.NORTH);
@@ -152,12 +161,12 @@ public class StartGame {
         
         //title
         title = new JLabel("Dog Stellar", JLabel.CENTER);
-        title.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 75));
+        title.setFont(new java.awt.Font(Font.DIALOG, Font.BOLD, 75));
         title.setForeground(Color.white);
         
         //description of the game
         description = new JLabel("Description",  JLabel.CENTER);
-        description.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 25));
+        description.setFont(new java.awt.Font(Font.DIALOG, Font.BOLD, 25));
         description.setForeground(Color.white);
         
         //Text for enter the name of player (not enable if no player is choose)
@@ -175,7 +184,7 @@ public class StartGame {
             }
         });
         chooseAName = new JLabel("Choose a name");
-        chooseAName.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 25));
+        chooseAName.setFont(new java.awt.Font(Font.DIALOG, Font.BOLD, 25));
         chooseAName.setForeground(Color.white);
         nameText = new JPanel();
         nameText.add(chooseAName);
@@ -196,7 +205,7 @@ public class StartGame {
         startGame.setOpaque(false);
         startGame.setContentAreaFilled(false);
         startGame.setBorderPainted(false);
-        startGame.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 55));
+        startGame.setFont(new java.awt.Font(Font.DIALOG, Font.BOLD, 55));
         startGame.setForeground(Color.white);
 
         //JPanel menu with title description and nameText

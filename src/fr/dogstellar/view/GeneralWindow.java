@@ -29,7 +29,7 @@ public abstract class GeneralWindow extends JPanel {
     private final String picturePath;                                           //The path of the pictures
     private Image back;                                                         //The back Image
     private final Interface interfac;                                           //The interface that display this window
-    protected String theCurrentZone;
+   // private String theCurrentZone;
     
     /**
      * The constructor of the GeneralWindow Class
@@ -43,7 +43,7 @@ public abstract class GeneralWindow extends JPanel {
         nameOfFirstBackgroundPicture = "";                                      //Initialize the name of the background
         components = new HashMap<>();                                           //Instanciate the HashMap which displays the elements 
         setHeight(7);                                                           //The Height of the HashMap 
-        setLength(13);                                                          //The Length of the HashMap
+        setLength(7);                                                          //The Length of the HashMap
     }
 
     /**
@@ -303,11 +303,17 @@ public abstract class GeneralWindow extends JPanel {
      */
     public abstract void setEnableArrows(boolean ena);
     
-    public String getCurrentArea()
-    {
-        return theCurrentZone;
-    }
+//    public String getCurrentArea()
+//    {
+//        return theCurrentZone;
+//    }
     
+    /**
+     * Adjust the window to its current environment, actualize the grid and components.
+     * @return the name of the current area.
+     */
     public abstract String adjustWindow();
+    
+    public abstract void returnToFirstMap ();
 
 }

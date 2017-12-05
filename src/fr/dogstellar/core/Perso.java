@@ -55,25 +55,27 @@ public class Perso {
             attackPoint = attackP;
         }
     }
-    
+
     //The monster constructor
-    public Perso(String nameP, int lifeP, int attackP, QuestElement aQuestElement, Stuff aStuffElement)
-    {
-        if (nameP.isEmpty())
-            namePerso="Perso1";
-        else
-            namePerso=nameP;
-        
-        if (lifeP<=0 || lifeP>10)
-            lifePoint=10;
-        else
-            lifePoint=lifeP;
-        
-        if (attackP<=0 || attackP>10)
-            attackPoint=10;
-        else
-            attackPoint=attackP;
-        
+    public Perso(String nameP, int lifeP, int attackP, QuestElement aQuestElement, Stuff aStuffElement) {
+        if (nameP.isEmpty()) {
+            namePerso = "Perso1";
+        } else {
+            namePerso = nameP;
+        }
+
+        if (lifeP <= 0 || lifeP > 10) {
+            lifePoint = 10;
+        } else {
+            lifePoint = lifeP;
+        }
+
+        if (attackP <= 0 || attackP > 10) {
+            attackPoint = 10;
+        } else {
+            attackPoint = attackP;
+        }
+
         aMonsterQuest = aQuestElement;
         aMonsterStuff = aStuffElement;
     }
@@ -210,33 +212,38 @@ public class Perso {
         }
     }
 
-
     /**
-
+     *
      * To get a the stuff element that the monster have
-     * 
+     *
      * @return aMonsterStuff is the stuff of the monster
      */
-    public Stuff getTheMonsterStuff()
-    {
+    public Stuff getTheMonsterStuff() {
         return aMonsterStuff;
     }
-    
+
     /**
      * To get a the quest element that the monster have
-     * 
+     *
      * @return aMonsterQuest is the element of the monster
      */
-    public QuestElement getMonsterElementQuest()
-    {
+    public QuestElement getMonsterElementQuest() {
         return aMonsterQuest;
     }
-    
+
+    /**
+     * To know if the monster is dead
+     *
+     * @return isDead = true if the monster is dead, false if it is not
+     */
     public boolean getIsDead() {
-    	return(isDead);
+        return (isDead);
     }
-    
+
+    /**
+     * To declare the monster as dead
+     */
     public void setIsDead() {
-    	isDead=true;
+        isDead = true;
     }
 }
