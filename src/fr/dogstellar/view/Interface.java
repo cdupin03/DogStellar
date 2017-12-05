@@ -46,9 +46,9 @@ public class Interface {
 
     private GeneralWindow theWindow;
 
-    private DisplayInfo infoPlayer, infoArea; 					//
-    private JPanel displayInfo = new JPanel();					//
-    private JLabel imageP;
+    private DisplayInfo infoPlayer, infoArea; 					//It is the information of the player that is display thanks to displayInfo
+    private JPanel displayInfo = new JPanel();					//it is the JPanel with the info of the player
+    private JLabel imageP;										//Is the image of the player that is select in the startGame
     
     /**
      * The constructor of the class Interface
@@ -56,7 +56,7 @@ public class Interface {
     public Interface() {  
 //Console
         areaToWrite.setPreferredSize(new Dimension(340, 30));        //Set the size of the area to write
-        areaToWrite.setFont(new Font(Font.SERIF, Font.PLAIN, 18));    //Font of the area to write
+        areaToWrite.setFont(new Font(Font.SERIF, Font.PLAIN, 18));   //Font of the area to write
 
         ok.setText("OK");                                           //Set the button text
         ok.setForeground(Color.black);                              //Set the color of the button
@@ -90,7 +90,7 @@ public class Interface {
         ImageIcon picture = new ImageIcon(picturePath + "inventory.png");       //image for the inventory button
         inventory = new JButton(picture);                                       // create the button
         displayP.add(inventory);                                                // add the button to the inventory
-        inventory.setToolTipText("click here to acess to you inventory");       // set a descritpion text
+        inventory.setToolTipText("click here to acess to you inventory");       // set a description text
         // transparent inventory
         inventory.setOpaque(false);
         inventory.setContentAreaFilled(false);
@@ -100,7 +100,6 @@ public class Interface {
         inventory.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
                 InventoryPanel ip = new InventoryPanel(StartGame.getPlayer());
 
             }
@@ -118,7 +117,7 @@ public class Interface {
         
         displayInfo.setLayout(new BorderLayout());					//Set the layout of the displayInfo part
         displayInfo.add(displayP, BorderLayout.WEST);				//Add the information of the player in the displayInfo Panel
-//        displayInfo.add(displayA, BorderLayout.CENTER);			   // Add the information of the area in the displayInfo Panel
+        //displayInfo.add(displayA, BorderLayout.CENTER);			   // Add the information of the area in the displayInfo Panel
         
         bottom.setLayout(new BorderLayout());                       //Set the layout of the bottom part
         bottom.add(console, BorderLayout.EAST);                     //Add the console to the right part of the bottom
