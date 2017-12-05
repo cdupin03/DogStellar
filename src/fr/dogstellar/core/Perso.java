@@ -23,9 +23,9 @@ public class Perso {
     private String namePerso;
     protected int lifePoint; //ATTTTTTTTTTTTTTTENEEEEEEEEEEEEEEEEEEEEEEEEEENNNNNNNNNNNNNNNNNNNNTIIIIIIIIIIIIONNNNNNNNNNNN
     protected int attackPoint;//ATTTTTTTTTTTTTTTENEEEEEEEEEEEEEEEEEEEEEEEEEENNNNNNNNNNNNNNNNNNNNTIIIIIIIIIIIIONNNNNNNNNNNN
-    protected ArrayList<Stuff> inventory;
     private QuestElement aMonsterQuest;
     private Stuff aMonsterStuff;
+    private boolean isDead = false;
 
     /**
      * Constructor of the Perso class The user can give a name to the player. If
@@ -54,7 +54,6 @@ public class Perso {
         } else {
             attackPoint = attackP;
         }
-        inventory = new ArrayList();
     }
     
     //The monster constructor
@@ -211,62 +210,6 @@ public class Perso {
         }
     }
 
-    /**
-     * this method allows us to add a stuff in the list of stuff (the inventory)
-     * of the player when he wins a stuff we can add several same stuff
-     *
-     * @param Stuff is the name of the stuff
-     * @param numberStuffAdd is a number of stuff that we add to the inventory
-     * when the player win it
-     */
-    public void addStuff(Stuff stuff, int numberStuffAdd) {
-        for (int n = 0; n < numberStuffAdd; n++) {
-            inventory.add(stuff);
-        }
-    }
-
-    /**
-     * this method allows us to delete a stuff in the list of stuff (inventory)
-     * of the player when he lost a stuff we can delete only one Stuff with this
-     * method
-     *
-     * @param stuff is the name of the stuff
-     */
-    public void deleteStuff(Stuff stuff) {
-        for (Stuff s : inventory) {
-            if (s == stuff) {
-                inventory.remove(stuff);
-                break;
-            }
-        }
-    }
-    
-    public ArrayList<Stuff> getStuff()
-    {
-        return inventory;
-    }
-
-    /**
-     * This method returns the list of stuff(inventory) of the user.
-     *
-     */
-    public void displayStuff() {
-        for (Stuff stuff : inventory) {
-            System.out.println(stuff.getInformation().getName());
-        }
-    }
-
-    /**
-     * This method allows us to know if a stuff is in inventory or not.
-     */
-    public boolean isInList(Stuff stuff) {
-        for (Stuff s : inventory) {
-            if (s == stuff) {
-                return (true);
-            }
-        }
-        return (false);
-    }
 
     /**
 
@@ -287,5 +230,13 @@ public class Perso {
     public QuestElement getMonsterElementQuest()
     {
         return aMonsterQuest;
+    }
+    
+    public boolean getIsDead() {
+    	return(isDead);
+    }
+    
+    public void setIsDead() {
+    	isDead=true;
     }
 }
