@@ -21,8 +21,8 @@ public class Perso {
 
     // instance variables - replace the example below with your own
     private String namePerso;
-    protected int lifePoint; //ATTTTTTTTTTTTTTTENEEEEEEEEEEEEEEEEEEEEEEEEEENNNNNNNNNNNNNNNNNNNNTIIIIIIIIIIIIONNNNNNNNNNNN
-    protected int attackPoint;//ATTTTTTTTTTTTTTTENEEEEEEEEEEEEEEEEEEEEEEEEEENNNNNNNNNNNNNNNNNNNNTIIIIIIIIIIIIONNNNNNNNNNNN
+    private int lifePoint;
+    private int attackPoint;
     private QuestElement aMonsterQuest;
     private Stuff aMonsterStuff;
     private boolean isDead = false;

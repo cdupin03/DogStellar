@@ -39,7 +39,7 @@ public class PersoView extends PictureButton {
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to attack the monster ? Be carfull, you can not stop a fight", "choose one", JOptionPane.YES_NO_OPTION);
+                int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to attack the monster ? Be carefull, you can not stop a fight", "choose one", JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
                     Fight theFight = new Fight(monster, StartGame.getPlayer());
                     StartGame.getInterf().getTheWindow().adjustWindow();
