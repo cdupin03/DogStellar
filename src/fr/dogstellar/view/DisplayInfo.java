@@ -18,10 +18,10 @@ public class DisplayInfo extends JPanel{
 	private JLabel namePlayer, nameBarLife, nameBarAttack, nPlanet, nArea;
     private JProgressBar progressLife = new JProgressBar();
     private JProgressBar progressAttack = new JProgressBar();
-	private JPanel barLife = new JPanel();							//Panel for the information of the player
+	private JPanel barLife = new JPanel();								//Panel for the information of the player
 	private JPanel barAttack = new JPanel();							//Panel for the information of the player
-	private JPanel bar = new JPanel();							//Panel for the information of the player
-	private JPanel infoArea = new JPanel();						//Panel for the information of the Area
+	private JPanel bar = new JPanel();									//Panel for the information of the player
+	private JPanel infoArea = new JPanel();								//Panel for the information of the Area
 	
 	public DisplayInfo() {
 		
