@@ -73,7 +73,7 @@ public class VideoPlayer extends JFrame implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
-        oracleVid.stop();
-        this.dispose();
+        oracleVid.stop();                                                           //With any action (closing the frame or when the video is finished) the video is stoped
+        this.dispose();                                                             //Closing the frame
     }
 }
