@@ -15,12 +15,6 @@ import javax.swing.*;
 import javax.swing.text.DefaultCaret;
 import javax.swing.ImageIcon;
 import java.awt.BorderLayout;
-import java.awt.Container;
-
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JProgressBar;
-import javax.swing.border.Border;
 
 /**
  * The Class Interface is the main Interface of the game, it allows to interract
@@ -54,10 +48,13 @@ public class Interface {
 
     private DisplayInfo infoPlayer, infoArea; 					//
     private JPanel displayInfo = new JPanel();					//
+    private JLabel imageP;
+    
     /**
      * The constructor of the class Interface
      */
-    public Interface() {
+    public Interface() {  
+//Console
         areaToWrite.setPreferredSize(new Dimension(340, 30));        //Set the size of the area to write
         areaToWrite.setFont(new Font(Font.SERIF, Font.PLAIN, 18));    //Font of the area to write
 
@@ -88,13 +85,13 @@ public class Interface {
         console.add(display, BorderLayout.CENTER);                              //Add the panel display in the console
         console.add(write, BorderLayout.SOUTH);                                 //Add the panel write in the console
 
-        //Left part of the interface
+//Inventory
         String picturePath = System.getProperty("user.dir") + "/pictures/";     //variable containing the path for the inventory image
         ImageIcon picture = new ImageIcon(picturePath + "inventory.png");       //image for the inventory button
         inventory = new JButton(picture);                                       // create the button
         displayP.add(inventory);                                                // add the button to the inventory
         inventory.setToolTipText("click here to acess to you inventory");       // set a descritpion text
-        // transparence inventory
+        // transparent inventory
         inventory.setOpaque(false);
         inventory.setContentAreaFilled(false);
         inventory.setBorderPainted(false);
@@ -108,12 +105,38 @@ public class Interface {
 
             }
         });
+        
+//info Player (image, namePlayer, barLife and barAttack, inventory)
+        infoPlayer = new DisplayInfo();								//The displayInfo with the name, barLife and barAttack
+        
+        imageP = new JLabel(StartGame.getImagePlayer());			//image of the player (choose in the startGame)
+        
+        displayP.setLayout(new BorderLayout());						//JPanel imageP, infoPlayer, inventory
+        displayP.add(imageP, BorderLayout.WEST);
+        displayP.add(infoPlayer, BorderLayout.CENTER);
+        displayP.add(inventory, BorderLayout.EAST); 
+        
+        displayInfo.setLayout(new BorderLayout());					//Set the layout of the displayInfo part
+        displayInfo.add(displayP, BorderLayout.WEST);				//Add the information of the player in the displayInfo Panel
+//        displayInfo.add(displayA, BorderLayout.CENTER);			   // Add the information of the area in the displayInfo Panel
+        
+        bottom.setLayout(new BorderLayout());                       //Set the layout of the bottom part
+        bottom.add(console, BorderLayout.EAST);                     //Add the console to the right part of the bottom
+        bottom.add(displayInfo, BorderLayout.CENTER);				//Add the info of the player
+        
+        
+        //JLabel test = new JLabel();
+        //test.setText(theWindow.getCurrentArea());
+        
+        displayA.setLayout(new BorderLayout());
+        //displayA.add(infoArea, BorderLayout.CENTER);
+        //displayA.add(test);
 
-        /*
-         *  *****   *  *   *****      ** **   *****   *****                                          
-         *    *     ****   **         * * *   *****   *****                                                       
-         *    *     *  *   *****      *   *   *   *   *                                     
-         */
+/*
+ *  *****   *  *   *****      ** **   *****   *****                                          
+ *    *     ****   **         * * *   *****   *****                                                       
+ *    *     *  *   *****      *   *   *   *   *                                     
+ */
         Planet planet1 = new Planet("Planet1", "Etrange", 0);
         Planet planet2 = new Planet("Planet2", "Tout aussi etrange", 3);
         ArrayList<Planet> planets = new ArrayList<Planet>(); //The list of planets the first planet is the actual planet.
@@ -140,34 +163,9 @@ public class Interface {
 
         top.setLayout(new BorderLayout());                          //Set the layout of the top part       
         top.add(theWindow, BorderLayout.CENTER);                    //Add the area map in the top part
-   
-        infoPlayer = new DisplayInfo();
-        
-        JLabel imageP = new JLabel(StartGame.getImagePlayer());
-        
-        displayP.setLayout(new BorderLayout());
-        displayP.add(imageP, BorderLayout.WEST);
-        displayP.add(infoPlayer, BorderLayout.CENTER);
-        displayP.add(inventory, BorderLayout.EAST); 
-        
-        displayInfo.setLayout(new BorderLayout());					//Set the layout of the displayInfo part
-        displayInfo.add(displayP, BorderLayout.WEST);				//Add the information of the player in the displayInfo Panel
-//        displayInfo.add(displayA, BorderLayout.CENTER);			   // Add the information of the area in the displayInfo Panel
-        
-        bottom.setLayout(new BorderLayout());                       //Set the layout of the bottom part
-        bottom.add(console, BorderLayout.EAST);                     //Add the console to the right part of the bottom
-        bottom.add(displayInfo, BorderLayout.CENTER);				//Add the info of the player
-        
-        
-        
-        JLabel test = new JLabel();
-        test.setText(theWindow.getCurrentArea());
-        
-        displayA.setLayout(new BorderLayout());
-        //displayA.add(infoArea, BorderLayout.CENTER);
 
-        //displayA.add(test);
-        
+//theInterface        
+        theInterface.setBackground(Color.BLACK);
         theInterface.setPreferredSize(new Dimension(1200, 700));     //Set the size of the frame
         theInterface.setLayout(new BorderLayout());                 //Set the display of the frame
         theInterface.add(top, BorderLayout.CENTER);                 //Add the top part in the frame
@@ -177,7 +175,7 @@ public class Interface {
         theInterface.setLocationRelativeTo(null);
         theInterface.setVisible(true);                              //To display the frame
 
-        //The actions of the button "OK" = save the answer, clear the area, add the message to the display console, disable the button
+//The actions of the button "OK" = save the answer, clear the area, add the message to the display console, disable the button
         ok.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 answer = areaToWrite.getText().trim().toUpperCase();
@@ -187,7 +185,7 @@ public class Interface {
             }
         });
 
-        //The button "OK" is enabled only if the JTextField areaToWrite have at least one character
+//The button "OK" is enabled only if the JTextField areaToWrite have at least one character
         areaToWrite.addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent event) {
                 if (!areaToWrite.getText().isEmpty()) {
@@ -198,7 +196,7 @@ public class Interface {
             }
         });
 
-        //If we press the key "enter", we have the same response that when we click on OK button
+//If we press the key "enter", we have the same response that when we click on OK button
         areaToWrite.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == areaToWrite) {
@@ -208,6 +206,7 @@ public class Interface {
         });
 
     }
+    
 
     /**
      * Add a message to the display console
