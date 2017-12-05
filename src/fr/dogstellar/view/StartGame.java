@@ -32,7 +32,8 @@ public class StartGame {
     private int lP, aP, tmplP, tmpaP;
     private static Interface interf;
     private static ImageIcon imagePlayer;
-
+    private VideoPlayer intro;
+    
     /**
      * The constructor of this class
      */
@@ -41,7 +42,7 @@ public class StartGame {
 
         myJFrame = new JFrame();
 
-        description = new JLabel("Description", JLabel.CENTER);
+        description = new JLabel("Description",  JLabel.CENTER);
         description.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 25));
         description.setForeground(Color.white);
         
@@ -148,6 +149,8 @@ public class StartGame {
                 }
             }
         });
+        
+        t.setPreferredSize(new Dimension(10, 40));
 
         //button start game (not enable if there is no namePlayer)
         startGame = new JButton("Start Game");
@@ -164,6 +167,7 @@ public class StartGame {
             	//System.out.println(player.getAttackPoint());
                 myJFrame.dispose();
                 interf = new Interface();  //start the game with the a player a planet ...
+                intro = new VideoPlayer();
             }
         });
 
