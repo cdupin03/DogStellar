@@ -116,18 +116,16 @@ public final class Window extends GeneralWindow {
      *
      * @param newArea the new area to display in the window
      */
-    public String adjustWindow(AreaPlanet newArea) {
+    public void adjustWindow(AreaPlanet newArea) {
         catchPicture(newArea);
-        return adjustWindow();
+        adjustWindow();
     }
     
     /**
      * This method refresh the area
-     * 
-     * @return area.getNameArea() = name of this area
      */
     @Override
-    public String adjustWindow()
+    public void adjustWindow()
     {
         erraseGrid();
 
@@ -156,7 +154,6 @@ public final class Window extends GeneralWindow {
             addRandomlyComponent(new ElementView(getPicturePath(), e));
         });
         drawGrid();
-        return area.getNameArea();
     }
 
     /**
@@ -192,12 +189,12 @@ public final class Window extends GeneralWindow {
     }
     
 
-    /**
-     * get the current area.
-     * @return theCurrentZone
-     */
-    public String getCurrentArea()
-    {
-        return theCurrentZone;
-    }
+//    /**
+//     * get the current area.
+//     * @return theCurrentZone
+//     */
+//    public String getCurrentArea()
+//    {
+//        return theCurrentZone;
+//    }
 }
