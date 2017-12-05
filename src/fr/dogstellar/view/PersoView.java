@@ -43,6 +43,7 @@ public class PersoView extends PictureButton {
                 if (result == JOptionPane.YES_OPTION) {
                     StartGame.getInterf().getTheWindow().setEnableArrows(false);
                     Fight theFight = new Fight(monster, StartGame.getPlayer());
+                    StartGame.getInterf().getTheWindow().adjustWindow();
                 }
             }
         });
