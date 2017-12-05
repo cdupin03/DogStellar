@@ -43,10 +43,11 @@ public class Fight {
         //Fight newFight = new Fight(myMonster, myPlayer);
         int pointLifeMonster = monster.getLifePoint();//It is the lifePoint of Monster in the beginning the fight
 
-        while (monster.getLifePoint() != 0 && player.getLifePoint() != 0) {
-        	StartGame.getInterf().addMessageToConsole("player attack");
+        while (monster.getLifePoint() != 0 && player.getLifePoint() != 0) 
+        {
             player.playerFight(monster, player.getAttackPoint());
-            if (monster.getLifePoint() == 0) {
+            if (monster.getLifePoint() == 0) 
+            {
             	StartGame.getInterf().addMessageToConsole(monster.getNamePerso() + " is dead ! You are the winner");
                 player.addStuff(monster.getMonsterElementQuest(), 1); //The player win a partOfShip when he win
                 StartGame.getInterf().addMessageToConsole("You win a piece of ship");
@@ -56,16 +57,22 @@ public class Fight {
                     StartGame.getInterf().addMessageToConsole("You win also a stuff ! Look your inventory");
                 }
                 monster.setIsDead();
-                System.out.println("the monster is dead" + monster.getIsDead());
+                //System.out.println("the monster is dead" + monster.getIsDead());
                 end = new Boolean(true);
                 break;
             }
+            StartGame.getInterf().addMessageToConsole("PLAYER ATTACK !");
             monster.monsterFight(player, monster.getAttackPoint());
-            StartGame.getInterf().addMessageToConsole("monster attack ! Now you have " + player.getLifePoint() + " life point");
+            StartGame.getInterf().addMessageToConsole("     Now you have " + player.getLifePoint() + " life point");
+            StartGame.getInterf().addMessageToConsole("MONSTER ATTACK !");
+            StartGame.getInterf().addMessageToConsole("     Now you have " + player.getLifePoint() + " life point");
+            StartGame.getInterf().getDisplay().refreshDisplay();
             if (player.getLifePoint() == 0) {
                 monster.setLifePoint(pointLifeMonster); // If the player lost the fight, the monster LifePoint is reinitialized as the beginning of the fight
                 StartGame.getInterf().addMessageToConsole(player.getNamePerso() + " is dead ! You are returned in your ship");
+                
                 // !!!!!!!!!!!!!! Call method return to ship !!!!!!!!!!!!!!!!!!
+                
                 end = new Boolean(true);
                 break;
             }
@@ -82,8 +89,7 @@ public class Fight {
     	if (getEnd() == true) {
     		GeneralWindow myNewWindow= StartGame.getInterf().getTheWindow();   		
     		StartGame.getInterf().setWindow(myNewWindow);
-    		//StartGame.getInterf().getTheWindow().setEnableArrows(true); // AAAAAAAAATTTTTTTTTTEEEEEEEENNNNNNNNTTTTTTIIIIIIOOOOOOOOOONNNNNNNN
-    		
+                
     	}
     }
 }

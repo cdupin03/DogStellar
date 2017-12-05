@@ -124,6 +124,11 @@ public final class Window extends GeneralWindow {
         return adjustWindow();
     }
     
+    /**
+     * This method refresh the area
+     * 
+     * @return area.getNameArea() = name of this area
+     */
     public String adjustWindow()
     {
         erraseGrid();

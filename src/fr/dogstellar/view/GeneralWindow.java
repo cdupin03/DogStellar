@@ -43,7 +43,7 @@ public abstract class GeneralWindow extends JPanel {
         nameOfFirstBackgroundPicture = "";                                      //Initialize the name of the background
         components = new HashMap<>();                                           //Instanciate the HashMap which displays the elements 
         setHeight(7);                                                           //The Height of the HashMap 
-        setLength(13);                                                          //The Length of the HashMap
+        setLength(7);                                                          //The Length of the HashMap
     }
 
     /**

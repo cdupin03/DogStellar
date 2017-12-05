@@ -68,7 +68,7 @@ public class VideoPlayer extends JFrame implements ActionListener {
     }
 
     /**
-     * When the time of the timer is finished, the JFrame of the video is leaved
+     * When the time of the timer is finished or when the JFrame is closed, the video stopped and the JFrame disappear
      * @param ae the action
      */
     @Override

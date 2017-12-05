@@ -49,11 +49,11 @@ public class Interface {
     private DisplayInfo infoPlayer, infoArea; 					//
     private JPanel displayInfo = new JPanel();					//
     private JLabel imageP;
-    
+
     /**
      * The constructor of the class Interface
      */
-    public Interface() {  
+    public Interface() {
 //Console
         areaToWrite.setPreferredSize(new Dimension(340, 30));        //Set the size of the area to write
         areaToWrite.setFont(new Font(Font.SERIF, Font.PLAIN, 18));    //Font of the area to write
@@ -95,7 +95,7 @@ public class Interface {
         inventory.setOpaque(false);
         inventory.setContentAreaFilled(false);
         inventory.setBorderPainted(false);
-        
+
         //ActionListenener for generate the inventory frame in one click
         inventory.addActionListener(new ActionListener() {
             @Override
@@ -105,29 +105,27 @@ public class Interface {
 
             }
         });
-        
+
 //info Player (image, namePlayer, barLife and barAttack, inventory)
         infoPlayer = new DisplayInfo();								//The displayInfo with the name, barLife and barAttack
-        
+
         imageP = new JLabel(StartGame.getImagePlayer());			//image of the player (choose in the startGame)
-        
+
         displayP.setLayout(new BorderLayout());						//JPanel imageP, infoPlayer, inventory
         displayP.add(imageP, BorderLayout.WEST);
         displayP.add(infoPlayer, BorderLayout.CENTER);
-        displayP.add(inventory, BorderLayout.EAST); 
-        
+        displayP.add(inventory, BorderLayout.EAST);
+
         displayInfo.setLayout(new BorderLayout());					//Set the layout of the displayInfo part
         displayInfo.add(displayP, BorderLayout.WEST);				//Add the information of the player in the displayInfo Panel
 //        displayInfo.add(displayA, BorderLayout.CENTER);			   // Add the information of the area in the displayInfo Panel
-        
+
         bottom.setLayout(new BorderLayout());                       //Set the layout of the bottom part
         bottom.add(console, BorderLayout.EAST);                     //Add the console to the right part of the bottom
         bottom.add(displayInfo, BorderLayout.CENTER);				//Add the info of the player
-        
-        
+
         //JLabel test = new JLabel();
         //test.setText(theWindow.getCurrentArea());
-        
         displayA.setLayout(new BorderLayout());
         //displayA.add(infoArea, BorderLayout.CENTER);
         //displayA.add(test);
@@ -159,7 +157,6 @@ public class Interface {
 
         theWindow = new Window(planets, this);
         //theWindow = new InShip(this, planets);
-
 
         top.setLayout(new BorderLayout());                          //Set the layout of the top part       
         top.add(theWindow, BorderLayout.CENTER);                    //Add the area map in the top part
@@ -206,7 +203,6 @@ public class Interface {
         });
 
     }
-    
 
     /**
      * Add a message to the display console
@@ -255,5 +251,16 @@ public class Interface {
      */
     public JFrame getInterface() {
         return theInterface;
+    }
+    
+    
+    /**
+     * To return the info display for modification
+     * 
+     * @return infoPlayer = the Object of the class DisplayInfo
+     */
+    public DisplayInfo getDisplay()
+    {
+        return infoPlayer;
     }
 }
