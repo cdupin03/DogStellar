@@ -41,10 +41,10 @@ public class Interface {
 
     private final JButton inventory;                            //Button which allow to open the inventory
 
-    private Perso monstre1 = new Perso("Monstre", 2, 5, new QuestElement("A Piece","that same piece"), new Armor("MyGreatArmor", "sfddghfxhfgd", 3));
-    private Perso monstre2 = new Perso("Monstre2", 3, 2, new QuestElement("Another piece","that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6));
+    private Perso monstre1 = new Perso("Monstre", 10, 5, new QuestElement("PieceShip","that same piece"), new Armor("MyGreatArmor", "sfddghfxhfgd", 3));
+    private Perso monstre2 = new Perso("Monstre2", 10, 2, new QuestElement("PieceShip","that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6));
 
-    private GeneralWindow theWindow;
+    private GeneralWindow theWindow, theShip;
 
     private DisplayInfo infoPlayer, infoArea; 					//It is the information of the player that is display thanks to displayInfo
     private JPanel displayInfo = new JPanel();					//it is the JPanel with the info of the player
@@ -149,6 +149,8 @@ public class Interface {
         planets.add(planet4);
 
        //Planet 1 with 3 areas and different elements(perso,element) on them
+        //AreaPlanet Area0Planet1 = new AreaPlanet("Ship", "your ship", "");
+        
         AreaPlanet Area1Planet1 = new AreaPlanet("Area1", "rdytfuygiut", "map/map1.png");
         Area1Planet1.addPerso(monstre1);
         Area1Planet1.addElement(new Element("Coffre", "Petit coffre", 1));
@@ -251,6 +253,7 @@ public class Interface {
              
         
 		theWindow = new Window(planets, this);
+		
         //theWindow = new InShip(this, planets);
 
 

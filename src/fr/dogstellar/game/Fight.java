@@ -69,6 +69,7 @@ public class Fight {
             if (player.getLifePoint() == 0) {
                 monster.setLifePoint(pointLifeMonster); // If the player lost the fight, the monster LifePoint is reinitialized as the beginning of the fight
                 StartGame.getInterf().addMessageToConsole(player.getNamePerso() + " is dead ! You are returned in your ship");
+                StartGame.getInterf().getTheWindow().returnToFirstMap();
 
                 // !!!!!!!!!!!!!! Call method return to ship !!!!!!!!!!!!!!!!!!
                 end = new Boolean(true);
