@@ -199,7 +199,7 @@ public class StartGame {
             	player = new Player(namePlayer, lP, aP);
                 myJFrame.dispose();
                 interf = new Interface();  //start the game with the a player a planet ...
-                intro = new VideoPlayer();
+                intro = new VideoPlayer("Intro.mp4");
             }
         });
         startGame.setOpaque(false);
@@ -231,8 +231,9 @@ public class StartGame {
         //size of frame
         myJFrame.setSize(1200, 700);
 
+        myJFrame.setResizable(false);                               //This JFrame is not resizable
         myJFrame.setLocationRelativeTo(null);
-        myJFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Closing the frame close the application
+        myJFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    //Closing the frame close the application
         myJFrame.setVisible(true);
     }
 

@@ -137,46 +137,114 @@ public class Interface {
  *    *     *  *   *****      *   *   *   *   *                                     
  */
         Planet planet1 = new Planet("Planet1", "Etrange", 0);
-        Planet planet2 = new Planet("Planet2", "Tout aussi etrange", 3);
-        Planet theLastPlanet = new Planet ("Honvaonauti", "Your goal", 1);
-        ArrayList<Planet> planets = new ArrayList<>(); //The list of planets the first planet is the actual planet.
+        Planet planet2 = new Planet("Planet2", "Tout aussi etrange", 0);
+        Planet planet4 = new Planet("Space","Always in weightlessness" , 0);
+        Planet planet3 = new Planet("Sand Planet ", "Planet filled with sand", 0);
+        
+        ArrayList<Planet> planets = new ArrayList<Planet>(); //The list of planets the first planet is the actual planet.
         //If we change planet, the new planet exchange its place with the first.
         planets.add(planet1);
         planets.add(planet2);
-        planets.add(theLastPlanet);
+        planets.add(planet3);
+        planets.add(planet4);
 
-        AreaPlanet test1 = new AreaPlanet("tyuiuyfv", "rdytfuygiut", "champ.jpg");
-        test1.addPerso(monstre1);
-        test1.addPerso(monstre2);
-        test1.addElement(new Element("Coffre", "Petit coffre", 1));
-        test1.addElement(new Element("Enigme", "Une enigme", 4));
-        test1.addElement(new Element("Trap", "Un piege déguisé", 2));
-        test1.addElement(new Element("PNJ", "Un pnj champu", 3));
-        AreaPlanet test2 = new AreaPlanet("Bqzld", "rdytfiut", "lave.jpg");
-        AreaPlanet test3 = new AreaPlanet("Nouvelle planete", "hum ...", "mario.jpeg");
-        AreaPlanet theLastArea = new AreaPlanet("The last area", "The big night club", "finText.jpg");
-        theLastPlanet.addArea(theLastArea);
-        test1.addAreaPlanet(test2, "south");
-        planet1.addArea(test1);
-        planet2.addArea(test3);
+        //Planet 1 with 3 areas and different elements(perso,element) on them
+        AreaPlanet Area1Planet1 = new AreaPlanet("Area1", "rdytfuygiut", "map/map1.png");
+        Area1Planet1.addPerso(monstre1);
+        Area1Planet1.addElement(new Element("Coffre", "Petit coffre", 1));
+        Area1Planet1.addElement(new Element("Enigme", "Une enigme", 4));
+        
+        AreaPlanet Area2Planet1 = new AreaPlanet("Area2", "rdytfiut", "map/map3.png");
+        Area2Planet1.addPerso(monstre2);
+        Area2Planet1.addElement(new Element("Trap", "Un piege déguisé", 2));
+        Area2Planet1.addElement(new Element("PNJ", "Un pnj champu", 3));
+        
+        AreaPlanet Area3Planet1 = new AreaPlanet("Area3", "hum ...", "map/map2.png");
+        Area3Planet1.addPerso(monstre2);
+        Area3Planet1.addElement(new Element("Trap", "Un piege déguisé", 2));
+        Area3Planet1.addElement(new Element("PNJ", "Un pnj champu", 3));
+        
+        Area1Planet1.addAreaPlanet(Area2Planet1, "south");
+        Area2Planet1.addAreaPlanet(Area3Planet1, "east");
+        
+        planet1.addArea(Area1Planet1);
+        
+        //Planet2 with 5 areas
+        AreaPlanet Area1Planet2 = new AreaPlanet("Area1", "rdytfuygiut", "map/map6.png");
+        //Area1Planet2.addPerso(monstre1);
+        //Area1Planet2.addElement(new Element("Coffre", "Petit coffre", 1));
+        //Area1Planet2.addElement(new Element("Enigme", "Une enigme", 4));
+        
+        AreaPlanet Area2Planet2 = new AreaPlanet("Area2", "rdytfiut", "map/map4.png");
+        //Area2Planet2.addPerso(monstre2);
+        //Area2Planet2.addElement(new Element("Trap", "Un piege déguisé", 2));
+        //Area2Planet2.addElement(new Element("PNJ", "Un pnj champu", 3));
+        
+        AreaPlanet Area3Planet2 = new AreaPlanet("Area3", "hum ...", "map/map5.png");
+        //Area3Planet2.addPerso(monstre2);
+        //Area3Planet2.addElement(new Element("Trap", "Un piege déguisé", 2));
+        //Area3Planet2.addElement(new Element("PNJ", "Un pnj champu", 3));
+        
+        /*AreaPlanet Area4Planet2 = new AreaPlanet("Area3", "hum ...", "map/map2.png");
+        Area3Planet1.addPerso(monstre2);
+        Area3Planet1.addElement(new Element("Trap", "Un piege déguisé", 2));
+        Area3Planet1.addElement(new Element("PNJ", "Un pnj champu", 3));
+        
+        AreaPlanet Area5Planet2 = new AreaPlanet("Area3", "hum ...", "map/map2.png");
+        Area3Planet1.addPerso(monstre2);
+        Area3Planet1.addElement(new Element("Trap", "Un piege déguisé", 2));
+        Area3Planet1.addElement(new Element("PNJ", "Un pnj champu", 3));*/
+        
+        Area1Planet2.addAreaPlanet(Area2Planet2, "north");
+        Area2Planet2.addAreaPlanet(Area3Planet2, "west");
+        //Area1Planet2.addAreaPlanet(Area4Planet2, "south");
+        //Area4Planet2.addAreaPlanet(Area5Planet2, "west");
+        
+        planet2.addArea(Area1Planet2);
+        
+      //Planet 3 with 2 areas and different elements(perso,element) on them
+        AreaPlanet Area1Planet3 = new AreaPlanet("Area1", "rdytfuygiut", "map/map8.png");
+        //Area1Planet3.addPerso(monstre1);
+        //Area1Planet3.addElement(new Element("Coffre", "Petit coffre", 1));
+        //Area1Planet3.addElement(new Element("Enigme", "Une enigme", 4));
+        
+        AreaPlanet Area2Planet3 = new AreaPlanet("Area2", "rdytfiut", "map/map7.png");
+        //Area2Planet3.addPerso(monstre2);
+        //Area2Planet3.addElement(new Element("Trap", "Un piege déguisé", 2));
+        //Area2Planet3.addElement(new Element("PNJ", "Un pnj champu", 3));
+        
+        AreaPlanet Area3Planet3 = new AreaPlanet("Area3", "hum ...", "map/map9.png");
+        //Area3Planet3.addPerso(monstre2);
+        //Area3Planet3.addElement(new Element("Trap", "Un piege déguisé", 2));
+        //Area3Planet3.addElement(new Element("PNJ", "Un pnj champu", 3));
+        
+        Area1Planet3.addAreaPlanet(Area2Planet3, "west");
+        Area2Planet3.addAreaPlanet(Area3Planet3, "west");
+        
+        planet3.addArea(Area1Planet3);
+
+		
+		
+		
 
         theWindow = new Window(planets, this);
         //theWindow = new InShip(this, planets);
 
 
-        top.setLayout(new BorderLayout());                          //Set the layout of the top part       
-        top.add(theWindow, BorderLayout.CENTER);                    //Add the area map in the top part
+        top.setLayout(new BorderLayout());                              //Set the layout of the top part       
+        top.add(theWindow, BorderLayout.CENTER);                        //Add the area map in the top part
 
 //theInterface        
         theInterface.setBackground(Color.BLACK);
-        theInterface.setPreferredSize(new Dimension(1200, 700));     //Set the size of the frame
-        theInterface.setLayout(new BorderLayout());                 //Set the display of the frame
-        theInterface.add(top, BorderLayout.CENTER);                 //Add the top part in the frame
-        theInterface.add(bottom, BorderLayout.SOUTH);               //Add the bottom part in the frame
-        theInterface.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Closing the frame close the application
-        theInterface.pack();                                        //Sizes the frame so that all its contents are at or above their preferred sizes
-        theInterface.setLocationRelativeTo(null);
-        theInterface.setVisible(true);                              //To display the frame
+        theInterface.setPreferredSize(new Dimension(1200, 700));        //Set the size of the frame
+        theInterface.setLayout(new BorderLayout());                     //Set the display of the frame
+        theInterface.add(top, BorderLayout.CENTER);                     //Add the top part in the frame
+        theInterface.add(bottom, BorderLayout.SOUTH);                   //Add the bottom part in the frame
+        theInterface.setResizable(false);                               //This JFrame is not resizable
+        theInterface.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    //Closing the frame close the application
+        theInterface.pack();                                            //Sizes the frame so that all its contents are at or above their preferred sizes
+        theInterface.setLocationRelativeTo(null);                       //The JFrame is on the screen center
+        theInterface.setVisible(true);                                  //To display the frame
 
 //The actions of the button "OK" = save the answer, clear the area, add the message to the display console, disable the button
         ok.addActionListener(new ActionListener() {
