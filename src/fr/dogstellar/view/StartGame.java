@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import com.sun.org.apache.xpath.internal.operations.And;
+
 import fr.dogstellar.core.Player;
 import java.awt.Font;
 
@@ -177,7 +179,7 @@ public class StartGame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == t) {
                     namePlayer = t.getText();
-                    if (!namePlayer.equals("")) {
+                    if (!namePlayer.equals("") && (namePlayer.length()>=3)) {
                         startGame.setEnabled(true);
                     }
                 }
