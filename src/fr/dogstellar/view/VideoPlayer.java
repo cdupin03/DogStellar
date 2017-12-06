@@ -25,16 +25,19 @@ public class VideoPlayer extends JFrame implements ActionListener {
     private final JPanel jPanel1 = new JPanel();
     private String picturePath;
     private File file;
+    private String nameVideo;
     private MediaPlayer oracleVid;
 
     /**
      * The JFrame of the video contain the MediaPlayer created in the createScene method
      */
-    public VideoPlayer() {
+    public VideoPlayer(String thisVideo) {
         picturePath = picturePath = System.getProperty("user.dir") + "/videos/";        //The path of the video
         Timer timer = new Timer(39000, this);                                                       //The timer is set to the time of video plus one second, allows to close the JFrame
         timer.start();                                                                              //The start of the conter
         createScene();                                                                              //This method allows to create the media player
+        nameVideo = thisVideo;
+        file = new File(picturePath + nameVideo);
 
         setTitle("DogStellar : the beginning");
         setResizable(false);                                                                        //This JFrame is not resizable
@@ -63,7 +66,6 @@ public class VideoPlayer extends JFrame implements ActionListener {
      */
     private void createScene() {
         Platform.runLater(() -> {
-            file = new File(picturePath + "Intro.mp4");
             oracleVid = new MediaPlayer(new Media(file.toURI().toString()));
             
             //Initialise the JFXPanel with the scene inside
