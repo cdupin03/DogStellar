@@ -1,6 +1,7 @@
 package fr.dogstellar.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.*;
 import java.io.File;
@@ -46,6 +47,18 @@ public class VideoPlayer extends JFrame implements ActionListener {
         jPanel1.setLayout(new BorderLayout());                                                      //The Layout of the panel
         jPanel1.add(jfxPanel, BorderLayout.CENTER);                                                 //The media player is add to the panel
 
+        JButton skip = new JButton("Skip");															//When this button is cliked, the video ends and the game starts
+        //skip.setBackground(Color.black);
+        jPanel1.add(skip, BorderLayout.SOUTH);
+        
+       skip.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                oracleVid.stop();                                                           //With any action (closing the frame or when the video is finished) the video is stoped
+                dispose();                                                             //Closing the frame
+            }
+        });
+        
+        
         this.addWindowListener(new WindowAdapter(){
             public void windowClosing(WindowEvent e){
                 oracleVid.stop();                                                           //With any action (closing the frame or when the video is finished) the video is stoped

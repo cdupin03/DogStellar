@@ -41,10 +41,10 @@ public class Interface {
 
     private final JButton inventory;                            //Button which allow to open the inventory
 
-    private Perso monstre1 = new Perso("Monstre", 2, 5, new QuestElement("A Piece","that same piece"), new Armor("MyGreatArmor", "sfddghfxhfgd", 3));
-    private Perso monstre2 = new Perso("Monstre2", 3, 2, new QuestElement("Another piece","that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6));
+    private Perso monstre1 = new Perso("Monstre", 10, 5, new QuestElement("PieceShip","that same piece"), new Armor("MyGreatArmor", "sfddghfxhfgd", 3));
+    private Perso monstre2 = new Perso("Monstre2", 10, 2, new QuestElement("PieceShip","that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6));
 
-    private GeneralWindow theWindow;
+    private GeneralWindow theWindow, theShip;
 
     private DisplayInfo infoPlayer, infoArea; 					//It is the information of the player that is display thanks to displayInfo
     private JPanel displayInfo = new JPanel();					//it is the JPanel with the info of the player
@@ -137,9 +137,9 @@ public class Interface {
  *    *     *  *   *****      *   *   *   *   *                                     
  */
         Planet planet1 = new Planet("Planet1", "Etrange", 0);
-        Planet planet2 = new Planet("Planet2", "Tout aussi etrange", 0);
+        Planet planet2 = new Planet("Sand Planet ", "Planet filled with sand", 0);
+        Planet planet3 = new Planet("Planet3", "Tout aussi etrange", 0);
         Planet planet4 = new Planet("Space","Always in weightlessness" , 0);
-        Planet planet3 = new Planet("Sand Planet ", "Planet filled with sand", 0);
         
         ArrayList<Planet> planets = new ArrayList<Planet>(); //The list of planets the first planet is the actual planet.
         //If we change planet, the new planet exchange its place with the first.
@@ -148,7 +148,9 @@ public class Interface {
         planets.add(planet3);
         planets.add(planet4);
 
-        //Planet 1 with 3 areas and different elements(perso,element) on them
+       //Planet 1 with 3 areas and different elements(perso,element) on them
+        //AreaPlanet Area0Planet1 = new AreaPlanet("Ship", "your ship", "");
+        
         AreaPlanet Area1Planet1 = new AreaPlanet("Area1", "rdytfuygiut", "map/map1.png");
         Area1Planet1.addPerso(monstre1);
         Area1Planet1.addElement(new Element("Coffre", "Petit coffre", 1));
@@ -169,65 +171,89 @@ public class Interface {
         
         planet1.addArea(Area1Planet1);
         
-        //Planet2 with 5 areas
-        AreaPlanet Area1Planet2 = new AreaPlanet("Area1", "rdytfuygiut", "map/map6.png");
+      //Planet 2 with 2 areas and different elements(perso,element) on them
+        AreaPlanet Area1Planet2 = new AreaPlanet("Area1", "rdytfuygiut", "map/map10.png");
         //Area1Planet2.addPerso(monstre1);
         //Area1Planet2.addElement(new Element("Coffre", "Petit coffre", 1));
         //Area1Planet2.addElement(new Element("Enigme", "Une enigme", 4));
         
-        AreaPlanet Area2Planet2 = new AreaPlanet("Area2", "rdytfiut", "map/map4.png");
+        AreaPlanet Area2Planet2 = new AreaPlanet("Area2", "rdytfiut", "map/map11.png");
         //Area2Planet2.addPerso(monstre2);
         //Area2Planet2.addElement(new Element("Trap", "Un piege déguisé", 2));
         //Area2Planet2.addElement(new Element("PNJ", "Un pnj champu", 3));
         
-        AreaPlanet Area3Planet2 = new AreaPlanet("Area3", "hum ...", "map/map5.png");
+        AreaPlanet Area3Planet2 = new AreaPlanet("Area3", "hum ...", "map/map8.png");
         //Area3Planet2.addPerso(monstre2);
         //Area3Planet2.addElement(new Element("Trap", "Un piege déguisé", 2));
         //Area3Planet2.addElement(new Element("PNJ", "Un pnj champu", 3));
         
-        /*AreaPlanet Area4Planet2 = new AreaPlanet("Area3", "hum ...", "map/map2.png");
-        Area3Planet1.addPerso(monstre2);
-        Area3Planet1.addElement(new Element("Trap", "Un piege déguisé", 2));
-        Area3Planet1.addElement(new Element("PNJ", "Un pnj champu", 3));
+        AreaPlanet Area4Planet2 = new AreaPlanet("Area4", "hum ...", "map/map12.png");
+        AreaPlanet Area5Planet2 = new AreaPlanet("Area5", "hum ...", "map/map7.png");
+        AreaPlanet Area6Planet2 = new AreaPlanet("Area6", "hum ...", "map/map9.png");
         
-        AreaPlanet Area5Planet2 = new AreaPlanet("Area3", "hum ...", "map/map2.png");
-        Area3Planet1.addPerso(monstre2);
-        Area3Planet1.addElement(new Element("Trap", "Un piege déguisé", 2));
-        Area3Planet1.addElement(new Element("PNJ", "Un pnj champu", 3));*/
+        Area1Planet2.addAreaPlanet(Area2Planet2, "east");
+        Area2Planet2.addAreaPlanet(Area3Planet2, "south");
+        Area3Planet2.addAreaPlanet(Area4Planet2, "east");
+        Area4Planet2.addAreaPlanet(Area5Planet2, "east");
+        Area1Planet2.addAreaPlanet(Area6Planet2, "west");
         
-        Area1Planet2.addAreaPlanet(Area2Planet2, "north");
-        Area2Planet2.addAreaPlanet(Area3Planet2, "west");
-        //Area1Planet2.addAreaPlanet(Area4Planet2, "south");
-        //Area4Planet2.addAreaPlanet(Area5Planet2, "west");
+        planet3.addArea(Area1Planet2);
         
-        planet2.addArea(Area1Planet2);
-        
-      //Planet 3 with 2 areas and different elements(perso,element) on them
-        AreaPlanet Area1Planet3 = new AreaPlanet("Area1", "rdytfuygiut", "map/map8.png");
+       //Planet3 with 3 areas
+        AreaPlanet Area1Planet3 = new AreaPlanet("Area1", "rdytfuygiut", "map/map6.png");
         //Area1Planet3.addPerso(monstre1);
         //Area1Planet3.addElement(new Element("Coffre", "Petit coffre", 1));
         //Area1Planet3.addElement(new Element("Enigme", "Une enigme", 4));
         
-        AreaPlanet Area2Planet3 = new AreaPlanet("Area2", "rdytfiut", "map/map7.png");
+        AreaPlanet Area2Planet3 = new AreaPlanet("Area2", "rdytfiut", "map/map4.png");
         //Area2Planet3.addPerso(monstre2);
         //Area2Planet3.addElement(new Element("Trap", "Un piege déguisé", 2));
         //Area2Planet3.addElement(new Element("PNJ", "Un pnj champu", 3));
         
-        AreaPlanet Area3Planet3 = new AreaPlanet("Area3", "hum ...", "map/map9.png");
+        AreaPlanet Area3Planet3 = new AreaPlanet("Area3", "hum ...", "map/map5.png");
         //Area3Planet3.addPerso(monstre2);
         //Area3Planet3.addElement(new Element("Trap", "Un piege déguisé", 2));
         //Area3Planet3.addElement(new Element("PNJ", "Un pnj champu", 3));
         
-        Area1Planet3.addAreaPlanet(Area2Planet3, "west");
+        Area1Planet3.addAreaPlanet(Area2Planet3, "north");
         Area2Planet3.addAreaPlanet(Area3Planet3, "west");
+        //Area1Planet2.addAreaPlanet(Area4Planet2, "south");
+        //Area4Planet2.addAreaPlanet(Area5Planet2, "west");
         
-        planet3.addArea(Area1Planet3);
-
+        planet2.addArea(Area1Planet3);
+        
+      //Planet 4 with 6 areas and different elements(perso,element) on them
+        AreaPlanet Area1Planet4 = new AreaPlanet("Area1", "rdytfuygiut", "map/map16.png");
+        //Area1Planet4.addPerso(monstre1);
+        //Area1Planet4.addElement(new Element("Coffre", "Petit coffre", 1));
+        //Area1Planet4.addElement(new Element("Enigme", "Une enigme", 4));
+        
+        AreaPlanet Area2Planet4 = new AreaPlanet("Area2", "rdytfiut", "map/map17.png");
+        //Area2Planet4.addPerso(monstre2);
+        //Area2Planet4.addElement(new Element("Trap", "Un piege déguisé", 2));
+        //Area2Planet4.addElement(new Element("PNJ", "Un pnj champu", 3));
+        
+        AreaPlanet Area3Planet4 = new AreaPlanet("Area3", "hum ...", "map/map18.png");
+        //Area3Planet4.addPerso(monstre2);
+        //Area3Planet4.addElement(new Element("Trap", "Un piege déguisé", 2));
+        //Area3Planet4.addElement(new Element("PNJ", "Un pnj champu", 3));
+        
+        AreaPlanet Area4Planet4 = new AreaPlanet("Area3", "hum ...", "map/map15.png");
+        AreaPlanet Area5Planet4 = new AreaPlanet("Area3", "hum ...", "map/map13.png");
+        AreaPlanet Area6Planet4 = new AreaPlanet("Area3", "hum ...", "map/map14.png");
+        
+        Area1Planet4.addAreaPlanet(Area2Planet4, "east");
+        Area2Planet4.addAreaPlanet(Area3Planet4, "south");
+        Area1Planet4.addAreaPlanet(Area4Planet4, "west");
+        Area4Planet4.addAreaPlanet(Area5Planet4, "west");
+        Area5Planet4.addAreaPlanet(Area6Planet4, "south");
+        
+        
+        planet4.addArea(Area1Planet4);
+             
+        
+		theWindow = new Window(planets, this);
 		
-		
-		
-
-        theWindow = new Window(planets, this);
         //theWindow = new InShip(this, planets);
 
 
