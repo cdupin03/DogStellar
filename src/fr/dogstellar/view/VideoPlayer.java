@@ -1,10 +1,9 @@
 package fr.dogstellar.view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import javax.swing.*;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Group;
@@ -12,80 +11,81 @@ import javafx.scene.Scene;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import javax.swing.*;
 
 /**
  *This class allows to display a video, and when the video is finished, this display disappears
  * 
  * @author Group 3
- * @version V01
+ * @version V03
  */
-public class VideoPlayer extends JFrame implements ActionListener {
+public class VideoPlayer implements ActionListener {
 
-    private final JFXPanel jfxPanel = new JFXPanel();
-    private final JPanel jPanel1 = new JPanel();
-    private String picturePath;
-    private File file;
-    private String nameVideo;
-    private MediaPlayer oracleVid;
+    private JFrame theFrame = new JFrame();                                     //The main Frame
+    private final JFXPanel jfxPanel = new JFXPanel();                           //The container of the media player
+    private final JPanel jPanel1 = new JPanel();                                //The Panel that contains the media player container
+    private MediaPlayer mediaPlayer;                                            //The media player
+    private final Timer timer;                                                  //The timer that allows to close the Frame after the end of the video
+    
+    private String picturePath;                                                 //The folder of the video
+    private final String nameVideo;
+    private final File file;
+    
+    
+    
 
     /**
-     * The JFrame of the video contain the MediaPlayer created in the createScene method
+     * The JFrame of the video contain the MediaPlayer created in the createMediaView method
+     * @param thisVideo
      */
     public VideoPlayer(String thisVideo) {
-        picturePath = picturePath = System.getProperty("user.dir") + "/videos/";        //The path of the video
-        Timer timer = new Timer(39000, this);                                                       //The timer is set to the time of video plus one second, allows to close the JFrame
-        timer.start();                                                                              //The start of the conter
-        createScene();                                                                              //This method allows to create the media player
-        nameVideo = thisVideo;
-        file = new File(picturePath + nameVideo);
-
-        setTitle("DogStellar : the beginning");
-        setResizable(false);                                                                        //This JFrame is not resizable
+        picturePath = picturePath = System.getProperty("user.dir") + "/videos/";//The path of the video
+        timer = new Timer(39000, this);                                         //The timer is set to the time of video plus one second, allows to close the JFrame
+        timer.start();                                                          //The start of the conter
+        createMediaView();                                                          //This method allows to create the media player
+        nameVideo = thisVideo;                                                  //The video to play
+        file = new File(picturePath + nameVideo);                               //This JFrame is not resizable
         
-        jPanel1.setPreferredSize(new Dimension(1200, 700));                                         //The size of the panel jPanel1 that contains the media player
-        jPanel1.setLayout(new BorderLayout());                                                      //The Layout of the panel
-        jPanel1.add(jfxPanel, BorderLayout.CENTER);                                                 //The media player is add to the panel
-
-        JButton skip = new JButton("Skip");															//When this button is cliked, the video ends and the game starts
-        //skip.setBackground(Color.black);
-        jPanel1.add(skip, BorderLayout.SOUTH);
+        JButton skip = new JButton("SKIP");                                     //The button that allows to skip the video										//When this button is cliked, the video ends and the game starts
+        skip.setBackground(Color.BLACK);                                        //The background color button
+        skip.setForeground(Color.WHITE);                                        //The font and the color of the skip button
         
-       skip.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                oracleVid.stop();                                                           //With any action (closing the frame or when the video is finished) the video is stoped
-                dispose();                                                             //Closing the frame
-            }
+        jPanel1.setPreferredSize(new Dimension(1200, 700));                     //The size of the panel jPanel1 that contains the media player
+        jPanel1.setLayout(new BorderLayout());                                  //The Layout of the panel
+        jPanel1.add(jfxPanel, BorderLayout.CENTER);                             //The media player is add to the panel
+        jPanel1.add(skip, BorderLayout.SOUTH);                                  //The skipbutton is add to the main panel
+        
+       skip.addActionListener((ActionEvent e) -> {
+           timer.stop();
+           theFrame.dispose();                                             //Close the frame when we click on the skip button
         });
         
+        theFrame.setTitle("DogStellar : the beginning");
+        theFrame.setResizable(false);
+        theFrame.add(jPanel1);
+        theFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);          //Closing the frame not the application                                                              //The panel is add to the JFrame
+        theFrame.pack();                                                        //Sizes the frame so that all its contents are at or above their preferred sizes
+        theFrame.setLocationRelativeTo(null);                                   //The display on the JFrame is on center of the screen
+        theFrame.setVisible(true);                                              //To display the frame
         
-        this.addWindowListener(new WindowAdapter(){
+        theFrame.addWindowListener(new WindowAdapter(){
+            @Override
             public void windowClosing(WindowEvent e){
-                oracleVid.stop();                                                           //With any action (closing the frame or when the video is finished) the video is stoped
-                dispose();                                                             //Closing the frame
+                skip.doClick(0);                                                //The same action that the skip button
             }
         });
         
-        
-        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);                                  //Closing the frame not the application
-        this.add(jPanel1);                                                                          //The panel is add to the JFrame
-        this.pack();                                                                                //Sizes the frame so that all its contents are at or above their preferred sizes
-        this.setLocationRelativeTo(null);                                                           //The display on the JFrame is on center of the screen
-        this.setVisible(true);                                                                      //To display the frame
     }
 
     /**
      * This method allows to create the display of the video
      */
-    private void createScene() {
+    private void createMediaView() {
         Platform.runLater(() -> {
-            oracleVid = new MediaPlayer(new Media(file.toURI().toString()));
-            
-            //Initialise the JFXPanel with the scene inside
-            jfxPanel.setScene(new Scene(new Group(new MediaView(oracleVid))));
-            
-            oracleVid.setVolume(0.7);                                               //Set the volume of the audio video
-            oracleVid.play();                                                       //To play the video
+            Media m =new Media(file.toURI().toString());                        //To create the media with the url of the file
+            mediaPlayer = new MediaPlayer(m);                                   //To create the media player
+            jfxPanel.setScene(new Scene(new Group(new MediaView(mediaPlayer))));//Initialise the JFXPanel with the media player inside
+            mediaPlayer.setVolume(0.7);                                         //Set the volume of the audio video
+            mediaPlayer.play();                                                 //To play the video
         });
     }
 
@@ -95,7 +95,8 @@ public class VideoPlayer extends JFrame implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
-        oracleVid.stop();                                                           //With any action (closing the frame or when the video is finished) the video is stoped
-        this.dispose();                                                             //Closing the frame
+        timer.stop();
+        mediaPlayer.stop();                                                           //With any action (closing the frame or when the video is finished) the video is stoped
+        theFrame.dispose();                                                             //Closing the frame
     }
 }

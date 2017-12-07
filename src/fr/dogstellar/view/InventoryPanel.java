@@ -39,8 +39,12 @@ public class InventoryPanel extends JFrame {
         this.setTitle("Inventory");                                             //The name of the JFrame
         this.setSize(1200, 700);
         this.setResizable(false);
-        this.setVisible(true);
+        
+        
+        this.getContentPane().setBackground(new Color(99,162,168));
         this.pack();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
     /**
@@ -58,6 +62,7 @@ public class InventoryPanel extends JFrame {
 
         this.add(lbl1);
         lbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl1.setForeground (Color.white);
         lbl1.setFont(new Font("Blippo", Font.PLAIN, 28));
         this.add(equipedInventory);
 
@@ -128,6 +133,7 @@ public class InventoryPanel extends JFrame {
 
         lbl2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl2.setFont(new Font("Blippo", Font.PLAIN, 28));
+        lbl2.setForeground (Color.white);
         this.add(lbl2);
         this.add(inventory);
         // check if the inventory is empty
@@ -327,7 +333,7 @@ public class InventoryPanel extends JFrame {
         String iconPic = null;
         // test if the stuff is a quest element
         if (isQuestElement(theStuff)) {
-            iconPic = "/pictures/engrenage.jpg"; // set the image for the quest element
+            iconPic = "/pictures/shipPiece.png"; // set the image for the quest element
         }
         //test if the stuff is a weapon 
         if (isWeapon(theStuff)) {
@@ -335,7 +341,7 @@ public class InventoryPanel extends JFrame {
                     theStuff.getInformation().getDescription(), ((Weapon) theStuff).getDamage()); // create a weapon variable with the stuff attributes 
             //load the associate image in function of the dammage of the weapon
             if ((myWeapon.getDamage() <= 3)) {
-                iconPic = "/pictures/weapon1.jpg";
+                iconPic = "/pictures/weapon1.png";
 
             } else if (myWeapon.getDamage() <= 5) {
                 iconPic = "/pictures/weapon2.png";

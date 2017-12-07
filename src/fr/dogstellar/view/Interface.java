@@ -7,6 +7,7 @@ import fr.dogstellar.core.Perso;
 import fr.dogstellar.core.Planet;
 import fr.dogstellar.core.Potion;
 import fr.dogstellar.core.QuestElement;
+import fr.dogstellar.core.Weapon;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -38,8 +39,10 @@ public class Interface {
     private final JTextArea displayMessage = new JTextArea();   //The area to display message
     private JTextField areaToWrite = new JTextField();          //The area to write answer
     private String answer;                                      //The last answer that is write
-
+    private final JPanel subP;                                  // A subPanel containing the inventory and returnship button
     private final JButton inventory;                            //Button which allow to open the inventory
+    private final JButton returnMap;                           //Button wich allow to return to the first map 
+   
 
     private Perso monstre1 = new Perso("Monstre", 10, 5, new QuestElement("PieceShip","that same piece"), new Armor("MyGreatArmor", "sfddghfxhfgd", 3));
     private Perso monstre2 = new Perso("Monstre2", 10, 2, new QuestElement("PieceShip","that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6));
@@ -86,10 +89,11 @@ public class Interface {
         console.add(write, BorderLayout.SOUTH);                                 //Add the panel write in the console
 
 //Inventory
+        
         String picturePath = System.getProperty("user.dir") + "/pictures/";     //variable containing the path for the inventory image
         ImageIcon picture = new ImageIcon(picturePath + "inventory.png");       //image for the inventory button
         inventory = new JButton(picture);                                       // create the button
-        displayP.add(inventory);                                                // add the button to the inventory
+                                                      // add the button to the inventory
         inventory.setToolTipText("click here to acess to you inventory");       // set a description text
         // transparent inventory
         inventory.setOpaque(false);
@@ -98,12 +102,48 @@ public class Interface {
         
         //ActionListenener for generate the inventory frame in one click
         inventory.addActionListener(new ActionListener() {
+            InventoryPanel ip;
+
             @Override
             public void actionPerformed(ActionEvent e) {
-                InventoryPanel ip = new InventoryPanel(StartGame.getPlayer());
-
+                if (ip == null) {
+                    ip = new InventoryPanel(StartGame.getPlayer());
+                    ip.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    ip.addWindowListener(new WindowAdapter() {
+                        public void windowClosed(java.awt.event.WindowEvent e) {
+                            ip = null; // comme ça on peut réouvrir la fenêtre si elle est fermée
+                        }
+                    ;
+                    });
+					ip.setVisible(true);
+                } else {
+                    // remettre la fenêtre en état normal si elle a été réduite
+                    if (ip.getState() == JFrame.ICONIFIED) {
+                        ip.setState(JFrame.NORMAL);
+                    }
+                    // remettre la fenêtre en premier plan
+                    ip.toFront();
+                }
             }
         });
+        //returnto the ship 
+        ImageIcon ship= new ImageIcon(picturePath+"map.png");
+        
+        returnMap = new JButton(ship);
+        returnMap.setToolTipText("Click here to return to the first map of the planet");
+        returnMap.setOpaque(false);
+        returnMap.setContentAreaFilled(false);
+        returnMap.setBorderPainted(false);
+        
+        returnMap.addActionListener(new ActionListener(){
+        @Override
+            public void actionPerformed(ActionEvent e){
+            theWindow.returnToFirstMap ();
+            }});
+       subP= new JPanel();
+        subP.setLayout(new BorderLayout());
+        subP.add(returnMap,BorderLayout.WEST);
+        subP.add(inventory,BorderLayout.EAST);
         
 //info Player (image, namePlayer, barLife and barAttack, inventory)
         infoPlayer = new DisplayInfo();								//The displayInfo with the name, barLife and barAttack
@@ -113,8 +153,7 @@ public class Interface {
         displayP.setLayout(new BorderLayout());						//JPanel imageP, infoPlayer, inventory
         displayP.add(imageP, BorderLayout.WEST);
         displayP.add(infoPlayer, BorderLayout.CENTER);
-        displayP.add(inventory, BorderLayout.EAST); 
-        
+        displayP.add(subP, BorderLayout.EAST);
         displayInfo.setLayout(new BorderLayout());					//Set the layout of the displayInfo part
         displayInfo.add(displayP, BorderLayout.WEST);				//Add the information of the player in the displayInfo Panel
         //displayInfo.add(displayA, BorderLayout.CENTER);			   // Add the information of the area in the displayInfo Panel
@@ -150,11 +189,13 @@ public class Interface {
 
        //Planet 1 with 3 areas and different elements(perso,element) on them
         //AreaPlanet Area0Planet1 = new AreaPlanet("Ship", "your ship", "");
+
         
         AreaPlanet Area1Planet1 = new AreaPlanet("Area1", "rdytfuygiut", "map/map1.png");
         Area1Planet1.addPerso(monstre1);
-        Area1Planet1.addElement(new Element("Coffre", "Petit coffre", 1));
-        Area1Planet1.addElement(new Element("Enigme", "Une enigme", 4));
+        Area1Planet1.addElement(new Element("Coffre", "Petit coffre", 4));
+        Weapon weapon1 = new Weapon ("Epee rouillé","Rien de bien puissant",3);
+        Area1Planet1.addElement(new Element("Quesqui est jaune et qui attend?", "Jonathan", 1,weapon1));
         
         AreaPlanet Area2Planet1 = new AreaPlanet("Area2", "rdytfiut", "map/map3.png");
         Area2Planet1.addPerso(monstre2);
@@ -304,7 +345,13 @@ public class Interface {
 
     }
     
-
+    /**
+     * Allow to have access to the ok button in other class. Element view use it to confirm answer
+     * @return return Jbutton OK 
+     */
+    public JButton okButton()
+    { return ok;
+    }
     /**
      * Add a message to the display console
      *
@@ -324,6 +371,18 @@ public class Interface {
         return answer;
     }
 
+    public JTextField getAreaToWrite() {
+        return areaToWrite;
+    }
+
+    
+    
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    
+    
     /**
      * To get the Window
      *

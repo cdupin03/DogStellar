@@ -40,10 +40,11 @@ public class StartGame {
     private String namePlayer = "";				//Initialize the name of the player to ""
     private static Player player;				//It is the player
     private String picturePath;					//To know where the picture are in the computer
-    private int lP, aP, tmplP, tmpaP;			// integer to the lifePoint, attackPoint, ?????????????????????????
+    private int lP, aP, tmpaP;			// integer to the lifePoint, attackPoint, ?????????????????????????
+    private static int tmplP;
     private static Interface interf;			//Is the interface
     private static ImageIcon imagePlayer;		//Is the image of the player that is select
-    private VideoPlayer intro;					//Is the video that is start when the game is start
+    //private VideoPlayer intro;					//Is the video that is start when the game is start
     
     /**
      * The constructor of this class
@@ -96,7 +97,7 @@ public class StartGame {
                 tmplP = 5;
                 tmpaP = 5;
                 majInfoP(tmplP, tmpaP);
-                System.out.println("entrer");
+                System.out.println("entrer"); 
             }
         });
 
@@ -201,7 +202,7 @@ public class StartGame {
             	player = new Player(namePlayer, lP, aP);
                 myJFrame.dispose();
                 interf = new Interface();  //start the game with the a player a planet ...
-                intro = new VideoPlayer("Intro.mp4");
+                new VideoPlayer("Intro.mp4");
             }
         });
         startGame.setOpaque(false);
@@ -274,6 +275,10 @@ public class StartGame {
      */
     public static ImageIcon getImagePlayer() {
         return (imagePlayer);
+    }
+    
+    public static int getLifePoint() {
+    	return(tmplP);
     }
 
 }
