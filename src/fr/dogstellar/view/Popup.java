@@ -2,6 +2,8 @@ package fr.dogstellar.view;
 
 import javax.swing.*;
 
+import fr.dogstellar.game.Fight;
+
 /**
  * This class allows to create a Pop-up window.
  *
@@ -22,6 +24,7 @@ public class Popup {
 
         ImageIcon img = new ImageIcon(picturePath + "message.png");                 //Set the message image
         JOptionPane.showMessageDialog(null, text, "Information", JOptionPane.INFORMATION_MESSAGE, img);
+
 
     }
 
