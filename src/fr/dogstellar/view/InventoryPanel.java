@@ -327,7 +327,7 @@ public class InventoryPanel extends JFrame {
         String iconPic = null;
         // test if the stuff is a quest element
         if (isQuestElement(theStuff)) {
-            iconPic = "/pictures/engrenage.jpg"; // set the image for the quest element
+            iconPic = "/pictures/shipPiece.png"; // set the image for the quest element
         }
         //test if the stuff is a weapon 
         if (isWeapon(theStuff)) {
@@ -335,7 +335,7 @@ public class InventoryPanel extends JFrame {
                     theStuff.getInformation().getDescription(), ((Weapon) theStuff).getDamage()); // create a weapon variable with the stuff attributes 
             //load the associate image in function of the dammage of the weapon
             if ((myWeapon.getDamage() <= 3)) {
-                iconPic = "/pictures/weapon1.jpg";
+                iconPic = "/pictures/weapon1.png";
 
             } else if (myWeapon.getDamage() <= 5) {
                 iconPic = "/pictures/weapon2.png";
