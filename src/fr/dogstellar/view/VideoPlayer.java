@@ -55,6 +55,7 @@ public class VideoPlayer implements ActionListener {
         jPanel1.add(skip, BorderLayout.SOUTH);                                  //The skipbutton is add to the main panel
         
        skip.addActionListener((ActionEvent e) -> {
+           timer.stop();
            theFrame.dispose();                                             //Close the frame when we click on the skip button
         });
         
