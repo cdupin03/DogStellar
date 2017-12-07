@@ -53,23 +53,23 @@ public class ElementView extends JButton {
             this.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent evt) 
                 {
-                    Popup newPopup = new Popup("Try to resolve the enigma in the console !");
+                    Popup newPopup = new Popup("Enigma :" + E.getInformation().getName());
                 
                     
               
                    
                   JButton ok = wind.getInterfac().okButton();
                 //  wind.getInterfac().setAnswer(""); 
+
                   
-                
-                
+                             
                   ok.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) 
             {   
                 boolean resolve = false;    
                 String answer = wind.getInterfac().getAreaToWrite().getText().trim().toUpperCase();
                  
-                resolve = E.resolveEnigma(answer, StartGame.getPlayer(), new Weapon ("arme", "description",2 )); 
+                resolve = E.resolveEnigma(answer, StartGame.getPlayer(), E.getReward()); 
                 //Ajouter un return true dans resolve enigma
 
                 if(resolve) { System.out.print(" SUCCES ");} 

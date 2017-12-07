@@ -115,13 +115,14 @@ public class Interface {
         AreaPlanet test1 = new AreaPlanet("tyuiuyfv", "rdytfuygiut", "champ.jpg");
         test1.addPerso(monstre1);
         test1.addPerso(monstre2);
-        test1.addElement(new Element("Enigme", "Trial", 1));
+        Weapon weapon1 = new Weapon ("Epeelourde", "Excalibur, il y en a qu'une seule", 2);
+        test1.addElement(new Element("Quesqui est jaune et qui attend ?", "Jonathan", 1, weapon1));
         test1.addElement(new Element("Coffre", "petit coffre", 4));
         test1.addElement(new Element("Trap", "Un piege déguisé", 2));
         test1.addElement(new Element("PNJ", "Un pnj champu", 3));
         AreaPlanet test2 = new AreaPlanet("Bqzld", "rdytfiut", "lave.jpg");
         AreaPlanet test3 = new AreaPlanet("Nouvelle planete", "hum ...", "mario.jpeg");
-        Weapon weapon1 = new Weapon ("Epeelourde", "Excalibur, il y en a qu'une seule", 2);
+
         test1.addAreaPlanet(test2, "south");
         planet1.addArea(test1);
         planet2.addArea(test3);

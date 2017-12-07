@@ -15,17 +15,35 @@ public class Element {
     private Info information; //informations of the Element
     private boolean Done; //Identifier for the already used object 
     private int type; //The type of objet :1- enigme,2- trap,3- people,4- chest
-
+    private Stuff reward; //The reward you may win
+    
     /**
      * This method is the constructor. It initialize the value of the Element.
-     * Give a name and a description to info attribute
+     * Give a name and a description to info attribute and their type, for element that give no reward
      */
     public Element(String name, String description, int newType) {
         information = new Info(name, description);
         type = newType;
         Done = false;
+        reward = null;
     }
 
+    /**
+     * This method is the constructor. It initialize the value of the Element.
+     * Give a name and a description to info attribute, their type and reward
+     * @param name
+     * @param description
+     * @param newType
+     * @param newReward 
+     */
+      public Element(String name, String description, int newType, Stuff newReward) {
+        information = new Info(name, description);
+        type = newType;
+        Done = false;
+        reward = newReward; 
+    }
+      
+      
     /**
      * This method allows us to resolve an enigma (an enigma is find in the
      * chest or given by a people)
@@ -83,4 +101,18 @@ public class Element {
         Done = true;
     }
 
+    public boolean isDone() {
+        return Done;
+    }
+
+    public Stuff getReward() {
+        return reward;
+    }
+
+    public void setDone(boolean Done) {
+        this.Done = Done;
+    }
+
+    
+    
 }
