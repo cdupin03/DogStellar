@@ -120,6 +120,6 @@ public class InShip extends GeneralWindow implements ActionListener {
     @Override
     public void returnToFirstMap ()
     {
-        
+        getInterfac().setWindow(new Window(planets, getInterfac()));
     }
 }
