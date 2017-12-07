@@ -73,7 +73,7 @@ public class Fight {
                 Popup retourVaisseau = new Popup("You are dead, you are going back to the ship");
                 StartGame.getInterf().getTheWindow().returnToFirstMap();
                 StartGame.getPlayer().setLifePoint(StartGame.getLifePoint());
-                StartGame.getInterf().getDisplay().refreshDisplay();
+                StartGame.getInterf().getDisplay().refreshDisplay(); 
 
                 // !!!!!!!!!!!!!! Call method return to ship !!!!!!!!!!!!!!!!!!
                 end = new Boolean(true);

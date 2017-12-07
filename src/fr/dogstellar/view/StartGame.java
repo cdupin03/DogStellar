@@ -97,7 +97,7 @@ public class StartGame {
                 tmplP = 5;
                 tmpaP = 5;
                 majInfoP(tmplP, tmpaP);
-                System.out.println("entrer");
+                System.out.println("entrer"); 
             }
         });
 
