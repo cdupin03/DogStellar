@@ -38,53 +38,59 @@ public class ElementView extends JButton {
 
         if (E.getType() == 1) //If the element is a enigma 
         {
-
-            ImageIcon imageIcon = new ImageIcon(PicturePath + "enigma.png");
-            imageIcon = ConvertImg(70, 60, imageIcon);
-
-            ImageIcon imageIcon2 = new ImageIcon(PicturePath + "enigma2.png");
-            imageIcon2 = ConvertImg(70, 60, imageIcon2);
-
-            this.setIcon(imageIcon);
-            this.setRolloverIcon(imageIcon2);
-            this.setBorder(BorderFactory.createEmptyBorder());
-            this.setContentAreaFilled(false);
+            if(E.getDone() != true)
+            {
+            afficher("enigma.png", "enigma2.png", 70, 60);
+            
 
             this.addMouseListener(new MouseAdapter() {
-                public void mouseClicked(MouseEvent evt) 
-                {
+                public void mouseClicked(MouseEvent evt) {
                     Popup newPopup = new Popup("Enigma :" + E.getInformation().getName());
-                
-                    
-              
-                   
-                  JButton ok = wind.getInterfac().okButton();
-                //  wind.getInterfac().setAnswer(""); 
+                    wind.getInterfac().addMessageToConsole(E.getInformation().getName());
 
-                  
-                             
-                  ok.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) 
-            {   
-                boolean resolve = false;    
-                String answer = wind.getInterfac().getAreaToWrite().getText().trim().toUpperCase();
-                 
-                resolve = E.resolveEnigma(answer, StartGame.getPlayer(), E.getReward()); 
-                //Ajouter un return true dans resolve enigma
+                    JButton ok = wind.getInterfac().okButton();
 
-                if(resolve) { System.out.print(" SUCCES ");} 
-                else { System.out.print(" FAILED ");} 
-            }
-        });
-                               
-                            
-                      
-                    
-                    
-                 }
+                    ActionListener answerEnigma = new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+
+                            boolean resolve = false;
+
+                            String answer = wind.getInterfac().getAreaToWrite().getText().trim().toUpperCase();
+
+                            resolve = E.resolveEnigma(answer, StartGame.getPlayer());
+                            //Ajouter un return true dans resolve enigma
+
+                            if (resolve) {
+                                wind.getInterfac().addMessageToConsole("Bravo! vous avez trouver la bonne solution! ");
+                                wind.getInterfac().addMessageToConsole("vous avez gagner :" + E.getReward().getInformation().getName());
+                                Popup newPopup = new Popup("Vous avez gagnée : " + E.getReward().getInformation().getName() + "!");
+                                ok.removeActionListener(this);
+                                E.setDone(true);
+                                //trial
+                                wind.adjustWindow();
+
+
+                            } else {
+                                wind.getInterfac().addMessageToConsole("Ce n'est pas la bonne réponse.");
+                                ok.removeActionListener(this);
+                                E.setDone(true);
+                            }
+                        }
+                    };
+
+                    ok.addActionListener(answerEnigma);
+
+                }
             });
+            }
             
-                 
+            else
+                
+            { 
+            afficher("enigma2.png", "enigma2.png", 70, 60);
+            }
+            
+            
         } else if (E.getType() == 2) //If the element is a trap
         {
             int randomNum = ThreadLocalRandom.current().nextInt(0, 3);          // initialize random number
@@ -169,4 +175,20 @@ public class ElementView extends JButton {
         return img;
     }
 
+    public void afficher(String image, String imageclick, int largeur, int longueur) 
+    { 
+        ImageIcon imageIcon = new ImageIcon(PicturePath + image);
+                imageIcon = ConvertImg(largeur, longueur, imageIcon);
+
+                ImageIcon imageIcon2 = new ImageIcon(PicturePath + imageclick);
+                imageIcon2 = ConvertImg(largeur, longueur, imageIcon2);
+
+                this.setIcon(imageIcon);
+                this.setRolloverIcon(imageIcon2);
+                this.setBorder(BorderFactory.createEmptyBorder());
+                this.setContentAreaFilled(false);
+    }
+
+   public void disable()
+   {this.setEnabled(false);}
 }

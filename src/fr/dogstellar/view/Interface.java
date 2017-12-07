@@ -193,8 +193,9 @@ public class Interface {
         
         AreaPlanet Area1Planet1 = new AreaPlanet("Area1", "rdytfuygiut", "map/map1.png");
         Area1Planet1.addPerso(monstre1);
-        Area1Planet1.addElement(new Element("Coffre", "Petit coffre", 1));
-        Area1Planet1.addElement(new Element("Enigme", "Une enigme", 4));
+        Area1Planet1.addElement(new Element("Coffre", "Petit coffre", 4));
+        Weapon weapon1 = new Weapon ("Epee rouillé","Rien de bien puissant",3);
+        Area1Planet1.addElement(new Element("Quesqui est jaune et qui attend?", "Jonathan", 1,weapon1));
         
         AreaPlanet Area2Planet1 = new AreaPlanet("Area2", "rdytfiut", "map/map3.png");
         Area2Planet1.addPerso(monstre2);
@@ -344,7 +345,10 @@ public class Interface {
 
     }
     
-
+    /**
+     * Allow to have access to the ok button in other class. Element view use it to confirm answer
+     * @return return Jbutton OK 
+     */
     public JButton okButton()
     { return ok;
     }
