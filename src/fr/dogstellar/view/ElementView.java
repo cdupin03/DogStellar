@@ -50,7 +50,7 @@ public class ElementView extends JButton {
 
             this.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent evt) {
-                    Popup newPopup = new Popup();
+                    Popup newPopup = new Popup("You have an enigma to solve in the console !");
                 }
 
             });
