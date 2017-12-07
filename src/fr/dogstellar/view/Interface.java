@@ -111,7 +111,7 @@ public class Interface {
         ImageIcon ship= new ImageIcon(picturePath+"map.png");
         
         returnMap = new JButton(ship);
-        returnMap.setToolTipText("click here to return to the first map of the planet");
+        returnMap.setToolTipText("Click here to return to the first map of the planet");
         returnMap.setOpaque(false);
         returnMap.setContentAreaFilled(false);
         returnMap.setBorderPainted(false);
