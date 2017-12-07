@@ -7,6 +7,7 @@ import fr.dogstellar.core.Perso;
 import fr.dogstellar.core.Planet;
 import fr.dogstellar.core.Potion;
 import fr.dogstellar.core.QuestElement;
+import fr.dogstellar.core.Weapon;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -188,6 +189,7 @@ public class Interface {
 
        //Planet 1 with 3 areas and different elements(perso,element) on them
         //AreaPlanet Area0Planet1 = new AreaPlanet("Ship", "your ship", "");
+
         
         AreaPlanet Area1Planet1 = new AreaPlanet("Area1", "rdytfuygiut", "map/map1.png");
         Area1Planet1.addPerso(monstre1);
@@ -343,6 +345,9 @@ public class Interface {
     }
     
 
+    public JButton okButton()
+    { return ok;
+    }
     /**
      * Add a message to the display console
      *
@@ -362,6 +367,18 @@ public class Interface {
         return answer;
     }
 
+    public JTextField getAreaToWrite() {
+        return areaToWrite;
+    }
+
+    
+    
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    
+    
     /**
      * To get the Window
      *
