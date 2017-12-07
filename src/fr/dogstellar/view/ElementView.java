@@ -3,6 +3,8 @@ package fr.dogstellar.view;
 import fr.dogstellar.core.*;
 import java.awt.Container;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.concurrent.ThreadLocalRandom;
@@ -29,7 +31,7 @@ public class ElementView extends JButton {
      * @param picturePath the path of the picture
      * @param newE element which needs a picture
      */
-    public ElementView(String picturePath, Element newE) {
+    public ElementView(String picturePath, Element newE, Window wind) {
         super();                                                                //call the constructor of the JButton
         PicturePath = new String(picturePath + "");                             //Define the path of the picture
         E = newE;                                                               //Define the element
@@ -49,11 +51,40 @@ public class ElementView extends JButton {
             this.setContentAreaFilled(false);
 
             this.addMouseListener(new MouseAdapter() {
-                public void mouseClicked(MouseEvent evt) {
-                    Popup newPopup = new Popup();
-                }
+                public void mouseClicked(MouseEvent evt) 
+                {
+                    Popup newPopup = new Popup("Try to resolve the enigma in the console !");
+                
+                    
+              
+                   
+                  JButton ok = wind.getInterfac().okButton();
+                //  wind.getInterfac().setAnswer(""); 
+                  
+                
+                
+                  ok.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) 
+            {   
+                boolean resolve = false;    
+                String answer = wind.getInterfac().getAreaToWrite().getText().trim().toUpperCase();
+                 
+                resolve = E.resolveEnigma(answer, StartGame.getPlayer(), new Weapon ("arme", "description",2 )); 
+                //Ajouter un return true dans resolve enigma
 
+                if(resolve) { System.out.print(" SUCCES ");} 
+                else { System.out.print(" FAILED ");} 
+            }
+        });
+                               
+                            
+                      
+                    
+                    
+                 }
             });
+            
+                 
         } else if (E.getType() == 2) //If the element is a trap
         {
             int randomNum = ThreadLocalRandom.current().nextInt(0, 3);          // initialize random number

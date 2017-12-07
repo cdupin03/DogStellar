@@ -7,6 +7,7 @@ import fr.dogstellar.core.Perso;
 import fr.dogstellar.core.Planet;
 import fr.dogstellar.core.Potion;
 import fr.dogstellar.core.QuestElement;
+import fr.dogstellar.core.Weapon;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -114,12 +115,13 @@ public class Interface {
         AreaPlanet test1 = new AreaPlanet("tyuiuyfv", "rdytfuygiut", "champ.jpg");
         test1.addPerso(monstre1);
         test1.addPerso(monstre2);
-        test1.addElement(new Element("Coffre", "Petit coffre", 1));
-        test1.addElement(new Element("Enigme", "Une enigme", 4));
+        test1.addElement(new Element("Enigme", "Trial", 1));
+        test1.addElement(new Element("Coffre", "petit coffre", 4));
         test1.addElement(new Element("Trap", "Un piege déguisé", 2));
         test1.addElement(new Element("PNJ", "Un pnj champu", 3));
         AreaPlanet test2 = new AreaPlanet("Bqzld", "rdytfiut", "lave.jpg");
         AreaPlanet test3 = new AreaPlanet("Nouvelle planete", "hum ...", "mario.jpeg");
+        Weapon weapon1 = new Weapon ("Epeelourde", "Excalibur, il y en a qu'une seule", 2);
         test1.addAreaPlanet(test2, "south");
         planet1.addArea(test1);
         planet2.addArea(test3);
@@ -191,6 +193,9 @@ public class Interface {
 
     }
 
+    public JButton okButton()
+    { return ok;
+    }
     /**
      * Add a message to the display console
      *
@@ -210,6 +215,18 @@ public class Interface {
         return answer;
     }
 
+    public JTextField getAreaToWrite() {
+        return areaToWrite;
+    }
+
+    
+    
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    
+    
     /**
      * To get the Window
      *

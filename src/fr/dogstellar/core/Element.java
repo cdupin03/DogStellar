@@ -42,13 +42,13 @@ public class Element {
      * @return true if the enigma is solved
      */
     public boolean resolveEnigma(String reponse, Player player, Stuff stuff) {
-        if (reponse == information.getDescription()) {
+        if (reponse.equalsIgnoreCase(information.getDescription())) {
             System.out.print("Bravo! vous avez trouver la bonne solution!");
             System.out.print("vous avez gagner :" + stuff.getInformation().getName());
             player.addStuff(stuff, 1);
             return true;
         } else {
-            System.out.print("Dommage !" + reponse + "N'est pas la solution a cette enigme !");
+            System.out.print("Dommage ! " + reponse + " N'est pas la solution a cette enigme !");
             return false;
         }
 
