@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.text.DefaultCaret;
 import javax.swing.ImageIcon;
+import java.awt.BorderLayout;
 
 /**
  * The Class Interface is the main Interface of the game, it allows to interract
@@ -32,29 +33,33 @@ public class Interface {
     private final JPanel displayP = new JPanel();				//Contains the information of the player(inventory + personal information)
     private final JPanel displayA = new JPanel();				//Contains the information about the localization of the player(names of the planet and the area)
     private final JButton ok = new JButton();                   //The button to validate an entry in the console
-    private final JButton attack = new JButton("Attack");	//The button to start attack a monster
     private final JPanel display = new JPanel();                //The panel in the console that contain the JTextArea displayMessage
     private final JPanel write = new JPanel();                  //The panel in the console that contain the JTextField to write answer and the button of validation
+    private final JPanel bar = new JPanel();					//It is the panel with 2 progressbar (1 for life and 1 for attack Point)
     private final JTextArea displayMessage = new JTextArea();   //The area to display message
     private JTextField areaToWrite = new JTextField();          //The area to write answer
     private String answer;                                      //The last answer that is write
+    private final JPanel subP;                                  // A subPanel containing the inventory and returnship button
+    private final JButton inventory;                            //Button which allow to open the inventory
+    private final JButton returnMap;                           //Button wich allow to return to the first map 
+   
 
-    private final JButton inventory;                            //Button wich allow to open the inventory
+    private Perso monstre1 = new Perso("Monstre", 10, 5, new QuestElement("PieceShip","that same piece"), new Armor("MyGreatArmor", "sfddghfxhfgd", 3));
+    private Perso monstre2 = new Perso("Monstre2", 10, 2, new QuestElement("PieceShip","that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6));
 
+    private GeneralWindow theWindow, theShip;
 
-    private Perso monstre1 = new Perso("Monstre", 10, 5, new QuestElement("A Piece","that same piece"), new Armor("MyGreatArmor", "sfddghfxhfgd", 3));
-    private Perso monstre2 = new Perso("Monstre2", 5, 2, new QuestElement("Another piece","that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6));
-
-    private GeneralWindow theWindow;
-
-    private DisplayInfo infoPlayer, infoArea; 					//
-    private JPanel displayInfo = new JPanel();					//
+    private DisplayInfo infoPlayer, infoArea; 					//It is the information of the player that is display thanks to displayInfo
+    private JPanel displayInfo = new JPanel();					//it is the JPanel with the info of the player
+    private JLabel imageP;										//Is the image of the player that is select in the startGame
+    
     /**
      * The constructor of the class Interface
      */
-    public Interface() {
+    public Interface() {  
+//Console
         areaToWrite.setPreferredSize(new Dimension(340, 30));        //Set the size of the area to write
-        areaToWrite.setFont(new Font(Font.SERIF, Font.PLAIN, 18));    //Font of the area to write
+        areaToWrite.setFont(new Font(Font.SERIF, Font.PLAIN, 18));   //Font of the area to write
 
         ok.setText("OK");                                           //Set the button text
         ok.setForeground(Color.black);                              //Set the color of the button
@@ -83,86 +88,231 @@ public class Interface {
         console.add(display, BorderLayout.CENTER);                              //Add the panel display in the console
         console.add(write, BorderLayout.SOUTH);                                 //Add the panel write in the console
 
-        //Left part of the interface
+//Inventory
+        
         String picturePath = System.getProperty("user.dir") + "/pictures/";     //variable containing the path for the inventory image
         ImageIcon picture = new ImageIcon(picturePath + "inventory.png");       //image for the inventory button
         inventory = new JButton(picture);                                       // create the button
-        displayP.add(inventory);                                                // add the button to the inventory
-        inventory.setToolTipText("click here to acess to you inventory");       // set a descritpion text
-
+                                                      // add the button to the inventory
+        inventory.setToolTipText("click here to acess to you inventory");       // set a description text
+        // transparent inventory
+        inventory.setOpaque(false);
+        inventory.setContentAreaFilled(false);
+        inventory.setBorderPainted(false);
+        
         //ActionListenener for generate the inventory frame in one click
         inventory.addActionListener(new ActionListener() {
+            InventoryPanel ip;
+
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                InventoryPanel ip = new InventoryPanel(StartGame.getPlayer());
-
+                if (ip == null) {
+                    ip = new InventoryPanel(StartGame.getPlayer());
+                    ip.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    ip.addWindowListener(new WindowAdapter() {
+                        public void windowClosed(java.awt.event.WindowEvent e) {
+                            ip = null; // comme ça on peut réouvrir la fenêtre si elle est fermée
+                        }
+                    ;
+                    });
+					ip.setVisible(true);
+                } else {
+                    // remettre la fenêtre en état normal si elle a été réduite
+                    if (ip.getState() == JFrame.ICONIFIED) {
+                        ip.setState(JFrame.NORMAL);
+                    }
+                    // remettre la fenêtre en premier plan
+                    ip.toFront();
+                }
             }
         });
+        //returnto the ship 
+        ImageIcon ship= new ImageIcon(picturePath+"map.png");
+        
+        returnMap = new JButton(ship);
+        returnMap.setToolTipText("Click here to return to the first map of the planet");
+        returnMap.setOpaque(false);
+        returnMap.setContentAreaFilled(false);
+        returnMap.setBorderPainted(false);
+        
+        returnMap.addActionListener(new ActionListener(){
+        @Override
+            public void actionPerformed(ActionEvent e){
+            theWindow.returnToFirstMap ();
+            }});
+       subP= new JPanel();
+        subP.setLayout(new BorderLayout());
+        subP.add(returnMap,BorderLayout.WEST);
+        subP.add(inventory,BorderLayout.EAST);
+        
+//info Player (image, namePlayer, barLife and barAttack, inventory)
+        infoPlayer = new DisplayInfo();								//The displayInfo with the name, barLife and barAttack
+        
+        imageP = new JLabel(StartGame.getImagePlayer());			//image of the player (choose in the startGame)
+        
+        displayP.setLayout(new BorderLayout());						//JPanel imageP, infoPlayer, inventory
+        displayP.add(imageP, BorderLayout.WEST);
+        displayP.add(infoPlayer, BorderLayout.CENTER);
+        displayP.add(subP, BorderLayout.EAST);
+        displayInfo.setLayout(new BorderLayout());					//Set the layout of the displayInfo part
+        displayInfo.add(displayP, BorderLayout.WEST);				//Add the information of the player in the displayInfo Panel
+        //displayInfo.add(displayA, BorderLayout.CENTER);			   // Add the information of the area in the displayInfo Panel
+        
+        bottom.setLayout(new BorderLayout());                       //Set the layout of the bottom part
+        bottom.add(console, BorderLayout.EAST);                     //Add the console to the right part of the bottom
+        bottom.add(displayInfo, BorderLayout.CENTER);				//Add the info of the player
+        
+        
+        //JLabel test = new JLabel();
+        //test.setText(theWindow.getCurrentArea());
+        
+        displayA.setLayout(new BorderLayout());
+        //displayA.add(infoArea, BorderLayout.CENTER);
+        //displayA.add(test);
 
-        /*
-         *  *****   *  *   *****      ** **   *****   *****                                          
-         *    *     ****   **         * * *   *****   *****                                                       
-         *    *     *  *   *****      *   *   *   *   *                                     
-         */
+/*
+ *  *****   *  *   *****      ** **   *****   *****                                          
+ *    *     ****   **         * * *   *****   *****                                                       
+ *    *     *  *   *****      *   *   *   *   *                                     
+ */
         Planet planet1 = new Planet("Planet1", "Etrange", 0);
-        Planet planet2 = new Planet("Planet2", "Tout aussi etrange", 3);
+        Planet planet2 = new Planet("Sand Planet ", "Planet filled with sand", 0);
+        Planet planet3 = new Planet("Planet3", "Tout aussi etrange", 0);
+        Planet planet4 = new Planet("Space","Always in weightlessness" , 0);
+        
         ArrayList<Planet> planets = new ArrayList<Planet>(); //The list of planets the first planet is the actual planet.
         //If we change planet, the new planet exchange its place with the first.
         planets.add(planet1);
         planets.add(planet2);
+        planets.add(planet3);
+        planets.add(planet4);
 
-        AreaPlanet test1 = new AreaPlanet("tyuiuyfv", "rdytfuygiut", "champ.jpg");
-        test1.addPerso(monstre1);
-        test1.addPerso(monstre2);
-        Weapon weapon1 = new Weapon ("Epeelourde", "Excalibur, il y en a qu'une seule", 2);
-        test1.addElement(new Element("Quesqui est jaune et qui attend ?", "Jonathan", 1, weapon1));
-        test1.addElement(new Element("Coffre", "petit coffre", 4));
-        test1.addElement(new Element("Trap", "Un piege déguisé", 2));
-        test1.addElement(new Element("PNJ", "Un pnj champu", 3));
-        AreaPlanet test2 = new AreaPlanet("Bqzld", "rdytfiut", "lave.jpg");
-        AreaPlanet test3 = new AreaPlanet("Nouvelle planete", "hum ...", "mario.jpeg");
+       //Planet 1 with 3 areas and different elements(perso,element) on them
+        //AreaPlanet Area0Planet1 = new AreaPlanet("Ship", "your ship", "");
 
-        test1.addAreaPlanet(test2, "south");
-        planet1.addArea(test1);
-        planet2.addArea(test3);
-
-        theWindow = new Window(planets, this);
+        
+        AreaPlanet Area1Planet1 = new AreaPlanet("Area1", "rdytfuygiut", "map/map1.png");
+        Area1Planet1.addPerso(monstre1);
+        Area1Planet1.addElement(new Element("Coffre", "Petit coffre", 1));
+        Area1Planet1.addElement(new Element("Enigme", "Une enigme", 4));
+        
+        AreaPlanet Area2Planet1 = new AreaPlanet("Area2", "rdytfiut", "map/map3.png");
+        Area2Planet1.addPerso(monstre2);
+        Area2Planet1.addElement(new Element("Trap", "Un piege déguisé", 2));
+        Area2Planet1.addElement(new Element("PNJ", "Un pnj champu", 3));
+        
+        AreaPlanet Area3Planet1 = new AreaPlanet("Area3", "hum ...", "map/map2.png");
+        Area3Planet1.addPerso(monstre2);
+        Area3Planet1.addElement(new Element("Trap", "Un piege déguisé", 2));
+        Area3Planet1.addElement(new Element("PNJ", "Un pnj champu", 3));
+        
+        Area1Planet1.addAreaPlanet(Area2Planet1, "south");
+        Area2Planet1.addAreaPlanet(Area3Planet1, "east");
+        
+        planet1.addArea(Area1Planet1);
+        
+      //Planet 2 with 2 areas and different elements(perso,element) on them
+        AreaPlanet Area1Planet2 = new AreaPlanet("Area1", "rdytfuygiut", "map/map10.png");
+        //Area1Planet2.addPerso(monstre1);
+        //Area1Planet2.addElement(new Element("Coffre", "Petit coffre", 1));
+        //Area1Planet2.addElement(new Element("Enigme", "Une enigme", 4));
+        
+        AreaPlanet Area2Planet2 = new AreaPlanet("Area2", "rdytfiut", "map/map11.png");
+        //Area2Planet2.addPerso(monstre2);
+        //Area2Planet2.addElement(new Element("Trap", "Un piege déguisé", 2));
+        //Area2Planet2.addElement(new Element("PNJ", "Un pnj champu", 3));
+        
+        AreaPlanet Area3Planet2 = new AreaPlanet("Area3", "hum ...", "map/map8.png");
+        //Area3Planet2.addPerso(monstre2);
+        //Area3Planet2.addElement(new Element("Trap", "Un piege déguisé", 2));
+        //Area3Planet2.addElement(new Element("PNJ", "Un pnj champu", 3));
+        
+        AreaPlanet Area4Planet2 = new AreaPlanet("Area4", "hum ...", "map/map12.png");
+        AreaPlanet Area5Planet2 = new AreaPlanet("Area5", "hum ...", "map/map7.png");
+        AreaPlanet Area6Planet2 = new AreaPlanet("Area6", "hum ...", "map/map9.png");
+        
+        Area1Planet2.addAreaPlanet(Area2Planet2, "east");
+        Area2Planet2.addAreaPlanet(Area3Planet2, "south");
+        Area3Planet2.addAreaPlanet(Area4Planet2, "east");
+        Area4Planet2.addAreaPlanet(Area5Planet2, "east");
+        Area1Planet2.addAreaPlanet(Area6Planet2, "west");
+        
+        planet3.addArea(Area1Planet2);
+        
+       //Planet3 with 3 areas
+        AreaPlanet Area1Planet3 = new AreaPlanet("Area1", "rdytfuygiut", "map/map6.png");
+        //Area1Planet3.addPerso(monstre1);
+        //Area1Planet3.addElement(new Element("Coffre", "Petit coffre", 1));
+        //Area1Planet3.addElement(new Element("Enigme", "Une enigme", 4));
+        
+        AreaPlanet Area2Planet3 = new AreaPlanet("Area2", "rdytfiut", "map/map4.png");
+        //Area2Planet3.addPerso(monstre2);
+        //Area2Planet3.addElement(new Element("Trap", "Un piege déguisé", 2));
+        //Area2Planet3.addElement(new Element("PNJ", "Un pnj champu", 3));
+        
+        AreaPlanet Area3Planet3 = new AreaPlanet("Area3", "hum ...", "map/map5.png");
+        //Area3Planet3.addPerso(monstre2);
+        //Area3Planet3.addElement(new Element("Trap", "Un piege déguisé", 2));
+        //Area3Planet3.addElement(new Element("PNJ", "Un pnj champu", 3));
+        
+        Area1Planet3.addAreaPlanet(Area2Planet3, "north");
+        Area2Planet3.addAreaPlanet(Area3Planet3, "west");
+        //Area1Planet2.addAreaPlanet(Area4Planet2, "south");
+        //Area4Planet2.addAreaPlanet(Area5Planet2, "west");
+        
+        planet2.addArea(Area1Planet3);
+        
+      //Planet 4 with 6 areas and different elements(perso,element) on them
+        AreaPlanet Area1Planet4 = new AreaPlanet("Area1", "rdytfuygiut", "map/map16.png");
+        //Area1Planet4.addPerso(monstre1);
+        //Area1Planet4.addElement(new Element("Coffre", "Petit coffre", 1));
+        //Area1Planet4.addElement(new Element("Enigme", "Une enigme", 4));
+        
+        AreaPlanet Area2Planet4 = new AreaPlanet("Area2", "rdytfiut", "map/map17.png");
+        //Area2Planet4.addPerso(monstre2);
+        //Area2Planet4.addElement(new Element("Trap", "Un piege déguisé", 2));
+        //Area2Planet4.addElement(new Element("PNJ", "Un pnj champu", 3));
+        
+        AreaPlanet Area3Planet4 = new AreaPlanet("Area3", "hum ...", "map/map18.png");
+        //Area3Planet4.addPerso(monstre2);
+        //Area3Planet4.addElement(new Element("Trap", "Un piege déguisé", 2));
+        //Area3Planet4.addElement(new Element("PNJ", "Un pnj champu", 3));
+        
+        AreaPlanet Area4Planet4 = new AreaPlanet("Area3", "hum ...", "map/map15.png");
+        AreaPlanet Area5Planet4 = new AreaPlanet("Area3", "hum ...", "map/map13.png");
+        AreaPlanet Area6Planet4 = new AreaPlanet("Area3", "hum ...", "map/map14.png");
+        
+        Area1Planet4.addAreaPlanet(Area2Planet4, "east");
+        Area2Planet4.addAreaPlanet(Area3Planet4, "south");
+        Area1Planet4.addAreaPlanet(Area4Planet4, "west");
+        Area4Planet4.addAreaPlanet(Area5Planet4, "west");
+        Area5Planet4.addAreaPlanet(Area6Planet4, "south");
+        
+        
+        planet4.addArea(Area1Planet4);
+             
+        
+		theWindow = new Window(planets, this);
+		
         //theWindow = new InShip(this, planets);
 
-        attack.setEnabled(false);
 
-        top.setLayout(new BorderLayout());                          //Set the layout of the top part       
-        top.add(theWindow, BorderLayout.CENTER);                    //Add the area map in the top part
+        top.setLayout(new BorderLayout());                              //Set the layout of the top part       
+        top.add(theWindow, BorderLayout.CENTER);                        //Add the area map in the top part
 
-        bottom.setLayout(new BorderLayout());                       //Set the layout of the bottom part
-        bottom.add(console, BorderLayout.EAST);                     //Add the console to the right part of the bottom
-        bottom.add(displayInfo, BorderLayout.CENTER);
-        
-        infoPlayer = new DisplayInfo(StartGame.getPlayer());
-        
-        displayInfo.setLayout(new BorderLayout());					//Set the layout of the displayInfo part
-        displayInfo.add(displayP, BorderLayout.WEST);				//Add the information of the player in the displayInfo Panel
-        displayInfo.add(displayA, BorderLayout.CENTER);			   // Add the information of the area in the displayInfo Panel
-        
-        // Information of the player and his localization on the map
-        displayP.setLayout(new BorderLayout());
-        displayP.add(infoPlayer, BorderLayout.CENTER);
-        displayP.add(inventory, BorderLayout.WEST);
-        
-        displayA.setLayout(new BorderLayout());
-        //displayA.add(infoArea, BorderLayout.CENTER);
-        displayA.add(attack, BorderLayout.EAST);
-        
-        theInterface.setPreferredSize(new Dimension(1200, 700));     //Set the size of the frame
-        theInterface.setLayout(new BorderLayout());                 //Set the display of the frame
-        theInterface.add(top, BorderLayout.CENTER);                 //Add the top part in the frame
-        theInterface.add(bottom, BorderLayout.SOUTH);               //Add the bottom part in the frame
-        theInterface.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Closing the frame close the application
-        theInterface.pack();                                        //Sizes the frame so that all its contents are at or above their preferred sizes
-        theInterface.setVisible(true);                              //To display the frame
+//theInterface        
+        theInterface.setBackground(Color.BLACK);
+        theInterface.setPreferredSize(new Dimension(1200, 700));        //Set the size of the frame
+        theInterface.setLayout(new BorderLayout());                     //Set the display of the frame
+        theInterface.add(top, BorderLayout.CENTER);                     //Add the top part in the frame
+        theInterface.add(bottom, BorderLayout.SOUTH);                   //Add the bottom part in the frame
+        theInterface.setResizable(false);                               //This JFrame is not resizable
+        theInterface.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    //Closing the frame close the application
+        theInterface.pack();                                            //Sizes the frame so that all its contents are at or above their preferred sizes
+        theInterface.setLocationRelativeTo(null);                       //The JFrame is on the screen center
+        theInterface.setVisible(true);                                  //To display the frame
 
-        //The actions of the button "OK" = save the answer, clear the area, add the message to the display console, disable the button
+//The actions of the button "OK" = save the answer, clear the area, add the message to the display console, disable the button
         ok.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 answer = areaToWrite.getText().trim().toUpperCase();
@@ -172,7 +322,7 @@ public class Interface {
             }
         });
 
-        //The button "OK" is enabled only if the JTextField areaToWrite have at least one character
+//The button "OK" is enabled only if the JTextField areaToWrite have at least one character
         areaToWrite.addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent event) {
                 if (!areaToWrite.getText().isEmpty()) {
@@ -183,7 +333,7 @@ public class Interface {
             }
         });
 
-        //If we press the key "enter", we have the same response that when we click on OK button
+//If we press the key "enter", we have the same response that when we click on OK button
         areaToWrite.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == areaToWrite) {
@@ -193,6 +343,7 @@ public class Interface {
         });
 
     }
+    
 
     public JButton okButton()
     { return ok;
@@ -238,15 +389,6 @@ public class Interface {
     }
 
     /**
-     * Set the enable of attack JButton
-     *
-     * @param ena true if the button is enabled, else false
-     */
-    public void isAttackEnabled(boolean ena) {
-        attack.setEnabled(ena);
-    }
-
-    /**
      * To set a window in the interface
      *
      * @param newWindow is the window to set
@@ -266,5 +408,9 @@ public class Interface {
     public JFrame getInterface() {
         return theInterface;
     }
-
+    
+    public DisplayInfo getDisplay()
+    {
+        return infoPlayer;
+    }
 }

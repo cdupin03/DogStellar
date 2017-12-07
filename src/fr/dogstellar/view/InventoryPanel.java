@@ -17,6 +17,8 @@ public class InventoryPanel extends JFrame {
 
     private int gridCaseHeight1 = ((300) / (2));                                        // The heght of a equiped item grid
     private int gridCaseWidth1 = ((175) / (2));                                         // The heght of a equiped item grid
+    private int gridCaseHeight = ((300) / (2));                                        // The heght of inventory item grid
+    private int gridCaseWidth = ((175) / (2));                                         // The heght of inventory item grid
     private final Player thePlayer;                                             // The owner of the inventory
     private JPanel inventory;                                                   // Jpanel containing all unequiped objects
     private JPanel equipedInventory;                                            // Jpanel containing the equiped objects 
@@ -37,8 +39,12 @@ public class InventoryPanel extends JFrame {
         this.setTitle("Inventory");                                             //The name of the JFrame
         this.setSize(1200, 700);
         this.setResizable(false);
-        this.setVisible(true);
+        
+        
+        this.getContentPane().setBackground(new Color(99,162,168));
         this.pack();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
     /**
@@ -56,6 +62,7 @@ public class InventoryPanel extends JFrame {
 
         this.add(lbl1);
         lbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl1.setForeground (Color.white);
         lbl1.setFont(new Font("Blippo", Font.PLAIN, 28));
         this.add(equipedInventory);
 
@@ -126,6 +133,7 @@ public class InventoryPanel extends JFrame {
 
         lbl2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl2.setFont(new Font("Blippo", Font.PLAIN, 28));
+        lbl2.setForeground (Color.white);
         this.add(lbl2);
         this.add(inventory);
         // check if the inventory is empty
@@ -136,10 +144,18 @@ public class InventoryPanel extends JFrame {
             // creating a grid to put the items
             GridLayout Disposition = new GridLayout(j / 3, 3);
             inventory.setLayout(Disposition);
-
-            // variables of the syze of each item case
-            int gridCaseHeight = ((300) / (j / 3));
-            int gridCaseWidth = ((175) / (j / (j / 3)));
+            
+            System.out.println(j);
+            
+            // variables of the size of each item case
+            if(j<3) {
+            	int gridCaseHeight = ((300) / (j / 1));
+            	int gridCaseWidth = ((175) / (j / 1));
+            } else {
+            	int gridCaseHeight = ((300) / (j / 3));
+            	int gridCaseWidth = ((175) / (j / 3));
+            }
+            
 
             // foreach item of the list if it is different of the one who is equiped
             stuffs.stream().map((i) -> {
@@ -148,7 +164,7 @@ public class InventoryPanel extends JFrame {
                 JButton X = new JButton(theImage);                                          //create a button with the image inside
                 X.setToolTipText(associationLabel(i));                                      // set a tooltiptext with the items informations
                 JLabel Y = new JLabel(":" + nbOccurence(i, thePlayer.getStuff()));          // affect the value of the number of the item in the inventory
-                //the action listemer to equip an item or take a potion
+                //the action listener to equip an item or take a potion
                 X.addActionListener((ActionEvent e) -> {
                     // TODO Auto-generated method stub
                     //management for a weapon
@@ -175,6 +191,7 @@ public class InventoryPanel extends JFrame {
                         ((Potion) i).drinkPotion(thePlayer);
                         thePlayer.getStuff().remove(i);
                         refreshInventory();
+                        StartGame.getInterf().getDisplay().refreshDisplay();
                     }
                 });
                 JPanel inventoryCase = new JPanel();
@@ -316,7 +333,7 @@ public class InventoryPanel extends JFrame {
         String iconPic = null;
         // test if the stuff is a quest element
         if (isQuestElement(theStuff)) {
-            iconPic = "/pictures/engrenage.jpg"; // set the image for the quest element
+            iconPic = "/pictures/shipPiece.png"; // set the image for the quest element
         }
         //test if the stuff is a weapon 
         if (isWeapon(theStuff)) {
@@ -324,7 +341,7 @@ public class InventoryPanel extends JFrame {
                     theStuff.getInformation().getDescription(), ((Weapon) theStuff).getDamage()); // create a weapon variable with the stuff attributes 
             //load the associate image in function of the dammage of the weapon
             if ((myWeapon.getDamage() <= 3)) {
-                iconPic = "/pictures/weapon1.jpg";
+                iconPic = "/pictures/weapon1.png";
 
             } else if (myWeapon.getDamage() <= 5) {
                 iconPic = "/pictures/weapon2.png";

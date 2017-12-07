@@ -36,13 +36,14 @@ public class InShip extends GeneralWindow implements ActionListener {
         planetViews = new ArrayList<>();
         test = new JButton();
         test2 = new JButton();
-        adjustWindowToPlanets();
+        adjustWindow();
     }
 
     /**
      * This method display a new area in the window.
      */
-    public void adjustWindowToPlanets() {
+    @Override
+    public void adjustWindow() {
         catchPicture();
         erraseGrid();
 
@@ -114,5 +115,11 @@ public class InShip extends GeneralWindow implements ActionListener {
                 getInterfac().setWindow(new Window(planets, getInterfac()));
             }
         }
+    }
+    
+    @Override
+    public void returnToFirstMap ()
+    {
+        
     }
 }

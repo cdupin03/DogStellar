@@ -30,7 +30,7 @@ public final class Window extends GeneralWindow {
     private final String north = "NORTH";
     private final String east = "EAST";
     private final String west = "WEST";
-    private PersoView thisPerso;
+
 
     /**
      * The constructor of Window. Create the window with its components. Set set
@@ -44,8 +44,7 @@ public final class Window extends GeneralWindow {
     public Window(ArrayList<Planet> thePlanets, Interface inter) {
         super(inter);
         planets = thePlanets;
-        area = planets.get(0).getAreas();
-        adjustWindowToAreaPlanet(area);
+        returnToFirstMap();
     }
 
     /**
@@ -71,7 +70,7 @@ public final class Window extends GeneralWindow {
             southArrow.setEnabled(false);
         } else {
             southArrow.addActionListener((ActionEvent e) -> {
-                adjustWindowToAreaPlanet(area.getOrientationArea(south));
+                adjustWindow(area.getOrientationArea(south));
             });
         }
 
@@ -79,7 +78,7 @@ public final class Window extends GeneralWindow {
             northArrow.setEnabled(false);
         } else {
             northArrow.addActionListener((ActionEvent e) -> {
-                adjustWindowToAreaPlanet(area.getOrientationArea(north));
+                adjustWindow(area.getOrientationArea(north));
             });
         }
 
@@ -87,7 +86,7 @@ public final class Window extends GeneralWindow {
             eastArrow.setEnabled(false);
         } else {
             eastArrow.addActionListener((ActionEvent e) -> {
-                adjustWindowToAreaPlanet(area.getOrientationArea(east));
+                adjustWindow(area.getOrientationArea(east));
             });
         }
 
@@ -95,7 +94,7 @@ public final class Window extends GeneralWindow {
             westArrow.setEnabled(false);
         } else {
             westArrow.addActionListener((ActionEvent e) -> {
-                adjustWindowToAreaPlanet(area.getOrientationArea(west));
+                adjustWindow(area.getOrientationArea(west));
             });
         }
 
@@ -117,11 +116,20 @@ public final class Window extends GeneralWindow {
      *
      * @param newArea the new area to display in the window
      */
-    public void adjustWindowToAreaPlanet(AreaPlanet newArea) {
+    public void adjustWindow(AreaPlanet newArea) {
         catchPicture(newArea);
+        adjustWindow();
+    }
+    
+    /**
+     * This method refresh the area
+     */
+    @Override
+    public void adjustWindow()
+    {
         erraseGrid();
 
-        if (planets.get(0).getAreas().equals(newArea)) {
+        if (planets.get(0).getAreas().equals(area)) {
             ShipView ship = new ShipView(getPicturePath());
             ship.addActionListener(new ActionListener() {
                 @Override
@@ -134,11 +142,14 @@ public final class Window extends GeneralWindow {
         }
 
         addArrows();
-
+        
         area.getPerso().stream().forEach((_item) -> {
-            addRandomlyComponent(new PersoView(getPicturePath(), _item));
+            if (_item.getIsDead()==false) {
+            	System.out.println("Monster : "+ _item.getNamePerso() + _item.getIsDead());
+	            addRandomlyComponent(new PersoView(getPicturePath(), _item));
+	        }
         });
-
+        
         area.getElement().stream().forEach((e) -> {
             addRandomlyComponent(new ElementView(getPicturePath(), e, this));
         });
@@ -169,5 +180,21 @@ public final class Window extends GeneralWindow {
         setNameOfFirstBackgroundPicture(area.getPicture());
         super.catchPicture();
     }
+    
+    @Override
+    public void returnToFirstMap ()
+    {
+        area = planets.get(0).getAreas();
+        adjustWindow(area);
+    }
+    
 
+//    /**
+//     * get the current area.
+//     * @return theCurrentZone
+//     */
+//    public String getCurrentArea()
+//    {
+//        return theCurrentZone;
+//    }
 }
