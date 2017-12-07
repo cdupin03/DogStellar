@@ -43,7 +43,7 @@ public class StartGame {
     private int lP, aP, tmplP, tmpaP;			// integer to the lifePoint, attackPoint, ?????????????????????????
     private static Interface interf;			//Is the interface
     private static ImageIcon imagePlayer;		//Is the image of the player that is select
-    private VideoPlayer intro;					//Is the video that is start when the game is start
+    //private VideoPlayer intro;					//Is the video that is start when the game is start
     
     /**
      * The constructor of this class
@@ -201,7 +201,7 @@ public class StartGame {
             	player = new Player(namePlayer, lP, aP);
                 myJFrame.dispose();
                 interf = new Interface();  //start the game with the a player a planet ...
-                intro = new VideoPlayer("Intro.mp4");
+                new VideoPlayer("Intro.mp4");
             }
         });
         startGame.setOpaque(false);
