@@ -4,6 +4,7 @@ import java.util.Random;
 
 import fr.dogstellar.core.*;
 import fr.dogstellar.view.GeneralWindow;
+import fr.dogstellar.view.Popup;
 import fr.dogstellar.view.StartGame;
 import fr.dogstellar.view.Window;
 
@@ -69,7 +70,10 @@ public class Fight {
             if (player.getLifePoint() == 0) {
                 monster.setLifePoint(pointLifeMonster); // If the player lost the fight, the monster LifePoint is reinitialized as the beginning of the fight
                 StartGame.getInterf().addMessageToConsole(player.getNamePerso() + " is dead ! You are returned in your ship");
+                Popup retourVaisseau = new Popup("You are dead, you are going back to the ship");
                 StartGame.getInterf().getTheWindow().returnToFirstMap();
+                StartGame.getPlayer().setLifePoint(StartGame.getLifePoint());
+                StartGame.getInterf().getDisplay().refreshDisplay(); 
 
                 // !!!!!!!!!!!!!! Call method return to ship !!!!!!!!!!!!!!!!!!
                 end = new Boolean(true);
