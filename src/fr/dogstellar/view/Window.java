@@ -151,7 +151,7 @@ public final class Window extends GeneralWindow {
         });
         
         area.getElement().stream().forEach((e) -> {
-            addRandomlyComponent(new ElementView(getPicturePath(), e));
+            addRandomlyComponent(new ElementView(getPicturePath(), e, this));
         });
         drawGrid();
     }

@@ -18,12 +18,13 @@ public class Popup {
      * The constructor of the PopUp class that allow to display a message in a
      * pop up window
      */
-    public Popup(String newMessage) {
+    public Popup( String text) {
 
         picturePath = new String(System.getProperty("user.dir") + "/pictures/");    //Initialize the path of the pictures
 
         ImageIcon img = new ImageIcon(picturePath + "message.png");                 //Set the message image
-        JOptionPane.showMessageDialog(null, newMessage, "Information", JOptionPane.INFORMATION_MESSAGE, img);
+        JOptionPane.showMessageDialog(null, text, "Information", JOptionPane.INFORMATION_MESSAGE, img);
+
 
     }
 

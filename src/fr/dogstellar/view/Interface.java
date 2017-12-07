@@ -7,6 +7,7 @@ import fr.dogstellar.core.Perso;
 import fr.dogstellar.core.Planet;
 import fr.dogstellar.core.Potion;
 import fr.dogstellar.core.QuestElement;
+import fr.dogstellar.core.Weapon;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -101,10 +102,28 @@ public class Interface {
         
         //ActionListenener for generate the inventory frame in one click
         inventory.addActionListener(new ActionListener() {
+            InventoryPanel ip;
+
             @Override
             public void actionPerformed(ActionEvent e) {
-                InventoryPanel ip = new InventoryPanel(StartGame.getPlayer());
-
+                if (ip == null) {
+                    ip = new InventoryPanel(StartGame.getPlayer());
+                    ip.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    ip.addWindowListener(new WindowAdapter() {
+                        public void windowClosed(java.awt.event.WindowEvent e) {
+                            ip = null; // comme ça on peut réouvrir la fenêtre si elle est fermée
+                        }
+                    ;
+                    });
+					ip.setVisible(true);
+                } else {
+                    // remettre la fenêtre en état normal si elle a été réduite
+                    if (ip.getState() == JFrame.ICONIFIED) {
+                        ip.setState(JFrame.NORMAL);
+                    }
+                    // remettre la fenêtre en premier plan
+                    ip.toFront();
+                }
             }
         });
         //returnto the ship 
@@ -170,6 +189,7 @@ public class Interface {
 
        //Planet 1 with 3 areas and different elements(perso,element) on them
         //AreaPlanet Area0Planet1 = new AreaPlanet("Ship", "your ship", "");
+
         
         AreaPlanet Area1Planet1 = new AreaPlanet("Area1", "rdytfuygiut", "map/map1.png");
         Area1Planet1.addPerso(monstre1);
@@ -325,6 +345,9 @@ public class Interface {
     }
     
 
+    public JButton okButton()
+    { return ok;
+    }
     /**
      * Add a message to the display console
      *
@@ -344,6 +367,18 @@ public class Interface {
         return answer;
     }
 
+    public JTextField getAreaToWrite() {
+        return areaToWrite;
+    }
+
+    
+    
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    
+    
     /**
      * To get the Window
      *
