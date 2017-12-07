@@ -13,7 +13,7 @@ public class Element {
 
     // instance variables - replace the example below with your own
     private Info information; //informations of the Element
-    private boolean Done; //Identifier for the already used object 
+    private boolean done; //Identifier for the already used object 
     private int type; //The type of objet :1- enigme,2- trap,3- people,4- chest
     private Stuff reward; //The reward you may win
     
@@ -24,7 +24,7 @@ public class Element {
     public Element(String name, String description, int newType) {
         information = new Info(name, description);
         type = newType;
-        Done = false;
+        done = false;
         reward = null;
     }
 
@@ -39,7 +39,7 @@ public class Element {
       public Element(String name, String description, int newType, Stuff newReward) {
         information = new Info(name, description);
         type = newType;
-        Done = false;
+        done = false;
         reward = newReward; 
     }
       
@@ -59,14 +59,11 @@ public class Element {
      * @perso the perso which answer
      * @return true if the enigma is solved
      */
-    public boolean resolveEnigma(String reponse, Player player, Stuff stuff) {
-        if (reponse.equalsIgnoreCase(information.getDescription())) {
-            System.out.print("Bravo! vous avez trouver la bonne solution!");
-            System.out.print("vous avez gagner :" + stuff.getInformation().getName());
-            player.addStuff(stuff, 1);
+    public boolean resolveEnigma(String reponse, Player player) {
+        if (reponse.equalsIgnoreCase(information.getDescription())) {         
+            player.addStuff(reward, 1);
             return true;
         } else {
-            System.out.print("Dommage ! " + reponse + " N'est pas la solution a cette enigme !");
             return false;
         }
 
@@ -90,7 +87,7 @@ public class Element {
     }
 
     public boolean getDone() {
-        return this.Done;
+        return this.done;
     }
 
     public int getType() {
@@ -98,11 +95,11 @@ public class Element {
     }
 
     public void setDonee() {
-        Done = true;
+        done = true;
     }
 
     public boolean isDone() {
-        return Done;
+        return done;
     }
 
     public Stuff getReward() {
@@ -110,7 +107,7 @@ public class Element {
     }
 
     public void setDone(boolean Done) {
-        this.Done = Done;
+        this.done = Done;
     }
 
     
