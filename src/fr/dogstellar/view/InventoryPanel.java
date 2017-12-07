@@ -41,6 +41,7 @@ public class InventoryPanel extends JFrame {
         this.setResizable(false);
         this.setVisible(true);
         this.pack();
+        this.getContentPane().setBackground(new Color(99,162,168));
     }
 
     /**
@@ -58,6 +59,7 @@ public class InventoryPanel extends JFrame {
 
         this.add(lbl1);
         lbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl1.setForeground (Color.white);
         lbl1.setFont(new Font("Blippo", Font.PLAIN, 28));
         this.add(equipedInventory);
 
@@ -128,6 +130,7 @@ public class InventoryPanel extends JFrame {
 
         lbl2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl2.setFont(new Font("Blippo", Font.PLAIN, 28));
+        lbl2.setForeground (Color.white);
         this.add(lbl2);
         this.add(inventory);
         // check if the inventory is empty
