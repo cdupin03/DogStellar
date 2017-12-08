@@ -1,7 +1,5 @@
 package fr.dogstellar.core;
 
-import java.util.ArrayList;
-
 /**
  * The class Perso. He has a name, a number of LifePoint and number of
  * AttackPoint and an inventory.
@@ -33,10 +31,9 @@ public class Perso {
      * If the numbers of lifePoint or attackPoint are under 0 and superior to
      * 10, the numbers are automatically initialized to 10.
      *
-     * @param namePerso is the name(String) of the Perso
-     * @param lifePoint is the number of lifePoint
-     * @param attackPoint is the number of attackPoint
-     *
+     * @param nameP is the name(String) of the Perso
+     * @param lifeP is the number of lifePoint
+     * @param attackP is the number of attackPoint
      */
     public Perso(String nameP, int lifeP, int attackP) {
         if (nameP.isEmpty()) {
@@ -136,6 +133,8 @@ public class Perso {
      * This method allows us to delete a number of lifePoint. If we want to
      * decrease the number of lifePoint and the result is inferior to 0,
      * lifePoint take the value 0.
+     *
+     * @param Point is the number of life point to remove at the player
      */
     public void decreaseLifePoint(int Point) {
         int soustraction = lifePoint - Point;
@@ -150,6 +149,8 @@ public class Perso {
      * This method allows us to add a number of attackPoint. If we want to
      * increase the number of attackPoint and the result is superior to 10,
      * attackPoint take the value 10.
+     *
+     * @param Point is the number of attack point to add at the player
      */
     public void increaseAttackPoint(int Point) {
         int addition = attackPoint + Point;
@@ -164,6 +165,8 @@ public class Perso {
      * This method allows us to remove a number of attackPoint. If we want to
      * decrease the number of attackPoint and the result is inferior to 0,
      * attackPoint take the value 0.
+     *
+     * @param Point is the number of attack point to remove at the player
      */
     public void decreaseAttackPoint(int Point) {
         int soustraction = attackPoint - Point;

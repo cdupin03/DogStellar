@@ -3,7 +3,6 @@ package fr.dogstellar.view;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.BorderFactory;
-import java.lang.String;
 
 /**
  * This class allows to display a graphique arrow. This arrow is clickable. When

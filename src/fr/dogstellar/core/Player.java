@@ -2,8 +2,6 @@ package fr.dogstellar.core;
 
 import java.util.*;
 
-import javax.sound.midi.VoiceStatus;
-
 /**
  * The class Player. A player have a name, a number of LifePoint and number of
  * AttackPoint and an inventory (inherit to perso) He can use the stuff in the
@@ -14,20 +12,21 @@ import javax.sound.midi.VoiceStatus;
  */
 public class Player extends Perso {
 
-    private Armor armor;
-    private Weapon weapon;
-
-    private ArrayList<Stuff> inventory;
+    private Armor armor;                                    // The player armor
+    private Weapon weapon;                                  // The player weapon
+    private final ArrayList<Stuff> inventory;               // The list of player inventory
 
     /**
      * Constructor for objects of class Player When a player is creating, a
      * inventory (list of stuffs) is create and is empty
      *
      * @param nameP corresponds to the name of the player
+     * @param lifePoint is the life of the player
+     * @param attackPoint is the attack of the player
      */
     public Player(String nameP, int lifePoint, int attackPoint) {
         super(nameP, lifePoint, attackPoint);
-        inventory = new ArrayList<Stuff>();
+        inventory = new ArrayList<>();
     }
 
     /**
@@ -39,19 +38,26 @@ public class Player extends Perso {
         armor = armorEquip;
     }
 
+    /**
+     * To desequip armor
+     */
     public void desequipArmor() {
         addStuff((Stuff) armor, 1);
         armor = null;
     }
 
+    /**
+     * To desequip weapon
+     */
     public void desequipWeapon() {
         this.addStuff((Stuff) weapon, 1);
         weapon = null;
     }
 
-    /*
+    /**
      * this method allows us to equip the player with a weapon
-     * @param weaponEquip
+     *
+     * @param weaponEquip is the player weapon to equip
      */
     public void addWeaponEquip(Weapon weaponEquip) {
         weapon = weaponEquip;
@@ -61,6 +67,8 @@ public class Player extends Perso {
 
     /**
      * this method allows us to get the armor that the player has been equipped
+     *
+     * @return armor is the player equiped armor
      */
     public Armor getArmorEquip() {
         return armor;
@@ -68,6 +76,8 @@ public class Player extends Perso {
 
     /**
      * this method allows us to get the weapon that the player has been equipped
+     *
+     * @return weapon is the player equiped weapon
      */
     public Weapon getWeaponEquip() {
         return weapon;
@@ -105,7 +115,7 @@ public class Player extends Perso {
      * this method allows us to add a stuff in the list of stuff (the inventory)
      * of the player when he wins a stuff we can add several same stuff
      *
-     * @param Stuff is the name of the stuff
+     * @param stuff is the name of the stuff
      * @param numberStuffAdd is a number of stuff that we add to the inventory
      * when the player win it
      */

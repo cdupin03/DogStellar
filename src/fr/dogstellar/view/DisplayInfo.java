@@ -13,15 +13,15 @@ import javax.swing.*;
  * @author G3
  *
  */
-public class DisplayInfo extends JPanel {
+public final class DisplayInfo extends JPanel {
 
     private JLabel namePlayer, nameBarLife, nameBarAttack, nPlanet, nArea;
-    private JProgressBar progressLife = new JProgressBar();
-    private JProgressBar progressAttack = new JProgressBar();
-    private JPanel barLife = new JPanel();								//Panel for the information of the player
-    private JPanel barAttack = new JPanel();                                                            //Panel for the information of the player
-    private JPanel bar = new JPanel();									//Panel for the information of the player
-    private JPanel infoArea = new JPanel();								//Panel for the information of the Area
+    private final JProgressBar progressLife = new JProgressBar();
+    private final JProgressBar progressAttack = new JProgressBar();
+    private final JPanel barLife = new JPanel();								//Panel for the information of the player
+    private final JPanel barAttack = new JPanel();                                                            //Panel for the information of the player
+    private final JPanel bar = new JPanel();									//Panel for the information of the player
+    private final JPanel infoArea = new JPanel();								//Panel for the information of the Area
 
     public DisplayInfo() {
 
@@ -90,22 +90,20 @@ public class DisplayInfo extends JPanel {
         infoArea.add(nPlanet);
         infoArea.add(nArea);
     }
-    
+
     /**
      * The display of the life bar
      */
-    public void displayLife()
-    {
+    public void displayLife() {
         int tmp = StartGame.getPlayer().getLifePoint() * 10;
         progressLife.setValue(tmp);
         progressLife.setStringPainted(true);
     }
-    
+
     /**
      * The display of the attack bar
      */
-    public void displayAttack()
-    {
+    public void displayAttack() {
         int tmp = StartGame.getPlayer().getAttackPoint() * 10;
         progressAttack.setValue(tmp);
         progressAttack.setStringPainted(true);
@@ -114,12 +112,11 @@ public class DisplayInfo extends JPanel {
     /**
      * To refresh the bar display
      */
-    public void refreshDisplay()
-    {
+    public void refreshDisplay() {
         progressLife.setStringPainted(false);
         displayLife();
         progressAttack.setStringPainted(false);
         displayAttack();
     }
-    
+
 }

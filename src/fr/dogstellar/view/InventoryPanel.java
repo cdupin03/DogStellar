@@ -9,21 +9,21 @@ import fr.dogstellar.core.*;
 
 /**
  * The InventoryPanel allows to create a JFrame to display the player inventory
- * 
+ *
  * @author Group 3
  * @version V04
  */
-public class InventoryPanel extends JFrame {
+public final class InventoryPanel extends JFrame {
 
-    private int gridCaseHeight1 = ((300) / (2));                                        // The heght of a equiped item grid
-    private int gridCaseWidth1 = ((175) / (2));                                         // The heght of a equiped item grid
-    private int gridCaseHeight = ((300) / (2));                                        // The heght of inventory item grid
-    private int gridCaseWidth = ((175) / (2));                                         // The heght of inventory item grid
+    private final int gridCaseHeight1 = ((300) / (2));                                        // The heght of a equiped item grid
+    private final int gridCaseWidth1 = ((175) / (2));                                         // The heght of a equiped item grid
+    private final int gridCaseHeight = ((300) / (2));                                        // The heght of inventory item grid
+    private final int gridCaseWidth = ((175) / (2));                                         // The heght of inventory item grid
     private final Player thePlayer;                                             // The owner of the inventory
     private JPanel inventory;                                                   // Jpanel containing all unequiped objects
     private JPanel equipedInventory;                                            // Jpanel containing the equiped objects 
-    private JLabel lbl1 = new JLabel("Equiped items");                                  // The name of the top part of the inventory
-    private JLabel lbl2 = new JLabel("Your Inventory");                                 // The name of the botom part of the inventory
+    private final JLabel lbl1 = new JLabel("Equiped items");                                  // The name of the top part of the inventory
+    private final JLabel lbl2 = new JLabel("Your Inventory");                                 // The name of the botom part of the inventory
 
     /**
      * The constructor of the class, take a player in parameter to set his
@@ -39,9 +39,8 @@ public class InventoryPanel extends JFrame {
         this.setTitle("Inventory");                                             //The name of the JFrame
         this.setSize(1200, 700);
         this.setResizable(false);
-        
-        
-        this.getContentPane().setBackground(new Color(99,162,168));
+
+        this.getContentPane().setBackground(new Color(99, 162, 168));
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -62,7 +61,7 @@ public class InventoryPanel extends JFrame {
 
         this.add(lbl1);
         lbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl1.setForeground (Color.white);
+        lbl1.setForeground(Color.white);
         lbl1.setFont(new Font("Blippo", Font.PLAIN, 28));
         this.add(equipedInventory);
 
@@ -133,7 +132,7 @@ public class InventoryPanel extends JFrame {
 
         lbl2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl2.setFont(new Font("Blippo", Font.PLAIN, 28));
-        lbl2.setForeground (Color.white);
+        lbl2.setForeground(Color.white);
         this.add(lbl2);
         this.add(inventory);
         // check if the inventory is empty
@@ -144,18 +143,17 @@ public class InventoryPanel extends JFrame {
             // creating a grid to put the items
             GridLayout Disposition = new GridLayout(j / 3, 3);
             inventory.setLayout(Disposition);
-            
+
             System.out.println(j);
-            
+
             // variables of the size of each item case
-            if(j<3) {
-            	int gridCaseHeight = ((300) / (j / 1));
-            	int gridCaseWidth = ((175) / (j / 1));
+            if (j < 3) {
+                int gridCaseHeight = ((300) / (j / 1));
+                int gridCaseWidth = ((175) / (j / 1));
             } else {
-            	int gridCaseHeight = ((300) / (j / 3));
-            	int gridCaseWidth = ((175) / (j / 3));
+                int gridCaseHeight = ((300) / (j / 3));
+                int gridCaseWidth = ((175) / (j / 3));
             }
-            
 
             // foreach item of the list if it is different of the one who is equiped
             stuffs.stream().map((i) -> {
