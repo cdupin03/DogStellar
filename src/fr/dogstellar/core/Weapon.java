@@ -20,6 +20,7 @@ public class Weapon extends Stuff {
      *
      * @param name The name of the object
      * @param description The description of the object
+     * @param damage is the damage of the weapon
      *
      */
     public Weapon(String name, String description, int damage) {

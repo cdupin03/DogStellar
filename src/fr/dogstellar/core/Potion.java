@@ -11,8 +11,7 @@ package fr.dogstellar.core;
  */
 public class Potion extends Stuff {
 
-    //The number of potion carried by the player. 
-    private int lifePoint;
+    private final int lifePoint;                                                      //The number of potion carried by the player. 
 
     /**
      * Potion Constructor Initialize a potion object The name and the
@@ -36,7 +35,7 @@ public class Potion extends Stuff {
      * Method drinkPotion Add life points to the perso’s life and remove the
      * potion from the perso’s inventory.
      *
-     * @param perso the perso which drink potion
+     * @param play is the player that drinks the potion
      */
     public void drinkPotion(Player play) {
 
@@ -46,7 +45,6 @@ public class Potion extends Stuff {
 
     /**
      * Method getNbPotion return the lifePoint given by the potion
-     *
      *
      * @return the number of health point given
      */

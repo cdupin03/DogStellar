@@ -1,8 +1,7 @@
 package fr.dogstellar.view;
 
 import fr.dogstellar.core.Planet;
-import java.awt.BorderLayout;
-import java.awt.Font;
+import java.awt.*;
 import javax.swing.JLabel;
 
 /**
@@ -12,15 +11,15 @@ import javax.swing.JLabel;
  * @version V01
  */
 public class PlanetView extends PictureButton {
-    
-    private Planet planet;
+
+    private final Planet planet;
 
     /**
      * The constructor of the PlanetView Class that allows to set an image for
      * planets
      *
      * @param picturePath is the path of pictures
-     * @param planet is the planet which needs an image
+     * @param thePlanet is the planet which needs an image
      * @param actual true if it is the actual planet, else false.
      */
     public PlanetView(String picturePath, Planet thePlanet, boolean actual) {
@@ -28,28 +27,26 @@ public class PlanetView extends PictureButton {
         planet = thePlanet;
         String planetText = "<html><center><font color = #FF0000 >";
         planetText += planet.getInformation().getName();
-        if (actual)
-        {
+        if (actual) {
             planetText += "<br/>(Actual)";
-        }
-        else if (StartGame.getPlayer().getNumberQuestElement() < planet.getNbQuestElement())
-        {
+        } else if (StartGame.getPlayer().getNumberQuestElement() < planet.getNbQuestElement()) {
             this.setEnabled(false);
-            planetText += "<br/>" +
-                    StartGame.getPlayer().getNumberQuestElement() +
-                    "/" +
-                    planet.getNbQuestElement();
+            planetText += "<br/>"
+                    + StartGame.getPlayer().getNumberQuestElement()
+                    + "/"
+                    + planet.getNbQuestElement();
         }
         planetText += "</font></center></html>";
         this.add(new JLabel(planetText, CENTER), BorderLayout.CENTER);
     }
-    
+
     /**
      * Get the planet
+     *
      * @return the planet
      */
-    public Planet getPlanet ()
-    {
+    public Planet getPlanet() {
         return planet;
     }
+
 }
