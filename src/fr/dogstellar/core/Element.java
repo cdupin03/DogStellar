@@ -75,6 +75,12 @@ public class Element {
 
     }
 
+    public void open_chest(Player player) {
+    player.addStuff(reward, 1);
+    }
+            
+    
+    
     /**
      * This method allows us to delete a lifePoint when the player meet a trap
      *
