@@ -1,6 +1,5 @@
 package fr.dogstellar.view;
 
-import fr.dogstellar.core.*;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -22,7 +21,7 @@ import javax.swing.*;
  */
 public abstract class GeneralWindow extends JPanel {
 
-    private HashMap<Integer, Component> components;                             //The coordinates (xxyy) linked to a component (arrow for example)
+    private final HashMap<Integer, Component> components;                             //The coordinates (xxyy) linked to a component (arrow for example)
     private int height;                                                         //The number of column
     private int length;                                                         //The number of lines	private final String picturePath;
     private String nameOfFirstBackgroundPicture;                                //The name of the first background
@@ -273,6 +272,7 @@ public abstract class GeneralWindow extends JPanel {
 
     /**
      * draw the background of this panel.
+     * @param g
      */
     @Override
     public void paintComponent(Graphics g) {
@@ -281,8 +281,6 @@ public abstract class GeneralWindow extends JPanel {
 
     /**
      * Allows to get the picture of the area.
-     *
-     * @param newArea the new Area to display
      */
     protected void catchPicture() {
         try {
@@ -302,12 +300,6 @@ public abstract class GeneralWindow extends JPanel {
      * @param ena If true enable if false disable.
      */
     public abstract void setEnableArrows(boolean ena);
-    
-//    public String getCurrentArea()
-//    {
-//        return theCurrentZone;
-//    }
-    
     
     /**
      * Adjust the window to its current environment, actualize the grid and components.

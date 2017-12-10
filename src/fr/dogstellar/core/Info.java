@@ -9,7 +9,7 @@ package fr.dogstellar.core;
  * @author G3
  * @version V04
  */
-public class Info {
+public final class Info {
 
     //The name of the object, must be superior to three characters with no spaces before and after.
     private String name;

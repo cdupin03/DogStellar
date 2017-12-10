@@ -1,14 +1,10 @@
 package fr.dogstellar.view;
 
 import java.awt.event.*;
-import javax.swing.*;
+import java.util.ArrayList;
 
 import fr.dogstellar.core.AreaPlanet;
 import fr.dogstellar.core.Planet;
-
-import fr.dogstellar.game.*;
-
-import java.util.ArrayList;
 
 /**
  * This class is the representation of a simple Window of the game. The window
@@ -25,12 +21,11 @@ public final class Window extends GeneralWindow {
     private GraphicalArrow northArrow;                                          //The north Arrow
     private GraphicalArrow southArrow;                                          //The south Arrow
     private AreaPlanet area;                                                    //The areaPlanet to show.
-    private ArrayList<Planet> planets;                                          //The planets
+    private final ArrayList<Planet> planets;                                          //The planets
     private final String south = "SOUTH";
     private final String north = "NORTH";
     private final String east = "EAST";
     private final String west = "WEST";
-
 
     /**
      * The constructor of Window. Create the window with its components. Set set
@@ -39,6 +34,7 @@ public final class Window extends GeneralWindow {
      * than 0 they are initialized to 3. The height and length are managed by
      * setHeight and setLength.
      *
+     * @param thePlanets is list of planets
      * @param inter the interface.
      */
     public Window(ArrayList<Planet> thePlanets, Interface inter) {
@@ -120,13 +116,12 @@ public final class Window extends GeneralWindow {
         catchPicture(newArea);
         adjustWindow();
     }
-    
+
     /**
      * This method refresh the area
      */
     @Override
-    public void adjustWindow()
-    {
+    public void adjustWindow() {
         erraseGrid();
 
         if (planets.get(0).getAreas().equals(area)) {
@@ -142,14 +137,14 @@ public final class Window extends GeneralWindow {
         }
 
         addArrows();
-        
+
         area.getPerso().stream().forEach((_item) -> {
-            if (_item.getIsDead()==false) {
-            	System.out.println("Monster : "+ _item.getNamePerso() + _item.getIsDead());
-	            addRandomlyComponent(new PersoView(getPicturePath(), _item));
-	        }
+            if (_item.getIsDead() == false) {
+                System.out.println("Monster : " + _item.getNamePerso() + _item.getIsDead());
+                addRandomlyComponent(new PersoView(getPicturePath(), _item));
+            }
         });
-        
+
         area.getElement().stream().forEach((e) -> {
             addRandomlyComponent(new ElementView(getPicturePath(), e, this));
         });
@@ -163,6 +158,7 @@ public final class Window extends GeneralWindow {
      *
      * @param ena If true enable if false disable.
      */
+    @Override
     public void setEnableArrows(boolean ena) {
         southArrow.setEnabled(ena);
         northArrow.setEnabled(ena);
@@ -180,21 +176,11 @@ public final class Window extends GeneralWindow {
         setNameOfFirstBackgroundPicture(area.getPicture());
         super.catchPicture();
     }
-    
+
     @Override
-    public void returnToFirstMap ()
-    {
+    public void returnToFirstMap() {
         area = planets.get(0).getAreas();
         adjustWindow(area);
     }
-    
 
-//    /**
-//     * get the current area.
-//     * @return theCurrentZone
-//     */
-//    public String getCurrentArea()
-//    {
-//        return theCurrentZone;
-//    }
 }

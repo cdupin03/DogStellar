@@ -6,7 +6,6 @@ import fr.dogstellar.core.*;
 import fr.dogstellar.view.GeneralWindow;
 import fr.dogstellar.view.Popup;
 import fr.dogstellar.view.StartGame;
-import fr.dogstellar.view.Window;
 
 /**
  * This method allow to play the fight between a monster and a player At the
@@ -17,25 +16,22 @@ import fr.dogstellar.view.Window;
  * partOfShip and maybe a otherStuff (with 1 chance /2) If the player lost the
  * game, the lifePoint of the monster is reinitialize.
  *
- * @param myMonster it is the perso that the player fight
- * @param myPlayer it is the player of the game that fight the monster
- * @param partOfShip it is the partOfShip that the player win when he win the
- * fight
- * @param otherStuff it is the stuff that the player can win when he win the
- * fight and with a probability 1/2
  * @author GP3
  * @version 21/11/2017
  *
  */
-public class Fight {
+public final class Fight {
 
     private static Perso monster;
     private static Player player;
     private boolean end;
-    private static Perso monsterDead = new Perso("Null", 0, 0);
+    private static final Perso monsterDead = new Perso("Null", 0, 0);
 
     /**
      * Is the constructor of Fight
+     * 
+     * @param myMonster is the monster to fight
+     * @param myPlayer is the player that fight
      */
     public Fight(Perso myMonster, Player myPlayer) {
         monster = myMonster;
@@ -58,7 +54,7 @@ public class Fight {
                 }
                 monster.setIsDead();
                 //System.out.println("the monster is dead" + monster.getIsDead());
-                end = new Boolean(true);
+                end = true;
                 break;
             }
             StartGame.getInterf().addMessageToConsole("PLAYER ATTACK !");
@@ -76,7 +72,7 @@ public class Fight {
                 StartGame.getInterf().getDisplay().refreshDisplay(); 
 
                 // !!!!!!!!!!!!!! Call method return to ship !!!!!!!!!!!!!!!!!!
-                end = new Boolean(true);
+                end = true;
                 break;
             }
 

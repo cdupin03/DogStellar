@@ -1,15 +1,12 @@
 package fr.dogstellar.view;
 
-import fr.dogstellar.core.Planet;
-import fr.dogstellar.core.Player;
+import fr.dogstellar.core.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import java.util.ArrayList;
-import javax.swing.JButton;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 /**
  * This class allows to create the display of the ship
@@ -19,10 +16,10 @@ import javax.swing.JFrame;
  */
 public class InShip extends GeneralWindow implements ActionListener {
 
-    private ArrayList<Planet> planets;
-    private ArrayList<PlanetView> planetViews;
-    private JButton test;
-    private JButton test2;
+    private final ArrayList<Planet> planets;
+    private final ArrayList<PlanetView> planetViews;
+    private final JButton test;
+    private final JButton test2;
 
     /**
      * The constructor of the class
@@ -50,10 +47,9 @@ public class InShip extends GeneralWindow implements ActionListener {
         PlanetView pView;
         int x = 1;
         int y = (getHeightGrid() - 1) / 2;
-        
 
         for (int i = 0; i < planets.size(); i++) {
-            pView = new PlanetView(getPicturePath(), planets.get(i), (i==0));
+            pView = new PlanetView(getPicturePath(), planets.get(i), (i == 0));
             planetViews.add(pView);
             pView.addActionListener(this);
             addComponentToGrid(pView, x, y);
@@ -85,41 +81,42 @@ public class InShip extends GeneralWindow implements ActionListener {
     public void setEnableArrows(boolean ena) {
         System.out.println("Erreur, cette classe n'a pas de fleches");
     }
-    
+
     /**
      * Exchange the place of the planet in the list with the first element.
+     *
      * @param IndexP the index planet to exchange with the first of the list.
      */
-    private void exchangeListElementWithFirst (int indexP)
-    {
-        if (indexP != 0)
-        {
+    private void exchangeListElementWithFirst(int indexP) {
+        if (indexP != 0) {
             Planet planet = planets.get(0);
             planets.set(0, planets.get(indexP));
             planets.set(indexP, planet);
         }
     }
-    
+
     /**
      * Add the action to all planetView. When a planet is clicked, it redirects
      * to it.
+     *
      * @param ae The action event
      */
     @Override
     public void actionPerformed(ActionEvent ae) { //Interchanger avant les planetes
-        for (int i = 0; i<planetViews.size(); i++)
-        {
-            if (ae.getSource()==planetViews.get(i))
-            {
+        for (int i = 0; i < planetViews.size(); i++) {
+            if (ae.getSource() == planetViews.get(i)) {
                 exchangeListElementWithFirst(i);
                 getInterfac().setWindow(new Window(planets, getInterfac()));
             }
         }
     }
-    
+
+    /**
+     * To return to the first map
+     */
     @Override
-    public void returnToFirstMap ()
-    {
-        
+    public void returnToFirstMap() {
+        getInterfac().setWindow(new Window(planets, getInterfac()));
     }
+
 }
