@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.awt.*;
 import javax.swing.*;
 
+import org.omg.CORBA.SystemException;
+
 import fr.dogstellar.core.*;
 
 /**
@@ -73,6 +75,7 @@ public final class InventoryPanel extends JFrame {
             theImage1 = resyze(theImage1, gridCaseHeight1, gridCaseWidth1);                 //resize the image
             JButton equipedArmor = new JButton(theImage1);                                  //create a new JButton
             equipedInventory.add(equipedArmor);                                             //add the Jbutton to the JPanel 
+            StartGame.getInterf().getDisplay().refreshDisplay();
             equipedArmor.setToolTipText("There is no item equiped on this slot");           //set the tooltiptext
         } //if the player have an equiped weapon
         else {
@@ -92,7 +95,8 @@ public final class InventoryPanel extends JFrame {
                     if (thePlayer.hasArmor()) {
 
                         thePlayer.desequipArmor();                                          //remove the armor
-                        refreshInventory();                                                 // refresh the inventory 
+                        refreshInventory();                                                 // refresh the inventory
+                        StartGame.getInterf().getDisplay().refreshDisplay();
                     }
 
                 }
@@ -104,7 +108,8 @@ public final class InventoryPanel extends JFrame {
 
             theImage2 = resyze(theImage2, gridCaseHeight1, gridCaseWidth1);                 //resize the image
             JButton equipedWeapon = new JButton(theImage2);                                 //put the image in a button
-            equipedInventory.add(equipedWeapon);                                            //add the button to the panel 
+            equipedInventory.add(equipedWeapon);                                            //add the button to the panel
+            StartGame.getInterf().getDisplay().refreshDisplay();
 
             equipedWeapon.setToolTipText("There is no equiped item on this slot");          // set is tooltiptext
         } //if the player has a equiped weapon
@@ -116,12 +121,14 @@ public final class InventoryPanel extends JFrame {
             equipedInventory.add(equipedWeapon);                                            //add tje JButton to the JPanel
 
             equipedWeapon.setToolTipText(associationLabel(thePlayer.getWeaponEquip()));     //set the right tooltiptext
+            System.out.println("Weapon =" + thePlayer.hasArmor());
             //action listener to unequip the weapon
             equipedWeapon.addActionListener((ActionEvent e) -> {
                 // TODO Auto-generated method stub
                 if (thePlayer.hasWeapon()) {
                     thePlayer.desequipWeapon();                                             //remove the weapon
                     refreshInventory();                                                     //refresh the inventoy
+                    StartGame.getInterf().getDisplay().refreshDisplay();
                 }
             });
         }

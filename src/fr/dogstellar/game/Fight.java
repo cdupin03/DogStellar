@@ -2,6 +2,8 @@ package fr.dogstellar.game;
 
 import java.util.Random;
 
+import com.sun.org.apache.bcel.internal.generic.IfInstruction;
+
 import fr.dogstellar.core.*;
 import fr.dogstellar.view.GeneralWindow;
 import fr.dogstellar.view.Popup;
@@ -59,8 +61,12 @@ public final class Fight {
             }
             StartGame.getInterf().addMessageToConsole("PLAYER ATTACK !");
             monster.monsterFight(player, monster.getAttackPoint());
-            StartGame.getInterf().addMessageToConsole("     Now you have " + player.getLifePoint() + " life point");
+            StartGame.getInterf().addMessageToConsole("     The monster has " + monster.getLifePoint() + " life point");
             StartGame.getInterf().addMessageToConsole("MONSTER ATTACK !");
+            if (player.hasArmor()) {
+            	StartGame.getInterf().addMessageToConsole("     Your armor has now " + player.getArmorEquip().getArmorPoint() + " life point");
+            }
+            
             StartGame.getInterf().addMessageToConsole("     Now you have " + player.getLifePoint() + " life point");
             StartGame.getInterf().getDisplay().refreshDisplay();
             if (player.getLifePoint() == 0) {
@@ -69,10 +75,11 @@ public final class Fight {
                 Popup retourVaisseau = new Popup("You are dead, you are going back to the ship");
                 StartGame.getInterf().getTheWindow().returnToFirstMap();
                 StartGame.getPlayer().setLifePoint(StartGame.getLifePoint());
-                StartGame.getInterf().getDisplay().refreshDisplay(); 
+                 
 
                 // !!!!!!!!!!!!!! Call method return to ship !!!!!!!!!!!!!!!!!!
                 end = true;
+                StartGame.getInterf().getDisplay().refreshDisplay();
                 break;
             }
 
