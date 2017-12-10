@@ -29,7 +29,6 @@ public class DisplayInfo extends JPanel {
 
 	public DisplayInfo() {
 
-		//namePlayer = new JLabel("Name : " + StartGame.getPlayer().getNamePerso());
 		nameBarLife = new JLabel("Life Point      : ");
 		nameBarAttack = new JLabel("Attack Point : ");
 
@@ -69,11 +68,9 @@ public class DisplayInfo extends JPanel {
 		bar.setLayout(new GridLayout(2,1));
 		bar.setBackground(Color.cyan);
 		bar.add(barLife, BorderLayout.NORTH);
-		//bar.add(weaponLife, BorderLayout.CENTER);
 		bar.add(barAttack, BorderLayout.SOUTH);
 
 		this.setLayout(new BorderLayout());
-		//this.add(namePlayer, BorderLayout.NORTH);
 		this.add(bar, BorderLayout.CENTER);
 	}
 
