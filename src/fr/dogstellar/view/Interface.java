@@ -190,7 +190,8 @@ public class Interface {
         //AreaPlanet Area0Planet1 = new AreaPlanet("Ship", "your ship", "");
         AreaPlanet Area1Planet1 = new AreaPlanet("Area1", "rdytfuygiut", "map/map1.png");
         Area1Planet1.addPerso(monstre1);
-        Area1Planet1.addElement(new Element("Coffre", "Petit coffre", 4));
+        Armor armor1 = new Armor("Plaque rouillé", "C'est mieux que rien", 3);
+        Area1Planet1.addElement(new Element("Coffre", "Petit coffre", 4, armor1));
         Weapon weapon1 = new Weapon("Epee rouillé", "Rien de bien puissant", 3);
         Area1Planet1.addElement(new Element("Quesqui est jaune et qui attend?", "Jonathan", 1, weapon1));
 
