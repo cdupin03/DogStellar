@@ -26,6 +26,13 @@ public final class ElementView extends JButton {
 
     /**
      * The constructor of the ElementViewClass
+     * Give a picture to element according to his type, and if it is done or not
+     * The enigma type create actionlistener to react when the player click to OK in the interface, then check the response
+     * It give the reward if the answer is finded, it dont give it if not 
+     * The actionlistener is then desactivate
+     * The trap have a random picture and random damage in a 0-10 range
+     * The PNJ create a pop up 
+     * The chest give the reward
      *
      * @param picturePath the path of the picture
      * @param newE element which needs a picture
@@ -105,50 +112,62 @@ public final class ElementView extends JButton {
                 randompic2 = "Coffre_selection.jpg";
             }
 
-            ImageIcon imageIcon = new ImageIcon(PicturePath + randompic);
-            imageIcon = ConvertImg(70, 60, imageIcon);
-
-            ImageIcon imageIcon2 = new ImageIcon(PicturePath + randompic2);
-            imageIcon2 = ConvertImg(70, 60, imageIcon2);
-
-            this.setIcon(imageIcon);
-            this.setRolloverIcon(imageIcon2);
-            this.setBorder(BorderFactory.createEmptyBorder());
-            this.setContentAreaFilled(false);
+            afficher(randompic, randompic2, 70, 60);
+            
+             
+            this.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent evt) 
+                    {
+                        int randomNum = ThreadLocalRandom.current().nextInt(0, 10);
+                        Popup newPopup = new Popup(E.getInformation().getName() + " :" + E.getInformation().getDescription() + " Vous perdez " + randomNum + " Points de vie");
+                        wind.getInterfac().addMessageToConsole(E.getInformation().getName() + " :" + E.getInformation().getDescription() + " Vous perdez " + randomNum + " Points de vie");
+                        E.lostLifePoint(StartGame.getPlayer(), randomNum);
+                    }    
+            });   
 
         } else if (E.getType() == 3) //If the element is a pnj
         {
 
-            ImageIcon imageIcon = new ImageIcon(PicturePath + "toad1.jpg");
-            imageIcon = ConvertImg(70, 70, imageIcon);
-
-            ImageIcon imageIcon2 = new ImageIcon(PicturePath + "toad2.jpg");
-            imageIcon2 = ConvertImg(70, 70, imageIcon2);
-
-            this.setIcon(imageIcon);
-            this.setRolloverIcon(imageIcon2);
-            this.setBorder(BorderFactory.createEmptyBorder());
-            this.setContentAreaFilled(false);
+            afficher("toad1.jpg", "toad2.jpg", 70, 70);
+            
+            this.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent evt) 
+                    {
+                        Popup newPopup = new Popup(E.getInformation().getName() + " :" + E.getInformation().getDescription());
+                        wind.getInterfac().addMessageToConsole(E.getInformation().getName() + " :" + E.getInformation().getDescription());
+                    }    
+            });        
+                        
+                        
+            
         } else if (E.getType() == 4) //If the element is a chest
         {
             if (!E.getDone()) {
-                ImageIcon imageIcon = new ImageIcon(PicturePath + "Coffre_fermer.jpg");
-                imageIcon = ConvertImg(70, 70, imageIcon);
-
-                ImageIcon imageIcon2 = new ImageIcon(PicturePath + "Coffre_selection.jpg");
-                imageIcon2 = ConvertImg(70, 70, imageIcon2);
-
-                this.setIcon(imageIcon);
-                this.setRolloverIcon(imageIcon2);
-                this.setBorder(BorderFactory.createEmptyBorder());
-                this.setContentAreaFilled(false);
+                
+                afficher("Coffre_fermer.jpg", "Coffre_selection.jpg", 70, 70);
+                
+                this.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent evt) 
+                    {       
+                        E.open_chest(StartGame.getPlayer());
+                        E.setDone(true);
+                        wind.adjustWindow();
+                        
+                        
+                        Popup newPopup = new Popup("Vous avez obtenu :" + E.getReward().getInformation().getName());
+                        wind.getInterfac().addMessageToConsole("Vous avez obtenu : " + E.getReward().getInformation().getName());
+                        wind.getInterfac().addMessageToConsole(E.getReward().getInformation().getName()+ "a été ajouté dans l'inventaire");
+                    }    
+            });     
+                      
             } else {
-                ImageIcon imageIcon = new ImageIcon(PicturePath + "Coffre_ouvert.jpg");
-                imageIcon = ConvertImg(70, 70, imageIcon);
-
-                this.setIcon(imageIcon);
-                this.setBorder(BorderFactory.createEmptyBorder());
-                this.setContentAreaFilled(false);
+                
+                afficher("Coffre_ouvert.jpg", "Coffre_ouvert.jpg", 70, 70);
+                
+                
 
             }
         }
