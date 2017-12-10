@@ -123,6 +123,12 @@ public final class ElementView extends JButton {
                         Popup newPopup = new Popup(E.getInformation().getName() + " :" + E.getInformation().getDescription() + " Vous perdez " + randomNum + " Points de vie");
                         wind.getInterfac().addMessageToConsole(E.getInformation().getName() + " :" + E.getInformation().getDescription() + " Vous perdez " + randomNum + " Points de vie");
                         E.lostLifePoint(StartGame.getPlayer(), randomNum);
+                        StartGame.getInterf().getDisplay().refreshDisplay();
+                        if (StartGame.getPlayer().getLifePoint() <= 0) {
+                        	StartGame.getInterf().getTheWindow().returnToFirstMap();
+                        	StartGame.getPlayer().setLifePoint(StartGame.getLifePoint());
+                        	StartGame.getInterf().getDisplay().refreshDisplay();
+                        }
                     }    
             });   
 
