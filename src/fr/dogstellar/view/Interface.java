@@ -45,7 +45,7 @@ public class Interface {
     private final JButton inventory;                            //Button which allow to open the inventory
     private final JButton returnMap;                           //Button wich allow to return to the first map 
 
-    private final Perso monstre1 = new Perso("FriendlyNeighbor", 10, 3, new QuestElement("PieceShip", "that same piece"), new Armor("MyGreatArmor", "sfddghfxhfgd", 3));
+    private final Perso monstre1 = new Perso("FriendlyNeighbor", 10, 3, new QuestElement("PieceShip", "that same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 2));
     private final Perso monstre2 = new Perso("Monstre2", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6));
     private final Perso monstre3 = new Perso("Monstre3", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6));
 
