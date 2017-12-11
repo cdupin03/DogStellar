@@ -199,31 +199,48 @@ public class Interface {
 
         //Planet 1 with 3 areas and different elements(perso,element) on them
         //AreaPlanet Area0Planet1 = new AreaPlanet("Ship", "your ship", "");
-        AreaPlanet Area1Planet1 = new AreaPlanet("Area1", "rdytfuygiut", "map/map1.png");
-        Area1Planet1.addPerso(monstre1);
+        AreaPlanet Area1Planet1 = new AreaPlanet("Area1", "didacticiel", "map/map1.png");
         Armor armor1 = new Armor("Plaque rouillé", "C'est mieux que rien", 1);
-        Area1Planet1.addElement(new Element("Coffre", "Petit coffre", 4, armor1));
-        Weapon weapon1 = new Weapon("Epee rouillé", "Rien de bien puissant", 1);
-        Area1Planet1.addElement(new Element("Quesqui est jaune et qui attend?", "Jonathan", 1, weapon1));
-        Area1Planet1.addElement(new Element("PNJ", "Bonjour, moi c'est toad, je suis un habitant de cette planete.. .. Votre vaisseau n'a pas assez de puissance pour faire le trajet retour? Pas de problème il vous suffis de récupere les parties de vaisseaux!", 3));
-        Area1Planet1.addElement(new Element("PNJ", "Dans se monde il existe 4 type d'élements auquelle vous ", 3));
+        Area1Planet1.addElement(new Element("Coffre", "Petit coffre", 4, new QuestElement("PieceShip", "A piece of spaceship")));
+        Weapon weapon1 = new Weapon("Epee rouillé", "Augmente vos dégats de 1, appuyer sur l'item pour l'équipé.", 1);
+        Area1Planet1.addElement(new Element("PNJ", "Bonjour, moi c'est toad, je suis un habitant de cette planète.. .. Votre vaisseau n'a pas assez de puissance pour faire le trajet retour ? Pas de problème, il vous suffit de récupérer les parties de vaisseaux ! J'ai récupéré pour vous une partie de vaisseau, ouvrez ce coffre!", 3));
+       
+         
         
         
         
         
-        AreaPlanet Area2Planet1 = new AreaPlanet("Area2", "rdytfiut", "map/map3.png");
-        Area2Planet1.addPerso(monstre2);
-        Area2Planet1.addElement(new Element("Trap", "Un piege déguisé", 2));
-        Area2Planet1.addElement(new Element("PNJ", "Un pnj champu", 3));
-
+        
+        AreaPlanet Area2Planet1 = new AreaPlanet("Area2", "premiere enigme", "map/map3.png");
+        Area2Planet1.addElement(new Element("Bonjour, je suis une enigme : Ecriver le mot de passe", "DIDACTICIEL", 1, weapon1));
+        Area2Planet1.addElement(new Element("PNJ", "Dans se monde il existe 4 type d'élements auquelle vous pouvez interargir: les coffres, les pnj, les enigmes et les pièges."+ 
+                                            "Cliquer sur l'enigme et écriver DIDACTICIEL dans l'interface en bas à droite, puis appuyer sur entrer ou clicker sur OK", 3));
+        
+        
         AreaPlanet Area3Planet1 = new AreaPlanet("Area3", "hum ...", "map/map2.png");
-        Area3Planet1.addPerso(monstre3);
-        Area3Planet1.addElement(new Element("Trap", "Un piege déguisé", 2));
-        Area3Planet1.addElement(new Element("PNJ", "Un pnj champu", 3));
-
+        Area3Planet1.addPerso(monstre2);
+       
+        Area3Planet1.addElement(new Element("Toad apeuré", "Ahh un monstre!! protéger moi de se monstre !.. Clicker le monstre pour l'attaquer, le combat se passe automatiquement au tour par tour en fonction des stats"
+                                             + " du monstre et de les votre. Plus vous serez équipé et plus vos chance de gagner seront forte. L'elimination de monstre vous permet"
+                                             + " d'obtenir des items.", 3));
+        //A ajouter dans une map 4
+        AreaPlanet Area4Planet1 = new AreaPlanet("Area4", "hum ...", "map/map2.png");
+        
+        Area4Planet1.addElement(new Element("Toad", "Il y a quelque chose de bizzard dans cette zone..., je vous laisse mon coffre! il possede une potion de vie. Pour l'utiliser aller dans l'inventaire à gauche de la zone de texte et double clicker sur l'objet", 3));
+        Area4Planet1.addElement(new Element("Trap", "Un piege déguisé, attention ! Les pieges vous font perdre des points de vie situer entre 0 et 3 points de vie. Faite attention ce que vous faite!", 2));
+        Area4Planet1.addElement(new Element("Coffre", "HP", 4, new Potion("Potion Powerfull", "Ideal apres un dur combat", 6)));
+        
+        AreaPlanet Area5Planet1 = new AreaPlanet("Area5", "end zone", "map/map2.png");
+        
+        Area5Planet1.addElement(new Element("Toad","Bravo vous ete arrivée au à la fin de se niveau. Utiliser la touche maps a gauche de l'inventaire pour retourner sur la premiere carte et utiliser le vaisseau pour changer de planet.", 3));
+        
         Area1Planet1.addAreaPlanet(Area2Planet1, "south");
         Area2Planet1.addAreaPlanet(Area3Planet1, "east");
-
+        Area2Planet1.addAreaPlanet(Area4Planet1, "west");
+        Area4Planet1.addAreaPlanet(Area5Planet1, "south");
+        
+        //Faire une map avec des pieges partout et 1 coffre. Celui ci aura excalibur!!! max dgm
+        
         planet1.addArea(Area1Planet1);
 
         //Planet 2 with 2 areas and different elements(perso,element) on them
