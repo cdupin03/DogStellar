@@ -24,8 +24,12 @@ public final class InventoryPanel extends JFrame {
     private final Player thePlayer;                                             // The owner of the inventory
     private JPanel inventory;                                                   // Jpanel containing all unequiped objects
     private JPanel equipedInventory;                                            // Jpanel containing the equiped objects 
+                                 // The name of the botom part of the inventory
+    private String picturePath = System.getProperty("user.dir") + "/pictures/";
+
     private final JLabel lbl1 = new JLabel("Equiped items");                                  // The name of the top part of the inventory
     private final JLabel lbl2 = new JLabel("Your Inventory");                                 // The name of the botom part of the inventory
+
 
     /**
      * The constructor of the class, take a player in parameter to set his
@@ -54,162 +58,19 @@ public final class InventoryPanel extends JFrame {
     public void generateInventory() {
 
         // test si le joueur à un équipement + creation du label "Equiped item"
-        String picturePath = System.getProperty("user.dir") + "/pictures/";
+        
 
         equipedInventory = new JPanel();
         equipedInventory.setLayout(new GridLayout(0, 2, 15, 15));
         equipedInventory.setBackground(new Color(122, 122, 122));
         equipedInventory.setOpaque(true);
 
-        this.add(lbl1);
-        lbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl1.setForeground(Color.white);
-        lbl1.setFont(new Font("Blippo", Font.PLAIN, 28));
-        this.add(equipedInventory);
+        setEquipedInventory();
+        setInventory();
 
-        // Creation of the equipment Jpanel
-        //test if the player has no equiped armor 
-        if (!thePlayer.hasArmor()) {
-            ImageIcon theImage1 = new ImageIcon(picturePath + "void.jpg");                  // set the default image 
-
-            theImage1 = resyze(theImage1, gridCaseHeight1, gridCaseWidth1);                 //resize the image
-            JButton equipedArmor = new JButton(theImage1);                                  //create a new JButton
-            equipedInventory.add(equipedArmor);                                             //add the Jbutton to the JPanel 
-            StartGame.getInterf().getDisplay().refreshDisplay();
-            equipedArmor.setToolTipText("There is no item equiped on this slot");           //set the tooltiptext
-        } //if the player have an equiped weapon
-        else {
-            ImageIcon theImage1 = new ImageIcon(associationImage(thePlayer.getArmorEquip()));//generate the image path corresponding to the weapon 
-
-            theImage1 = resyze(theImage1, gridCaseHeight1, gridCaseWidth1);                 //resize the image 
-            JButton equipedArmor = new JButton(theImage1);                                  //create a JButton
-            equipedInventory.add(equipedArmor);                                             //add the button to the JPanel
-            equipedArmor.setToolTipText(associationLabel(thePlayer.getArmorEquip()));       //set the corresponding tooltiptext
-
-            //the action listener to unequip a weapon 
-            equipedArmor.addActionListener(new ActionListener() {
-
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    // TODO Auto-generated method stub
-                    if (thePlayer.hasArmor()) {
-
-                        thePlayer.desequipArmor();                                          //remove the armor
-                        refreshInventory();                                                 // refresh the inventory
-                        StartGame.getInterf().getDisplay().refreshDisplay();
-                    }
-
-                }
-            });
         }
-        // comportment if the player has no weapon equiped 
-        if (!thePlayer.hasWeapon()) {
-            ImageIcon theImage2 = new ImageIcon(picturePath + "void.jpg");                  // load a default image
-
-            theImage2 = resyze(theImage2, gridCaseHeight1, gridCaseWidth1);                 //resize the image
-            JButton equipedWeapon = new JButton(theImage2);                                 //put the image in a button
-            equipedInventory.add(equipedWeapon);                                            //add the button to the panel
-            StartGame.getInterf().getDisplay().refreshDisplay();
-
-            equipedWeapon.setToolTipText("There is no equiped item on this slot");          // set is tooltiptext
-        } //if the player has a equiped weapon
-        else {
-            ImageIcon theImage2 = new ImageIcon(associationImage(thePlayer.getWeaponEquip()));//associate the good image corresponding to the weapon equiped
-
-            theImage2 = resyze(theImage2, gridCaseHeight1, gridCaseWidth1);                 //resize the image 
-            JButton equipedWeapon = new JButton(theImage2);                                 //create a JButton with this image
-            equipedInventory.add(equipedWeapon);                                            //add tje JButton to the JPanel
-
-            equipedWeapon.setToolTipText(associationLabel(thePlayer.getWeaponEquip()));     //set the right tooltiptext
-            System.out.println("Weapon =" + thePlayer.hasArmor());
-            //action listener to unequip the weapon
-            equipedWeapon.addActionListener((ActionEvent e) -> {
-                // TODO Auto-generated method stub
-                if (thePlayer.hasWeapon()) {
-                    thePlayer.desequipWeapon();                                             //remove the weapon
-                    refreshInventory();                                                     //refresh the inventoy
-                    StartGame.getInterf().getDisplay().refreshDisplay();
-                }
-            });
-        }
-
-        // test if the inventory is empty
-        // creating the panel and the label for each item
-        inventory = new JPanel();
-
-        lbl2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl2.setFont(new Font("Blippo", Font.PLAIN, 28));
-        lbl2.setForeground(Color.white);
-        this.add(lbl2);
-        this.add(inventory);
-        // check if the inventory is empty
-        if (thePlayer.getStuff().isEmpty() == false) {
-            ArrayList<Stuff> stuffs = Factorise(thePlayer.getStuff());                      //create a list with only one occurence of each item 
-            int j = stuffs.size();                                                          // the size of the facotrised list 
-
-            // creating a grid to put the items
-            GridLayout Disposition = new GridLayout(j / 3, 3);
-            inventory.setLayout(Disposition);
-
-            System.out.println(j);
-
-            // variables of the size of each item case
-            if (j < 3) {
-                int gridCaseHeight = ((300) / (j / 1));
-                int gridCaseWidth = ((175) / (j / 1));
-            } else {
-                int gridCaseHeight = ((300) / (j / 3));
-                int gridCaseWidth = ((175) / (j / 3));
-            }
-
-            // foreach item of the list if it is different of the one who is equiped
-            stuffs.stream().map((i) -> {
-                ImageIcon theImage = new ImageIcon(associationImage(i));                    //affecting the good image
-                theImage = resyze(theImage, gridCaseHeight, gridCaseWidth);                 // resize the image
-                JButton X = new JButton(theImage);                                          //create a button with the image inside
-                X.setToolTipText(associationLabel(i));                                      // set a tooltiptext with the items informations
-                JLabel Y = new JLabel(":" + nbOccurence(i, thePlayer.getStuff()));          // affect the value of the number of the item in the inventory
-                //the action listener to equip an item or take a potion
-                X.addActionListener((ActionEvent e) -> {
-                    // TODO Auto-generated method stub
-                    //management for a weapon
-                    if (isWeapon(i)) {
-                        if (thePlayer.hasWeapon()) {
-
-                            thePlayer.desequipWeapon();
-                        }
-                        thePlayer.addWeaponEquip((Weapon) i);
-                        thePlayer.getStuff().remove(i);
-                        refreshInventory();
-                    }
-                    //management for a armor
-                    if (isArmor(i)) {
-                        if (thePlayer.hasArmor()) {
-                            thePlayer.desequipArmor();
-                        }
-                        thePlayer.addArmorEquip((Armor) i);
-                        thePlayer.getStuff().remove(i);
-                        refreshInventory();
-                    }
-                    //management for a potion
-                    if (isPotion(i)) {
-                        ((Potion) i).drinkPotion(thePlayer);
-                        thePlayer.getStuff().remove(i);
-                        refreshInventory();
-                        StartGame.getInterf().getDisplay().refreshDisplay();
-                    }
-                });
-                JPanel inventoryCase = new JPanel();
-                inventoryCase.add(X);
-                inventoryCase.add(Y);
-                inventory.add(inventoryCase);
-                X.setBackground(new Color(196, 196, 196));
-                return X;
-            }).forEachOrdered((X) -> {
-                X.setOpaque(true);
-            });
-        }
-    }
+ 
+    
 
     /**
      * This method compt the number of occurence in a list
@@ -454,4 +315,145 @@ public final class InventoryPanel extends JFrame {
         equipedInventory.revalidate();
 
     }
+      /*This method allow to create the panel for the items in the inventory
+      
+      */     
+      public void setInventory(){
+        // test if the inventory is empty
+        // creating the panel and the label for each item
+        inventory = new JPanel();
+
+        lbl2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl2.setFont(new Font("Blippo", Font.PLAIN, 28));
+        this.add(lbl2);
+        this.add(inventory);
+        // check if the inventory is empty
+        if (thePlayer.getStuff().isEmpty() == false) {
+            ArrayList<Stuff> stuffs = Factorise(thePlayer.getStuff());                      //create a list with only one occurence of each item 
+            int j = stuffs.size();                                                          // the size of the facotrised list 
+
+            // creating a grid to put the items
+            GridLayout Disposition = new GridLayout(j / 3, 3);
+            inventory.setLayout(Disposition);
+
+            // variables of the syze of each item case
+            int gridCaseHeight = ((300) / (j / 3));
+            int gridCaseWidth = ((175) / (j / (j / 3)));
+
+            // foreach item of the list if it is different of the one who is equiped
+            stuffs.stream().map((i) -> {
+                ImageIcon theImage = new ImageIcon(associationImage(i));                    //affecting the good image
+                theImage = resyze(theImage, gridCaseHeight, gridCaseWidth);                 // resize the image
+                JButton X = new JButton(theImage);                                          //create a button with the image inside
+                X.setToolTipText(associationLabel(i));                                      // set a tooltiptext with the items informations
+                JLabel Y = new JLabel(":" + nbOccurence(i, thePlayer.getStuff()));          // affect the value of the number of the item in the inventory
+                //the action listemer to equip an item or take a potion
+                X.addActionListener((ActionEvent e) -> {
+                    // TODO Auto-generated method stub
+                    //management for a weapon
+                    if (isWeapon(i)) {
+                        if (thePlayer.hasWeapon()) {
+
+                            thePlayer.desequipWeapon();
+                        }
+                        thePlayer.addWeaponEquip((Weapon) i);
+                        thePlayer.getStuff().remove(i);
+                        refreshInventory();
+                    }
+                    //management for a armor
+                    if (isArmor(i)) {
+                        if (thePlayer.hasArmor()) {
+                            thePlayer.desequipArmor();
+                        }
+                        thePlayer.addArmorEquip((Armor) i);
+                        thePlayer.getStuff().remove(i);
+                        refreshInventory();
+                    }
+                    //management for a potion
+                    if (isPotion(i)) {
+                        ((Potion) i).drinkPotion(thePlayer);
+                        thePlayer.getStuff().remove(i);
+                        refreshInventory();
+                    }
+                });
+                JPanel inventoryCase = new JPanel();
+                inventoryCase.add(X);
+                inventoryCase.add(Y);
+                inventory.add(inventoryCase);
+                X.setBackground(new Color(196, 196, 196));
+                return X;
+            }).forEachOrdered((X) -> {
+                X.setOpaque(true);
+            });
+        }}
+      /*This method allow to create the panel for the equiped items 
+      
+      */     
+public void setEquipedInventory() {
+        this.add(lbl1);
+        lbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl1.setFont(new Font("Blippo", Font.PLAIN, 28));
+        this.add(equipedInventory);
+
+        // Creation of the equipment Jpanel
+        //test if the player has no equiped armor 
+        if (!thePlayer.hasArmor()) {
+            ImageIcon theImage1 = new ImageIcon(picturePath + "void.jpg");                  // set the default image 
+
+            theImage1 = resyze(theImage1, gridCaseHeight1, gridCaseWidth1);                 //resize the image
+            JButton equipedArmor = new JButton(theImage1);                                  //create a new JButton
+            equipedInventory.add(equipedArmor);                                             //add the Jbutton to the JPanel 
+            equipedArmor.setToolTipText("There is no item equiped on this slot");           //set the tooltiptext
+        } //if the player have an equiped weapon
+        else {
+            ImageIcon theImage1 = new ImageIcon(associationImage(thePlayer.getArmorEquip()));//generate the image path corresponding to the weapon 
+
+            theImage1 = resyze(theImage1, gridCaseHeight1, gridCaseWidth1);                 //resize the image 
+            JButton equipedArmor = new JButton(theImage1);                                  //create a JButton
+            equipedInventory.add(equipedArmor);                                             //add the button to the JPanel
+            equipedArmor.setToolTipText(associationLabel(thePlayer.getArmorEquip()));       //set the corresponding tooltiptext
+
+            //the action listener to unequip a weapon 
+            equipedArmor.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // TODO Auto-generated method stub
+                    if (thePlayer.hasArmor()) {
+
+                        thePlayer.desequipArmor();                                          //remove the armor
+                        refreshInventory();                                                 // refresh the inventory 
+                    }
+
+                }
+            });
+        }
+        // comportment if the player has no weapon equiped 
+        if (!thePlayer.hasWeapon()) {
+            ImageIcon theImage2 = new ImageIcon(picturePath + "void.jpg");                  // load a default image
+
+            theImage2 = resyze(theImage2, gridCaseHeight1, gridCaseWidth1);                 //resize the image
+            JButton equipedWeapon = new JButton(theImage2);                                 //put the image in a button
+            equipedInventory.add(equipedWeapon);                                            //add the button to the panel 
+
+            equipedWeapon.setToolTipText("There is no equiped item on this slot");          // set is tooltiptext
+        } //if the player has a equiped weapon
+        else {
+            ImageIcon theImage2 = new ImageIcon(associationImage(thePlayer.getWeaponEquip()));//associate the good image corresponding to the weapon equiped
+
+            theImage2 = resyze(theImage2, gridCaseHeight1, gridCaseWidth1);                 //resize the image 
+            JButton equipedWeapon = new JButton(theImage2);                                 //create a JButton with this image
+            equipedInventory.add(equipedWeapon);                                            //add tje JButton to the JPanel
+
+            equipedWeapon.setToolTipText(associationLabel(thePlayer.getWeaponEquip()));     //set the right tooltiptext
+            //action listener to unequip the weapon
+            equipedWeapon.addActionListener((ActionEvent e) -> {
+                // TODO Auto-generated method stub
+                if (thePlayer.hasWeapon()) {
+                    thePlayer.desequipWeapon();                                             //remove the weapon
+                    refreshInventory();                                                     //refresh the inventoy
+                }
+            });
+        }}
 }
+
