@@ -212,7 +212,7 @@ public class StartGame {
                 player = new Player(namePlayer, lP, aP);
                 myJFrame.dispose();
                 interf = new Interface();  //start the game with the a player a planet ...
-                new VideoPlayer("Intro.mp4");
+                new VideoPlayer("Intro.mp4", 39000, "DogStellar - The Beginning");
             }
         });
         startGame.setOpaque(false);
