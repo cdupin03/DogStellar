@@ -39,7 +39,7 @@ public final class ElementView extends JButton {
      * @param newE element which needs a picture
      * @param wind is the window when you make change
      */
-    public ElementView(String picturePath, Element newE, Window wind, String image1, String image2) {
+    public ElementView(String picturePath, Element newE, Window wind) {
         super();                                                                //call the constructor of the JButton
         PicturePath = picturePath + "";                             			//Define the path of the picture
         E = newE;                                                               //Define the element
@@ -47,7 +47,7 @@ public final class ElementView extends JButton {
         if (E.getType() == 1) 													//If the element is a enigma 
         {
             if (E.getDone() != true) {
-                afficher(image1, image2, 70, 60);
+                afficher(E.getImage1(),E.getImage2(), 70, 60);
 
                 this.addMouseListener(new MouseAdapter() {
                     @Override
@@ -90,7 +90,8 @@ public final class ElementView extends JButton {
                     }
                 });
             } else {
-                afficher(image1, image2, 70, 60);
+
+                afficher(E.getImage2(),E.getImage2(), 70, 60);
             }
 
         } else if (E.getType() == 2) //If the element is a trap
@@ -113,7 +114,7 @@ public final class ElementView extends JButton {
                 randompic2 = "Coffre_selection.jpg";
             }
 
-            afficher(randompic, randompic2, 70, 60);
+            afficher(E.getImage1(),E.getImage2(), 70, 60);
 
             this.addMouseListener(new MouseAdapter() {
                 @Override
@@ -135,7 +136,9 @@ public final class ElementView extends JButton {
         {
 
             if (E.getDone() == false) {
-                afficher(image1, image2, 70, 70);
+
+                afficher(E.getImage1(),E.getImage2(),70, 70);
+
 
                 this.addMouseListener(new MouseAdapter() {
                     @Override
@@ -146,7 +149,7 @@ public final class ElementView extends JButton {
                 });
             } else {
 
-                afficher(image1, image2, 70, 70);
+                afficher(E.getImage1(),E.getImage2(), 70, 70);
 
                 //
                 this.addActionListener(new ActionListener() {
@@ -180,7 +183,8 @@ public final class ElementView extends JButton {
         {
             if (!E.getDone()) {
 
-                afficher(image1, image2, 70, 70);
+                afficher(E.getImage1(),E.getImage2(), 70, 70);
+
 
                 this.addMouseListener(new MouseAdapter() {
                     @Override
@@ -196,7 +200,7 @@ public final class ElementView extends JButton {
 
             } else {
 
-                afficher(image1, image2, 70, 70);
+                afficher(E.getImage1(),E.getImage2(), 70, 70);
 
             }
         }

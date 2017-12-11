@@ -199,30 +199,32 @@ public class Interface {
 
         //Planet 1 with 3 areas and different elements(perso,element) on them
         //AreaPlanet Area0Planet1 = new AreaPlanet("Ship", "your ship", "");
+
         AreaPlanet Area1Planet1 = new AreaPlanet("Area1", "first area", "map/map1.png");
-        Area1Planet1.addElement(new Element("PNJ", " Hey my friend ! Do you remember me? I found you almost dead but you're better now. I hope you got your bag", 3));
+        Area1Planet1.addElement(new Element("PNJ", " Hey my friend ! Do you remember me? I found you almost dead but you're better now. I hope you got your bag", 3, "toad1.jpg", "toad2.jpg"));
         Armor armor1 = new Armor("Aurora", "More beautiful than effective", 1);
-        Area1Planet1.addElement(new Element("Bag", "with your armor", 4, armor1));
+        Area1Planet1.addElement(new Element("Bag", "with your armor", 4, armor1, "sacados.png", "sacados.png"));
         
         AreaPlanet Area2Planet1 = new AreaPlanet("Area2", "second area", "map/map3.png");
-        Area2Planet1.addElement(new Element("PNJ", "My neighbor does not like to be disturbed ... but he may have recovered a piece of your ship", 3));
-//        Weapon weapon1 = new Weapon("Walpurga", "Weak laser ", 1);
-//        Area2Planet1.addElement(new Element("Who gets up without making a sound?", "SUN", 1, weapon1));
+        Area2Planet1.addElement(new Element("PNJ", "My neighbor does not like to be disturbed ... but he may have recovered a piece of your ship", 3, "toad1.jpg", "toad2.jpg"));
         Area2Planet1.addPerso(monstre1);
         
-        AreaPlanet Area3Planet1 = new AreaPlanet("Area3", "hum ...", "map/map2.png");
-        Area3Planet1.addElement(new Element("PNJ", "Thanks, my neighbor has gone away now", 3));
+        AreaPlanet Area3Planet1 = new AreaPlanet("Area3", "third area", "map/map2.png");
+        Area3Planet1.addElement(new Element("PNJ", "Thanks, my neighbor has gone away now", 3,"toad1.jpg", "toad2.jpg"));
         Weapon weapon1 = new Weapon("Walpurga", "Weak laser ", 1);
-        Area2Planet1.addElement(new Element("Who gets up without making a sound?", "SUN", 1, weapon1));
+        Area3Planet1.addElement(new Element("Who gets up without making a sound?", "sun", 1, weapon1, "enigma.png", "enigma2.png"));
 //        Area3Planet1.addPerso(monstre3);
 //        Area3Planet1.addElement(new Element("Trap", "Un piege déguisé", 2));
 //        Area3Planet1.addElement(new Element("PNJ", "Un pnj champu", 3));
 
-        
+//        Area3Planet1.addPerso(monstre2);
+       
         
         Area1Planet1.addAreaPlanet(Area2Planet1, "south");
         Area2Planet1.addAreaPlanet(Area3Planet1, "east");
-
+        
+        //Faire une map avec des pieges partout et 1 coffre. Celui ci aura excalibur!!! max dgm
+        
         planet1.addArea(Area1Planet1);
 
         //Planet 2 with 2 areas and different elements(perso,element) on them
@@ -304,7 +306,7 @@ public class Interface {
         Area5Planet4.addAreaPlanet(Area6Planet4, "south");
         Area6Planet4.addAreaPlanet(Area7Planet4, "south");
         
-        Element toad_spaceship = (new Element("PNJ", "", 3));
+        Element toad_spaceship = (new Element("PNJ", "", 3, "toad1.jpg", "toad2.jpg"));
         toad_spaceship.setDone(true);
         
         Area7Planet4.addElement(toad_spaceship);

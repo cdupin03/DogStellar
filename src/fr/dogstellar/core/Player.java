@@ -50,8 +50,10 @@ public class Player extends Perso {
      * To desequip weapon
      */
     public void desequipWeapon() {
+        increaseAttackPoint(-(weapon.getDamage()));
         this.addStuff((Stuff) weapon, 1);
         weapon = null;
+
     }
 
     /**
