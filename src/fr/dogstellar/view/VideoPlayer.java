@@ -40,9 +40,9 @@ public class VideoPlayer implements ActionListener {
      */
     public VideoPlayer(String thisVideo,int newTime, String title) {
         picturePath = System.getProperty("user.dir") + "/videos/";              //The path of the video
-        timer = new Timer(newTime, this);                                         //The timer is set to the time of video plus one second, allows to close the JFrame
+        timer = new Timer(newTime, this);                                       //The timer is set to the time of video plus one second, allows to close the JFrame
         timer.start();                                                          //The start of the conter
-        createMediaView();                                                          //This method allows to create the media player
+        createMediaView();                                                      //This method allows to create the media player
         nameVideo = thisVideo;                                                  //The video to play
         file = new File(picturePath + nameVideo);                               //This JFrame is not resizable
 
@@ -67,7 +67,7 @@ public class VideoPlayer implements ActionListener {
         theFrame.pack();                                                        //Sizes the frame so that all its contents are at or above their preferred sizes
         theFrame.setLocationRelativeTo(null);                                   //The display on the JFrame is on center of the screen
         theFrame.setVisible(true);                                              //To display the frame
-
+        
         theFrame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -82,11 +82,12 @@ public class VideoPlayer implements ActionListener {
      */
     private void createMediaView() {
         Platform.runLater(() -> {
-            Media m = new Media(file.toURI().toString());                        //To create the media with the url of the file
-            mediaPlayer = new MediaPlayer(m);                                   //To create the media player
+            //Media m = new Media(file.toURI().toString());                       //To create the media with the url of the file
+            mediaPlayer = new MediaPlayer(new Media(file.toURI().toString()));                                   //To create the media player
             jfxPanel.setScene(new Scene(new Group(new MediaView(mediaPlayer))));//Initialise the JFXPanel with the media player inside
             mediaPlayer.setVolume(0.7);                                         //Set the volume of the audio video
             mediaPlayer.play();                                                 //To play the video
+            System.out.println("Création d'un nouveau média player");
         });
     }
 
