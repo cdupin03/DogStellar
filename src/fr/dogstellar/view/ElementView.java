@@ -47,7 +47,7 @@ public final class ElementView extends JButton {
         if (E.getType() == 1) //If the element is a enigma 
         {
             if (E.getDone() != true) {
-                afficher("enigma.png", "enigma2.png", 70, 60);
+                afficher(E.getImage1(),E.getImage2(), 70, 60);
 
                 this.addMouseListener(new MouseAdapter() {
                     @Override
@@ -90,7 +90,7 @@ public final class ElementView extends JButton {
                     }
                 });
             } else {
-                afficher("enigma2.png", "enigma2.png", 70, 60);
+                afficher(E.getImage2(),E.getImage2(), 70, 60);
             }
 
         } else if (E.getType() == 2) //If the element is a trap
@@ -113,7 +113,7 @@ public final class ElementView extends JButton {
                 randompic2 = "Coffre_selection.jpg";
             }
 
-            afficher(randompic, randompic2, 70, 60);
+            afficher(E.getImage1(),E.getImage2(), 70, 60);
 
             this.addMouseListener(new MouseAdapter() {
                 @Override
@@ -135,7 +135,7 @@ public final class ElementView extends JButton {
         {
 
             if (E.getDone() == false) {
-                afficher("toad1.jpg", "toad2.jpg", 70, 70);
+                afficher(E.getImage1(),E.getImage2(),70, 70);
 
                 this.addMouseListener(new MouseAdapter() {
                     @Override
@@ -146,7 +146,7 @@ public final class ElementView extends JButton {
                 });
             } else {
 
-                afficher("toad1.jpg", "toad2.jpg", 70, 70);
+                afficher(E.getImage1(),E.getImage2(), 70, 70);
 
                 //
                 this.addActionListener(new ActionListener() {
@@ -174,7 +174,7 @@ public final class ElementView extends JButton {
         {
             if (!E.getDone()) {
 
-                afficher("Coffre_fermer.jpg", "Coffre_selection.jpg", 70, 70);
+                afficher(E.getImage1(),E.getImage2(), 70, 70);
 
                 this.addMouseListener(new MouseAdapter() {
                     @Override
@@ -191,7 +191,7 @@ public final class ElementView extends JButton {
 
             } else {
 
-                afficher("Coffre_ouvert.jpg", "Coffre_ouvert.jpg", 70, 70);
+                afficher(E.getImage1(),E.getImage2(), 70, 70);
 
             }
         }
