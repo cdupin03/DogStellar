@@ -200,22 +200,17 @@ public class Interface {
         //Planet 1 with 3 areas and different elements(perso,element) on them
         //AreaPlanet Area0Planet1 = new AreaPlanet("Ship", "your ship", "");
         AreaPlanet Area1Planet1 = new AreaPlanet("Area1", "rdytfuygiut", "map/map1.png");
-        Area1Planet1.addPerso(monstre1);
-        Armor armor1 = new Armor("Plaque rouillé", "C'est mieux que rien", 1);
-        Area1Planet1.addElement(new Element("Coffre", "Petit coffre", 4, armor1));
-        Weapon weapon1 = new Weapon("Epee rouillé", "Rien de bien puissant", 1);
-        Area1Planet1.addElement(new Element("Quesqui est jaune et qui attend?", "Jonathan", 1, weapon1));
-        Area1Planet1.addElement(new Element("PNJ", "Bonjour, moi c'est toad, je suis un habitant de cette planete.. .. Votre vaisseau n'a pas assez de puissance pour faire le trajet retour? Pas de problème il vous suffis de récupere les parties de vaisseaux!", 3));
-        Area1Planet1.addElement(new Element("PNJ", "Dans se monde il existe 4 type d'élements auquelle vous ", 3));
-        
-        
-        
-        
+//        Weapon weapon1 = new Weapon("Walpurga", "Weak laser ", 1);
+//        Area1Planet1.addElement(new Element("Who gets up without making a sound?", "SUN", 1, weapon1));
+        Area1Planet1.addElement(new Element("PNJ", "  Hey my friend ! Do you remember me? I found you almost dead but you're better now. I put your weapon in a chest, I hope you got it back", 3));
+
         AreaPlanet Area2Planet1 = new AreaPlanet("Area2", "rdytfiut", "map/map3.png");
+        Armor armor1 = new Armor("Aurora", "More beautiful than effective", 1);
+        Area1Planet1.addElement(new Element("Clorinde", "Small but appreciable", 4, armor1));
         Area2Planet1.addPerso(monstre2);
         Area2Planet1.addElement(new Element("Trap", "Un piege déguisé", 2));
         Area2Planet1.addElement(new Element("PNJ", "Un pnj champu", 3));
-
+        
         AreaPlanet Area3Planet1 = new AreaPlanet("Area3", "hum ...", "map/map2.png");
         Area3Planet1.addPerso(monstre3);
         Area3Planet1.addElement(new Element("Trap", "Un piege déguisé", 2));
