@@ -201,11 +201,16 @@ public class Interface {
         //AreaPlanet Area0Planet1 = new AreaPlanet("Ship", "your ship", "");
         AreaPlanet Area1Planet1 = new AreaPlanet("Area1", "rdytfuygiut", "map/map1.png");
         Area1Planet1.addPerso(monstre1);
-        Armor armor1 = new Armor("Plaque rouillé", "C'est mieux que rien", 5);
+        Armor armor1 = new Armor("Plaque rouillé", "C'est mieux que rien", 1);
         Area1Planet1.addElement(new Element("Coffre", "Petit coffre", 4, armor1));
-        Weapon weapon1 = new Weapon("Epee rouillé", "Rien de bien puissant", 3);
+        Weapon weapon1 = new Weapon("Epee rouillé", "Rien de bien puissant", 1);
         Area1Planet1.addElement(new Element("Quesqui est jaune et qui attend?", "Jonathan", 1, weapon1));
-
+        Area1Planet1.addElement(new Element("PNJ", "Bonjour, moi c'est toad, je suis un habitant de cette planete.. .. Votre vaisseau n'a pas assez de puissance pour faire le trajet retour? Pas de problème il vous suffis de récupere les parties de vaisseaux!", 3));
+        Area1Planet1.addElement(new Element("PNJ", "Dans se monde il existe 4 type d'élements auquelle vous ", 3));
+        
+        
+        
+        
         AreaPlanet Area2Planet1 = new AreaPlanet("Area2", "rdytfiut", "map/map3.png");
         Area2Planet1.addPerso(monstre2);
         Area2Planet1.addElement(new Element("Trap", "Un piege déguisé", 2));
@@ -297,7 +302,13 @@ public class Interface {
         Area1Planet4.addAreaPlanet(Area4Planet4, "west");
         Area4Planet4.addAreaPlanet(Area5Planet4, "west");
         Area5Planet4.addAreaPlanet(Area6Planet4, "south");
-
+        
+        Element toad_spaceship = (new Element("PNJ", "", 3));
+        toad_spaceship.setDone(true);
+        
+        Area6Planet4.addElement(toad_spaceship);
+        
+        
         planet4.addArea(Area1Planet4);
 
         theWindow = new Window(planets, this);

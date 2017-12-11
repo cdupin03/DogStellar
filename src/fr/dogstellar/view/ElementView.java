@@ -25,14 +25,13 @@ public final class ElementView extends JButton {
     private Element E;                                                          // The element which needs a picture          
 
     /**
-     * The constructor of the ElementViewClass
-     * Give a picture to element according to his type, and if it is done or not
-     * The enigma type create actionlistener to react when the player click to OK in the interface, then check the response
-     * It give the reward if the answer is finded, it dont give it if not 
-     * The actionlistener is then desactivate
-     * The trap have a random picture and random damage in a 0-10 range
-     * The PNJ create a pop up 
-     * The chest give the reward
+     * The constructor of the ElementViewClass Give a picture to element
+     * according to his type, and if it is done or not The enigma type create
+     * actionlistener to react when the player click to OK in the interface,
+     * then check the response It give the reward if the answer is finded, it
+     * dont give it if not The actionlistener is then desactivate The trap have
+     * a random picture and random damage in a 0-10 range The PNJ create a pop
+     * up The chest give the reward
      *
      * @param picturePath the path of the picture
      * @param newE element which needs a picture
@@ -113,67 +112,82 @@ public final class ElementView extends JButton {
             }
 
             afficher(randompic, randompic2, 70, 60);
-            
-             
+
             this.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent evt) 
-                    {
-                        int randomNum = ThreadLocalRandom.current().nextInt(0, 10);
-                        Popup newPopup = new Popup(E.getInformation().getName() + " :" + E.getInformation().getDescription() + " Vous perdez " + randomNum + " Points de vie");
-                        wind.getInterfac().addMessageToConsole(E.getInformation().getName() + " :" + E.getInformation().getDescription() + " Vous perdez " + randomNum + " Points de vie");
-                        E.lostLifePoint(StartGame.getPlayer(), randomNum);
+                @Override
+                public void mouseClicked(MouseEvent evt) {
+                    int randomNum = ThreadLocalRandom.current().nextInt(0, 3);
+                    Popup newPopup = new Popup(E.getInformation().getName() + " :" + E.getInformation().getDescription() + " Vous perdez " + randomNum + " Points de vie");
+                    wind.getInterfac().addMessageToConsole(E.getInformation().getName() + " :" + E.getInformation().getDescription() + " Vous perdez " + randomNum + " Points de vie");
+                    E.lostLifePoint(StartGame.getPlayer(), randomNum);
+                    StartGame.getInterf().getDisplay().refreshDisplay();
+                    if (StartGame.getPlayer().getLifePoint() <= 0) {
+                        StartGame.getInterf().getTheWindow().returnToFirstMap();
+                        StartGame.getPlayer().setLifePoint(StartGame.getLifePoint());
                         StartGame.getInterf().getDisplay().refreshDisplay();
-                        if (StartGame.getPlayer().getLifePoint() <= 0) {
-                        	StartGame.getInterf().getTheWindow().returnToFirstMap();
-                        	StartGame.getPlayer().setLifePoint(StartGame.getLifePoint());
-                        	StartGame.getInterf().getDisplay().refreshDisplay();
-                        }
-                    }    
-            });   
+                    }
+                }
+            });
 
         } else if (E.getType() == 3) //If the element is a pnj
         {
 
-            afficher("toad1.jpg", "toad2.jpg", 70, 70);
-            
-            this.addMouseListener(new MouseAdapter() {
+            if (E.getDone() == false) {
+                afficher("toad1.jpg", "toad2.jpg", 70, 70);
+
+                this.addMouseListener(new MouseAdapter() {
                     @Override
-                    public void mouseClicked(MouseEvent evt) 
-                    {
+                    public void mouseClicked(MouseEvent evt) {
                         Popup newPopup = new Popup(E.getInformation().getName() + " :" + E.getInformation().getDescription());
                         wind.getInterfac().addMessageToConsole(E.getInformation().getName() + " :" + E.getInformation().getDescription());
-                    }    
-            });        
-                        
-                        
-            
+                    }
+                });
+            } else {
+
+                afficher("toad1.jpg", "toad2.jpg", 70, 70);
+
+                //
+                this.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        int compt = 0;
+                        for (Stuff s : StartGame.getPlayer().getStuff()) {
+                            if (s.getInformation().getName().equals("PieceShip")) {
+                                compt += 1;
+                            }
+                        }
+                        if (compt < 10) {
+                            StartGame.getInterf().addMessageToConsole("You have not enouth piece of ship to build your new ship");
+                        } else {
+                            StartGame.getInterf().addMessageToConsole("Great ! You have all piece of ship, so I can build it");
+                        }
+                    }
+                });
+            }
+
         } else if (E.getType() == 4) //If the element is a chest
         {
             if (!E.getDone()) {
-                
+
                 afficher("Coffre_fermer.jpg", "Coffre_selection.jpg", 70, 70);
-                
+
                 this.addMouseListener(new MouseAdapter() {
                     @Override
-                    public void mouseClicked(MouseEvent evt) 
-                    {       
+                    public void mouseClicked(MouseEvent evt) {
                         E.open_chest(StartGame.getPlayer());
                         E.setDone(true);
                         wind.adjustWindow();
-                        
-                        
+
                         Popup newPopup = new Popup("Vous avez obtenu :" + E.getReward().getInformation().getName());
                         wind.getInterfac().addMessageToConsole("Vous avez obtenu : " + E.getReward().getInformation().getName());
-                        wind.getInterfac().addMessageToConsole(E.getReward().getInformation().getName()+ "a été ajouté dans l'inventaire");
-                    }    
-            });     
-                      
+                        wind.getInterfac().addMessageToConsole(E.getReward().getInformation().getName() + "a été ajouté dans l'inventaire");
+                    }
+                });
+
             } else {
-                
+
                 afficher("Coffre_ouvert.jpg", "Coffre_ouvert.jpg", 70, 70);
-                
-                
 
             }
         }
