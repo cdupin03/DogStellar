@@ -1,7 +1,5 @@
 package fr.dogstellar.view;
 
-import fr.dogstellar.core.Planet;
-import fr.dogstellar.core.Player;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -13,9 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 /**
  * The general window allows to display the map and the element on the map
@@ -25,14 +21,15 @@ import javax.swing.JPanel;
  */
 public abstract class GeneralWindow extends JPanel {
 
-    private HashMap<Integer, Component> components;                             //The coordinates (xxyy) linked to a component (arrow for example)
+    private final HashMap<Integer, Component> components;                             //The coordinates (xxyy) linked to a component (arrow for example)
     private int height;                                                         //The number of column
     private int length;                                                         //The number of lines	private final String picturePath;
     private String nameOfFirstBackgroundPicture;                                //The name of the first background
     private final String picturePath;                                           //The path of the pictures
     private Image back;                                                         //The back Image
     private final Interface interfac;                                           //The interface that display this window
-
+    //protected String theCurrentZone;
+    
     /**
      * The constructor of the GeneralWindow Class
      *
@@ -45,7 +42,7 @@ public abstract class GeneralWindow extends JPanel {
         nameOfFirstBackgroundPicture = "";                                      //Initialize the name of the background
         components = new HashMap<>();                                           //Instanciate the HashMap which displays the elements 
         setHeight(7);                                                           //The Height of the HashMap 
-        setLength(13);                                                          //The Length of the HashMap
+        setLength(7);                                                          //The Length of the HashMap
     }
 
     /**
@@ -275,6 +272,7 @@ public abstract class GeneralWindow extends JPanel {
 
     /**
      * draw the background of this panel.
+     * @param g
      */
     @Override
     public void paintComponent(Graphics g) {
@@ -283,8 +281,6 @@ public abstract class GeneralWindow extends JPanel {
 
     /**
      * Allows to get the picture of the area.
-     *
-     * @param newArea the new Area to display
      */
     protected void catchPicture() {
         try {
@@ -304,5 +300,15 @@ public abstract class GeneralWindow extends JPanel {
      * @param ena If true enable if false disable.
      */
     public abstract void setEnableArrows(boolean ena);
+    
+    /**
+     * Adjust the window to its current environment, actualize the grid and components.
+     */
+    public abstract void adjustWindow();
+    
+    /**
+     * Allow the user to return to the first map of the current planet
+     */
+    public abstract void returnToFirstMap ();
 
 }

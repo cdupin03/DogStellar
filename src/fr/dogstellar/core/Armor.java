@@ -60,7 +60,7 @@ public class Armor extends Stuff {
     }
 
     /**
-     * Method decreaseArmorPoint
+     * Method decreaseArmorPoint dor decrease the armor point
      *
      * @param point it is the point that we lose when we fight monster
      */

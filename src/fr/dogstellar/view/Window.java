@@ -1,14 +1,10 @@
 package fr.dogstellar.view;
 
 import java.awt.event.*;
-import javax.swing.*;
+import java.util.ArrayList;
 
 import fr.dogstellar.core.AreaPlanet;
 import fr.dogstellar.core.Planet;
-
-import fr.dogstellar.game.*;
-
-import java.util.ArrayList;
 
 /**
  * This class is the representation of a simple Window of the game. The window
@@ -25,12 +21,11 @@ public final class Window extends GeneralWindow {
     private GraphicalArrow northArrow;                                          //The north Arrow
     private GraphicalArrow southArrow;                                          //The south Arrow
     private AreaPlanet area;                                                    //The areaPlanet to show.
-    private ArrayList<Planet> planets;                                          //The planets
+    private final ArrayList<Planet> planets;                                          //The planets
     private final String south = "SOUTH";
     private final String north = "NORTH";
     private final String east = "EAST";
     private final String west = "WEST";
-    private PersoView thisPerso;
 
     /**
      * The constructor of Window. Create the window with its components. Set set
@@ -39,13 +34,13 @@ public final class Window extends GeneralWindow {
      * than 0 they are initialized to 3. The height and length are managed by
      * setHeight and setLength.
      *
+     * @param thePlanets is list of planets
      * @param inter the interface.
      */
     public Window(ArrayList<Planet> thePlanets, Interface inter) {
         super(inter);
         planets = thePlanets;
-        area = planets.get(0).getAreas();
-        adjustWindowToAreaPlanet(area);
+        returnToFirstMap();
     }
 
     /**
@@ -71,7 +66,7 @@ public final class Window extends GeneralWindow {
             southArrow.setEnabled(false);
         } else {
             southArrow.addActionListener((ActionEvent e) -> {
-                adjustWindowToAreaPlanet(area.getOrientationArea(south));
+                adjustWindow(area.getOrientationArea(south));
             });
         }
 
@@ -79,7 +74,7 @@ public final class Window extends GeneralWindow {
             northArrow.setEnabled(false);
         } else {
             northArrow.addActionListener((ActionEvent e) -> {
-                adjustWindowToAreaPlanet(area.getOrientationArea(north));
+                adjustWindow(area.getOrientationArea(north));
             });
         }
 
@@ -87,7 +82,7 @@ public final class Window extends GeneralWindow {
             eastArrow.setEnabled(false);
         } else {
             eastArrow.addActionListener((ActionEvent e) -> {
-                adjustWindowToAreaPlanet(area.getOrientationArea(east));
+                adjustWindow(area.getOrientationArea(east));
             });
         }
 
@@ -95,7 +90,7 @@ public final class Window extends GeneralWindow {
             westArrow.setEnabled(false);
         } else {
             westArrow.addActionListener((ActionEvent e) -> {
-                adjustWindowToAreaPlanet(area.getOrientationArea(west));
+                adjustWindow(area.getOrientationArea(west));
             });
         }
 
@@ -117,11 +112,19 @@ public final class Window extends GeneralWindow {
      *
      * @param newArea the new area to display in the window
      */
-    public void adjustWindowToAreaPlanet(AreaPlanet newArea) {
+    public void adjustWindow(AreaPlanet newArea) {
         catchPicture(newArea);
+        adjustWindow();
+    }
+
+    /**
+     * This method refresh the area
+     */
+    @Override
+    public void adjustWindow() {
         erraseGrid();
 
-        if (planets.get(0).getAreas().equals(newArea)) {
+        if (planets.get(0).getAreas().equals(area)) {
             ShipView ship = new ShipView(getPicturePath());
             ship.addActionListener(new ActionListener() {
                 @Override
@@ -136,11 +139,14 @@ public final class Window extends GeneralWindow {
         addArrows();
 
         area.getPerso().stream().forEach((_item) -> {
-            addRandomlyComponent(new PersoView(getPicturePath(), _item));
+            if (_item.getIsDead() == false) {
+                System.out.println("Monster : " + _item.getNamePerso() + _item.getIsDead());
+                addRandomlyComponent(new PersoView(getPicturePath(), _item));
+            }
         });
 
         area.getElement().stream().forEach((e) -> {
-            addRandomlyComponent(new ElementView(getPicturePath(), e));
+            addRandomlyComponent(new ElementView(getPicturePath(), e, this));
         });
         drawGrid();
     }
@@ -152,6 +158,7 @@ public final class Window extends GeneralWindow {
      *
      * @param ena If true enable if false disable.
      */
+    @Override
     public void setEnableArrows(boolean ena) {
         southArrow.setEnabled(ena);
         northArrow.setEnabled(ena);
@@ -168,6 +175,12 @@ public final class Window extends GeneralWindow {
         area = newArea;
         setNameOfFirstBackgroundPicture(area.getPicture());
         super.catchPicture();
+    }
+
+    @Override
+    public void returnToFirstMap() {
+        area = planets.get(0).getAreas();
+        adjustWindow(area);
     }
 
 }

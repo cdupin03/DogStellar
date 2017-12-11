@@ -1,7 +1,5 @@
 package fr.dogstellar.core;
 
-import java.util.ArrayList;
-
 /**
  * The class Perso. He has a name, a number of LifePoint and number of
  * AttackPoint and an inventory.
@@ -21,11 +19,11 @@ public class Perso {
 
     // instance variables - replace the example below with your own
     private String namePerso;
-    protected int lifePoint; //ATTTTTTTTTTTTTTTENEEEEEEEEEEEEEEEEEEEEEEEEEENNNNNNNNNNNNNNNNNNNNTIIIIIIIIIIIIONNNNNNNNNNNN
-    protected int attackPoint;//ATTTTTTTTTTTTTTTENEEEEEEEEEEEEEEEEEEEEEEEEEENNNNNNNNNNNNNNNNNNNNTIIIIIIIIIIIIONNNNNNNNNNNN
-    protected ArrayList<Stuff> inventory;
+    private int lifePoint;
+    private int attackPoint;
     private QuestElement aMonsterQuest;
     private Stuff aMonsterStuff;
+    private boolean isDead = false;
 
     /**
      * Constructor of the Perso class The user can give a name to the player. If
@@ -33,10 +31,9 @@ public class Perso {
      * If the numbers of lifePoint or attackPoint are under 0 and superior to
      * 10, the numbers are automatically initialized to 10.
      *
-     * @param namePerso is the name(String) of the Perso
-     * @param lifePoint is the number of lifePoint
-     * @param attackPoint is the number of attackPoint
-     *
+     * @param nameP is the name(String) of the Perso
+     * @param lifeP is the number of lifePoint
+     * @param attackP is the number of attackPoint
      */
     public Perso(String nameP, int lifeP, int attackP) {
         if (nameP.isEmpty()) {
@@ -54,27 +51,28 @@ public class Perso {
         } else {
             attackPoint = attackP;
         }
-        inventory = new ArrayList();
     }
-    
+
     //The monster constructor
-    public Perso(String nameP, int lifeP, int attackP, QuestElement aQuestElement, Stuff aStuffElement)
-    {
-        if (nameP.isEmpty())
-            namePerso="Perso1";
-        else
-            namePerso=nameP;
-        
-        if (lifeP<=0 || lifeP>10)
-            lifePoint=10;
-        else
-            lifePoint=lifeP;
-        
-        if (attackP<=0 || attackP>10)
-            attackPoint=10;
-        else
-            attackPoint=attackP;
-        
+    public Perso(String nameP, int lifeP, int attackP, QuestElement aQuestElement, Stuff aStuffElement) {
+        if (nameP.isEmpty()) {
+            namePerso = "Perso1";
+        } else {
+            namePerso = nameP;
+        }
+
+        if (lifeP <= 0 || lifeP > 10) {
+            lifePoint = 10;
+        } else {
+            lifePoint = lifeP;
+        }
+
+        if (attackP <= 0 || attackP > 10) {
+            attackPoint = 10;
+        } else {
+            attackPoint = attackP;
+        }
+
         aMonsterQuest = aQuestElement;
         aMonsterStuff = aStuffElement;
     }
@@ -135,6 +133,8 @@ public class Perso {
      * This method allows us to delete a number of lifePoint. If we want to
      * decrease the number of lifePoint and the result is inferior to 0,
      * lifePoint take the value 0.
+     *
+     * @param Point is the number of life point to remove at the player
      */
     public void decreaseLifePoint(int Point) {
         int soustraction = lifePoint - Point;
@@ -149,6 +149,8 @@ public class Perso {
      * This method allows us to add a number of attackPoint. If we want to
      * increase the number of attackPoint and the result is superior to 10,
      * attackPoint take the value 10.
+     *
+     * @param Point is the number of attack point to add at the player
      */
     public void increaseAttackPoint(int Point) {
         int addition = attackPoint + Point;
@@ -163,6 +165,8 @@ public class Perso {
      * This method allows us to remove a number of attackPoint. If we want to
      * decrease the number of attackPoint and the result is inferior to 0,
      * attackPoint take the value 0.
+     *
+     * @param Point is the number of attack point to remove at the player
      */
     public void decreaseAttackPoint(int Point) {
         int soustraction = attackPoint - Point;
@@ -212,80 +216,37 @@ public class Perso {
     }
 
     /**
-     * this method allows us to add a stuff in the list of stuff (the inventory)
-     * of the player when he wins a stuff we can add several same stuff
      *
-     * @param Stuff is the name of the stuff
-     * @param numberStuffAdd is a number of stuff that we add to the inventory
-     * when the player win it
-     */
-    public void addStuff(Stuff stuff, int numberStuffAdd) {
-        for (int n = 0; n < numberStuffAdd; n++) {
-            inventory.add(stuff);
-        }
-    }
-
-    /**
-     * this method allows us to delete a stuff in the list of stuff (inventory)
-     * of the player when he lost a stuff we can delete only one Stuff with this
-     * method
-     *
-     * @param stuff is the name of the stuff
-     */
-    public void deleteStuff(Stuff stuff) {
-        for (Stuff s : inventory) {
-            if (s == stuff) {
-                inventory.remove(stuff);
-                break;
-            }
-        }
-    }
-    
-    public ArrayList<Stuff> getStuff()
-    {
-        return inventory;
-    }
-
-    /**
-     * This method returns the list of stuff(inventory) of the user.
-     *
-     */
-    public void displayStuff() {
-        for (Stuff stuff : inventory) {
-            System.out.println(stuff.getInformation().getName());
-        }
-    }
-
-    /**
-     * This method allows us to know if a stuff is in inventory or not.
-     */
-    public boolean isInList(Stuff stuff) {
-        for (Stuff s : inventory) {
-            if (s == stuff) {
-                return (true);
-            }
-        }
-        return (false);
-    }
-
-    /**
-
      * To get a the stuff element that the monster have
-     * 
+     *
      * @return aMonsterStuff is the stuff of the monster
      */
-    public Stuff getTheMonsterStuff()
-    {
+    public Stuff getTheMonsterStuff() {
         return aMonsterStuff;
     }
-    
+
     /**
      * To get a the quest element that the monster have
-     * 
+     *
      * @return aMonsterQuest is the element of the monster
      */
-    public QuestElement getMonsterElementQuest()
-    {
+    public QuestElement getMonsterElementQuest() {
         return aMonsterQuest;
+    }
+
+    /**
+     * To know if the monster is dead
+     *
+     * @return isDead = true if the monster is dead, false if it is not
+     */
+    public boolean getIsDead() {
+        return (isDead);
+    }
+
+    /**
+     * To declare the monster as dead
+     */
+    public void setIsDead() {
+        isDead = true;
     }
 }

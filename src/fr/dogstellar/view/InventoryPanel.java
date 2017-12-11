@@ -5,24 +5,32 @@ import java.util.ArrayList;
 import java.awt.*;
 import javax.swing.*;
 
+import org.omg.CORBA.SystemException;
+
 import fr.dogstellar.core.*;
 
 /**
  * The InventoryPanel allows to create a JFrame to display the player inventory
- * 
+ *
  * @author Group 3
  * @version V04
  */
-public class InventoryPanel extends JFrame {
+public final class InventoryPanel extends JFrame {
 
-    private int gridCaseHeight1 = ((300) / (2));                                        // The heght of a equiped item grid
-    private int gridCaseWidth1 = ((175) / (2));                                         // The heght of a equiped item grid
+    private final int gridCaseHeight1 = ((300) / (2));                                        // The heght of a equiped item grid
+    private final int gridCaseWidth1 = ((175) / (2));                                         // The heght of a equiped item grid
+    private final int gridCaseHeight = ((300) / (2));                                        // The heght of inventory item grid
+    private final int gridCaseWidth = ((175) / (2));                                         // The heght of inventory item grid
     private final Player thePlayer;                                             // The owner of the inventory
     private JPanel inventory;                                                   // Jpanel containing all unequiped objects
     private JPanel equipedInventory;                                            // Jpanel containing the equiped objects 
-    private JLabel lbl1 = new JLabel("Equiped items");                                  // The name of the top part of the inventory
-    private JLabel lbl2 = new JLabel("Your Inventory");                                 // The name of the botom part of the inventory
+                                 // The name of the botom part of the inventory
     private String picturePath = System.getProperty("user.dir") + "/pictures/";
+
+    private final JLabel lbl1 = new JLabel("Equiped items");                                  // The name of the top part of the inventory
+    private final JLabel lbl2 = new JLabel("Your Inventory");                                 // The name of the botom part of the inventory
+
+
     /**
      * The constructor of the class, take a player in parameter to set his
      * inventory
@@ -37,8 +45,11 @@ public class InventoryPanel extends JFrame {
         this.setTitle("Inventory");                                             //The name of the JFrame
         this.setSize(1200, 700);
         this.setResizable(false);
-        this.setVisible(true);
+
+        this.getContentPane().setBackground(new Color(99, 162, 168));
         this.pack();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
     /**
@@ -53,8 +64,10 @@ public class InventoryPanel extends JFrame {
         equipedInventory.setLayout(new GridLayout(0, 2, 15, 15));
         equipedInventory.setBackground(new Color(122, 122, 122));
         equipedInventory.setOpaque(true);
+
         setEquipedInventory();
         setInventory();
+
         }
  
     
@@ -186,7 +199,7 @@ public class InventoryPanel extends JFrame {
         String iconPic = null;
         // test if the stuff is a quest element
         if (isQuestElement(theStuff)) {
-            iconPic = "/pictures/engrenage.jpg"; // set the image for the quest element
+            iconPic = "/pictures/shipPiece.png"; // set the image for the quest element
         }
         //test if the stuff is a weapon 
         if (isWeapon(theStuff)) {
@@ -194,7 +207,7 @@ public class InventoryPanel extends JFrame {
                     theStuff.getInformation().getDescription(), ((Weapon) theStuff).getDamage()); // create a weapon variable with the stuff attributes 
             //load the associate image in function of the dammage of the weapon
             if ((myWeapon.getDamage() <= 3)) {
-                iconPic = "/pictures/weapon1.jpg";
+                iconPic = "/pictures/weapon1.png";
 
             } else if (myWeapon.getDamage() <= 5) {
                 iconPic = "/pictures/weapon2.png";

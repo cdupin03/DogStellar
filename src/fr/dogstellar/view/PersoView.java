@@ -1,22 +1,10 @@
 package fr.dogstellar.view;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.util.Scanner;
+import java.awt.event.*;
+import javax.swing.*;
 
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
-
-
-import fr.dogstellar.core.Perso;
-import fr.dogstellar.core.Player;
-import fr.dogstellar.core.QuestElement;
-import fr.dogstellar.core.Stuff;
+import fr.dogstellar.core.*;
 import fr.dogstellar.game.Fight;
-
 
 /**
  * This class allows to set an image for a perso
@@ -26,10 +14,12 @@ import fr.dogstellar.game.Fight;
  */
 public class PersoView extends PictureButton {
 
+	
     /**
      * The constructor of this class
      *
      * @param picturePath is the path of the pictures
+     * @param monster is the monster to add in the interface
      */
     public PersoView(String picturePath, Perso monster) {
         super(picturePath, "Monstre", ".png");
@@ -38,13 +28,10 @@ public class PersoView extends PictureButton {
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to attack the monster ?", "choose one", JOptionPane.YES_NO_OPTION);
+                int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to attack the monster ? Be carefull, you can not stop a fight", "choose one", JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
-                    StartGame.getInterf().isAttackEnabled(true);
-                    StartGame.getInterf().getTheWindow().setEnableArrows(false);
                     Fight theFight = new Fight(monster, StartGame.getPlayer());
-                    theFight.theFight(monster, StartGame.getPlayer(), monster.getMonsterElementQuest(), monster.getTheMonsterStuff());
-                            //theFight(monster, StartGame.getPlayer(), monster.getMonsterElementQuest(), monster.getTheMonsterStuff());
+                    StartGame.getInterf().getTheWindow().adjustWindow();
                 }
             }
         });

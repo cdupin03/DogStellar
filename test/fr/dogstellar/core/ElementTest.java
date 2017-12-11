@@ -57,7 +57,7 @@ public class ElementTest {
      */
     @Test
     public void ResolveEnigma() {
-        assertEquals(true, element1.resolveEnigma("C'est un papier", player, weap));
+        assertEquals(true, element1.resolveEnigma("C'est un papier", player));
     }
 
     /**
@@ -65,6 +65,6 @@ public class ElementTest {
      */
     @Test
     public void WrongEnigma() {
-        assertEquals(false, element1.resolveEnigma("C'est un", player, weap));
+        assertEquals(false, element1.resolveEnigma("C'est un", player));
     }
 }

@@ -1,8 +1,5 @@
 package fr.dogstellar.core;
 
-//import static org.junit.jupiter.api.Assertions.assertAll;
-import java.util.*;
-
 /**
  * The planet class contain a information attribute (name+description) and the
  * main area
@@ -14,15 +11,20 @@ public class Planet {
     // instance variables - replace the example below with your own
 
     private AreaPlanet areas;    //all the areas are defined by the main area 
-    private Info information;    //the name and the description store in an object of Info type setted by the information class constructor
-    private int nbQuestElement;  //The number of quest element needed to visit the planet
+    private final Info information;    //the name and the description store in an object of Info type setted by the information class constructor
+    private final int nbQuestElement;  //The number of quest element needed to visit the planet
+
     /**
      * Constructor for objects of class Planet the only setted attributes are
      * the informations
+     *
+     * @param newName is the name to set at the player
+     * @param newDescription is the description to set at the player
+     * @param theNbQuestElement is the number ofquest element that the player owns
      */
     public Planet(String newName, String newDescription, int theNbQuestElement) {
         information = new Info(newName, newDescription);
-        nbQuestElement = (theNbQuestElement<0?0:theNbQuestElement);
+        nbQuestElement = (theNbQuestElement < 0 ? 0 : theNbQuestElement);
     }
 
     /**
@@ -42,7 +44,7 @@ public class Planet {
     /**
      * To remove an area to the planet
      *
-     * @param newArea is the area to remove
+     * @param name is the name of the area to remove
      */
     public void removeArea(String name) {
         this.areas = null;
@@ -79,13 +81,13 @@ public class Planet {
     public Info getInformation() {
         return information;
     }
-    
+
     /**
      * Get the number of quest element needed to visit the planet
+     *
      * @return nbQuestElement
      */
-    public int getNbQuestElement ()
-    {
+    public int getNbQuestElement() {
         return nbQuestElement;
     }
 

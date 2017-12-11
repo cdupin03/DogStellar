@@ -10,29 +10,31 @@ import java.util.*;
  */
 public class AreaPlanet {
 
-    private Info information;                   //the name and the description store in a Info object 
-    private HashMap<String, AreaPlanet> areas;  //the hashmap allows to store the attached area to the current area
-    private ArrayList<Element> elements;        //the list of elements in the current area like quest, chest, pieces...
-    private ArrayList<Perso> persos;            //the list of persos in the current area (player or monsters)
-    private String picture;						//The picture of the area.
+    private final Info information;                   //the name and the description store in a Info object 
+    private final HashMap<String, AreaPlanet> areas;  //the hashmap allows to store the attached area to the current area
+    private final ArrayList<Element> elements;        //the list of elements in the current area like quest, chest, pieces...
+    private final ArrayList<Perso> persos;            //the list of persos in the current area (player or monsters)
+    private final String picture;						//The picture of the area.
 
     /**
      * Constructor for objects of class AreaPlanet
      *
-     * @param name is the name of the area
-     * @param descritption is the description of the area
+     * @param newName is the name of the area
+     * @param newDescription is the description of the area
+     * @param newPicture is the picture of the area
      */
     public AreaPlanet(String newName, String newDescription, String newPicture) {
         information = new Info(newName, newDescription);    //call the constructor of the Info class
         areas = new HashMap<>();                            //instanciation of the hashmap
-        elements = new ArrayList<Element>();                //instanciation of the list of element
-        persos = new ArrayList<Perso>();                    //instanciation of the list of persos
+        elements = new ArrayList<>();                //instanciation of the list of element
+        persos = new ArrayList<>();                    //instanciation of the list of persos
         picture = newPicture;
     }
 
     /**
      * To get the area
      *
+     * @param theOrientation is the orientation area that you want to get
      * @return the area
      */
     public AreaPlanet getArea(String theOrientation) {
@@ -43,7 +45,8 @@ public class AreaPlanet {
     /**
      * Define every direction either leads to another area or leave it empty.
      *
-     * @param north, west, east, south are the different area around
+     * @param theAreaToAdd is the area to add
+     * @param theOrientation is the orientation to set at the area
      */
     public void addAreaPlanet(AreaPlanet theAreaToAdd, String theOrientation) {
         theOrientation = theOrientation.trim().toUpperCase();
@@ -164,7 +167,8 @@ public class AreaPlanet {
     /**
      * Getter of the areas of the planet
      *
-     * @return areas is the hashmap of the areas around
+     * @param theName is the name of the area to search
+     * @return boolean to know if the search succeed
      */
     public boolean searchAreaPlanet(String theName) {
         for (Map.Entry<String, AreaPlanet> i : areas.entrySet()) {
