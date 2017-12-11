@@ -201,7 +201,7 @@ public class Interface {
         //AreaPlanet Area0Planet1 = new AreaPlanet("Ship", "your ship", "");
 
         AreaPlanet Area1Planet1 = new AreaPlanet("Area1", "first area", "map/map1.png");
-        Area1Planet1.addElement(new Element("PNJ", " Hey my friend ! Do you remember me? I found you almost dead but you're better now. I hope you got your bag", 3, "toad1.jpg", "toad2.jpg"));
+        Area1Planet1.addElement(new Element("PNJ", " Hey my friend ! Do you remember me? I found you almost dead but you're better now. I hope you got your bag", 3, "toad1.jpg", "toad2.jpg",));
         Armor armor1 = new Armor("Aurora", "More beautiful than effective", 1);
         Area1Planet1.addElement(new Element("Bag", "with your armor", 4, armor1, "sacados.png", "sacados.png"));
         
