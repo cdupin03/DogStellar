@@ -46,7 +46,7 @@ public class Interface {
     private final JButton returnMap;                           //Button wich allow to return to the first map 
 
     private final Perso monstre1 = new Perso("FriendlyNeighbor", 10, 3, new QuestElement("PieceShip", "that same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 2),"monster/larva");
-    private final Perso monstre2 = new Perso("Monstre2", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6),"sacados");
+    private final Perso monstre2 = new Perso("Monstre2", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6),"monster/larva");
     private final Perso monstre3 = new Perso("Monstre3", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6),"Monster");
 
     private GeneralWindow theWindow, theShip;
@@ -230,15 +230,11 @@ public class Interface {
                 "toad2.jpg",
                 1,
                 2));
-//his neighbor
         Area2Planet1.addPerso(monstre1);
 
         AreaPlanet Area3Planet1 = new AreaPlanet("Area3", "third area", "map/map2.png");
-//my friend is happy
         Area3Planet1.addElement(new Element("PNJ", "Thanks, my neighbor has gone away now", 3,"toad1.jpg", "toad2.jpg", 1, 2));
-//an enigma (response : universe)
         Weapon weapon1 = new Weapon("Walpurga", "Weak laser ", 1);
-
         Area3Planet1.addElement(new Element("Everything is in nothing... What is it?", "universe",
                 1, weapon1, "enigma.png", "enigma2.png", 3, 1));      
         
@@ -256,15 +252,10 @@ public class Interface {
                 "toad2.jpg", 3, 1));
         Area1Planet2.addPerso(monstre2);
 
-        AreaPlanet Area2Planet2 = new AreaPlanet("Area2", "rdytfiut", "map/map11.png");
-        //Area2Planet2.addPerso(monstre2);
-        //Area2Planet2.addElement(new Element("Trap", "Un piege déguisé", 2));
-        //Area2Planet2.addElement(new Element("PNJ", "Un pnj champu", 3));
+        AreaPlanet Area2Planet2 = new AreaPlanet("Area2", "second area", "map/map11.png");
+        Area2Planet2.addElement(new Element("Trap", " I am a clone of your friend ! Sorry ", 2, "toad1.jpg", "toad2.jpg", 4, 5));
 
         AreaPlanet Area3Planet2 = new AreaPlanet("Area3", "hum ...", "map/map8.png");
-        //Area3Planet2.addPerso(monstre2);
-        //Area3Planet2.addElement(new Element("Trap", "Un piege déguisé", 2));
-        //Area3Planet2.addElement(new Element("PNJ", "Un pnj champu", 3));
 
         AreaPlanet Area4Planet2 = new AreaPlanet("Area4", "hum ...", "map/map12.png");
         AreaPlanet Area5Planet2 = new AreaPlanet("Area5", "hum ...", "map/map7.png");
