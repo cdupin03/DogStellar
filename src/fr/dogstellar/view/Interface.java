@@ -45,7 +45,7 @@ public class Interface {
     private final JButton inventory;                            //Button which allow to open the inventory
     private final JButton returnMap;                           //Button wich allow to return to the first map 
 
-    private final Perso monstre1 = new Perso("Monstre", 10, 3, new QuestElement("PieceShip", "that same piece"), new Armor("MyGreatArmor", "sfddghfxhfgd", 3));
+    private final Perso monstre1 = new Perso("FriendlyNeighbor", 10, 3, new QuestElement("PieceShip", "that same piece"), new Armor("MyGreatArmor", "sfddghfxhfgd", 3));
     private final Perso monstre2 = new Perso("Monstre2", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6));
     private final Perso monstre3 = new Perso("Monstre3", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6));
 
@@ -199,23 +199,27 @@ public class Interface {
 
         //Planet 1 with 3 areas and different elements(perso,element) on them
         //AreaPlanet Area0Planet1 = new AreaPlanet("Ship", "your ship", "");
-        AreaPlanet Area1Planet1 = new AreaPlanet("Area1", "rdytfuygiut", "map/map1.png");
-//        Weapon weapon1 = new Weapon("Walpurga", "Weak laser ", 1);
-//        Area1Planet1.addElement(new Element("Who gets up without making a sound?", "SUN", 1, weapon1));
-        Area1Planet1.addElement(new Element("PNJ", "  Hey my friend ! Do you remember me? I found you almost dead but you're better now. I put your weapon in a chest, I hope you got it back", 3));
-
-        AreaPlanet Area2Planet1 = new AreaPlanet("Area2", "rdytfiut", "map/map3.png");
+        AreaPlanet Area1Planet1 = new AreaPlanet("Area1", "first area", "map/map1.png");
+        Area1Planet1.addElement(new Element("PNJ", " Hey my friend ! Do you remember me? I found you almost dead but you're better now. I hope you got your bag", 3));
         Armor armor1 = new Armor("Aurora", "More beautiful than effective", 1);
-        Area1Planet1.addElement(new Element("Clorinde", "Small but appreciable", 4, armor1));
-        Area2Planet1.addPerso(monstre2);
-        Area2Planet1.addElement(new Element("Trap", "Un piege déguisé", 2));
-        Area2Planet1.addElement(new Element("PNJ", "Un pnj champu", 3));
+        Area1Planet1.addElement(new Element("Bag", "with your armor", 4, armor1));
+        
+        AreaPlanet Area2Planet1 = new AreaPlanet("Area2", "second area", "map/map3.png");
+        Area2Planet1.addElement(new Element("PNJ", "My neighbor does not like to be disturbed ... but he may have recovered a piece of your ship", 3));
+//        Weapon weapon1 = new Weapon("Walpurga", "Weak laser ", 1);
+//        Area2Planet1.addElement(new Element("Who gets up without making a sound?", "SUN", 1, weapon1));
+        Area2Planet1.addPerso(monstre1);
         
         AreaPlanet Area3Planet1 = new AreaPlanet("Area3", "hum ...", "map/map2.png");
-        Area3Planet1.addPerso(monstre3);
-        Area3Planet1.addElement(new Element("Trap", "Un piege déguisé", 2));
-        Area3Planet1.addElement(new Element("PNJ", "Un pnj champu", 3));
+        Area3Planet1.addElement(new Element("PNJ", "Thanks, my neighbor has gone away now", 3));
+        Weapon weapon1 = new Weapon("Walpurga", "Weak laser ", 1);
+        Area2Planet1.addElement(new Element("Who gets up without making a sound?", "SUN", 1, weapon1));
+//        Area3Planet1.addPerso(monstre3);
+//        Area3Planet1.addElement(new Element("Trap", "Un piege déguisé", 2));
+//        Area3Planet1.addElement(new Element("PNJ", "Un pnj champu", 3));
 
+        
+        
         Area1Planet1.addAreaPlanet(Area2Planet1, "south");
         Area2Planet1.addAreaPlanet(Area3Planet1, "east");
 
