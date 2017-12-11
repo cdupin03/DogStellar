@@ -24,7 +24,8 @@ public class Perso {
     private QuestElement aMonsterQuest;
     private Stuff aMonsterStuff;
     private boolean isDead = false;
-
+    private String image1;
+    
     /**
      * Constructor of the Perso class The user can give a name to the player. If
      * the name is empty, to not have problem there is a default value (Perso1)
@@ -54,7 +55,7 @@ public class Perso {
     }
 
     //The monster constructor
-    public Perso(String nameP, int lifeP, int attackP, QuestElement aQuestElement, Stuff aStuffElement) {
+    public Perso(String nameP, int lifeP, int attackP, QuestElement aQuestElement, Stuff aStuffElement, String newImage1) {
         if (nameP.isEmpty()) {
             namePerso = "Perso1";
         } else {
@@ -75,6 +76,7 @@ public class Perso {
 
         aMonsterQuest = aQuestElement;
         aMonsterStuff = aStuffElement;
+        image1 = newImage1;
     }
 
     /**
@@ -249,4 +251,10 @@ public class Perso {
     public void setIsDead() {
         isDead = true;
     }
+
+    public String getImage1() {
+        return image1;
+    }
+    
+    
 }

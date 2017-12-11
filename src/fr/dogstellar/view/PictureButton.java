@@ -1,5 +1,6 @@
 package fr.dogstellar.view;
 
+import java.awt.Image;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,11 +24,26 @@ public abstract class PictureButton extends JButton {
      */
     public PictureButton(String picturePath, String nameButtonPicture, String formatPicture) {
         super();
-        buttonPicturePath = picturePath + nameButtonPicture;
-        this.setIcon(new ImageIcon(buttonPicturePath + formatPicture));
-        this.setRolloverIcon(new ImageIcon(buttonPicturePath + "Roll" + formatPicture));
+        
+        buttonPicturePath = picturePath + nameButtonPicture;  
+        
+        ImageIcon ImageIcon1 = new ImageIcon (buttonPicturePath + formatPicture);
+        ImageIcon1 = ConvertImg(60, 60, ImageIcon1);
+        
+        ImageIcon ImageIcon2 = new ImageIcon (buttonPicturePath + "Roll" + formatPicture);
+        ImageIcon2 = ConvertImg(60, 60, ImageIcon2);
+        
+        this.setIcon(ImageIcon1);
+        this.setRolloverIcon(ImageIcon2);
         this.setBorder(BorderFactory.createEmptyBorder());
         this.setContentAreaFilled(false);
     }
 
+     public ImageIcon ConvertImg(int largeur, int hauteur, ImageIcon img) {
+        Image image = img.getImage();
+        Image newimg = image.getScaledInstance(largeur, hauteur, java.awt.Image.SCALE_SMOOTH);
+        img = new ImageIcon(newimg);
+        return img;
+    }
+    
 }
