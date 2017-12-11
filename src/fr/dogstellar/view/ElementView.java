@@ -173,6 +173,7 @@ public final class ElementView extends JButton {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
+                            //StartGame.getInterf().dispose();
                             VideoPlayer end = new VideoPlayer("fin.mp4", 11000, "DogStellar - The end");
                         }
                     }
