@@ -296,7 +296,7 @@ public class Interface {
         AreaPlanet Area4Planet4 = new AreaPlanet("Area3", "hum ...", "map/map15.png");
         AreaPlanet Area5Planet4 = new AreaPlanet("Area3", "hum ...", "map/map13.png");
         AreaPlanet Area6Planet4 = new AreaPlanet("Area3", "hum ...", "map/map14.png");
-        AreaPlanet Area7Planet4 = new AreaPlanet("Area3", "hum ...", "Base.jpg");
+        AreaPlanet Area7Planet4 = new AreaPlanet("Area3", "hum ...", "endGame.png");
         
         Area1Planet4.addAreaPlanet(Area2Planet4, "east");
         Area2Planet4.addAreaPlanet(Area3Planet4, "south");
@@ -308,7 +308,7 @@ public class Interface {
         Element toad_spaceship = (new Element("PNJ", "", 3));
         toad_spaceship.setDone(true);
         
-        Area6Planet4.addElement(toad_spaceship);
+        Area7Planet4.addElement(toad_spaceship);
         
         
         planet4.addArea(Area1Planet4);
