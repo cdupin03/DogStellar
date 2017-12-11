@@ -202,23 +202,42 @@ public class Interface {
 
         AreaPlanet Area1Planet1 = new AreaPlanet("Area1", "first area", "map/map1.png");
 //my friend
-        Area1Planet1.addElement(new Element("PNJ", " Hey my friend ! Do you remember me? I found you almost dead but you're better now. I hope you got your bag", 3, "toad1.jpg", "toad2.jpg"));
+        Area1Planet1.addElement(new Element("PNJ", 
+                " Hey my friend ! Do you remember me? I found you almost dead but you're better now. I hope you got your bag",
+                 3,
+                "toad1.jpg",
+                "toad2.jpg",
+                 1,
+                 2));
 //my bag
+
         Armor armor1 = new Armor("Aurora", "More beautiful than effective", 1);
 
-        Area1Planet1.addElement(new Element("Bag", "with your armor", 4, armor1, "sacados.png", "sacados.png"));
-
+        Area1Planet1.addElement(new Element("Bag",
+                "with your armor",
+                4,
+                armor1,
+                "sacados.png",
+                "sacados.png",
+                3,
+                4));
         AreaPlanet Area2Planet1 = new AreaPlanet("Area2", "second area", "map/map3.png");
 //my friend present his neighbor
-        Area2Planet1.addElement(new Element("PNJ", "My neighbor does not like to be disturbed ... but he may have recovered a piece of your ship", 3, "toad1.jpg", "toad2.jpg"));
+        Area2Planet1.addElement(new Element("PNJ",
+                "My neighbor does not like to be disturbed ... but he may have recovered a piece of your ship",
+                3,
+                "toad1.jpg",
+                "toad2.jpg",
+                1,
+                2));
         Area2Planet1.addPerso(monstre1);
 
         AreaPlanet Area3Planet1 = new AreaPlanet("Area3", "third area", "map/map2.png");
-//my friend is happy there is an enigma (response : universe)
-        Area3Planet1.addElement(new Element("PNJ", "Thanks, my neighbor has gone away now", 3,"toad1.jpg", "toad2.jpg"));
+        Area3Planet1.addElement(new Element("PNJ", "Thanks, my neighbor has gone away now", 3,"toad1.jpg", "toad2.jpg", 1, 2));
         Weapon weapon1 = new Weapon("Walpurga", "Weak laser ", 1);
-        Area3Planet1.addElement(new Element("Everything is in nothing... What is it?", "universe", 1, weapon1, "enigma.png", "enigma2.png"));      
-
+        Area3Planet1.addElement(new Element("Everything is in nothing... What is it?", "universe",
+                1, weapon1, "enigma.png", "enigma2.png", 3, 1));      
+        
         Area1Planet1.addAreaPlanet(Area2Planet1, "south");
         Area2Planet1.addAreaPlanet(Area3Planet1, "east");
         planet1.addArea(Area1Planet1);
@@ -228,11 +247,13 @@ public class Interface {
 //his neighbor is alive but your friend propose to you an enigma to have a his weapon
         Weapon weapon2 = new Weapon("Wilhelmina", "weapon of your friend", 3);
         //console.addMessageToConsole("Oh no, you remember of him ? it is my neighbor, you don't really kill him, maybe he has find other piece of ship");
-        Area1Planet2.addElement(new Element(" I will give you my weapon but before answer to my enigma : I can be white, yellow, red, blue even black. Who  I  am?", "star", 1, weapon2, "toad1.jpg", "toad2.jpg"));
+        Area1Planet2.addElement(new Element(" I will give you my weapon but before answer to my enigma : I can be white, yellow, red, blue even black. Who  I  am?",
+                "star", 1, weapon2, "toad1.jpg",
+                "toad2.jpg", 3, 1));
         Area1Planet2.addPerso(monstre2);
 
         AreaPlanet Area2Planet2 = new AreaPlanet("Area2", "second area", "map/map11.png");
-        Area2Planet2.addElement(new Element("Trap", " I am a clone of your friend ! Sorry ", 2, "toad1.jpg", "toad2.jpg"));
+        Area2Planet2.addElement(new Element("Trap", " I am a clone of your friend ! Sorry ", 2, "toad1.jpg", "toad2.jpg", 4, 5));
 
         AreaPlanet Area3Planet2 = new AreaPlanet("Area3", "hum ...", "map/map8.png");
 
@@ -299,7 +320,7 @@ public class Interface {
         Area5Planet4.addAreaPlanet(Area6Planet4, "south");
         Area6Planet4.addAreaPlanet(Area7Planet4, "south");
         
-        Element toad_spaceship = (new Element("PNJ", "", 3, "toad1.jpg", "toad2.jpg"));
+        Element toad_spaceship = (new Element("PNJ", "", 3, "toad1.jpg", "toad2.jpg", 2, 2));
         toad_spaceship.setDone(true);
         
         Area7Planet4.addElement(toad_spaceship);
