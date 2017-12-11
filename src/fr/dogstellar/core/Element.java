@@ -47,9 +47,12 @@ public class Element {
      * @param description is the description to set at the element
      * @param newType is the Type of the element
      * @param newReward is the reward of the element
+     * @param newX the x coordonate in the view must be between (0 and 7 (excluded))
+     * @param newX the y coordonate in the view must be between (0 and 7 (excluded))
+     * 
      */
-    public Element(String name, String description, int newType, Stuff newReward, String newImage1, String newImage2) {
-        information = new Info(name, description);
+    public Element(String name, String description, int newType, Stuff newReward, String newImage1, String newImage2, int newX, int newY) {
+        information = new Info(name, description, newX, newY);
         type = newType;
         done = false;
         reward = newReward;

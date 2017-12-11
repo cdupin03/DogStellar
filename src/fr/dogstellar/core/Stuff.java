@@ -10,7 +10,18 @@ package fr.dogstellar.core;
  */
 public abstract class Stuff {
 
-    private Info info;                                                    // The informations about the stuff object
+    private final Info info;                                                    // The informations about the stuff object
+
+    /**
+     * Stuff Constructor Initialize the name and the description of the stuff.
+     * The name and description are controlled by info class
+     *
+     * @param name the name
+     * @param description the description
+     */
+    public Stuff(String name, String description) {
+        info = new Info(name, description);
+    }
 
     /**
      * Give the info from the stuff.

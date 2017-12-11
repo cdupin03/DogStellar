@@ -45,14 +45,14 @@ public class Interface {
     private final JButton inventory;                            //Button which allow to open the inventory
     private final JButton returnMap;                           //Button wich allow to return to the first map 
 
-    private final Perso monstre1 = new Perso("FriendlyNeighbor", 10, 3, new QuestElement("PieceShip", "that same piece"), new Armor("MyGreatArmor", "sfddghfxhfgd", 3));
-    private final Perso monstre2 = new Perso("Monstre2", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6));
-    private final Perso monstre3 = new Perso("Monstre3", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6));
+    private final Perso monstre1 = new Perso("FriendlyNeighbor", 10, 3, new QuestElement("PieceShip", "that same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 2),"monster/larva");
+    private final Perso monstre2 = new Perso("Monstre2", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6),"sacados");
+    private final Perso monstre3 = new Perso("Monstre3", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6),"Monster");
 
     private GeneralWindow theWindow, theShip;
 
     private final DisplayInfo infoPlayer; 					//It is the information of the player that is display thanks to displayInfo
-    private DisplayInfo infoArea; 					//It is the information of the player that is display thanks to displayInfo
+    private DisplayInfo infoArea; 							//It is the information of the player that is display thanks to displayInfo
     private final JPanel displayInfo = new JPanel();					//it is the JPanel with the info of the player
     private final JPanel imagePlayer = new JPanel();;
     private final JLabel imageP, nameP;										//Is the image of the player that is select in the startGame
@@ -130,7 +130,7 @@ public class Interface {
                 }
             }
         });
-        //returnto the ship 
+        //return to the ship 
         ImageIcon ship = new ImageIcon(picturePath + "map.png");
 
         returnMap = new JButton(ship);
@@ -201,37 +201,60 @@ public class Interface {
         //AreaPlanet Area0Planet1 = new AreaPlanet("Ship", "your ship", "");
 
         AreaPlanet Area1Planet1 = new AreaPlanet("Area1", "first area", "map/map1.png");
-        Area1Planet1.addElement(new Element("PNJ", " Hey my friend ! Do you remember me? I found you almost dead but you're better now. I hope you got your bag", 3, "toad1.jpg", "toad2.jpg",));
-        Armor armor1 = new Armor("Aurora", "More beautiful than effective", 1);
-        Area1Planet1.addElement(new Element("Bag", "with your armor", 4, armor1, "sacados.png", "sacados.png"));
-        
-        AreaPlanet Area2Planet1 = new AreaPlanet("Area2", "second area", "map/map3.png");
-        Area2Planet1.addElement(new Element("PNJ", "My neighbor does not like to be disturbed ... but he may have recovered a piece of your ship", 3, "toad1.jpg", "toad2.jpg"));
-        Area2Planet1.addPerso(monstre1);
-        
-        AreaPlanet Area3Planet1 = new AreaPlanet("Area3", "third area", "map/map2.png");
-        Area3Planet1.addElement(new Element("PNJ", "Thanks, my neighbor has gone away now", 3,"toad1.jpg", "toad2.jpg"));
-        Weapon weapon1 = new Weapon("Walpurga", "Weak laser ", 1);
-        Area3Planet1.addElement(new Element("Who gets up without making a sound?", "sun", 1, weapon1, "enigma.png", "enigma2.png"));
-//        Area3Planet1.addPerso(monstre3);
-//        Area3Planet1.addElement(new Element("Trap", "Un piege déguisé", 2));
-//        Area3Planet1.addElement(new Element("PNJ", "Un pnj champu", 3));
+//my friend
+        Area1Planet1.addElement(new Element("PNJ", 
+                " Hey my friend ! Do you remember me? I found you almost dead but you're better now. I hope you got your bag",
+                 3,
+                "toad1.jpg",
+                "toad2.jpg",
+                 1,
+                 2));
+//my bag
 
-//        Area3Planet1.addPerso(monstre2);
-       
+        Armor armor1 = new Armor("Aurora", "More beautiful than effective", 1);
+
+        Area1Planet1.addElement(new Element("Bag",
+                "with your armor",
+                4,
+                armor1,
+                "sacados.png",
+                "sacados.png",
+                3,
+                4));
+        AreaPlanet Area2Planet1 = new AreaPlanet("Area2", "second area", "map/map3.png");
+//my friend present his neighbor
+        Area2Planet1.addElement(new Element("PNJ",
+                "My neighbor does not like to be disturbed ... but he may have recovered a piece of your ship",
+                3,
+                "toad1.jpg",
+                "toad2.jpg",
+                1,
+                2));
+//his neighbor
+        Area2Planet1.addPerso(monstre1);
+
+        AreaPlanet Area3Planet1 = new AreaPlanet("Area3", "third area", "map/map2.png");
+//my friend is happy
+        Area3Planet1.addElement(new Element("PNJ", "Thanks, my neighbor has gone away now", 3,"toad1.jpg", "toad2.jpg", 1, 2));
+//an enigma (response : universe)
+        Weapon weapon1 = new Weapon("Walpurga", "Weak laser ", 1);
+
+        Area3Planet1.addElement(new Element("Everything is in nothing... What is it?", "universe",
+                1, weapon1, "enigma.png", "enigma2.png", 3, 1));      
         
         Area1Planet1.addAreaPlanet(Area2Planet1, "south");
         Area2Planet1.addAreaPlanet(Area3Planet1, "east");
-        
-        //Faire une map avec des pieges partout et 1 coffre. Celui ci aura excalibur!!! max dgm
-        
         planet1.addArea(Area1Planet1);
 
         //Planet 2 with 2 areas and different elements(perso,element) on them
-        AreaPlanet Area1Planet2 = new AreaPlanet("Area1", "rdytfuygiut", "map/map10.png");
-        //Area1Planet2.addPerso(monstre1);
-        //Area1Planet2.addElement(new Element("Coffre", "Petit coffre", 1));
-        //Area1Planet2.addElement(new Element("Enigme", "Une enigme", 4));
+        AreaPlanet Area1Planet2 = new AreaPlanet("Area1", "first area", "map/map10.png");
+//his neighbor is alive but your friend propose to you an enigma to have a his weapon
+        Weapon weapon2 = new Weapon("Wilhelmina", "weapon of your friend", 3);
+        //console.addMessageToConsole("Oh no, you remember of him ? it is my neighbor, you don't really kill him, maybe he has find other piece of ship");
+        Area1Planet2.addElement(new Element(" I will give you my weapon but before answer to my enigma : I can be white, yellow, red, blue even black. Who  I  am?",
+                "star", 1, weapon2, "toad1.jpg",
+                "toad2.jpg", 3, 1));
+        Area1Planet2.addPerso(monstre2);
 
         AreaPlanet Area2Planet2 = new AreaPlanet("Area2", "rdytfiut", "map/map11.png");
         //Area2Planet2.addPerso(monstre2);
@@ -306,7 +329,7 @@ public class Interface {
         Area5Planet4.addAreaPlanet(Area6Planet4, "south");
         Area6Planet4.addAreaPlanet(Area7Planet4, "south");
         
-        Element toad_spaceship = (new Element("PNJ", "", 3, "toad1.jpg", "toad2.jpg"));
+        Element toad_spaceship = (new Element("PNJ", "", 3, "toad1.jpg", "toad2.jpg", 2, 2));
         toad_spaceship.setDone(true);
         
         Area7Planet4.addElement(toad_spaceship);
