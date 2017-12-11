@@ -51,6 +51,8 @@ public class Element {
         type = newType;
         done = false;
         reward = newReward;
+        image1 = newImage1;
+        image2 = newImage2;
     }
 
     /**
