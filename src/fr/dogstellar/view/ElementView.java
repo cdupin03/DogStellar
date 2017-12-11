@@ -41,13 +41,13 @@ public final class ElementView extends JButton {
      */
     public ElementView(String picturePath, Element newE, Window wind) {
         super();                                                                //call the constructor of the JButton
-        PicturePath = picturePath + "";                             //Define the path of the picture
+        PicturePath = picturePath + "";                             			//Define the path of the picture
         E = newE;                                                               //Define the element
 
-        if (E.getType() == 1) //If the element is a enigma 
+        if (E.getType() == 1) 													//If the element is a enigma 
         {
             if (E.getDone() != true) {
-                afficher("enigma.png", "enigma2.png", 70, 60);
+                afficher(E.getImage1(),E.getImage2(), 70, 60);
 
                 this.addMouseListener(new MouseAdapter() {
                     @Override
@@ -69,16 +69,16 @@ public final class ElementView extends JButton {
                                 //Ajouter un return true dans resolve enigma
 
                                 if (resolve) {
-                                    wind.getInterfac().addMessageToConsole("Bravo! vous avez trouver la bonne solution! ");
-                                    wind.getInterfac().addMessageToConsole("vous avez gagner :" + E.getReward().getInformation().getName());
-                                    Popup newPopup = new Popup("Vous avez gagnée : " + E.getReward().getInformation().getName() + "!");
+                                    wind.getInterfac().addMessageToConsole("Congratulation ! ");
+                                    wind.getInterfac().addMessageToConsole("You win :" + E.getReward().getInformation().getName());
+                                    Popup newPopup = new Popup("You have win : " + E.getReward().getInformation().getName() + "!");
                                     ok.removeActionListener(this);
                                     E.setDone(true);
                                     //trial
                                     wind.adjustWindow();
 
                                 } else {
-                                    wind.getInterfac().addMessageToConsole("Ce n'est pas la bonne réponse.");
+                                    wind.getInterfac().addMessageToConsole("Failed ! come back with the answer");
                                     ok.removeActionListener(this);
                                     E.setDone(true);
                                 }
@@ -90,7 +90,8 @@ public final class ElementView extends JButton {
                     }
                 });
             } else {
-                afficher("enigma2.png", "enigma2.png", 70, 60);
+
+                afficher(E.getImage2(),E.getImage2(), 70, 60);
             }
 
         } else if (E.getType() == 2) //If the element is a trap
@@ -113,14 +114,14 @@ public final class ElementView extends JButton {
                 randompic2 = "Coffre_selection.jpg";
             }
 
-            afficher(randompic, randompic2, 70, 60);
+            afficher(E.getImage1(),E.getImage2(), 70, 60);
 
             this.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent evt) {
                     int randomNum = ThreadLocalRandom.current().nextInt(0, 3);
-                    Popup newPopup = new Popup(E.getInformation().getName() + " :" + E.getInformation().getDescription() + " Vous perdez " + randomNum + " Points de vie");
-                    wind.getInterfac().addMessageToConsole(E.getInformation().getName() + " :" + E.getInformation().getDescription() + " Vous perdez " + randomNum + " Points de vie");
+                    Popup newPopup = new Popup(E.getInformation().getName() + " :" + E.getInformation().getDescription() + " You lose " + randomNum + " life point ");
+                    wind.getInterfac().addMessageToConsole(E.getInformation().getName() + " :" + E.getInformation().getDescription() + " You lose " + randomNum + " life point");
                     E.lostLifePoint(StartGame.getPlayer(), randomNum);
                     StartGame.getInterf().getDisplay().refreshDisplay();
                     if (StartGame.getPlayer().getLifePoint() <= 0) {
@@ -135,7 +136,9 @@ public final class ElementView extends JButton {
         {
 
             if (E.getDone() == false) {
-                afficher("toad1.jpg", "toad2.jpg", 70, 70);
+
+                afficher(E.getImage1(),E.getImage2(),70, 70);
+
 
                 this.addMouseListener(new MouseAdapter() {
                     @Override
@@ -146,7 +149,7 @@ public final class ElementView extends JButton {
                 });
             } else {
 
-                afficher("toad1.jpg", "toad2.jpg", 70, 70);
+                afficher(E.getImage1(),E.getImage2(), 70, 70);
 
                 //
                 this.addActionListener(new ActionListener() {
@@ -180,7 +183,8 @@ public final class ElementView extends JButton {
         {
             if (!E.getDone()) {
 
-                afficher("Coffre_fermer.jpg", "Coffre_selection.jpg", 70, 70);
+                afficher(E.getImage1(),E.getImage2(), 70, 70);
+
 
                 this.addMouseListener(new MouseAdapter() {
                     @Override
@@ -189,15 +193,14 @@ public final class ElementView extends JButton {
                         E.setDone(true);
                         wind.adjustWindow();
 
-                        Popup newPopup = new Popup("Vous avez obtenu :" + E.getReward().getInformation().getName());
-                        wind.getInterfac().addMessageToConsole("Vous avez obtenu : " + E.getReward().getInformation().getName());
-                        wind.getInterfac().addMessageToConsole(E.getReward().getInformation().getName() + "a été ajouté dans l'inventaire");
+                        Popup newPopup = new Popup("Great ! you have open " + E.getReward().getInformation().getName());
+                        wind.getInterfac().addMessageToConsole("The componant of " + E.getReward().getInformation().getName() + " is add to your inventory ! Check it");
                     }
                 });
 
             } else {
 
-                afficher("Coffre_ouvert.jpg", "Coffre_ouvert.jpg", 70, 70);
+                afficher(E.getImage1(),E.getImage2(), 70, 70);
 
             }
         }
