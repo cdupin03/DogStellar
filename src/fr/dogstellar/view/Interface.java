@@ -199,14 +199,16 @@ public class Interface {
 
         //Planet 1 with 3 areas and different elements(perso,element) on them
         //AreaPlanet Area0Planet1 = new AreaPlanet("Ship", "your ship", "");
-        AreaPlanet Area1Planet1 = new AreaPlanet("Area1", "rdytfuygiut", "map/map1.png");
+        AreaPlanet Area1Planet1 = new AreaPlanet("Area1", "didacticiel", "map/map1.png");
         Area1Planet1.addPerso(monstre1);
         Armor armor1 = new Armor("Plaque rouillé", "C'est mieux que rien", 1);
-        Area1Planet1.addElement(new Element("Coffre", "Petit coffre", 4, armor1));
-        Weapon weapon1 = new Weapon("Epee rouillé", "Rien de bien puissant", 1);
-        Area1Planet1.addElement(new Element("Quesqui est jaune et qui attend?", "Jonathan", 1, weapon1));
-        Area1Planet1.addElement(new Element("PNJ", "Bonjour, moi c'est toad, je suis un habitant de cette planete.. .. Votre vaisseau n'a pas assez de puissance pour faire le trajet retour? Pas de problème il vous suffis de récupere les parties de vaisseaux!", 3));
-        Area1Planet1.addElement(new Element("PNJ", "Dans se monde il existe 4 type d'élements auquelle vous ", 3));
+        Area1Planet1.addElement(new Element("Coffre", "Petit coffre", 4, new QuestElement("PieceShip", "A piece of spaceship")));
+        Weapon weapon1 = new Weapon("Epee rouillé", "Augmente vos dégats de 1, appuyer sur l'item pour l'équipé.", 1);
+        Area1Planet1.addElement(new Element("Bonjour, je suis une enigme : Ecriver le mot de passe", "DIDACTICIEL", 1, weapon1));
+        Area1Planet1.addElement(new Element("PNJ", "Bonjour, moi c'est toad, je suis un habitant de cette planète.. .. Votre vaisseau n'a pas assez de puissance pour faire le trajet retour ? Pas de problème, il vous suffit de récupérer les parties de vaisseaux ! J'ai récupéré pour vous une partie de vaisseau, ouvrez ce coffre!", 3));
+        String Newligne=System.getProperty("line.separator"); 
+        
+        Area1Planet1.addElement(new Element("PNJ", "Dans se monde il existe 4 type d'élements auquelle vous pouvez interargir: les coffres, les pnj, les enigmes et les pièges."+ Newligne + "Cliquer sur la feuille se de l'ecran et écriver DIDACTICIEL dans la barre en bas, puis appuyer sur entrer", 3));
         
         
         
