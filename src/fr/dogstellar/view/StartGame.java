@@ -168,9 +168,17 @@ public class StartGame {
         title.setForeground(Color.white);
 
         //description of the game
-        description = new JLabel("Description", JLabel.CENTER);
+        description = new JLabel("", JLabel.CENTER);
+        description.setPreferredSize(new Dimension(200,500));
         description.setFont(new java.awt.Font(Font.DIALOG, Font.BOLD, 25));
         description.setForeground(Color.white);
+        description.setText("Welcome to DogStellar, the team of GPhy developer is happy ");
+        description.setText(description.getText() + "<html>\n</html>");
+        description.setText(description.getText() + "to see you test our Java project! ");
+        description.setText(description.getText() + "<html>\n</html>");
+        description.setText(description.getText() + "During this adventure, you must be careful if you");
+        description.setText(description.getText() + "<html>\n</html>");
+        description.setText(description.getText() + "do not want to die before having been able to go back home...");
 
         //Text for enter the name of player (not enable if no player is choose)
         t = new JTextField(30);
@@ -204,7 +212,7 @@ public class StartGame {
                 player = new Player(namePlayer, lP, aP);
                 myJFrame.dispose();
                 interf = new Interface();  //start the game with the a player a planet ...
-                new VideoPlayer("Intro.mp4");
+                new VideoPlayer("Intro.mp4", 39000, "DogStellar - The Beginning");
             }
         });
         startGame.setOpaque(false);

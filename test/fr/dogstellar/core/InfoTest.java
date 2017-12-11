@@ -15,6 +15,7 @@ public class InfoTest {
 
     private Info badInfo;
     private Info goodInfo;
+    private Info planetInfo;
 
     /**
      * Default constructor for test class InfoTest
@@ -29,8 +30,9 @@ public class InfoTest {
      */
     @Before
     public void setUp() {
-        badInfo = new Info("Ma", "Goo");			//a bad Info object
-        goodInfo = new Info("Mark", "Good Info");   //a good Info object   
+        badInfo = new Info("Ma", "Goo", -8, 9);			//a bad Info object
+        goodInfo = new Info("Mark", "Good Info", 5, 5);   //a good Info object   
+        planetInfo = new Info ("Planet", "planetType");
     }
 
     /**
@@ -47,7 +49,7 @@ public class InfoTest {
      * Test if the program remove space before name.
      */
     public void spaceBeforeName() {
-        Info info1 = new Info(" Julien", "Test");
+        Info info1 = new Info(" Julien", "Test", 5, 5);
         assertEquals("Julien", info1.getName());
     }
 
@@ -56,7 +58,7 @@ public class InfoTest {
      * Test if the program remove space after name.
      */
     public void spaceAfterName() {
-        Info info1 = new Info("Julien ", "Test");
+        Info info1 = new Info("Julien ", "Test", 5, 5);
         assertEquals("Julien", info1.getName());
     }
 
@@ -65,7 +67,7 @@ public class InfoTest {
      * Test if the program remove space before description.
      */
     public void spaceBeforeDescription() {
-        Info info1 = new Info("Julien", " Test");
+        Info info1 = new Info("Julien", " Test", 5, 5);
         assertEquals("Test", info1.getDescription());
     }
 
@@ -74,7 +76,7 @@ public class InfoTest {
      * Test if the program remove space after description.
      */
     public void spaceAfterDescription() {
-        Info info1 = new Info("Julien", "Test ");
+        Info info1 = new Info("Julien", "Test ", 5, 5);
         assertEquals("Test", info1.getDescription());
     }
 
@@ -85,6 +87,8 @@ public class InfoTest {
     public void okGetter() {
         assertEquals("Mark", goodInfo.getName());
         assertEquals("Good Info", goodInfo.getDescription());
+        assertEquals(5, goodInfo.getX());
+        assertEquals(5, goodInfo.getY());
     }
 
     @Test
@@ -94,6 +98,19 @@ public class InfoTest {
     public void wrongGetters() {
         assertEquals("No Name", badInfo.getName());
         assertEquals("No Description", badInfo.getDescription());
+        assertEquals(3, badInfo.getX());
+        assertEquals(3, badInfo.getY());
+    }
+    
+    @Test
+    /**
+     * Chech the second constructor without x or y. The value of x and y attended
+     * are -1.
+     */
+    public void coordonatePlanet ()
+    {
+        assertEquals(-1, planetInfo.getX());
+        assertEquals(-1, planetInfo.getX());
     }
 
 }

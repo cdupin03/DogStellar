@@ -22,13 +22,13 @@ public class PersoView extends PictureButton {
      * @param monster is the monster to add in the interface
      */
     public PersoView(String picturePath, Perso monster) {
-        super(picturePath, "Monstre", ".png");
+        super(picturePath, monster.getImage1(), ".png");
 
         //Add  an action listener for this Perso button
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to attack the monster ? Be carefull, you can not stop a fight", "choose one", JOptionPane.YES_NO_OPTION);
+                int result = JOptionPane.showConfirmDialog(null, "There is still time to turn back, are you sure you want to attack?", "choose one", JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
                     Fight theFight = new Fight(monster, StartGame.getPlayer());
                     StartGame.getInterf().getTheWindow().adjustWindow();

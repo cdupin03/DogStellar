@@ -16,7 +16,9 @@ public class Element {
     private boolean done; //Identifier for the already used object 
     private final int type; //The type of objet :1- enigme,2- trap,3- people,4- chest
     private final Stuff reward; //The reward you may win
-
+    private String image1;
+    private String image2;
+    
     /**
      * This method is the constructor. It initialize the value of the Element.
      * Give a name and a description to info attribute and their type, for
@@ -25,12 +27,16 @@ public class Element {
      * @param name is the name to set at the element
      * @param description is the description to set at the element
      * @param newType is the Type of the element
+     * @param newX the x coordonate in the view must be between (0 and 7 (excluded))
+     * @param newX the y coordonate in the view must be between (0 and 7 (excluded))
      */
-    public Element(String name, String description, int newType) {
-        information = new Info(name, description);
+    public Element(String name, String description, int newType, String newImage1, String newImage2, int newX, int newY) {
+        information = new Info(name, description, newX, newY);
         type = newType;
         done = false;
         reward = null;
+        image1 = newImage1;
+        image2 = newImage2;
     }
 
     /**
@@ -41,12 +47,17 @@ public class Element {
      * @param description is the description to set at the element
      * @param newType is the Type of the element
      * @param newReward is the reward of the element
+     * @param newX the x coordonate in the view must be between (0 and 7 (excluded))
+     * @param newX the y coordonate in the view must be between (0 and 7 (excluded))
+     * 
      */
-    public Element(String name, String description, int newType, Stuff newReward) {
-        information = new Info(name, description);
+    public Element(String name, String description, int newType, Stuff newReward, String newImage1, String newImage2, int newX, int newY) {
+        information = new Info(name, description, newX, newY);
         type = newType;
         done = false;
         reward = newReward;
+        image1 = newImage1;
+        image2 = newImage2;
     }
 
     /**
@@ -136,4 +147,14 @@ public class Element {
         this.done = Done;
     }
 
+    public String getImage1() {
+        return image1;
+    }
+
+    public String getImage2() {
+        return image2;
+    }
+
+    
+    
 }

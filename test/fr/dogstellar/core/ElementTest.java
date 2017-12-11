@@ -25,7 +25,7 @@ public class ElementTest {
     @Before
     public void setUp() {
 
-        element1 = new Element("Papier", "C'est un papier", 1);
+        element1 = new Element("Papier", "C'est un papier", 1,"test.png","test.png", 3, 4);
         player = new Player("Jean-Louis", 5, 5);
         weap = new Weapon("weapon", "Sword of life", 3);
     }
