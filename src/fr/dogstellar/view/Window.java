@@ -138,6 +138,10 @@ public final class Window extends GeneralWindow {
 
         addArrows();
 
+        area.getElement().stream().forEach((e) -> {
+            addElementToGrid(new ElementView(getPicturePath(), e, this));
+        });
+        
         area.getPerso().stream().forEach((_item) -> {
             if (_item.getIsDead() == false) {
                 System.out.println("Monster : " + _item.getNamePerso() + _item.getIsDead());
@@ -145,9 +149,7 @@ public final class Window extends GeneralWindow {
             }
         });
 
-        area.getElement().stream().forEach((e) -> {
-            addElementToGrid(new ElementView(getPicturePath(), e, this));
-        });
+        
         drawGrid();
     }
 
