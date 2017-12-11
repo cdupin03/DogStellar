@@ -146,7 +146,7 @@ public final class Window extends GeneralWindow {
         });
 
         area.getElement().stream().forEach((e) -> {
-            addRandomlyComponent(new ElementView(getPicturePath(), e, this));
+            addElementToGrid(new ElementView(getPicturePath(), e, this));
         });
         drawGrid();
     }
@@ -181,6 +181,15 @@ public final class Window extends GeneralWindow {
     public void returnToFirstMap() {
         area = planets.get(0).getAreas();
         adjustWindow(area);
+    }
+    
+    /**
+     * add the element on its right coordonates on the grid.
+     * @param elt 
+     */
+    public void addElementToGrid (ElementView elt)
+    {
+        addComponentToGrid(elt, elt.getE().getInformation().getX(), elt.getE().getInformation().getY());
     }
 
 }

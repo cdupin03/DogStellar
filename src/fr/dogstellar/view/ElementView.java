@@ -251,4 +251,14 @@ public final class ElementView extends JButton {
         this.setEnabled(false);
     }
 
+    /**
+     * get the element of the view.
+     * @return E the element of the view.
+     */
+    public Element getE() {
+        return E;
+    }
+    
+    
+
 }
