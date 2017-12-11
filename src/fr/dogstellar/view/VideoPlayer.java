@@ -22,24 +22,25 @@ import javafx.scene.media.MediaView;
 public class VideoPlayer implements ActionListener {
 
     private JFrame theFrame = new JFrame();                                     //The main Frame
-    private final JFXPanel jfxPanel = new JFXPanel();                           //The container of the media player
-    private final JPanel jPanel1 = new JPanel();                                //The Panel that contains the media player container
+    private JFXPanel jfxPanel = new JFXPanel();                           //The container of the media player
+    private JPanel jPanel1 = new JPanel();                                //The Panel that contains the media player container
     private MediaPlayer mediaPlayer;                                            //The media player
-    private final Timer timer;                                                  //The timer that allows to close the Frame after the end of the video
+    private Timer timer;                                                  //The timer that allows to close the Frame after the end of the video
 
     private String picturePath;                                                 //The folder of the video
-    private final String nameVideo;
-    private final File file;
+    private String nameVideo;
+    private File file;
 
     /**
      * The JFrame of the video contain the MediaPlayer created in the
      * createMediaView method
      *
      * @param thisVideo
+     * @param newTime
      */
-    public VideoPlayer(String thisVideo) {
-        picturePath = picturePath = System.getProperty("user.dir") + "/videos/";//The path of the video
-        timer = new Timer(39000, this);                                         //The timer is set to the time of video plus one second, allows to close the JFrame
+    public VideoPlayer(String thisVideo,int newTime, String title) {
+        picturePath = System.getProperty("user.dir") + "/videos/";              //The path of the video
+        timer = new Timer(newTime, this);                                         //The timer is set to the time of video plus one second, allows to close the JFrame
         timer.start();                                                          //The start of the conter
         createMediaView();                                                          //This method allows to create the media player
         nameVideo = thisVideo;                                                  //The video to play
@@ -59,7 +60,7 @@ public class VideoPlayer implements ActionListener {
             theFrame.dispose();                                             //Close the frame when we click on the skip button
         });
 
-        theFrame.setTitle("DogStellar : the beginning");
+        theFrame.setTitle(title);
         theFrame.setResizable(false);
         theFrame.add(jPanel1);
         theFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);          //Closing the frame not the application                                                              //The panel is add to the JFrame
