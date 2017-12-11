@@ -11,6 +11,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * This class allow the display of element in the screen, a element is a Jbutton
@@ -152,15 +154,17 @@ public final class ElementView extends JButton {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         int compt = 0;
+                        Timer timer = new Timer();
                         for (Stuff s : StartGame.getPlayer().getStuff()) {
                             if (s.getInformation().getName().equals("PieceShip")) {
                                 compt += 1;
                             }
                         }
-                        if (compt < 10) {
+                        if (compt < 0) {
                             StartGame.getInterf().addMessageToConsole("You have not enouth piece of ship to build your new ship");
                         } else {
                             StartGame.getInterf().addMessageToConsole("Great ! You have all piece of ship, so I can build it");
+                            new VideoPlayer("fin.mp4");
                         }
                     }
                 });
