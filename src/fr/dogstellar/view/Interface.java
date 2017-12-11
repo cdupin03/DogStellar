@@ -14,8 +14,10 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.text.DefaultCaret;
+
+import org.w3c.dom.NamedNodeMap;
+
 import javax.swing.ImageIcon;
-import java.awt.BorderLayout;
 
 /**
  * The Class Interface is the main Interface of the game, it allows to interract
@@ -43,16 +45,18 @@ public class Interface {
     private final JButton inventory;                            //Button which allow to open the inventory
     private final JButton returnMap;                           //Button wich allow to return to the first map 
 
-    private final Perso monstre1 = new Perso("Monstre", 10, 5, new QuestElement("PieceShip", "that same piece"), new Armor("MyGreatArmor", "sfddghfxhfgd", 3));
+    private final Perso monstre1 = new Perso("Monstre", 10, 3, new QuestElement("PieceShip", "that same piece"), new Armor("MyGreatArmor", "sfddghfxhfgd", 3));
     private final Perso monstre2 = new Perso("Monstre2", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6));
+    private final Perso monstre3 = new Perso("Monstre3", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6));
 
     private GeneralWindow theWindow, theShip;
 
     private final DisplayInfo infoPlayer; 					//It is the information of the player that is display thanks to displayInfo
     private DisplayInfo infoArea; 					//It is the information of the player that is display thanks to displayInfo
     private final JPanel displayInfo = new JPanel();					//it is the JPanel with the info of the player
-    private final JLabel imageP;										//Is the image of the player that is select in the startGame
-
+    private final JPanel imagePlayer = new JPanel();;
+    private final JLabel imageP, nameP;										//Is the image of the player that is select in the startGame
+    
     /**
      * The constructor of the class Interface
      */
@@ -148,15 +152,22 @@ public class Interface {
 
 //info Player (image, namePlayer, barLife and barAttack, inventory)
         infoPlayer = new DisplayInfo();								//The displayInfo with the name, barLife and barAttack
-
+        
+        
+        nameP = new JLabel(StartGame.getPlayer().getNamePerso(), JLabel.CENTER);
+        nameP.setFont(new Font("Arial", Font.PLAIN, 20));
         imageP = new JLabel(StartGame.getImagePlayer());			//image of the player (choose in the startGame)
 
+        imagePlayer.setLayout(new BorderLayout());
+        imagePlayer.add(imageP, BorderLayout.CENTER);
+        imagePlayer.add(nameP, BorderLayout.NORTH);
+        
         displayP.setLayout(new BorderLayout());						//JPanel imageP, infoPlayer, inventory
-        displayP.add(imageP, BorderLayout.WEST);
+        displayP.add(imagePlayer, BorderLayout.WEST);
         displayP.add(infoPlayer, BorderLayout.CENTER);
         displayP.add(subP, BorderLayout.EAST);
         displayInfo.setLayout(new BorderLayout());					//Set the layout of the displayInfo part
-        displayInfo.add(displayP, BorderLayout.WEST);				//Add the information of the player in the displayInfo Panel
+        displayInfo.add(displayP, BorderLayout.CENTER);				//Add the information of the player in the displayInfo Panel
         //displayInfo.add(displayA, BorderLayout.CENTER);			   // Add the information of the area in the displayInfo Panel
 
         bottom.setLayout(new BorderLayout());                       //Set the layout of the bottom part
@@ -190,7 +201,7 @@ public class Interface {
         //AreaPlanet Area0Planet1 = new AreaPlanet("Ship", "your ship", "");
         AreaPlanet Area1Planet1 = new AreaPlanet("Area1", "rdytfuygiut", "map/map1.png");
         Area1Planet1.addPerso(monstre1);
-        Armor armor1 = new Armor("Plaque rouillé", "C'est mieux que rien", 3);
+        Armor armor1 = new Armor("Plaque rouillé", "C'est mieux que rien", 5);
         Area1Planet1.addElement(new Element("Coffre", "Petit coffre", 4, armor1));
         Weapon weapon1 = new Weapon("Epee rouillé", "Rien de bien puissant", 3);
         Area1Planet1.addElement(new Element("Quesqui est jaune et qui attend?", "Jonathan", 1, weapon1));
@@ -201,7 +212,7 @@ public class Interface {
         Area2Planet1.addElement(new Element("PNJ", "Un pnj champu", 3));
 
         AreaPlanet Area3Planet1 = new AreaPlanet("Area3", "hum ...", "map/map2.png");
-        Area3Planet1.addPerso(monstre2);
+        Area3Planet1.addPerso(monstre3);
         Area3Planet1.addElement(new Element("Trap", "Un piege déguisé", 2));
         Area3Planet1.addElement(new Element("PNJ", "Un pnj champu", 3));
 
