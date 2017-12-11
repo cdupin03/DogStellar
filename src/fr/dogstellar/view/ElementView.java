@@ -164,6 +164,12 @@ public final class ElementView extends JButton {
                             StartGame.getInterf().addMessageToConsole("You have not enouth piece of ship to build your new ship");
                         } else {
                             StartGame.getInterf().addMessageToConsole("Great ! You have all piece of ship, so I can build it");
+                            try {
+								Thread.sleep(3000);
+							} catch (InterruptedException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
                             VideoPlayer end = new VideoPlayer("fin.mp4", 11000, "DogStellar - The end");
                         }
                     }
