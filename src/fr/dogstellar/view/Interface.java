@@ -45,9 +45,9 @@ public class Interface {
     private final JButton inventory;                            //Button which allow to open the inventory
     private final JButton returnMap;                           //Button wich allow to return to the first map 
 
-    private final Perso monstre1 = new Perso("FriendlyNeighbor", 10, 3, new QuestElement("PieceShip", "that same piece"), new Armor("MyGreatArmor", "sfddghfxhfgd", 3));
-    private final Perso monstre2 = new Perso("Monstre2", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6));
-    private final Perso monstre3 = new Perso("Monstre3", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6));
+    private final Perso monstre1 = new Perso("FriendlyNeighbor", 10, 3, new QuestElement("PieceShip", "that same piece"), new Armor("MyGreatArmor", "sfddghfxhfgd", 3),"monster/larva");
+    private final Perso monstre2 = new Perso("Monstre2", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6),"sacados");
+    private final Perso monstre3 = new Perso("Monstre3", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6),"Monster");
 
     private GeneralWindow theWindow, theShip;
 
@@ -213,7 +213,7 @@ public class Interface {
         Area3Planet1.addElement(new Element("PNJ", "Thanks, my neighbor has gone away now", 3,"toad1.jpg", "toad2.jpg"));
         Weapon weapon1 = new Weapon("Walpurga", "Weak laser ", 1);
         Area3Planet1.addElement(new Element("Who gets up without making a sound?", "sun", 1, weapon1, "enigma.png", "enigma2.png"));
-//        Area3Planet1.addPerso(monstre3);
+//      Area3Planet1.addPerso(monstre3);
 //        Area3Planet1.addElement(new Element("Trap", "Un piege déguisé", 2));
 //        Area3Planet1.addElement(new Element("PNJ", "Un pnj champu", 3));
 

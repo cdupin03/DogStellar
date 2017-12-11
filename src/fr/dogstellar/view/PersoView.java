@@ -22,7 +22,7 @@ public class PersoView extends PictureButton {
      * @param monster is the monster to add in the interface
      */
     public PersoView(String picturePath, Perso monster) {
-        super(picturePath, "Monstre", ".png");
+        super(picturePath, monster.getImage1(), ".png");
 
         //Add  an action listener for this Perso button
         this.addActionListener(new ActionListener() {
