@@ -182,9 +182,9 @@ public class Interface {
         //displayA.add(test);
 
         /*
- *  *****   *  *   *****      ** **   *****   *****                                          
- *    *     ****   **         * * *   *****   *****                                                       
- *    *     *  *   *****      *   *   *   *   *                                     
+		 *  *****   *  *   *****      ** **   *****   *****                                          
+		 *    *     ****   **         * * *   *****   *****                                                       
+		 *    *     *  *   *****      *   *   *   *   *                                     
          */
         Planet planet1 = new Planet("Eurigone", "Etrange", 0);
         Planet planet2 = new Planet("Oppavia", "Planet filled with sand", 0);
@@ -199,8 +199,6 @@ public class Interface {
         planets.add(planet4);
 
         //Planet 1 with 3 areas and different elements(perso,element) on them
-        //AreaPlanet Area0Planet1 = new AreaPlanet("Ship", "your ship", "");
-
         AreaPlanet Area1Planet1 = new AreaPlanet("Area1", "first area", "map/map1.png");
 //my friend
         Area1Planet1.addElement(new Element("PNJ", " Hey my friend ! Do you remember me? I found you almost dead but you're better now. I hope you find your bag", 3, "friend.png", "friend.png",1,2));
@@ -215,10 +213,11 @@ public class Interface {
         Area2Planet1.addPerso(neighbor);
 
         AreaPlanet Area3Planet1 = new AreaPlanet("Area3", "third area", "map/map2.png");
-        Area3Planet1.addElement(new Element("PNJ", "Thanks, my neighbor has gone away now", 3,"friend.png", "friend.png", 1, 2));
+//my friend his happy
+        Area3Planet1.addElement(new Element("PNJ", "Thanks ! my neighbor has gone away now", 3,"friend.png", "friend.png", 1, 2));
+//Enigma (universe)
         Weapon weapon1 = new Weapon("Walpurga", "Weak laser ", 1);
-        Area3Planet1.addElement(new Element("Everything is in nothing... What is it?", "universe",
-                1, weapon1, "enigma.png", "enigma2.png", 3, 1));      
+        Area3Planet1.addElement(new Element("Everything is in nothing... What is it?", "universe",1, weapon1, "enigma.png", "enigma2.png", 3, 1));      
         
         Area1Planet1.addAreaPlanet(Area2Planet1, "south");
         Area2Planet1.addAreaPlanet(Area3Planet1, "east");
@@ -227,10 +226,10 @@ public class Interface {
         //Planet 2 with 2 areas and different elements(perso,element) on them
         AreaPlanet Area1Planet2 = new AreaPlanet("Area1", "first area", "map/map10.png");
 //his neighbor is alive but your friend propose to you an enigma to have a his weapon
-        Weapon weapon2 = new Weapon("Wilhelmina", "weapon of your friend", 3);
-//addMessageToConsole ajoute un message tout le temps dans la console (pas ce que je veux, uniquement dans cette area)
-        	//addMessageToConsole("Friend : Oh no, you remember of him ? it is my neighbor, you don't really kill him, maybe he has find other piece of ship");
-        Area1Planet2.addElement(new Element(" I will give you my weapon but before answer to my enigma : I can be white, yellow, red, blue even black. Who am I?","star", 1, weapon2, "friend.png", "friend.png", 3, 1));
+        Armor armor2  = new Armor("Amphitrite", "medium armor", 5);
+// /!\ /!\ addMessageToConsole ajoute un message tout le temps dans la console (pas ce que je veux, uniquement dans cette area)
+//addMessageToConsole("Friend : Oh no, you remember of him ? it is my neighbor, you don't really kill him, maybe he has find other piece of ship");
+        Area1Planet2.addElement(new Element(" I will give you my armor but before answer to my enigma : I can be white, yellow, red, blue even black. Who am I?","star", 1, armor2, "friend.png", "friend.png", 3, 1));
         Area1Planet2.addPerso(neighbor);
 
         AreaPlanet Area2Planet2 = new AreaPlanet("Area2", "second area", "map/map11.png");
@@ -240,10 +239,12 @@ public class Interface {
         AreaPlanet Area3Planet2 = new AreaPlanet("Area3", "hum ...", "map/map8.png");
 
         AreaPlanet Area4Planet2 = new AreaPlanet("Area4", "hum ...", "map/map12.png");
+//2 monsters 
         Area4Planet2.addPerso(double1);
         Area4Planet2.addPerso(double2);
         
         AreaPlanet Area5Planet2 = new AreaPlanet("Area5", "hum ...", "endGame.png");
+//big monster
         Area5Planet2.addPerso(bigMonster);
 //ne fonctionne pas (pas de fight encore effectue)
 	    if (bigMonster.getIsDead()==false) {
@@ -253,7 +254,8 @@ public class Interface {
 	    }
         
         AreaPlanet Area6Planet2 = new AreaPlanet("Area6", "hum ...", "map/map7.png");
-        Armor armor2  = new Armor("Asporina", "Best armor", 7);
+//a chest with the best armor
+        Armor armor3  = new Armor("Asporina", "Best armor", 7);
         Area6Planet2.addElement(new Element("Big Chest", "with the best armor", 4, armor2, "Coffre_fermer.jpg", "Coffre_ouvert.jpg",3,4));
         
         AreaPlanet Area7Planet2 = new AreaPlanet("Area7", "hum ...", "map/map9.png");

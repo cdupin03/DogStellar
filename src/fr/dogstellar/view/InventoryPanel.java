@@ -39,8 +39,8 @@ public final class InventoryPanel extends JFrame {
         this.thePlayer = thePlayer;
         generateInventory();
         this.setTitle("Inventory");                                             //The name of the JFrame
-        this.setSize(1200, 700);
-        this.setResizable(false);
+        this.setSize(700, 1200);
+        this.setResizable(true);
 
         this.getContentPane().setBackground(new Color(99, 162, 168));
         this.pack();
@@ -58,8 +58,7 @@ public final class InventoryPanel extends JFrame {
 
         equipedInventory = new JPanel();
         equipedInventory.setLayout(new GridLayout(0, 2, 15, 15));
-        equipedInventory.setBackground(new Color(122, 122, 122));
-        equipedInventory.setOpaque(true);
+        equipedInventory.setOpaque(false);
 
         this.add(lbl1);
         lbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -74,6 +73,9 @@ public final class InventoryPanel extends JFrame {
 
             theImage1 = resyze(theImage1, gridCaseHeight1, gridCaseWidth1);                 //resize the image
             JButton equipedArmor = new JButton(theImage1);                                  //create a new JButton
+            equipedArmor.setOpaque(false);
+            equipedArmor.setContentAreaFilled(false);
+            equipedArmor.setBorderPainted(false);
             equipedInventory.add(equipedArmor);                                             //add the Jbutton to the JPanel 
             StartGame.getInterf().getDisplay().refreshDisplay();
             equipedArmor.setToolTipText("There is no item equiped on this slot");           //set the tooltiptext
@@ -83,6 +85,9 @@ public final class InventoryPanel extends JFrame {
 
             theImage1 = resyze(theImage1, gridCaseHeight1, gridCaseWidth1);                 //resize the image 
             JButton equipedArmor = new JButton(theImage1);                                  //create a JButton
+            equipedArmor.setOpaque(false);
+            equipedArmor.setContentAreaFilled(false);
+            equipedArmor.setBorderPainted(false);
             equipedInventory.add(equipedArmor);                                             //add the button to the JPanel
             equipedArmor.setToolTipText(associationLabel(thePlayer.getArmorEquip()));       //set the corresponding tooltiptext
 
@@ -108,6 +113,9 @@ public final class InventoryPanel extends JFrame {
 
             theImage2 = resyze(theImage2, gridCaseHeight1, gridCaseWidth1);                 //resize the image
             JButton equipedWeapon = new JButton(theImage2);                                 //put the image in a button
+            equipedWeapon.setOpaque(false);
+            equipedWeapon.setContentAreaFilled(false);
+            equipedWeapon.setBorderPainted(false);
             equipedInventory.add(equipedWeapon);                                            //add the button to the panel
             StartGame.getInterf().getDisplay().refreshDisplay();
 
@@ -118,6 +126,9 @@ public final class InventoryPanel extends JFrame {
 
             theImage2 = resyze(theImage2, gridCaseHeight1, gridCaseWidth1);                 //resize the image 
             JButton equipedWeapon = new JButton(theImage2);                                 //create a JButton with this image
+            equipedWeapon.setOpaque(false);
+            equipedWeapon.setContentAreaFilled(false);
+            equipedWeapon.setBorderPainted(false);
             equipedInventory.add(equipedWeapon);                                            //add tje JButton to the JPanel
 
             equipedWeapon.setToolTipText(associationLabel(thePlayer.getWeaponEquip()));     //set the right tooltiptext
@@ -136,6 +147,8 @@ public final class InventoryPanel extends JFrame {
         // test if the inventory is empty
         // creating the panel and the label for each item
         inventory = new JPanel();
+        inventory.setOpaque(false);
+        inventory.setBackground(new Color(99,162,168));
 
         lbl2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl2.setFont(new Font("Blippo", Font.PLAIN, 28));
@@ -168,10 +181,12 @@ public final class InventoryPanel extends JFrame {
                 theImage = resyze(theImage, gridCaseHeight, gridCaseWidth);                 // resize the image
                 JButton X = new JButton(theImage);                                          //create a button with the image inside
                 X.setToolTipText(associationLabel(i));                                      // set a tooltiptext with the items informations
+                X.setOpaque(false);
+                
                 JLabel Y = new JLabel(":" + nbOccurence(i, thePlayer.getStuff()));          // affect the value of the number of the item in the inventory
+                Y.setForeground(Color.white);
                 //the action listener to equip an item or take a potion
                 X.addActionListener((ActionEvent e) -> {
-                    // TODO Auto-generated method stub
                     //management for a weapon
                     if (isWeapon(i)) {
                         if (thePlayer.hasWeapon()) {
@@ -202,11 +217,12 @@ public final class InventoryPanel extends JFrame {
                 JPanel inventoryCase = new JPanel();
                 inventoryCase.add(X);
                 inventoryCase.add(Y);
+                inventoryCase.setBackground(new Color(90,162,168));
                 inventory.add(inventoryCase);
                 X.setBackground(new Color(196, 196, 196));
                 return X;
             }).forEachOrdered((X) -> {
-                X.setOpaque(true);
+                X.setOpaque(false);
             });
         }
     }
