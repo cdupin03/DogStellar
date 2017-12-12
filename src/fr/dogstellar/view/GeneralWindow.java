@@ -272,7 +272,7 @@ public abstract class GeneralWindow extends JPanel {
 
     /**
      * draw the background of this panel.
-     * @param g
+     * @param g is the Graphics to paint
      */
     @Override
     public void paintComponent(Graphics g) {

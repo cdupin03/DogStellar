@@ -12,7 +12,6 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * This class allow the display of element in the screen, a element is a Jbutton
@@ -174,7 +173,7 @@ public final class ElementView extends JButton {
 								e1.printStackTrace();
 							}
                             //StartGame.getInterf().dispose();
-                            VideoPlayer end = new VideoPlayer("fin.mp4", 11000, "DogStellar - The end");
+                            new VideoPlayer("fin.mp4", 20000, "DogStellar - The end");
                         }
                     }
                 });
