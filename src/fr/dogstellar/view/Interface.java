@@ -185,10 +185,10 @@ public class Interface {
  *    *     ****   **         * * *   *****   *****                                                       
  *    *     *  *   *****      *   *   *   *   *                                     
          */
-        Planet planet1 = new Planet("Planet1", "Etrange", 0);
-        Planet planet2 = new Planet("Sand Planet ", "Planet filled with sand", 0);
-        Planet planet3 = new Planet("Planet3", "Tout aussi etrange", 0);
-        Planet planet4 = new Planet("Space", "Always in weightlessness", 0);
+        Planet planet1 = new Planet("Eurigone", "Etrange", 0);
+        Planet planet2 = new Planet("Oppavia", "Planet filled with sand", 0);
+        Planet planet3 = new Planet("Pandora", "Tout aussi etrange", 0);
+        Planet planet4 = new Planet("Vanadis", "Always in weightlessness", 0);
 
         ArrayList<Planet> planets = new ArrayList<Planet>(); //The list of planets the first planet is the actual planet.
         //If we change planet, the new planet exchange its place with the first.
@@ -258,14 +258,22 @@ public class Interface {
         AreaPlanet Area3Planet2 = new AreaPlanet("Area3", "hum ...", "map/map8.png");
 
         AreaPlanet Area4Planet2 = new AreaPlanet("Area4", "hum ...", "map/map12.png");
-        AreaPlanet Area5Planet2 = new AreaPlanet("Area5", "hum ...", "map/map7.png");
-        AreaPlanet Area6Planet2 = new AreaPlanet("Area6", "hum ...", "map/map9.png");
+        AreaPlanet Area5Planet2 = new AreaPlanet("Area6", "hum ...", "endGame.png");
+        Element toad_spaceship = (new Element("PNJ", "", 3, "toad1.jpg", "toad2.jpg", 2, 2));
+        toad_spaceship.setDone(true);
+        Area5Planet2.addElement(toad_spaceship);
+        
+        AreaPlanet Area6Planet2 = new AreaPlanet("Area5", "hum ...", "map/map7.png");
+        
+        
+        AreaPlanet Area7Planet2 = new AreaPlanet("Area7", "hum ...", "map/map9.png");
 
         Area1Planet2.addAreaPlanet(Area2Planet2, "east");
         Area2Planet2.addAreaPlanet(Area3Planet2, "south");
         Area3Planet2.addAreaPlanet(Area4Planet2, "east");
         Area4Planet2.addAreaPlanet(Area5Planet2, "east");
-        Area1Planet2.addAreaPlanet(Area6Planet2, "west");
+        Area5Planet2.addAreaPlanet(Area6Planet2, "east");
+        Area1Planet2.addAreaPlanet(Area7Planet2, "west");
 
         planet3.addArea(Area1Planet2);
 
@@ -287,8 +295,6 @@ public class Interface {
 
         Area1Planet3.addAreaPlanet(Area2Planet3, "north");
         Area2Planet3.addAreaPlanet(Area3Planet3, "west");
-        //Area1Planet2.addAreaPlanet(Area4Planet2, "south");
-        //Area4Planet2.addAreaPlanet(Area5Planet2, "west");
 
         planet2.addArea(Area1Planet3);
 
@@ -311,20 +317,12 @@ public class Interface {
         AreaPlanet Area4Planet4 = new AreaPlanet("Area3", "hum ...", "map/map15.png");
         AreaPlanet Area5Planet4 = new AreaPlanet("Area3", "hum ...", "map/map13.png");
         AreaPlanet Area6Planet4 = new AreaPlanet("Area3", "hum ...", "map/map14.png");
-        AreaPlanet Area7Planet4 = new AreaPlanet("Area3", "hum ...", "endGame.png");
         
         Area1Planet4.addAreaPlanet(Area2Planet4, "east");
         Area2Planet4.addAreaPlanet(Area3Planet4, "south");
         Area1Planet4.addAreaPlanet(Area4Planet4, "west");
         Area4Planet4.addAreaPlanet(Area5Planet4, "west");
-        Area5Planet4.addAreaPlanet(Area6Planet4, "south");
-        Area6Planet4.addAreaPlanet(Area7Planet4, "south");
-        
-        Element toad_spaceship = (new Element("PNJ", "", 3, "toad1.jpg", "toad2.jpg", 2, 2));
-        toad_spaceship.setDone(true);
-        
-        Area7Planet4.addElement(toad_spaceship);
-        
+        Area5Planet4.addAreaPlanet(Area6Planet4, "south");        
         
         planet4.addArea(Area1Planet4);
 
