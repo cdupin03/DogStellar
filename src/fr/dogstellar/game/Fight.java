@@ -2,8 +2,6 @@ package fr.dogstellar.game;
 
 import java.util.Random;
 
-import com.sun.org.apache.bcel.internal.generic.IfInstruction;
-
 import fr.dogstellar.core.*;
 import fr.dogstellar.view.GeneralWindow;
 import fr.dogstellar.view.Popup;
