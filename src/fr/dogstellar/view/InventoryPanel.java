@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.awt.*;
 import javax.swing.*;
 
-import org.omg.CORBA.SystemException;
-
 import fr.dogstellar.core.*;
 
 /**
@@ -423,34 +421,26 @@ public final class InventoryPanel extends JFrame {
         String result = "";
         //label if a stuff is a quest element
         if (isQuestElement(i)) {
-            QuestElement labelInfo0 = new QuestElement(i.getInformation().getName(),
-                    i.getInformation().getDescription());
-            result = ("<html> Name:" + labelInfo0.getInformation().getName() + "<br> Description: "
-                    + labelInfo0.getInformation().getDescription() + "</html>");
+            result = ("<html> Name:" + i.getInformation().getName() + "<br> Description: "
+                    + i.getInformation().getDescription() + "</html>");
         }
         //label if a stuff is a weapon
         if (isWeapon(i)) {
-            Weapon labelInfo = new Weapon(i.getInformation().getName(), i.getInformation().getDescription(),
-                    ((Weapon) i).getDamage());
-            result = ("<html> Name: " + labelInfo.getInformation().getName() + "<br> Dammage: " + labelInfo.getDamage()
-                    + "<br> Description: " + labelInfo.getInformation().getDescription() + "</html>");
+            result = ("<html> Name: " + i.getInformation().getName() + "<br> Dammage: " + ((Weapon) i).getDamage()
+                    + "<br> Description: " + i.getInformation().getDescription() + "</html>");
             return (result);
         }
-        //label if a stuff is a weapon
+        //label if a stuff is a armor
         if (isArmor(i)) {
-            Armor labelInfo1 = new Armor(i.getInformation().getName(), i.getInformation().getDescription(),
-                    ((Armor) i).getArmorPoint());
-            result = ("<html> Name: " + labelInfo1.getInformation().getName() + " <br>Armor Points: "
-                    + labelInfo1.getArmorPoint() + "<br> Description: " + labelInfo1.getInformation().getDescription()
+            result = ("<html> Name: " + i.getInformation().getName() + " <br>Armor Points: "
+                    + ((Armor) i).getArmorPoint() + "<br> Description: " + i.getInformation().getDescription()
                     + "</html>");
             return (result);
         }
         //label if a stuff is a potion 
         if (isPotion(i)) {
-            Potion labelInfo2 = new Potion(i.getInformation().getName(), i.getInformation().getDescription(),
-                    ((Potion) i).getLifePoint());
-            result = (" Name: " + labelInfo2.getInformation().getName() + " Dammage: " + labelInfo2.getLifePoint()
-                    + " Description: " + labelInfo2.getInformation().getDescription());
+            result = (" Name: " + i.getInformation().getName() + " Dammage: " + ((Potion) i).getLifePoint()
+                    + " Description: " + i.getInformation().getDescription());
             return (result);
         }
         return (result);
