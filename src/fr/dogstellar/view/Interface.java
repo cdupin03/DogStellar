@@ -245,7 +245,7 @@ public class Interface {
         
         AreaPlanet Area5Planet2 = new AreaPlanet("Area5", "hum ...", "endGame.png");
         Area5Planet2.addPerso(bigMonster);
-//ne fonctionne pas (pas de fight encore effectué)
+//ne fonctionne pas (pas de fight encore effectue)
 	    if (bigMonster.getIsDead()==false) {
 	        Element garagiste = (new Element("PNJ", "", 3, "friend.png", "friend.png", 2, 2));
 	        garagiste.setDone(true);
