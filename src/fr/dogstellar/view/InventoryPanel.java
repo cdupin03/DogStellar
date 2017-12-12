@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.awt.*;
 import javax.swing.*;
 
-import org.omg.CORBA.SystemException;
-
 import fr.dogstellar.core.*;
 
 /**
