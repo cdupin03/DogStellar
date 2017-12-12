@@ -31,7 +31,7 @@ public final class InventoryPanel extends JFrame {
      * The constructor of the class, take a player in parameter to set his
      * inventory
      *
-     * @param thePlayer
+     * @param thePlayer is the player choose to see inventory
      */
     public InventoryPanel(Player thePlayer) {
         // TODO Auto-generated constructor stub

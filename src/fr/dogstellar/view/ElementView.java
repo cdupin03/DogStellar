@@ -12,7 +12,6 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * This class allow the display of element in the screen, a element is a Jbutton

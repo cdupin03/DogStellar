@@ -15,11 +15,9 @@ import fr.dogstellar.game.*;
 public class Main {
 
     /**
-     * @param args
+     * @param args is the args for the PSVM
      */
     public static void main(String[] args) {
-// create a new window;
-        StartGame start = new StartGame();
-// other stuff
+        StartGame start = new StartGame();                                      // create a new window;
     }
 }
