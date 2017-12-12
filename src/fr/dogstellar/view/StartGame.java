@@ -39,7 +39,6 @@ public class StartGame {
     private static int tmplP;
     private static Interface interf;			//Is the interface
     private static ImageIcon imagePlayer;		//Is the image of the player that is select
-    //private VideoPlayer intro;					//Is the video that is start when the game is start
 
     /**
      * The constructor of this class
@@ -212,7 +211,7 @@ public class StartGame {
                 player = new Player(namePlayer, lP, aP);
                 myJFrame.dispose();
                 interf = new Interface();  //start the game with the a player a planet ...
-                new VideoPlayer("Intro.mp4", 39000, "DogStellar - The Beginning");
+                new VideoPlayer("Intro.mp4", 53000, "DogStellar - The Beginning");
             }
         });
         startGame.setOpaque(false);

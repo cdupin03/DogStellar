@@ -174,7 +174,7 @@ public final class ElementView extends JButton {
 								e1.printStackTrace();
 							}
                             //StartGame.getInterf().dispose();
-                            VideoPlayer end = new VideoPlayer("fin.mp4", 11000, "DogStellar - The end");
+                            new VideoPlayer("fin.mp4", 20000, "DogStellar - The end");
                         }
                     }
                 });
