@@ -98,7 +98,7 @@ public class Interface {
         ImageIcon picture = new ImageIcon(picturePath + "inventory.png");       //image for the inventory button
         inventory = new JButton(picture);                                       // create the button
         // add the button to the inventory
-        inventory.setToolTipText("click here to acess to you inventory");       // set a description text
+        inventory.setToolTipText("click here to acess to your inventory");       // set a description text
         // transparent inventory
         inventory.setOpaque(false);
         inventory.setContentAreaFilled(false);
@@ -153,7 +153,6 @@ public class Interface {
 
 //info Player (image, namePlayer, barLife and barAttack, inventory)
         infoPlayer = new DisplayInfo();								//The displayInfo with the name, barLife and barAttack
-        
         
         nameP = new JLabel(StartGame.getPlayer().getNamePerso(), JLabel.CENTER);
         nameP.setFont(new Font("Arial", Font.PLAIN, 20));

@@ -17,10 +17,10 @@ import fr.dogstellar.core.*;
  */
 public final class InventoryPanel extends JFrame {
 
-    private final int gridCaseHeight1 = ((300) / (2));                                        // The heght of a equiped item grid
-    private final int gridCaseWidth1 = ((175) / (2));                                         // The heght of a equiped item grid
-    private final int gridCaseHeight = ((300) / (2));                                        // The heght of inventory item grid
-    private final int gridCaseWidth = ((175) / (2));                                         // The heght of inventory item grid
+    private final int gridCaseHeight1 = ((150) / (2));                                        // The heght of a equiped item grid
+    private final int gridCaseWidth1 = ((87) / (2));                                         // The heght of a equiped item grid
+    private final int gridCaseHeight = ((150) / (2));                                        // The heght of inventory item grid
+    private final int gridCaseWidth = ((87) / (2));                                         // The heght of inventory item grid
     private final Player thePlayer;                                             // The owner of the inventory
     private JPanel inventory;                                                   // Jpanel containing all unequiped objects
     private JPanel equipedInventory;                                            // Jpanel containing the equiped objects 
@@ -39,8 +39,8 @@ public final class InventoryPanel extends JFrame {
         this.thePlayer = thePlayer;
         generateInventory();
         this.setTitle("Inventory");                                             //The name of the JFrame
-        this.setSize(700, 1200);
-        this.setResizable(true);
+        //this.setSize(600, 600);
+        this.setResizable(false);
 
         this.getContentPane().setBackground(new Color(99, 162, 168));
         this.pack();
@@ -161,18 +161,18 @@ public final class InventoryPanel extends JFrame {
             int j = stuffs.size();                                                          // the size of the facotrised list 
 
             // creating a grid to put the items
-            GridLayout Disposition = new GridLayout(j / 3, 3);
+            GridLayout Disposition = new GridLayout(j /3+ j%3, 3);
             inventory.setLayout(Disposition);
 
             System.out.println(j);
 
             // variables of the size of each item case
             if (j < 3) {
-                int gridCaseHeight = ((300) / (j / 1));
-                int gridCaseWidth = ((175) / (j / 1));
+                int gridCaseHeight = ((150) / (j / 1));
+                int gridCaseWidth = ((87) / (j / 1));
             } else {
-                int gridCaseHeight = ((300) / (j / 3));
-                int gridCaseWidth = ((175) / (j / 3));
+                int gridCaseHeight = ((150) / (j / 3));
+                int gridCaseWidth = ((87) / (j / 3));
             }
 
             // foreach item of the list if it is different of the one who is equiped
@@ -215,6 +215,7 @@ public final class InventoryPanel extends JFrame {
                     }
                 });
                 JPanel inventoryCase = new JPanel();
+                inventoryCase.setLayout(new GridLayout(0,2));
                 inventoryCase.add(X);
                 inventoryCase.add(Y);
                 inventoryCase.setBackground(new Color(90,162,168));
@@ -360,7 +361,7 @@ public final class InventoryPanel extends JFrame {
         if (isWeapon(theStuff)) {
             Weapon myWeapon = new Weapon(theStuff.getInformation().getName(),
                     theStuff.getInformation().getDescription(), ((Weapon) theStuff).getDamage()); // create a weapon variable with the stuff attributes 
-            //load the associate image in function of the dammage of the weapon
+            //load the associate image in function of the damage of the weapon
             if ((myWeapon.getDamage() <= 3)) {
                 iconPic = "/pictures/weapon1.png";
 
