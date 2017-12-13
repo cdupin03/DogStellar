@@ -52,7 +52,7 @@ public final class InventoryPanel extends JFrame {
     public void generateInventory() {
 
         // test si le joueur à un équipement + creation du label "Equiped item"
-        String picturePath = System.getProperty("user.dir") + "/pictures/";
+        String picturePath = "/pictures/";
 
         equipedInventory = new JPanel();
         equipedInventory.setLayout(new GridLayout(0, 2, 15, 15));
@@ -67,7 +67,7 @@ public final class InventoryPanel extends JFrame {
         // Creation of the equipment Jpanel
         //test if the player has no equiped armor 
         if (!thePlayer.hasArmor()) {
-            ImageIcon theImage1 = new ImageIcon(picturePath + "void.jpg");                  // set the default image 
+            ImageIcon theImage1 = new ImageIcon(this.getClass().getResource(picturePath + "void.jpg"));                  // set the default image 
 
             theImage1 = resyze(theImage1, gridCaseHeight1, gridCaseWidth1);                 //resize the image
             JButton equipedArmor = new JButton(theImage1);                                  //create a new JButton
@@ -79,7 +79,7 @@ public final class InventoryPanel extends JFrame {
             equipedArmor.setToolTipText("There is no item equiped on this slot");           //set the tooltiptext
         } //if the player have an equiped weapon
         else {
-            ImageIcon theImage1 = new ImageIcon(associationImage(thePlayer.getArmorEquip()));//generate the image path corresponding to the weapon 
+            ImageIcon theImage1 = new ImageIcon(this.getClass().getResource(associationImage(thePlayer.getArmorEquip())));//generate the image path corresponding to the weapon 
 
             theImage1 = resyze(theImage1, gridCaseHeight1, gridCaseWidth1);                 //resize the image 
             JButton equipedArmor = new JButton(theImage1);                                  //create a JButton
@@ -110,7 +110,7 @@ public final class InventoryPanel extends JFrame {
         }
         // comportment if the player has no weapon equiped 
         if (!thePlayer.hasWeapon()) {
-            ImageIcon theImage2 = new ImageIcon(picturePath + "void.jpg");                  // load a default image
+            ImageIcon theImage2 = new ImageIcon(this.getClass().getResource(picturePath + "void.jpg"));                  // load a default image
 
             theImage2 = resyze(theImage2, gridCaseHeight1, gridCaseWidth1);                 //resize the image
             JButton equipedWeapon = new JButton(theImage2);                                 //put the image in a button
@@ -123,7 +123,7 @@ public final class InventoryPanel extends JFrame {
             equipedWeapon.setToolTipText("There is no equiped item on this slot");          // set is tooltiptext
         } //if the player has a equiped weapon
         else {
-            ImageIcon theImage2 = new ImageIcon(associationImage(thePlayer.getWeaponEquip()));//associate the good image corresponding to the weapon equiped
+            ImageIcon theImage2 = new ImageIcon(this.getClass().getResource(associationImage(thePlayer.getWeaponEquip())));//associate the good image corresponding to the weapon equiped
 
             theImage2 = resyze(theImage2, gridCaseHeight1, gridCaseWidth1);                 //resize the image 
             JButton equipedWeapon = new JButton(theImage2);                                 //create a JButton with this image
@@ -182,7 +182,7 @@ public final class InventoryPanel extends JFrame {
 
             // foreach item of the list if it is different of the one who is equiped
             stuffs.stream().map((i) -> {
-                ImageIcon theImage = new ImageIcon(associationImage(i));                    //affecting the good image
+                ImageIcon theImage = new ImageIcon(this.getClass().getResource(associationImage(i)));                    //affecting the good image
                 theImage = resyze(theImage, gridCaseHeight, gridCaseWidth);                 // resize the image
                 JButton X = new JButton(theImage);                                          //create a button with the image inside
                 X.setToolTipText(associationLabel(i));                                      // set a tooltiptext with the items informations
@@ -412,10 +412,10 @@ public final class InventoryPanel extends JFrame {
             }
         }
 
-        String filePath = System.getProperty("user.dir") + iconPic; // take the path of the stuff picture
+        //String filePath = System.getProperty("user.dir") + iconPic; // take the path of the stuff picture
         // System.out.println(filePath);
 
-        return filePath;
+        return iconPic;
     }
 
     /**

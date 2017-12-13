@@ -104,8 +104,8 @@ public class Interface {
         console.add(write, BorderLayout.SOUTH);                                 //Add the panel write in the console
 
 //Inventory
-        String picturePath = System.getProperty("user.dir") + "/pictures/";     //variable containing the path for the inventory image
-        ImageIcon picture = new ImageIcon(picturePath + "inventory.png");       //image for the inventory button
+        String picturePath = "/pictures/";     //variable containing the path for the inventory image
+        ImageIcon picture = new ImageIcon(this.getClass().getResource(picturePath + "inventory.png"));       //image for the inventory button
         inventory = new JButton(picture);                                       // create the button
         // add the button to the inventory
         inventory.setToolTipText("click here to access to your inventory");      // set a description text
@@ -142,7 +142,7 @@ public class Interface {
             }
         });
         //return to the ship 
-        ImageIcon ship = new ImageIcon(picturePath + "map.png");
+        ImageIcon ship = new ImageIcon(this.getClass().getResource(picturePath + "map.png"));
 
         returnMap = new JButton(ship);
         returnMap.setToolTipText("Click here to return to the first map of the planet");
