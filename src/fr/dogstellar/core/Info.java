@@ -4,7 +4,7 @@ package fr.dogstellar.core;
  * The basic informations name and description for some objects. It contains a
  * name which need to be superior to three characters and a description need to
  * be superior to four characters. The coordonates must be superior (strictly) to 0
- * and inferior (strictly) to 7. If the coordonate is wrong it is set to 3 by default.
+ * and inferior (strictly) to 5. If the coordonate is wrong it is set to 3 by default.
  * If the object has no coordonate (planet) they are set to -1.
  * 
  *
@@ -19,10 +19,10 @@ public final class Info {
     //The overall description of the object, must be superior to 4 characters with no space before and after.
     private String description;
     //The x coordonate of the object on the grid to display. Must be superior (strictly) to 0
-    // and inferior (strictly) to 7. If the object has no coordonate (planet) set to -1.
+    // and inferior (strictly) to 5. If the object has no coordonate (planet) set to -1.
     private int x;
     //The y coordonate of the object on the grid to display.Must be superior (strictly) to 0
-    // and inferior (strictly) to 7 .If the object has no coordonate (planet) set to -1.
+    // and inferior (strictly) to 5 .If the object has no coordonate (planet) set to -1.
     private int y;
 
     /**
@@ -31,9 +31,9 @@ public final class Info {
      * @param name is the name of the object
      * @param description is the description of the object
      * @param newX the x coordonate to set. Must be superior (strictly) to 0
-     * and inferior (strictly) to 7
+     * and inferior (strictly) to 5
      * @param newY the y coordonate to set. Must be superior (strictly) to 0
-     * and inferior (strictly) to 7
+     * and inferior (strictly) to 5
      */
     public Info(String name, String description, int newX, int newY) {
         setName(name);
@@ -116,11 +116,11 @@ public final class Info {
     /**
      * set the x coordonate.
      * The coordonates must be superior (strictly) to 0
-     * and inferior (strictly) to 7. If the coordonate is wrong it is set to 3 by default.
+     * and inferior (strictly) to 5. If the coordonate is wrong it is set to 3 by default.
      * @param newX the new value of x.
      */
     private void setX(int newX) {
-        if (newX >0 && newX<7)
+        if (newX >0 && newX<5)
         {
            this.x = newX; 
         }
@@ -141,11 +141,11 @@ public final class Info {
     /**
      * set the y coordonate.
      * The coordonates must be superior (strictly) to 0
-     * and inferior (strictly) to 7. If the coordonate is wrong it is set to 3 by default.
+     * and inferior (strictly) to 5. If the coordonate is wrong it is set to 3 by default.
      * @param newY the new value of x.
      */
     private void setY(int newY) {
-        if (newY >0 && newY<7)
+        if (newY >0 && newY<5)
         {
            this.y = newY; 
         }

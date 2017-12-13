@@ -50,7 +50,7 @@ public class Player extends Perso {
      * To desequip weapon
      */
     public void desequipWeapon() {
-        increaseAttackPoint(-(weapon.getDamage()));
+        decreaseAttackPoint(weapon.getDamage());
         this.addStuff((Stuff) weapon, 1);
         weapon = null;
 
@@ -202,5 +202,13 @@ public class Player extends Perso {
         }
         return compteurQuestElement;
     }
+    
+    /**
+     * this method allows us to set the armor equiped by the player
+     * @param armor 
+     */
+        public void setArmor(Armor armor) {
+            this.armor = armor;
+        }
 
 }

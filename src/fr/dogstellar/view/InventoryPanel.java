@@ -37,7 +37,7 @@ public final class InventoryPanel extends JFrame {
         this.thePlayer = thePlayer;
         generateInventory();
         this.setTitle("Inventory");                                             //The name of the JFrame
-        //this.setSize(600, 600);
+        this.setSize(600, 600);
         this.setResizable(false);
 
         this.getContentPane().setBackground(new Color(99, 162, 168));
