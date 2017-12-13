@@ -47,11 +47,10 @@ public class Interface {
 
     private final Perso neighbor = new Perso("FriendlyNeighbor", 4, 3, new QuestElement("PieceShip", "that same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 2),"monster/larva");
     private final Perso neighborAlive = new Perso("FriendlyNeighbor", 4, 3, new QuestElement("PieceShip", "that same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 2),"monster/larva");
-    private final Perso double1 = new Perso("double", 8, 4, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 3),"monster/teen");
+    private final Perso double1 = new Perso("double", 8, 4, new QuestElement("PieceShip", "that other same piece"), new Armor("Anaconda", "an armor", 5),"monster/teen");
     private final Perso double2 = new Perso("bouble", 7, 4, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 3),"monster/teen");
-    private final Perso bigMonster = new Perso("big", 9, 5, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6),"monster/adult");
+    private final Perso bigMonster = new Perso("big", 9, 5, new QuestElement("PieceShip", "that other same piece"), new Weapon("Wapolo", "sgfhrhsgsd", 4),"monster/adult");
 
-    //Planet 4 nightmare
     private final Perso sbire1 = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 3),"monster/teen");
     private final Perso sbire2 = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 3),"monster/teen");
     private final Perso sbire3 = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 3),"monster/teen");
