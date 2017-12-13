@@ -226,10 +226,10 @@ public final class ElementView extends JButton {
      * @param longueur is the eight of the image
      */
     public void afficher(String image, String imageclick, int largeur, int longueur) {
-        ImageIcon imageIcon = new ImageIcon(PicturePath + image);
+        ImageIcon imageIcon = new ImageIcon(this.getClass().getResource(PicturePath + image));
         imageIcon = ConvertImg(largeur, longueur, imageIcon);
 
-        ImageIcon imageIcon2 = new ImageIcon(PicturePath + imageclick);
+        ImageIcon imageIcon2 = new ImageIcon(this.getClass().getResource(PicturePath + imageclick));
         imageIcon2 = ConvertImg(largeur, longueur, imageIcon2);
 
         this.setIcon(imageIcon);

@@ -7,6 +7,7 @@ import javax.swing.text.*;
 
 import fr.dogstellar.core.Player;
 import java.awt.Font;
+import java.net.URL;
 
 /**
  * The start game allows to choose a perso and a name for the player in a
@@ -35,7 +36,8 @@ public class StartGame {
 
     private String namePlayer = "";				//Initialize the name of the player to ""
     private static Player player;				//It is the player
-    private String picturePath;					//To know where the picture are in the computer
+    //private String picturePath;					//To know where the picture are in the computer
+    private String picturePath;
     private static int lP, aP, tmpaP;			// integer to the lifePoint, attackPoint, ?????????????????????????
     private static int tmplP;
     private static Interface interf;			//Is the interface
@@ -46,18 +48,18 @@ public class StartGame {
      * The constructor of this class
      */
     public StartGame() {
-        picturePath = System.getProperty("user.dir") + "/pictures/";
+        picturePath = "/pictures/";
 
         //Instantiate my JFrame
         myJFrame = new JFrame();
 
         //action when clicked to button of a player
         //ranger have 2 life point and 8 attacked point
-        player1 = new JButton(new ImageIcon(picturePath + "Ranger.png"));
+        player1 = new JButton(new ImageIcon(this.getClass().getResource(picturePath + "Ranger.png")));
         player1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {
-                imagePlayer = new ImageIcon(picturePath + "Ranger.png");
+                imagePlayer = new ImageIcon(this.getClass().getResource(picturePath + "Ranger.png"));
                 lP = 2;
                 aP = 8;
                 t.setEnabled(true);
@@ -78,11 +80,11 @@ public class StartGame {
         });
 
         //engineer have 5 life point and 5 attacked point
-        player2 = new JButton(new ImageIcon(picturePath + "Engineer.png"));
+        player2 = new JButton(new ImageIcon(this.getClass().getResource(picturePath +"Engineer.png")));
         player2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {
-                imagePlayer = new ImageIcon(picturePath + "Engineer.png");
+                imagePlayer = new ImageIcon(this.getClass().getResource(picturePath +"Engineer.png"));
                 lP = 5;
                 aP = 5;
                 t.setEnabled(true);
@@ -102,11 +104,11 @@ public class StartGame {
         });
 
         //scientist have 8 life point and 2 attacked point
-        player3 = new JButton(new ImageIcon(picturePath + "Scientist.png"));
+        player3 = new JButton(new ImageIcon(this.getClass().getResource(picturePath + "Scientist.png")));
         player3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {
-                imagePlayer = new ImageIcon(picturePath + "Scientist.png");
+                imagePlayer = new ImageIcon(this.getClass().getResource(picturePath + "Scientist.png"));
                 lP = 8;
                 aP = 2;
                 t.setEnabled(true);
@@ -267,7 +269,7 @@ public class StartGame {
         rightIcon.setOpaque(false);
 
         //myJFrame with an image background
-        myJFrame.setContentPane(new JLabel(new ImageIcon(picturePath + "BackgroundStartGame.png")));
+        myJFrame.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource(picturePath + "BackgroundStartGame.png"))));
         myJFrame.setLayout(new BorderLayout());
         myJFrame.add(rightIcon);
 

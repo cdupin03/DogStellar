@@ -27,10 +27,10 @@ public abstract class PictureButton extends JButton {
         
         buttonPicturePath = picturePath + nameButtonPicture;  
         
-        ImageIcon ImageIcon1 = new ImageIcon (buttonPicturePath + formatPicture);
+        ImageIcon ImageIcon1 = new ImageIcon (this.getClass().getResource(buttonPicturePath + formatPicture));
         ImageIcon1 = ConvertImg(60, 60, ImageIcon1);
         
-        ImageIcon ImageIcon2 = new ImageIcon (buttonPicturePath + "Roll" + formatPicture);
+        ImageIcon ImageIcon2 = new ImageIcon (this.getClass().getResource(buttonPicturePath + "Roll" + formatPicture));
         ImageIcon2 = ConvertImg(60, 60, ImageIcon2);
         
         this.setIcon(ImageIcon1);

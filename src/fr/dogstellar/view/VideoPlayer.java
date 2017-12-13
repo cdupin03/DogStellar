@@ -3,6 +3,8 @@ package fr.dogstellar.view;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
 import javax.swing.*;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
@@ -32,7 +34,8 @@ public class VideoPlayer implements ActionListener {
     private File file;
     private String nameVideo;
     private String nameJFrame;
-    private String picturePath = System.getProperty("user.dir") + "/videos/";
+    private String picturePath = "/videos/";
+    //private String picturePath = System.getProperty("user.dir") + "/videos/";
     private JButton skip;
     private Timer timer;
 
@@ -49,7 +52,16 @@ public class VideoPlayer implements ActionListener {
         nameJFrame = title;                                                     //Choose the name of the JFrame
         timer = new Timer(newTime + 1000, this);                                //The timer is set to the time of video plus one second, allows to close the JFrame
         timer.start();                                                          //The start of the counter + 1 seconde to aoid an early end
-        file = new File(picturePath + nameVideo);                               //Instanciate the file with the path and the name of the file
+        
+                            
+
+//        try 
+//        {
+//            file = new File(this.getClass().getResource(picturePath + nameVideo).toURI()); //Instanciate the file with the path and the name of the file
+//        }
+//        catch (URISyntaxException e) {
+//            file = new File(this.getClass().getResource(picturePath + nameVideo).getPath());
+//        }
         Platform.setImplicitExit(false);                                        //The platform that allows a graphical video view cannot be closed, so we can play another video after 
         initGUI();                                                              //Call the initGUI that buit the JFrame
     }
@@ -98,7 +110,13 @@ public class VideoPlayer implements ActionListener {
         }
 
         Platform.runLater(() -> {                                               //We order to the application that manage the JFxPanel to execute
-            media = new Media(file.toURI().toString());                         //Instanciation of the media with the file
+            //media = new Media(file.toURI().toString());                         //Instanciation of the media with the file
+            try{
+            media = new Media (this.getClass().getResource(picturePath + nameVideo).toURI().toString());
+            }
+            catch (URISyntaxException e) {
+            media = new Media(this.getClass().getResource(picturePath + nameVideo).getPath());
+        }
             player = new MediaPlayer(media);                                    //Instanciation of the player with the media
             if (mediaView == null) //Create the display of the player only if it not exists
             {

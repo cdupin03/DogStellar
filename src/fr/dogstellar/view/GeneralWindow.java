@@ -38,7 +38,7 @@ public abstract class GeneralWindow extends JPanel {
     public GeneralWindow(Interface inter) {
         super();                                                                //Call the JPanel constructor
         interfac = inter;                                                       //Initialize the Interfac attribut with the inter parameter
-        picturePath = System.getProperty("user.dir") + "/pictures/";            //Initialize the path pictures
+        picturePath = "/pictures/";                                             //Initialize the path pictures
         nameOfFirstBackgroundPicture = "";                                      //Initialize the name of the background
         components = new HashMap<>();                                           //Instanciate the HashMap which displays the elements 
         setHeight(7);                                                           //The Height of the HashMap 
@@ -284,7 +284,7 @@ public abstract class GeneralWindow extends JPanel {
      */
     protected void catchPicture() {
         try {
-            back = ImageIO.read(new File(getPicturePath() + getNameOfFirstBackgroundPicture()));
+            back = ImageIO.read(this.getClass().getResource(getPicturePath() + getNameOfFirstBackgroundPicture()));
             //draw
         } catch (IOException e) {
             e.printStackTrace();
