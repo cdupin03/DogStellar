@@ -194,8 +194,8 @@ public class Interface {
          */
         Planet planet1 = new Planet("Eurigone", "Etrange", 0);
         Planet planet2 = new Planet("Pandora", "Planet filled with sand", 1);
-        Planet planet3 = new Planet("Oppavia", "Tout aussi etrange", 5);
-        Planet planet4 = new Planet("Vanadis", "Always in weightlessness", 6);
+        Planet planet3 = new Planet("Oppavia", "Tout aussi etrange", 4);
+        Planet planet4 = new Planet("Vanadis", "Always in weightlessness", 5);
 
         ArrayList<Planet> planets = new ArrayList<Planet>(); //The list of planets the first planet is the actual planet.
         //If we change planet, the new planet exchange its place with the first.
@@ -246,7 +246,7 @@ public class Interface {
         AreaPlanet Area5Planet2 = new AreaPlanet("Area5", "hum ...", "endGame.png");
 //big monster and the garagiste
         Area5Planet2.addPerso(bigMonster);
-        Element garagiste = (new Element("PNJ", "", 3, "friend.png", "friend.png", 3, 3));
+        Element garagiste = (new Element("PNJ", "", 3, "garagiste.png", "garagiste.png", 3, 3));
         garagiste.setDone(true);
         Area5Planet2.addElement(garagiste);
         
@@ -275,7 +275,7 @@ public class Interface {
         AreaPlanet Area2Planet3 = new AreaPlanet("Area2", "rdytfiut", "map/map4.png");
         
         AreaPlanet Area3Planet3 = new AreaPlanet("Area3", "hum ...", "map/map5.png");
-//his neighbor is alive but your friend propose to you an enigma to have a his weapon
+//his neighbor is alive but your friend propose to you an enigma to have a his weapon (star)
         Armor armor2  = new Armor("Astraea", "keep it for fight the big monster",4);
         Area3Planet3.addElement(new Element(" I will give you my armor but before answer to my enigma : I can be white, yellow, red, blue even black. Who am I?","star", 1, armor2, "friend.png", "friend.png", 3, 3));
         Area3Planet3.addPerso(neighborAlive);
