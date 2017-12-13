@@ -89,6 +89,9 @@ public final class InventoryPanel extends JFrame {
             equipedInventory.add(equipedArmor);                                             //add the button to the JPanel
             equipedArmor.setToolTipText(associationLabel(thePlayer.getArmorEquip()));       //set the corresponding tooltiptext
 
+            //Refresh the DisplayInfo
+            StartGame.getInterf().getDisplay().refreshDisplay();
+            
             //the action listener to unequip a weapon 
             equipedArmor.addActionListener(new ActionListener() {
 
@@ -129,6 +132,10 @@ public final class InventoryPanel extends JFrame {
             equipedWeapon.setBorderPainted(false);
             equipedInventory.add(equipedWeapon);                                            //add tje JButton to the JPanel
 
+            //Refresh the DisplayInfo
+            StartGame.getInterf().getDisplay().refreshDisplay();
+            
+                  
             equipedWeapon.setToolTipText(associationLabel(thePlayer.getWeaponEquip()));     //set the right tooltiptext
             System.out.println("Weapon =" + thePlayer.hasArmor());
             //action listener to unequip the weapon
@@ -439,7 +446,7 @@ public final class InventoryPanel extends JFrame {
         }
         //label if a stuff is a potion 
         if (isPotion(i)) {
-            result = (" Name: " + i.getInformation().getName() + " Dammage: " + ((Potion) i).getLifePoint()
+            result = (" Name: " + i.getInformation().getName() + " Earned HP: " + ((Potion) i).getLifePoint()
                     + " Description: " + i.getInformation().getDescription());
             return (result);
         }
