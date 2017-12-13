@@ -162,7 +162,7 @@ public final class ElementView extends JButton {
                                 compt += 1;
                             }
                         }
-                        if (compt < 0) {
+                        if (compt < 7) {
                             StartGame.getInterf().addMessageToConsole("You have not enouth piece of ship to build your new ship");
                         } else {
                             StartGame.getInterf().addMessageToConsole("Great ! You have all piece of ship, so I can build it");
@@ -183,7 +183,7 @@ public final class ElementView extends JButton {
         {
             if (!E.getDone()) {
 
-                afficher(E.getImage1(),E.getImage2(), 85,85);
+                afficher(E.getImage1(),E.getImage2(), 80,80);
 
 
                 this.addMouseListener(new MouseAdapter() {
@@ -200,7 +200,7 @@ public final class ElementView extends JButton {
 
             } else {
 
-                afficher(E.getImage1(),E.getImage2(), 85, 85);
+                afficher(E.getImage1(),E.getImage2(), 70, 70);
 
             }
         }

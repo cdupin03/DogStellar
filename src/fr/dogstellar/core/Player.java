@@ -202,5 +202,13 @@ public class Player extends Perso {
         }
         return compteurQuestElement;
     }
+    
+    /**
+     * this method allows us to set the armor equiped by the player
+     * @param armor 
+     */
+        public void setArmor(Armor armor) {
+            this.armor = armor;
+        }
 
 }
