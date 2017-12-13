@@ -439,7 +439,7 @@ public final class InventoryPanel extends JFrame {
         }
         //label if a stuff is a potion 
         if (isPotion(i)) {
-            result = (" Name: " + i.getInformation().getName() + " Dammage: " + ((Potion) i).getLifePoint()
+            result = (" Name: " + i.getInformation().getName() + " Earned HP: " + ((Potion) i).getLifePoint()
                     + " Description: " + i.getInformation().getDescription());
             return (result);
         }
