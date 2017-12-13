@@ -46,7 +46,7 @@ public final class ElementView extends JButton {
         if (E.getType() == 1) 													//If the element is a enigma 
         {
             if (E.getDone() != true) {
-                afficher(E.getImage1(),E.getImage2(), 70, 60);
+                afficher(E.getImage1(),E.getImage2(), 100, 100);
 
                 this.addMouseListener(new MouseAdapter() {
                     @Override
@@ -90,7 +90,7 @@ public final class ElementView extends JButton {
                 });
             } else {
 
-                afficher(E.getImage2(),E.getImage2(), 70, 60);
+                afficher(E.getImage2(),E.getImage2(), 100, 100);
             }
 
         } else if (E.getType() == 2) //If the element is a trap
@@ -113,7 +113,7 @@ public final class ElementView extends JButton {
                 randompic2 = "Coffre_selection.jpg";
             }
 
-            afficher(E.getImage1(),E.getImage2(), 70, 60);
+            afficher(E.getImage1(),E.getImage2(), 100, 100);
 
             this.addMouseListener(new MouseAdapter() {
                 @Override
@@ -136,7 +136,7 @@ public final class ElementView extends JButton {
 
             if (E.getDone() == false) {
 
-                afficher(E.getImage1(),E.getImage2(),70, 70);
+                afficher(E.getImage1(),E.getImage2(),100, 100);
 
 
                 this.addMouseListener(new MouseAdapter() {
@@ -148,7 +148,7 @@ public final class ElementView extends JButton {
                 });
             } else {
 
-                afficher(E.getImage1(),E.getImage2(), 70, 70);
+                afficher(E.getImage1(),E.getImage2(), 100, 100);
 
                 //
                 this.addActionListener(new ActionListener() {
@@ -183,7 +183,7 @@ public final class ElementView extends JButton {
         {
             if (!E.getDone()) {
 
-                afficher(E.getImage1(),E.getImage2(), 70, 70);
+                afficher(E.getImage1(),E.getImage2(), 85,85);
 
 
                 this.addMouseListener(new MouseAdapter() {
@@ -200,7 +200,7 @@ public final class ElementView extends JButton {
 
             } else {
 
-                afficher(E.getImage1(),E.getImage2(), 70, 70);
+                afficher(E.getImage1(),E.getImage2(), 85, 85);
 
             }
         }
