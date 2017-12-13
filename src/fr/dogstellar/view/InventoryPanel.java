@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.awt.*;
 import javax.swing.*;
 
-import org.omg.CORBA.SystemException;
-
 import fr.dogstellar.core.*;
 
 /**
@@ -17,10 +15,10 @@ import fr.dogstellar.core.*;
  */
 public final class InventoryPanel extends JFrame {
 
-    private final int gridCaseHeight1 = ((300) / (2));                                        // The heght of a equiped item grid
-    private final int gridCaseWidth1 = ((175) / (2));                                         // The heght of a equiped item grid
-    private final int gridCaseHeight = ((300) / (2));                                        // The heght of inventory item grid
-    private final int gridCaseWidth = ((175) / (2));                                         // The heght of inventory item grid
+    private final int gridCaseHeight1 = ((150) / (2));                                        // The heght of a equiped item grid
+    private final int gridCaseWidth1 = ((87) / (2));                                         // The heght of a equiped item grid
+    private final int gridCaseHeight = ((150) / (2));                                        // The heght of inventory item grid
+    private final int gridCaseWidth = ((87) / (2));                                         // The heght of inventory item grid
     private final Player thePlayer;                                             // The owner of the inventory
     private JPanel inventory;                                                   // Jpanel containing all unequiped objects
     private JPanel equipedInventory;                                            // Jpanel containing the equiped objects 
@@ -31,7 +29,7 @@ public final class InventoryPanel extends JFrame {
      * The constructor of the class, take a player in parameter to set his
      * inventory
      *
-     * @param thePlayer
+     * @param thePlayer is the player choose to see inventory
      */
     public InventoryPanel(Player thePlayer) {
         // TODO Auto-generated constructor stub
@@ -39,7 +37,7 @@ public final class InventoryPanel extends JFrame {
         this.thePlayer = thePlayer;
         generateInventory();
         this.setTitle("Inventory");                                             //The name of the JFrame
-        this.setSize(1200, 700);
+        //this.setSize(600, 600);
         this.setResizable(false);
 
         this.getContentPane().setBackground(new Color(99, 162, 168));
@@ -58,8 +56,7 @@ public final class InventoryPanel extends JFrame {
 
         equipedInventory = new JPanel();
         equipedInventory.setLayout(new GridLayout(0, 2, 15, 15));
-        equipedInventory.setBackground(new Color(122, 122, 122));
-        equipedInventory.setOpaque(true);
+        equipedInventory.setOpaque(false);
 
         this.add(lbl1);
         lbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -74,6 +71,9 @@ public final class InventoryPanel extends JFrame {
 
             theImage1 = resyze(theImage1, gridCaseHeight1, gridCaseWidth1);                 //resize the image
             JButton equipedArmor = new JButton(theImage1);                                  //create a new JButton
+            equipedArmor.setOpaque(false);
+            equipedArmor.setContentAreaFilled(false);
+            equipedArmor.setBorderPainted(false);
             equipedInventory.add(equipedArmor);                                             //add the Jbutton to the JPanel 
             StartGame.getInterf().getDisplay().refreshDisplay();
             equipedArmor.setToolTipText("There is no item equiped on this slot");           //set the tooltiptext
@@ -83,6 +83,9 @@ public final class InventoryPanel extends JFrame {
 
             theImage1 = resyze(theImage1, gridCaseHeight1, gridCaseWidth1);                 //resize the image 
             JButton equipedArmor = new JButton(theImage1);                                  //create a JButton
+            equipedArmor.setOpaque(false);
+            equipedArmor.setContentAreaFilled(false);
+            equipedArmor.setBorderPainted(false);
             equipedInventory.add(equipedArmor);                                             //add the button to the JPanel
             equipedArmor.setToolTipText(associationLabel(thePlayer.getArmorEquip()));       //set the corresponding tooltiptext
 
@@ -108,6 +111,9 @@ public final class InventoryPanel extends JFrame {
 
             theImage2 = resyze(theImage2, gridCaseHeight1, gridCaseWidth1);                 //resize the image
             JButton equipedWeapon = new JButton(theImage2);                                 //put the image in a button
+            equipedWeapon.setOpaque(false);
+            equipedWeapon.setContentAreaFilled(false);
+            equipedWeapon.setBorderPainted(false);
             equipedInventory.add(equipedWeapon);                                            //add the button to the panel
             StartGame.getInterf().getDisplay().refreshDisplay();
 
@@ -118,6 +124,9 @@ public final class InventoryPanel extends JFrame {
 
             theImage2 = resyze(theImage2, gridCaseHeight1, gridCaseWidth1);                 //resize the image 
             JButton equipedWeapon = new JButton(theImage2);                                 //create a JButton with this image
+            equipedWeapon.setOpaque(false);
+            equipedWeapon.setContentAreaFilled(false);
+            equipedWeapon.setBorderPainted(false);
             equipedInventory.add(equipedWeapon);                                            //add tje JButton to the JPanel
 
             equipedWeapon.setToolTipText(associationLabel(thePlayer.getWeaponEquip()));     //set the right tooltiptext
@@ -136,6 +145,8 @@ public final class InventoryPanel extends JFrame {
         // test if the inventory is empty
         // creating the panel and the label for each item
         inventory = new JPanel();
+        inventory.setOpaque(false);
+        inventory.setBackground(new Color(99,162,168));
 
         lbl2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl2.setFont(new Font("Blippo", Font.PLAIN, 28));
@@ -148,18 +159,18 @@ public final class InventoryPanel extends JFrame {
             int j = stuffs.size();                                                          // the size of the facotrised list 
 
             // creating a grid to put the items
-            GridLayout Disposition = new GridLayout(j / 3, 3);
+            GridLayout Disposition = new GridLayout(j /3+ j%3, 3);
             inventory.setLayout(Disposition);
 
             System.out.println(j);
 
             // variables of the size of each item case
             if (j < 3) {
-                int gridCaseHeight = ((300) / (j / 1));
-                int gridCaseWidth = ((175) / (j / 1));
+                int gridCaseHeight = ((150) / (j / 1));
+                int gridCaseWidth = ((87) / (j / 1));
             } else {
-                int gridCaseHeight = ((300) / (j / 3));
-                int gridCaseWidth = ((175) / (j / 3));
+                int gridCaseHeight = ((150) / (j / 3));
+                int gridCaseWidth = ((87) / (j / 3));
             }
 
             // foreach item of the list if it is different of the one who is equiped
@@ -168,10 +179,12 @@ public final class InventoryPanel extends JFrame {
                 theImage = resyze(theImage, gridCaseHeight, gridCaseWidth);                 // resize the image
                 JButton X = new JButton(theImage);                                          //create a button with the image inside
                 X.setToolTipText(associationLabel(i));                                      // set a tooltiptext with the items informations
+                X.setOpaque(false);
+                
                 JLabel Y = new JLabel(":" + nbOccurence(i, thePlayer.getStuff()));          // affect the value of the number of the item in the inventory
+                Y.setForeground(Color.white);
                 //the action listener to equip an item or take a potion
                 X.addActionListener((ActionEvent e) -> {
-                    // TODO Auto-generated method stub
                     //management for a weapon
                     if (isWeapon(i)) {
                         if (thePlayer.hasWeapon()) {
@@ -200,13 +213,15 @@ public final class InventoryPanel extends JFrame {
                     }
                 });
                 JPanel inventoryCase = new JPanel();
+                inventoryCase.setLayout(new GridLayout(0,2));
                 inventoryCase.add(X);
                 inventoryCase.add(Y);
+                inventoryCase.setBackground(new Color(90,162,168));
                 inventory.add(inventoryCase);
                 X.setBackground(new Color(196, 196, 196));
                 return X;
             }).forEachOrdered((X) -> {
-                X.setOpaque(true);
+                X.setOpaque(false);
             });
         }
     }
@@ -344,7 +359,7 @@ public final class InventoryPanel extends JFrame {
         if (isWeapon(theStuff)) {
             Weapon myWeapon = new Weapon(theStuff.getInformation().getName(),
                     theStuff.getInformation().getDescription(), ((Weapon) theStuff).getDamage()); // create a weapon variable with the stuff attributes 
-            //load the associate image in function of the dammage of the weapon
+            //load the associate image in function of the damage of the weapon
             if ((myWeapon.getDamage() <= 3)) {
                 iconPic = "/pictures/weapon1.png";
 
@@ -406,34 +421,26 @@ public final class InventoryPanel extends JFrame {
         String result = "";
         //label if a stuff is a quest element
         if (isQuestElement(i)) {
-            QuestElement labelInfo0 = new QuestElement(i.getInformation().getName(),
-                    i.getInformation().getDescription());
-            result = ("<html> Name:" + labelInfo0.getInformation().getName() + "<br> Description: "
-                    + labelInfo0.getInformation().getDescription() + "</html>");
+            result = ("<html> Name:" + i.getInformation().getName() + "<br> Description: "
+                    + i.getInformation().getDescription() + "</html>");
         }
         //label if a stuff is a weapon
         if (isWeapon(i)) {
-            Weapon labelInfo = new Weapon(i.getInformation().getName(), i.getInformation().getDescription(),
-                    ((Weapon) i).getDamage());
-            result = ("<html> Name: " + labelInfo.getInformation().getName() + "<br> Dammage: " + labelInfo.getDamage()
-                    + "<br> Description: " + labelInfo.getInformation().getDescription() + "</html>");
+            result = ("<html> Name: " + i.getInformation().getName() + "<br> Dammage: " + ((Weapon) i).getDamage()
+                    + "<br> Description: " + i.getInformation().getDescription() + "</html>");
             return (result);
         }
-        //label if a stuff is a weapon
+        //label if a stuff is a armor
         if (isArmor(i)) {
-            Armor labelInfo1 = new Armor(i.getInformation().getName(), i.getInformation().getDescription(),
-                    ((Armor) i).getArmorPoint());
-            result = ("<html> Name: " + labelInfo1.getInformation().getName() + " <br>Armor Points: "
-                    + labelInfo1.getArmorPoint() + "<br> Description: " + labelInfo1.getInformation().getDescription()
+            result = ("<html> Name: " + i.getInformation().getName() + " <br>Armor Points: "
+                    + ((Armor) i).getArmorPoint() + "<br> Description: " + i.getInformation().getDescription()
                     + "</html>");
             return (result);
         }
         //label if a stuff is a potion 
         if (isPotion(i)) {
-            Potion labelInfo2 = new Potion(i.getInformation().getName(), i.getInformation().getDescription(),
-                    ((Potion) i).getLifePoint());
-            result = (" Name: " + labelInfo2.getInformation().getName() + " Dammage: " + labelInfo2.getLifePoint()
-                    + " Description: " + labelInfo2.getInformation().getDescription());
+            result = (" Name: " + i.getInformation().getName() + " Dammage: " + ((Potion) i).getLifePoint()
+                    + " Description: " + i.getInformation().getDescription());
             return (result);
         }
         return (result);

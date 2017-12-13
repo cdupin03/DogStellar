@@ -3,6 +3,7 @@ package fr.dogstellar.view;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.text.*;
 
 import fr.dogstellar.core.Player;
 import java.awt.Font;
@@ -20,7 +21,7 @@ public class StartGame {
     private final JLabel title; 						//It is the title of the Game (DogStellar)
     private final JLabel infoPLife; 					//display the info (life Point) of the player (different between 3 types of player)
     private final JLabel infoPAttack;					//display the info (Attack Point) of the player (different between 3 types of player)
-    private final JLabel description;					//Description of the game
+    private final JTextPane description;					//Description of the game
     private final JLabel chooseAName;					//name of the JTextField
     private JTextField t;						//Is the area to right the name of the player
     private JButton player1, player2, player3; 	//JButton for the 3 types of player
@@ -35,12 +36,12 @@ public class StartGame {
     private String namePlayer = "";				//Initialize the name of the player to ""
     private static Player player;				//It is the player
     private String picturePath;					//To know where the picture are in the computer
-    private int lP, aP, tmpaP;			// integer to the lifePoint, attackPoint, ?????????????????????????
+    private static int lP, aP, tmpaP;			// integer to the lifePoint, attackPoint, ?????????????????????????
     private static int tmplP;
     private static Interface interf;			//Is the interface
     private static ImageIcon imagePlayer;		//Is the image of the player that is select
-    //private VideoPlayer intro;					//Is the video that is start when the game is start
 
+    private final JButton ok = new JButton();                   //The button to validate an entry in the console
     /**
      * The constructor of this class
      */
@@ -138,14 +139,15 @@ public class StartGame {
         player3.setBorderPainted(false);
 
         //Player
-        //BorderLayout of different type of player
+            //BorderLayout of different type of player
         panelPlayer = new JPanel();
         panelPlayer.setLayout(new BorderLayout());
         panelPlayer.add(player1, BorderLayout.NORTH);
         panelPlayer.add(player2, BorderLayout.CENTER);
         panelPlayer.add(player3, BorderLayout.SOUTH);
         panelPlayer.setOpaque(false);
-        //info for a player (life point and attack point)
+        
+            //info for a player (life point and attack point)
         infoPLife = new JLabel("This player has " + String.valueOf(lP) + " life Point", JLabel.CENTER);
         infoPAttack = new JLabel(" and " + String.valueOf(aP) + " attack Point", JLabel.CENTER);
         infoPLife.setFont(new java.awt.Font(Font.DIALOG, Font.BOLD, 25));
@@ -168,26 +170,28 @@ public class StartGame {
         title.setForeground(Color.white);
 
         //description of the game
-        description = new JLabel("", JLabel.CENTER);
-        description.setPreferredSize(new Dimension(200,500));
+        description = new JTextPane();
         description.setFont(new java.awt.Font(Font.DIALOG, Font.BOLD, 25));
+        description.setOpaque(false);
         description.setForeground(Color.white);
-        description.setText("Welcome to DogStellar, the team of GPhy developer is happy ");
-        description.setText(description.getText() + "<html>\n</html>");
-        description.setText(description.getText() + "to see you test our Java project! ");
-        description.setText(description.getText() + "<html>\n</html>");
-        description.setText(description.getText() + "During this adventure, you must be careful if you");
-        description.setText(description.getText() + "<html>\n</html>");
-        description.setText(description.getText() + "do not want to die before having been able to go back home...");
+        description.setText(" Welcome to DogStellar, the team of GPhy developer \n is happy to see you test our Java project! \n During this adventure, you must be careful if you do not \n want to die before having been able to go back home...");
+        description.setEditable(false);
+        
+        //center the description
+        StyledDocument doc = description.getStyledDocument();
+        SimpleAttributeSet center = new SimpleAttributeSet();
+        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+        doc.setParagraphAttributes(0, doc.getLength(), center, false);
 
         //Text for enter the name of player (not enable if no player is choose)
         t = new JTextField(30);
         t.setPreferredSize(new Dimension(10, 40));
         t.setEnabled(false);
-        t.addActionListener(new ActionListener() {
+        
+        ok.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == t) {
+                if (e.getSource() == ok) {
                     namePlayer = t.getText();
                     if (!namePlayer.equals("") && (namePlayer.length() >= 3)) {
                         startGame.setEnabled(true);
@@ -195,12 +199,38 @@ public class StartGame {
                 }
             }
         });
+        
+        t.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ok.doClick();
+            }
+        });
+        
+        //The ok button is accessible only if there is a character in the t 
+        t.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent event) {
+                if (!t.getText().isEmpty()) {
+                    ok.setEnabled(true);
+                } else {
+                    ok.setEnabled(false);
+                }
+            }
+        });
+        
+        ok.setText("OK");                                           //Set the button text
+        ok.setForeground(Color.black);                              //Set the color of the button
+        ok.setPreferredSize(new Dimension(55, 40));                                          //Set the size of the button
+        ok.setFont(new java.awt.Font(Font.SERIF, Font.BOLD, 14));     //Set the font of the button
+        ok.setEnabled(false);                                       //Disable the button
+        
         chooseAName = new JLabel("Choose a name");
         chooseAName.setFont(new java.awt.Font(Font.DIALOG, Font.BOLD, 25));
         chooseAName.setForeground(Color.white);
         nameText = new JPanel();
         nameText.add(chooseAName);
         nameText.add(t);
+        nameText.add(ok);
         nameText.setOpaque(false);
 
         //button start game (not enable if there is no namePlayer)
@@ -212,7 +242,7 @@ public class StartGame {
                 player = new Player(namePlayer, lP, aP);
                 myJFrame.dispose();
                 interf = new Interface();  //start the game with the a player a planet ...
-                new VideoPlayer("Intro.mp4", 39000, "DogStellar - The Beginning");
+                new VideoPlayer("Intro.mp4", 53000, "DogStellar - The Beginning");
             }
         });
         startGame.setOpaque(false);
@@ -294,7 +324,7 @@ public class StartGame {
      * @return tmplP is the life point
      */
     public static int getLifePoint() {
-        return (tmplP);
+        return (lP);
     }
 
 }

@@ -2,15 +2,13 @@ package fr.dogstellar.game;
 
 import java.util.Random;
 
-import com.sun.org.apache.bcel.internal.generic.IfInstruction;
-
 import fr.dogstellar.core.*;
 import fr.dogstellar.view.GeneralWindow;
 import fr.dogstellar.view.Popup;
 import fr.dogstellar.view.StartGame;
 
 /**
- * This method allow to play the fight between a monster and a player At the
+ * This class allow to play the fight between a monster and a player At the
  * beginning of the fight the player can decide to fight or not the monster. If
  * he decide to fight, he begin the fight. While one of the people (monster or
  * player) is not dead the fight will continued At the end of the fight the

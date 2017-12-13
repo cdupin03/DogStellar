@@ -27,8 +27,10 @@ public class Element {
      * @param name is the name to set at the element
      * @param description is the description to set at the element
      * @param newType is the Type of the element
+     * @param newImage1 is the normal image
+     * @param newImage2 is the image when we pass on it with the mouse
      * @param newX the x coordonate in the view must be between (0 and 7 (excluded))
-     * @param newX the y coordonate in the view must be between (0 and 7 (excluded))
+     * @param newY the y coordonate in the view must be between (0 and 7 (excluded))
      */
     public Element(String name, String description, int newType, String newImage1, String newImage2, int newX, int newY) {
         information = new Info(name, description, newX, newY);
@@ -47,8 +49,10 @@ public class Element {
      * @param description is the description to set at the element
      * @param newType is the Type of the element
      * @param newReward is the reward of the element
+     * @param newImage1 is the normal image
+     * @param newImage2 is the image when we pass on it with the mouse
      * @param newX the x coordonate in the view must be between (0 and 7 (excluded))
-     * @param newX the y coordonate in the view must be between (0 and 7 (excluded))
+     * @param newY the y coordonate in the view must be between (0 and 7 (excluded))
      * 
      */
     public Element(String name, String description, int newType, Stuff newReward, String newImage1, String newImage2, int newX, int newY) {
@@ -73,7 +77,6 @@ public class Element {
      *
      * @param reponse the reponse of the player
      * @param player is the player who answer at the question
-     * @perso the perso which answer
      * @return true if the enigma is solved
      */
     public boolean resolveEnigma(String reponse, Player player) {
@@ -141,7 +144,7 @@ public class Element {
     /**
      * To set the done attribut
      *
-     * @param Done
+     * @param Done is the parameter to set
      */
     public void setDone(boolean Done) {
         this.done = Done;

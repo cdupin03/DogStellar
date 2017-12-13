@@ -215,9 +215,6 @@ public class AreaPlanet {
 
     /**
      * To search an Perso into the area.
-     *
-     * @param thePerso is the perso to search in the list of persos
-     * @return true if the perso exist in the list
      */
     public void displayPersos() {
         for (Perso i : persos) {

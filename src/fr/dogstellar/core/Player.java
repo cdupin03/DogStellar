@@ -32,7 +32,7 @@ public class Player extends Perso {
     /**
      * this method allows to equip the player with a armor
      *
-     * @param armorEquip
+     * @param armorEquip is the armor to equip
      */
     public void addArmorEquip(Armor armorEquip) {
         armor = armorEquip;

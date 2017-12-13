@@ -187,7 +187,7 @@ public final class Window extends GeneralWindow {
     
     /**
      * add the element on its right coordonates on the grid.
-     * @param elt 
+     * @param elt is the element to add in the grid
      */
     public void addElementToGrid (ElementView elt)
     {
