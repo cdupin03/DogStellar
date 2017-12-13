@@ -45,19 +45,18 @@ public class Interface {
     private final JButton inventory;                            //Button which allow to open the inventory
     private final JButton returnMap;                           //Button wich allow to return to the first map 
 
-    private final Perso neighbor = new Perso("FriendlyNeighbor", 10, 3, new QuestElement("PieceShip", "that same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 2),"monster/larva");
-    private final Perso double1 = new Perso("double", 10, 4, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 3),"monster/teen");
-    private final Perso double2 = new Perso("bouble", 10, 4, new QuestElement("PieceShip", "that other same piece"), new Armor("Astraea", "keep it for fight the big monster", 4),"monster/teen");
-    private final Perso bigMonster = new Perso("big", 10, 6, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6),"monster/adult");
-   
+    private final Perso neighbor = new Perso("FriendlyNeighbor", 4, 3, new QuestElement("PieceShip", "that same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 2),"monster/larva");
+    private final Perso neighborAlive = new Perso("FriendlyNeighbor", 4, 3, new QuestElement("PieceShip", "that same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 2),"monster/larva");
+    private final Perso double1 = new Perso("double", 8, 4, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 3),"monster/teen");
+    private final Perso double2 = new Perso("bouble", 7, 4, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 3),"monster/teen");
+    private final Perso bigMonster = new Perso("big", 9, 5, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6),"monster/adult");
+
     //Planet 4 nightmare
     private final Perso sbire1 = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 3),"monster/teen");
     private final Perso sbire2 = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 3),"monster/teen");
     private final Perso sbire3 = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 3),"monster/teen");
     private Perso finalboss = new Perso("Fatalis", 10, 10, new QuestElement("PieceShip", "the last part of the spaceship!"),new Potion("Mega Potion Powerfull", "The best heal potion", 10),"monster/boss");
-    
-    
-    
+
     private GeneralWindow theWindow, theShip;
 
     private final DisplayInfo infoPlayer; 					//It is the information of the player that is display thanks to displayInfo
@@ -194,9 +193,9 @@ public class Interface {
 		 *    *     *  *   *****      *   *   *   *   *                                     
          */
         Planet planet1 = new Planet("Eurigone", "Etrange", 0);
-        Planet planet2 = new Planet("Oppavia", "Planet filled with sand", 0);
-        Planet planet3 = new Planet("Pandora", "Tout aussi etrange", 0);
-        Planet planet4 = new Planet("Vanadis", "Always in weightlessness", 0);
+        Planet planet2 = new Planet("Pandora", "Planet filled with sand", 1);
+        Planet planet3 = new Planet("Oppavia", "Tout aussi etrange", 5);
+        Planet planet4 = new Planet("Vanadis", "Always in weightlessness", 6);
 
         ArrayList<Planet> planets = new ArrayList<Planet>(); //The list of planets the first planet is the actual planet.
         //If we change planet, the new planet exchange its place with the first.
@@ -205,43 +204,37 @@ public class Interface {
         planets.add(planet3);
         planets.add(planet4);
 
-        //Planet 1 with 3 areas and different elements(perso,element) on them
+//Planet 1 with 3 areas and different elements(perso,element) on them
         AreaPlanet Area1Planet1 = new AreaPlanet("Area1", "first area", "map/map1.png");
 //my friend
-        Area1Planet1.addElement(new Element("PNJ", " Hey my friend ! Do you remember me? I found you almost dead but you're better now. I hope you find your bag", 3, "friend.png", "friend.png",1,2));
+        Area1Planet1.addElement(new Element("PNJ", " Hey my friend ! Do you remember me? I found you almost dead but you're better now. I hope you find your bag", 3, "friend.png", "friend.png",1,3));
 //my bag
         Armor armor1 = new Armor("Aurora", "More beautiful than effective", 1);
-        Area1Planet1.addElement(new Element("Bag", "with your armor", 4, armor1, "sacados.png", "sacados.png",3,4));
+        Area1Planet1.addElement(new Element("Bag", "with your armor", 4, armor1, "sacados.png", "sacados.png",3,1));
         
         AreaPlanet Area2Planet1 = new AreaPlanet("Area2", "second area", "map/map3.png");
 //my friend present his neighbor
         Area2Planet1.addElement(new Element("PNJ",
-                "My neighbor does not like to be disturbed ... but he may have recovered a piece of your ship",3,"friend.png", "friend.png",1,2));
+                "My neighbor does not like to be disturbed ... but he may have recovered a piece of your ship",3,"friend.png", "friend.png",3,3));
         Area2Planet1.addPerso(neighbor);
 
         AreaPlanet Area3Planet1 = new AreaPlanet("Area3", "third area", "map/map2.png");
 //my friend his happy
-        Area3Planet1.addElement(new Element("PNJ", "Thanks ! my neighbor has gone away now", 3,"friend.png", "friend.png", 1, 2));
+        Area3Planet1.addElement(new Element("PNJ", "Thanks ! my neighbor has gone away now", 3,"friend.png", "friend.png", 1, 3));
 //Enigma (universe)
         Weapon weapon1 = new Weapon("Walpurga", "Weak laser ", 1);
-        Area3Planet1.addElement(new Element("Everything is in nothing... What is it?", "universe",1, weapon1, "enigma.png", "enigma2.png", 3, 1));      
+        Area3Planet1.addElement(new Element("Everything is in nothing... What is it?", "universe",1, weapon1, "help.png", "helpRoll.png", 3, 2));      
         
         Area1Planet1.addAreaPlanet(Area2Planet1, "south");
         Area2Planet1.addAreaPlanet(Area3Planet1, "east");
         planet1.addArea(Area1Planet1);
 
-        //Planet 2 with 2 areas and different elements(perso,element) on them
+//Planet 2 with 2 areas and different elements(perso,element) on them
         AreaPlanet Area1Planet2 = new AreaPlanet("Area1", "first area", "map/map10.png");
-//his neighbor is alive but your friend propose to you an enigma to have a his weapon
-        Armor armor2  = new Armor("Amphitrite", "medium armor", 5);
-// /!\ /!\ addMessageToConsole ajoute un message tout le temps dans la console (pas ce que je veux, uniquement dans cette area)
-//addMessageToConsole("Friend : Oh no, you remember of him ? it is my neighbor, you don't really kill him, maybe he has find other piece of ship");
-        Area1Planet2.addElement(new Element(" I will give you my armor but before answer to my enigma : I can be white, yellow, red, blue even black. Who am I?","star", 1, armor2, "friend.png", "friend.png", 3, 1));
-        Area1Planet2.addPerso(neighbor);
 
         AreaPlanet Area2Planet2 = new AreaPlanet("Area2", "second area", "map/map11.png");
 //false friend
-        Area2Planet2.addElement(new Element("Trap", " Who did you think I was ? ", 2, "friend.png", "friend.png", 4, 5));
+        Area2Planet2.addElement(new Element("Trap", " Who did you think I was ? ", 2, "friend.png", "friend.png", 1, 3));
 
         AreaPlanet Area3Planet2 = new AreaPlanet("Area3", "hum ...", "map/map8.png");
 
@@ -251,22 +244,22 @@ public class Interface {
         Area4Planet2.addPerso(double2);
         
         AreaPlanet Area5Planet2 = new AreaPlanet("Area5", "hum ...", "endGame.png");
-//big monster
+//big monster and the garagiste
         Area5Planet2.addPerso(bigMonster);
-//ne fonctionne pas (pas de fight encore effectue)
-	    if (bigMonster.getIsDead()==false) {
-	        Element garagiste = (new Element("PNJ", "", 3, "friend.png", "friend.png", 2, 2));
-	        garagiste.setDone(true);
-	        Area5Planet2.addElement(garagiste);
-	    }
+        Element garagiste = (new Element("PNJ", "", 3, "friend.png", "friend.png", 3, 3));
+        garagiste.setDone(true);
+        Area5Planet2.addElement(garagiste);
         
         AreaPlanet Area6Planet2 = new AreaPlanet("Area6", "hum ...", "map/map7.png");
 //a chest with the best armor
         Armor armor3  = new Armor("Asporina", "Best armor", 7);
-        Area6Planet2.addElement(new Element("Big Chest", "with the best armor", 4, armor2, "Coffre_fermer.jpg", "Coffre_ouvert.jpg",3,4));
+        Area6Planet2.addElement(new Element("Big Chest", "with the best armor", 4, armor3, "help.png", "helpRoll.png",2,2));
         
         AreaPlanet Area7Planet2 = new AreaPlanet("Area7", "hum ...", "map/map9.png");
-
+//a help with potion
+        Potion help = new Potion("Help", "a potion to help you", 4);
+        Area7Planet2.addElement(new Element("help", "potion", 4, help, "help.png", "helpRoll.png",2,3));
+        
         Area1Planet2.addAreaPlanet(Area2Planet2, "east");
         Area2Planet2.addAreaPlanet(Area3Planet2, "south");
         Area3Planet2.addAreaPlanet(Area4Planet2, "east");
@@ -274,19 +267,23 @@ public class Interface {
         Area5Planet2.addAreaPlanet(Area6Planet2, "east");
         Area1Planet2.addAreaPlanet(Area7Planet2, "west");
 
-        planet3.addArea(Area1Planet2);
+        planet2.addArea(Area1Planet2);
 
-        //Planet3 with 3 areas
+//Planet3 with 3 areas
         AreaPlanet Area1Planet3 = new AreaPlanet("Area1", "rdytfuygiut", "map/map6.png");
 
         AreaPlanet Area2Planet3 = new AreaPlanet("Area2", "rdytfiut", "map/map4.png");
         
         AreaPlanet Area3Planet3 = new AreaPlanet("Area3", "hum ...", "map/map5.png");
+//his neighbor is alive but your friend propose to you an enigma to have a his weapon
+        Armor armor2  = new Armor("Astraea", "keep it for fight the big monster",4);
+        Area3Planet3.addElement(new Element(" I will give you my armor but before answer to my enigma : I can be white, yellow, red, blue even black. Who am I?","star", 1, armor2, "friend.png", "friend.png", 3, 3));
+        Area3Planet3.addPerso(neighborAlive);
 
         Area1Planet3.addAreaPlanet(Area2Planet3, "north");
         Area2Planet3.addAreaPlanet(Area3Planet3, "west");
 
-        planet2.addArea(Area1Planet3);
+        planet3.addArea(Area1Planet3);
 
         //Planet 4 with 6 areas and different elements(perso,element) on them
         AreaPlanet Area1Planet4 = new AreaPlanet("Area1", "rdytfuygiut", "map/map16.png");

@@ -208,8 +208,9 @@ public class Perso {
                 if (compt > 0) {
                     armorOfPlayer.decreaseArmorPoint(attackPoint);
                 } else {
+                	player.decreaseLifePoint(attackPoint - armorOfPlayer.getArmorPoint());
                     armorOfPlayer.decreaseArmorPoint(armorOfPlayer.getArmorPoint());
-                    player.decreaseLifePoint(attackPoint - armorOfPlayer.getArmorPoint());
+                    player.setArmor(null);
                 }
             } else {
                 player.decreaseLifePoint(attackPoint);
