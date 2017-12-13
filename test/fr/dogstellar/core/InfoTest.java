@@ -31,7 +31,7 @@ public class InfoTest {
     @Before
     public void setUp() {
         badInfo = new Info("Ma", "Goo", -8, 9);			//a bad Info object
-        goodInfo = new Info("Mark", "Good Info", 5, 5);   //a good Info object   
+        goodInfo = new Info("Mark", "Good Info", 3, 3);   //a good Info object   
         planetInfo = new Info ("Planet", "planetType");
     }
 
@@ -87,8 +87,8 @@ public class InfoTest {
     public void okGetter() {
         assertEquals("Mark", goodInfo.getName());
         assertEquals("Good Info", goodInfo.getDescription());
-        assertEquals(5, goodInfo.getX());
-        assertEquals(5, goodInfo.getY());
+        assertEquals(3, goodInfo.getX());
+        assertEquals(3, goodInfo.getY());
     }
 
     @Test
