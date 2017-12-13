@@ -29,12 +29,12 @@ public class VideoPlayer implements ActionListener {
     private MediaView mediaView;
     private BorderPane borderPane;
     private Scene scene;
-    private final File file;
-    private final String nameVideo;
-    private final String nameJFrame;
-    private final String picturePath = System.getProperty("user.dir") + "/videos/";
+    private File file;
+    private String nameVideo;
+    private String nameJFrame;
+    private String picturePath = System.getProperty("user.dir") + "/videos/";
     private JButton skip;
-    private final Timer timer;
+    private Timer timer;
 
     /**
      * The constructeur of the class to get back the video, the time of the
@@ -72,8 +72,12 @@ public class VideoPlayer implements ActionListener {
         skip.addActionListener((ActionEvent e) -> {
             timer.stop();                                                       //Stop the timer
             player.stop();                                                      //Stop the video
+            player = null;
             mediaView = null;
+            scene = null;
             jfxPanel = null;                                                    //Destroy the JFxPanel
+            borderPane = null;
+            file = null;
             window.dispose();                                                   //Close the frame when we click on the skip button
         });
 

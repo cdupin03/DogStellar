@@ -11,7 +11,6 @@ import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.util.Timer;
 
 /**
  * This class allow the display of element in the screen, a element is a Jbutton
@@ -43,9 +42,10 @@ public final class ElementView extends JButton {
         PicturePath = picturePath + "";                             			//Define the path of the picture
         E = newE;                                                               //Define the element
 
-        if (E.getType() == 1) 													//If the element is a enigma 
+        if (E.getType() == 1) //If the element is a enigma 
         {
             if (E.getDone() != true) {
+
                 afficher(E.getImage1(),E.getImage2(), 100, 100);
 
                 this.addMouseListener(new MouseAdapter() {
@@ -90,7 +90,9 @@ public final class ElementView extends JButton {
                 });
             } else {
 
+
                 afficher(E.getImage2(),E.getImage2(), 100, 100);
+
             }
 
         } else if (E.getType() == 2) //If the element is a trap
@@ -113,7 +115,9 @@ public final class ElementView extends JButton {
                 randompic2 = "Coffre_selection.jpg";
             }
 
+
             afficher(E.getImage1(),E.getImage2(), 100, 100);
+
 
             this.addMouseListener(new MouseAdapter() {
                 @Override
@@ -135,7 +139,6 @@ public final class ElementView extends JButton {
         {
 
             if (E.getDone() == false) {
-
                 afficher(E.getImage1(),E.getImage2(),100, 100);
 
 
@@ -150,13 +153,13 @@ public final class ElementView extends JButton {
 
                 afficher(E.getImage1(),E.getImage2(), 100, 100);
 
+
                 //
                 this.addActionListener(new ActionListener() {
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         int compt = 0;
-                        Timer timer = new Timer();
                         for (Stuff s : StartGame.getPlayer().getStuff()) {
                             if (s.getInformation().getName().equals("PieceShip")) {
                                 compt += 1;
@@ -167,11 +170,11 @@ public final class ElementView extends JButton {
                         } else {
                             StartGame.getInterf().addMessageToConsole("Great ! You have all piece of ship, so I can build it");
                             try {
-								Thread.sleep(3000);
-							} catch (InterruptedException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
+                                Thread.sleep(3000);
+                            } catch (InterruptedException e1) {
+                                // TODO Auto-generated catch block
+                                e1.printStackTrace();
+                            }
                             //StartGame.getInterf().dispose();
                             new VideoPlayer("fin.mp4", 20000, "DogStellar - The end");
                         }
@@ -200,7 +203,7 @@ public final class ElementView extends JButton {
 
             } else {
 
-                afficher(E.getImage1(),E.getImage2(), 70, 70);
+                afficher(E.getImage1(), E.getImage2(), 70, 70);
 
             }
         }
@@ -252,12 +255,11 @@ public final class ElementView extends JButton {
 
     /**
      * get the element of the view.
+     *
      * @return E the element of the view.
      */
     public Element getE() {
         return E;
     }
-    
-    
 
 }
