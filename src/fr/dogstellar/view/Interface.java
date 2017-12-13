@@ -51,6 +51,12 @@ public class Interface {
     private final Perso double2 = new Perso("bouble", 7, 4, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 3),"monster/teen");
     private final Perso bigMonster = new Perso("big", 9, 5, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 6),"monster/adult");
 
+    //Planet 4 nightmare
+    private final Perso sbire1 = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 3),"monster/teen");
+    private final Perso sbire2 = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 3),"monster/teen");
+    private final Perso sbire3 = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 3),"monster/teen");
+    private Perso finalboss = new Perso("Fatalis", 10, 10, new QuestElement("PieceShip", "the last part of the spaceship!"),new Potion("Mega Potion Powerfull", "The best heal potion", 10),"monster/boss");
+
     private GeneralWindow theWindow, theShip;
 
     private final DisplayInfo infoPlayer; 					//It is the information of the player that is display thanks to displayInfo
@@ -289,6 +295,24 @@ public class Interface {
         AreaPlanet Area4Planet4 = new AreaPlanet("Area3", "hum ...", "map/map15.png");
         AreaPlanet Area5Planet4 = new AreaPlanet("Area3", "hum ...", "map/map13.png");
         AreaPlanet Area6Planet4 = new AreaPlanet("Area3", "hum ...", "map/map14.png");
+        
+        Area3Planet4.addElement(new Element("Not this one", "universe",2,"friend.png", "friend.png", 3, 1));
+        Area3Planet4.addElement(new Element("Not this one", "universe",2,"friend.png", "friend.png", 3, 2));
+        Area3Planet4.addElement(new Element("Not this one", "universe",2,"friend.png", "friend.png", 3, 3));
+        Area3Planet4.addElement(new Element("Not this one", "universe",2,"friend.png", "friend.png", 4, 1));
+        Area3Planet4.addElement(new Element("Not this one", "universe",2,"friend.png", "friend.png", 4, 2));
+        Area5Planet4.addPerso(sbire1);
+        Area5Planet4.addPerso(finalboss);
+        finalboss.setLifePoint(20);
+        
+        Weapon weapon3 = new Weapon("Master chief's weapon", "The strongest, simple, basic. ", 15);
+        Area3Planet4.addElement(new Element("Space knight", "Congratulation, you find me. Take my greatest weapon",4,weapon3,"friend.png", "friend.png", 4, 3));
+        
+        Armor armor4 = new Armor("Master chief's superSuit", "You will forgot what is pain", 25);
+        Area5Planet4.addElement(new Element("Space knight", "Take that, you will need this to defeat this monster, I advice fight the monster, unless you have Master chief's weapon",4,armor4,"armor3_1.png", "armor3_1.png", 4, 3));
+        
+        Area1Planet4.addElement(new Element("knight", "Welcome to Vanatis, This is the toughest planet of this solar system. If you wonder if you are ready for this, you don't!",3,weapon3,"friend.png", "friend.png", 4, 3));
+        
         
         Area1Planet4.addAreaPlanet(Area2Planet4, "east");
         Area2Planet4.addAreaPlanet(Area3Planet4, "south");
