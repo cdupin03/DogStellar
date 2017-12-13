@@ -41,8 +41,8 @@ public abstract class GeneralWindow extends JPanel {
         picturePath = System.getProperty("user.dir") + "/pictures/";            //Initialize the path pictures
         nameOfFirstBackgroundPicture = "";                                      //Initialize the name of the background
         components = new HashMap<>();                                           //Instanciate the HashMap which displays the elements 
-        setHeight(7);                                                           //The Height of the HashMap 
-        setLength(7);                                                          //The Length of the HashMap
+        setHeight(5);                                                           //The Height of the HashMap 
+        setLength(5);                                                          //The Length of the HashMap
     }
 
     /**
