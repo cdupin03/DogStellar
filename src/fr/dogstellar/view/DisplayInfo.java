@@ -16,25 +16,31 @@ import javax.swing.*;
 public class DisplayInfo extends JPanel {
 
 	private JLabel namePlayer, nameBarLife, nameBarAttack, nPlanet, nArea, nameWeapon, nameArmor;
-	private JProgressBar progressLife = new JProgressBar();
+	private JProgressBar progressLife;
 	private JProgressBar progressAttack = new JProgressBar();
 	private JProgressBar weaponProgress = new JProgressBar();
-	private JProgressBar armorProgress = new JProgressBar();
+	private JProgressBar armorProgress  = new JProgressBar();
 	private JPanel barLife = new JPanel(); // Panel for the information of the player
 	private JPanel barAttack = new JPanel(); // Panel for the information of the player
 	private JPanel weaponLife = new JPanel();
 	private JPanel armorLife = new JPanel();
 	private JPanel bar = new JPanel(); // Panel for the information of the player
 	private JPanel infoArea = new JPanel(); // Panel for the information of the Area
-
+       
+        
 	public DisplayInfo() {
-
+                final int  maxlifepoint =  StartGame.getLifePoint()*10;    
+                
+                
 		nameBarLife = new JLabel("Life Point      : ");
 		nameBarAttack = new JLabel("Attack Point : ");
-
-		displayLife();
+                
+                progressLife= new JProgressBar (0,maxlifepoint);
+                progressLife.setForeground(Color.red);
+              
+                displayLife();
 		displayAttack();
-
+                
 		nameWeapon = new JLabel("Weapon Point : ");
 		weaponLife.setLayout(new BorderLayout());
 		weaponLife.add(nameWeapon, BorderLayout.WEST);
@@ -45,16 +51,24 @@ public class DisplayInfo extends JPanel {
 			displayWeapon();
 		}
 
-		nameArmor = new JLabel("Armor Life    : ");
-		armorLife.setLayout(new BorderLayout());
-		armorLife.add(nameArmor, BorderLayout.WEST);
-		armorLife.add(armorProgress, BorderLayout.CENTER);
-		armorLife.setVisible(false);
-
+		    nameArmor = new JLabel("Armor Life    : ");
+                    armorLife.setLayout(new BorderLayout());
+                    armorLife.add(nameArmor, BorderLayout.WEST);
+                    armorLife.add(armorProgress, BorderLayout.CENTER);
+                    armorLife.setVisible(false);
+                    
+                
 		if (StartGame.getPlayer().hasArmor() == true) {
-			displayArmor();
+                   
+                    
+                    
+                    final int trial = StartGame.getPlayer().getArmorEquip().getArmorPoint() * 10;
+                    displayArmor();
+    
 		}
 
+                
+                
 		barLife.setLayout(new BorderLayout());
 		barLife.add(nameBarLife, BorderLayout.WEST);
 		barLife.add(progressLife, BorderLayout.CENTER);
