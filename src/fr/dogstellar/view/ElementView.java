@@ -186,7 +186,7 @@ public final class ElementView extends JButton {
         {
             if (!E.getDone()) {
 
-                afficher(E.getImage1(),E.getImage2(), 80,80);
+                afficher(E.getImage1(),E.getImage2(), 100,100);
 
 
                 this.addMouseListener(new MouseAdapter() {
