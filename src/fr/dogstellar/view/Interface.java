@@ -54,9 +54,11 @@ public class Interface {
     private final Perso sbire1 = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 3),"monster/teen");
     private final Perso sbire2 = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 3),"monster/teen");
     private final Perso sbire3 = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 3),"monster/teen");
-    private final Perso trappedmonster = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Armor("Master chief's superSuit", "You will forgot what is pain, WARNING : mandatory for the boos", 25),"monster/teen");
+    private final Perso trappedmonster = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Armor("Master chief's superSuit", "You will forgot what is pain, WARNING : mandatory for the boos", 24),"monster/teen");
+    private final Perso trappedmonster2 = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Armor("Master chief's superSuit", "You will forgot what is pain, WARNING : mandatory for the boos", 24),"monster/teen");
    
-    private Perso finalboss = new Perso("Fatalis", 10, 10, new QuestElement("PieceShip", "the last part of the spaceship!, go to pandora to return home !"),new Potion("IceTea", "Good job! ", 10),"monster/boss");
+    
+    private Perso finalboss = new Perso("Fatalis", 10, 10, new QuestElement("PieceShip", "that other same piece"),new Potion("IceTea", "Good job! ", 10),"monster/boss");
 
     private GeneralWindow theWindow, theShip;
 
@@ -106,7 +108,7 @@ public class Interface {
         ImageIcon picture = new ImageIcon(picturePath + "inventory.png");       //image for the inventory button
         inventory = new JButton(picture);                                       // create the button
         // add the button to the inventory
-        inventory.setToolTipText("click here to acess to your inventory");       // set a description text
+        inventory.setToolTipText("click here to access to your inventory");      // set a description text
         // transparent inventory
         inventory.setOpaque(false);
         inventory.setContentAreaFilled(false);
@@ -213,15 +215,7 @@ public class Interface {
         Armor armor1 = new Armor("Aurora", "More beautiful than effective", 1);
         Area1Planet1.addElement(new Element("Bag", "with your armor", 4, armor1, "sacados.png", "sacados.png",3,1));
         
-        //To erase, for trial purpose
-        QuestElement trial = new QuestElement("PieceShip", "that other same piece");
-        Area1Planet1.addElement(new Element("Bag", "with your armor", 4, trial, "sacados.png", "sacados.png",1,1));
-        Area1Planet1.addElement(new Element("Bag", "with your armor", 4, trial, "sacados.png", "sacados.png",1,2));
-        Area1Planet1.addElement(new Element("Bag", "with your armor", 4, trial, "sacados.png", "sacados.png",1,4));
-        Area1Planet1.addElement(new Element("Bag", "with your armor", 4, trial, "sacados.png", "sacados.png",2,1));
-        Area1Planet1.addElement(new Element("Bag", "with your armor", 4, trial, "sacados.png", "sacados.png",2,1));
-        Area1Planet1.addElement(new Element("Bag", "with your armor", 4, trial, "sacados.png", "sacados.png",3,1));
-        
+       
         
         
         AreaPlanet Area2Planet1 = new AreaPlanet("Area2", "second area", "map/map3.png");
@@ -310,19 +304,22 @@ public class Interface {
         
         
         Area1Planet4.addElement(new Element("knight", "Welcome to Vanatis, This is the toughest planet of this solar system. If you wonder if you are ready for this, you don't!",3,"friend.png", "friend.png", 4, 3));
+        Area1Planet4.addElement(new Element("knight", "There is a lot of trap in this planet. Remember, trap cannot move..., don't fall for it",3,"friend.png", "friend.png", 4, 3));
+        Area1Planet4.addElement(new Element("knight", "Welcome to Vanatis, I saw the boss and small monsters with spaceship part. Good luck to pick them up.",3,"friend.png", "friend.png", 4, 3));
+        
         
         Area6Planet4.addElement(new Element("Old man _ enigma", "Savez vous combien il y a de chromosome chez l'etre humain ?",3,"friend.png", "friend.png", 4, 3));
-        Area6Planet4.addElement(new Element("Old man _ enigma2", "XY => X,ligne, Y colone.",3,"friend.png", "friend.png", 4, 3));
+        Area6Planet4.addElement(new Element("Old man _ enigma2", "XY => X ligne, Y colone.",3,"friend.png", "friend.png", 4, 3));
         
         Area4Planet4.addElement(new Element("Not this one", "universe",2,"friend.png", "friend.png", 1, 1));
-        Area4Planet4.addElement(new Element("Not this one", "universe",2,"Monstre.png", "Monstre.png", 2, 1));
+        Area4Planet4.addElement(new Element("Not this one", "universe",2,"monster/larvaRoll.png", "monster/larvaRoll.png", 2, 1));
         Area4Planet4.addElement(new Element("Not this one", "universe",2,"armor3.png", "armor3.png", 3, 1));
         Area4Planet4.addElement(new Element("Not this one", "universe",2,"help.png", "help.png", 2, 4));
         Area4Planet4.addElement(new Element("Not this one", "universe",2,"monster/larva.png", "monster/larvaRoll.png", 2, 3));
         Area4Planet4.addElement(new Element("Not this one", "universe",2,"monster/teen.png", "monster/teenRoll.png", 2, 2));
         Area4Planet4.addElement(new Element("Not this one", "universe",2,"monster/adult.png", "monster/adultRoll.png", 3, 3));
         Area4Planet4.addPerso(trappedmonster);
-        
+        Area4Planet4.addPerso(trappedmonster2);
         
         Area3Planet4.addElement(new Element("Not this one", "universe",2,"friend.png", "friend.png", 1, 1));
         Area3Planet4.addElement(new Element("Not this one", "universe",2,"friend.png", "friend.png", 1, 2));
@@ -335,6 +332,8 @@ public class Interface {
         Area3Planet4.addElement(new Element("Not this one", "universe",2,"friend.png", "friend.png", 2, 3));
         Area3Planet4.addElement(new Element("Not this one", "universe",2,"friend.png", "friend.png", 3, 3));
         
+        Armor armor4 = new Armor("???", "That is a stealth armor, a great one", 10);
+        Area2Planet4.addElement(new Element("???", "???",4,armor4,"", "friend.png", 3, 1));
         
         Area5Planet4.addPerso(sbire1);
         Area5Planet4.addPerso(finalboss);
