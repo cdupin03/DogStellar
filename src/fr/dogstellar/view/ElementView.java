@@ -39,7 +39,7 @@ public final class ElementView extends JButton {
      */
     public ElementView(String picturePath, Element newE, Window wind) {
         super();                                                                //call the constructor of the JButton
-        PicturePath = picturePath + "";                             		//Define the path of the picture
+        PicturePath = picturePath + "";                             			//Define the path of the picture
         E = newE;                                                               //Define the element
 
         if (E.getType() == 1) //If the element is a enigma 
@@ -166,10 +166,8 @@ public final class ElementView extends JButton {
                             }
                         }
                         if (compt < 10) {
-                            StartGame.getInterf().addMessageToConsole("You have not enouth piece of ship to build your new ship, you need 10 spaceship part. You have :"+ compt);
+                            StartGame.getInterf().addMessageToConsole("You have not enouth piece of ship to build your new ship, you need 7 spaceship part. You have :"+ compt);
                         } else {
-                            StartGame.getInterf().addMessageToConsole("Great ! You have all piece of ship, so I can build it");
-                            //StartGame.getInterf().dispose();
                             new VideoPlayer("fin.mp4", 20000, "DogStellar - The end");
                         }
                     }
@@ -191,7 +189,7 @@ public final class ElementView extends JButton {
                         wind.adjustWindow();
 
                         Popup newPopup = new Popup("Great ! you have find " + E.getReward().getInformation().getName());
-                        wind.getInterfac().addMessageToConsole("The componant of " + E.getReward().getInformation().getName() + " is add to your inventory ! Check it");
+                        wind.getInterfac().addMessageToConsole("The componant " + E.getReward().getInformation().getName() + " is add to your inventory ! Check it");
                     }
                 });
 
