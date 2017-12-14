@@ -15,15 +15,15 @@ import fr.dogstellar.core.*;
  */
 public final class InventoryPanel extends JFrame {
 
-    private final int gridCaseHeight1 = ((150) / (2));                                        // The heght of a equiped item grid
-    private final int gridCaseWidth1 = ((87) / (2));                                         // The heght of a equiped item grid
-    private final int gridCaseHeight = ((150) / (2));                                        // The heght of inventory item grid
-    private final int gridCaseWidth = ((87) / (2));                                         // The heght of inventory item grid
+    private final int gridCaseHeight1 = ((150) / (2));                                        // The height of a equiped item grid
+    private final int gridCaseWidth1 = ((87) / (2));                                         // The height of a equiped item grid
+    private final int gridCaseHeight = ((150) / (2));                                        // The height of inventory item grid
+    private final int gridCaseWidth = ((87) / (2));                                         // The height of inventory item grid
     private final Player thePlayer;                                             // The owner of the inventory
     private JPanel inventory;                                                   // Jpanel containing all unequiped objects
     private JPanel equipedInventory;                                            // Jpanel containing the equiped objects 
     private final JLabel lbl1 = new JLabel("Equiped items");                                  // The name of the top part of the inventory
-    private final JLabel lbl2 = new JLabel("Your Inventory");                                 // The name of the botom part of the inventory
+    private final JLabel lbl2 = new JLabel("Your Inventory");                                 // The name of the bottom part of the inventory
 
     /**
      * The constructor of the class, take a player in parameter to set his

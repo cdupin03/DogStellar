@@ -49,11 +49,11 @@ public class Interface {
     private final Perso double2 = new Perso("bouble", 7, 4, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 3),"monster/teen");
     private final Perso bigMonster = new Perso("big", 9, 5, new QuestElement("PieceShip", "that other same piece"), new Weapon("Wapolo", "sgfhrhsgsd", 4),"monster/adult");
 
-    private final Perso sbire1 = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 3),"monster/teen");
-    private final Perso sbire2 = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 3),"monster/teen");
-    private final Perso sbire3 = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "sgfhrhsgsd", 3),"monster/teen");
-    private final Perso trappedmonster = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Armor("Master chief's superSuit", "You will forgot what is pain, WARNING : mandatory for the boos", 24),"monster/teen");
-    private final Perso trappedmonster2 = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Armor("Master chief's superSuit", "You will forgot what is pain, WARNING : mandatory for the boos", 24),"monster/teen");
+    private final Perso sbire1 = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "Potion Powerfull", 3),"monster/teen");
+    private final Perso sbire2 = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "Potion Powerfull", 3),"monster/teen");
+    private final Perso sbire3 = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Potion("Potion Powerfull", "Potion Powerfull", 3),"monster/teen");
+    private final Perso trappedmonster = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Armor("Master chief's superSuit", "You will forgot what is pain.", 24),"monster/teen");
+    private final Perso trappedmonster2 = new Perso("sbire1", 10, 2, new QuestElement("PieceShip", "that other same piece"), new Armor("Master chief's superSuit", "You will forgot what is pain.", 24),"monster/teen");
    
     
     private Perso finalboss = new Perso("Fatalis", 10, 10, new QuestElement("PieceShip", "that other same piece"),new Potion("IceTea", "Good job! ", 10),"monster/boss");
@@ -286,14 +286,21 @@ public class Interface {
         Area2Planet3.addElement(new Element(" Friend : I will give you my armor but before answer to my enigma : I can be white, yellow, red, blue even black. Who am I?","star", 1, armor2, "friend.png", "friend.png", 3, 3));
         Area2Planet3.addPerso(neighborAlive);
 
-//Planet 4 with 6 areas and different elements(perso,element) on them        
+//Planet 4 with 6 areas and different elements(perso,element) on them   
+
+//PNJ with information on the planet
         Area1Planet4.addElement(new Element("knight", "Welcome to Vanatis, This is the toughest planet of this solar system. If you wonder if you are ready for this, you don't!",3,"help.png", "helpRoll.png", 1,1));
         Area1Planet4.addElement(new Element("knight", "There is a lot of trap in this planet. Remember, trap cannot move..., don't fall for it",3,"help.png", "helpRoll.png", 3, 1));
         Area1Planet4.addElement(new Element("knight", "Welcome to Vanatis, I saw the boss and small monsters with spaceship part. Good luck to pick them up.",3,"friend.png", "friend.png", 3, 3));
-        
+
+//A stealth armor in the area 2. It is displayed only when you pass the mouse on it. It is in the top right corner of the map.
+//It give a second chance to the player to kill the boss if he didn't have a armor from the monster.
         Armor armor4 = new Armor("???", "That is a stealth armor, a great one", 10);
         Area2Planet4.addElement(new Element("???", "???",4,armor4,"", "friend.png", 3, 1));
-        
+
+//A map with 8 trap and one  chest with the greatest armor of the game. To find the chest you can either try it all or try to find clue in the maps
+//The 2 old man enigma give the location of the chest. 23 chromosome for humain. 2 = X => column 2. 3 = Y => line 3.
+
         Area3Planet4.addElement(new Element("Not this one", "universe",2,"friend.png", "friend.png", 1, 1));
         Area3Planet4.addElement(new Element("Not this one", "universe",2,"friend.png", "friend.png", 1, 2));
         Area3Planet4.addElement(new Element("Not this one", "universe",2,"friend.png", "friend.png", 1, 3));
@@ -304,7 +311,12 @@ public class Interface {
         Area3Planet4.addElement(new Element("Not this one", "universe",2,"friend.png", "friend.png", 3, 1));
         Area3Planet4.addElement(new Element("Not this one", "universe",2,"friend.png", "friend.png", 2, 3));
         Area3Planet4.addElement(new Element("Not this one", "universe",2,"friend.png", "friend.png", 3, 3));
-        
+
+
+//A maps with a lots of differents traps. The monster hide in this maps need to be killed. 
+//Trap don't move when we go out and in the maps. The monster move when we do that. We can them spot the monster and kill them.
+//The monster give the best armor of the game for the boss.
+
         Area4Planet4.addElement(new Element("Not this one", "universe",2,"friend.png", "friend.png", 1, 3));
         Area4Planet4.addElement(new Element("Not this one", "universe",2,"monster/larva.png", "monster/larvaRoll.png", 2, 1));
         Area4Planet4.addElement(new Element("Not this one", "universe",2,"help.png", "helpRoll.png", 3, 1));
@@ -314,14 +326,17 @@ public class Interface {
         Area4Planet4.addElement(new Element("Not this one", "universe",2,"monster/adult.png", "monster/adultRoll.png", 3, 3));
         Area4Planet4.addPerso(trappedmonster);
         Area4Planet4.addPerso(trappedmonster2);
-        
+
+//The map with the boss        
         Area5Planet4.addPerso(sbire1);
         Area5Planet4.addPerso(finalboss);
+//The boss have 10 extralife to make it even more challenging.
         finalboss.setLifePoint(20);
         Area5Planet4.addElement(new Element("Space knight", "Take that, you will need this to defeat this monster, I advice fight the monster, unless you have Master chief's weapon",4,new Potion("MEGA Potion Powerfull", "WoW", 10),"friend.png", "friend.png", 1, 3));
-        
-        Area6Planet4.addElement(new Element("Old man _ enigma", "Savez vous combien il y a de chromosome chez l'etre humain ?",3,"help.png", "helpRoll.png", 1, 3));
-        Area6Planet4.addElement(new Element("Old man _ enigma2", "XY => X ligne, Y colone.",3,"help.png", "helpRoll.png", 2, 3));
+
+//The old man that give the location of the chest area3.       
+        Area6Planet4.addElement(new Element("Old man _ enigma", "What is the number of chromosome possess by a human? ?",3,"help.png", "helpRoll.png", 1, 3));
+        Area6Planet4.addElement(new Element("Old man _ enigma2", "XY => X line, Y column.",3,"help.png", "helpRoll.png", 2, 3));
 
         theWindow = new Window(planets, this);
 

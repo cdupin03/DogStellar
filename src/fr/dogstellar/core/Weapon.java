@@ -2,6 +2,7 @@ package fr.dogstellar.core;
 
 /**
  * A weapon is a piece of stuff. It gives attack points to the player.
+ * If the damage is inferior to 1 or superior to 15, initialize it to 1.
  *
  * @author (G3)
  * @version (01)
