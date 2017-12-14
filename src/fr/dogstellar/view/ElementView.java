@@ -242,7 +242,7 @@ public final class ElementView extends JButton {
     /**
      * Disable an element
      */
-    @Override
+    @Deprecated
     public void disable() {
         this.setEnabled(false);
     }
