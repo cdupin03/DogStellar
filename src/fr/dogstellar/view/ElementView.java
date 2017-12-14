@@ -21,7 +21,7 @@ import javax.swing.JButton;
  */
 public final class ElementView extends JButton {
 
-    private final String PicturePath;                                                 // The path of the picture.
+    private final String PicturePath;                                           // The path of the picture.
     private Element E;                                                          // The element which needs a picture          
 
     /**
@@ -30,8 +30,11 @@ public final class ElementView extends JButton {
      * actionlistener to react when the player click to OK in the interface,
      * then check the response It give the reward if the answer is finded, it
      * dont give it if not The actionlistener is then desactivate The trap have
-     * a random picture and random damage in a 0-10 range The PNJ create a pop
-     * up The chest give the reward
+     * a random picture and random damage in a 0-3 range The PNJ create a pop up
+     * The chest give the reward The answer of a enigma need to have more then 3
+     * letters. The PNJ used to check if all spaceship part check the number of
+     * element quest the player have collected. If the number is correct it
+     * launch the end video.
      *
      * @param picturePath the path of the picture
      * @param newE element which needs a picture
@@ -43,10 +46,10 @@ public final class ElementView extends JButton {
         E = newE;                                                               //Define the element
 
         if (E.getType() == 1) //If the element is a enigma 
-        {
+        {                     //Don't work with word < 3 letters
             if (E.getDone() != true) {
 
-                afficher(E.getImage1(),E.getImage2(), 100, 100);
+                afficher(E.getImage1(), E.getImage2(), 100, 100);
 
                 this.addMouseListener(new MouseAdapter() {
                     @Override
@@ -54,7 +57,7 @@ public final class ElementView extends JButton {
                         Popup newPopup = new Popup("Enigma :" + E.getInformation().getName());
                         wind.getInterfac().addMessageToConsole(E.getInformation().getName());
 
-                        JButton ok = wind.getInterfac().okButton();
+                        JButton ok = wind.getInterfac().okButton();  //Link a action listener in the ok button, to know when to check if the answer is correct.
 
                         ActionListener answerEnigma = new ActionListener() {
                             @Override
@@ -90,8 +93,7 @@ public final class ElementView extends JButton {
                 });
             } else {
 
-
-                afficher(E.getImage2(),E.getImage2(), 100, 100);
+                afficher(E.getImage2(), E.getImage2(), 100, 100);
 
             }
 
@@ -115,9 +117,7 @@ public final class ElementView extends JButton {
                 randompic2 = "Coffre_selection.jpg";
             }
 
-
-            afficher(E.getImage1(),E.getImage2(), 100, 100);
-
+            afficher(E.getImage1(), E.getImage2(), 100, 100);
 
             this.addMouseListener(new MouseAdapter() {
                 @Override
@@ -139,8 +139,7 @@ public final class ElementView extends JButton {
         {
 
             if (E.getDone() == false) {
-                afficher(E.getImage1(),E.getImage2(),100, 100);
-
+                afficher(E.getImage1(), E.getImage2(), 100, 100);
 
                 this.addMouseListener(new MouseAdapter() {
                     @Override
@@ -150,9 +149,9 @@ public final class ElementView extends JButton {
                     }
                 });
             } else {
+                //If the pnj is the pnj that check if all the element quest are collected
 
-                afficher(E.getImage1(),E.getImage2(), 100, 100);
-
+                afficher(E.getImage1(), E.getImage2(), 100, 100);
 
                 //
                 this.addActionListener(new ActionListener() {
@@ -165,11 +164,9 @@ public final class ElementView extends JButton {
                                 compt += 1;
                             }
                         }
-                        if (compt < 10) {
-                            StartGame.getInterf().addMessageToConsole("You have not enouth piece of ship to build your new ship, you need 10 spaceship part. You have :"+ compt);
+                        if (compt < 9) {
+                            StartGame.getInterf().addMessageToConsole("You have not enouth piece of ship to build your new ship, you need 7 spaceship part. You have :" + compt);
                         } else {
-                            StartGame.getInterf().addMessageToConsole("Great ! You have all piece of ship, so I can build it");
-                            //StartGame.getInterf().dispose();
                             new VideoPlayer("fin.mp4", 20000, "DogStellar - The end");
                         }
                     }
@@ -180,8 +177,7 @@ public final class ElementView extends JButton {
         {
             if (!E.getDone()) {
 
-                afficher(E.getImage1(),E.getImage2(), 100,100);
-
+                afficher(E.getImage1(), E.getImage2(), 100, 100);
 
                 this.addMouseListener(new MouseAdapter() {
                     @Override
@@ -191,7 +187,7 @@ public final class ElementView extends JButton {
                         wind.adjustWindow();
 
                         Popup newPopup = new Popup("Great ! you have find " + E.getReward().getInformation().getName());
-                        wind.getInterfac().addMessageToConsole("The componant of " + E.getReward().getInformation().getName() + " is add to your inventory ! Check it");
+                        wind.getInterfac().addMessageToConsole("The componant " + E.getReward().getInformation().getName() + " is add to your inventory ! Check it");
                     }
                 });
 
@@ -227,10 +223,10 @@ public final class ElementView extends JButton {
      * @param longueur is the eight of the image
      */
     public void afficher(String image, String imageclick, int largeur, int longueur) {
-        ImageIcon imageIcon = new ImageIcon(PicturePath + image);
+        ImageIcon imageIcon = new ImageIcon(this.getClass().getResource(PicturePath + image));
         imageIcon = ConvertImg(largeur, longueur, imageIcon);
 
-        ImageIcon imageIcon2 = new ImageIcon(PicturePath + imageclick);
+        ImageIcon imageIcon2 = new ImageIcon(this.getClass().getResource(PicturePath + imageclick));
         imageIcon2 = ConvertImg(largeur, longueur, imageIcon2);
 
         this.setIcon(imageIcon);
@@ -242,7 +238,7 @@ public final class ElementView extends JButton {
     /**
      * Disable an element
      */
-    @Override
+    @Deprecated
     public void disable() {
         this.setEnabled(false);
     }

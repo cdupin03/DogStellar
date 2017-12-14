@@ -4,7 +4,6 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,18 +16,17 @@ import javax.swing.*;
  * The general window allows to display the map and the element on the map
  *
  * @author Group 3
- * @version V01
+ * @version V02
  */
 public abstract class GeneralWindow extends JPanel {
 
-    private final HashMap<Integer, Component> components;                             //The coordinates (xxyy) linked to a component (arrow for example)
+    private final HashMap<Integer, Component> components;                       //The coordinates (xxyy) linked to a component (arrow for example)
     private int height;                                                         //The number of column
     private int length;                                                         //The number of lines	private final String picturePath;
     private String nameOfFirstBackgroundPicture;                                //The name of the first background
     private final String picturePath;                                           //The path of the pictures
     private Image back;                                                         //The back Image
     private final Interface interfac;                                           //The interface that display this window
-    //protected String theCurrentZone;
     
     /**
      * The constructor of the GeneralWindow Class
@@ -38,7 +36,7 @@ public abstract class GeneralWindow extends JPanel {
     public GeneralWindow(Interface inter) {
         super();                                                                //Call the JPanel constructor
         interfac = inter;                                                       //Initialize the Interfac attribut with the inter parameter
-        picturePath = System.getProperty("user.dir") + "/pictures/";            //Initialize the path pictures
+        picturePath = "/pictures/";                                             //Initialize the path pictures
         nameOfFirstBackgroundPicture = "";                                      //Initialize the name of the background
         components = new HashMap<>();                                           //Instanciate the HashMap which displays the elements 
         setHeight(5);                                                           //The Height of the HashMap 
@@ -188,7 +186,7 @@ public abstract class GeneralWindow extends JPanel {
     }
 
     /**
-     * getter of FirstBackgroundPicture
+     * Getter of FirstBackgroundPicture
      *
      * @return nameOfFirstBackgroundPicture is the path of the background
      * picture of the panel
@@ -284,7 +282,7 @@ public abstract class GeneralWindow extends JPanel {
      */
     protected void catchPicture() {
         try {
-            back = ImageIO.read(new File(getPicturePath() + getNameOfFirstBackgroundPicture()));
+            back = ImageIO.read(this.getClass().getResource(getPicturePath() + getNameOfFirstBackgroundPicture()));
             //draw
         } catch (IOException e) {
             e.printStackTrace();
