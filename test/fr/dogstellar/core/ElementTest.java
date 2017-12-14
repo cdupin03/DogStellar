@@ -8,8 +8,8 @@ import org.junit.Test;
 /**
  * The test class ElementTest.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (G3)
+ * @version (1)
  */
 public class ElementTest {
 

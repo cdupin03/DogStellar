@@ -27,7 +27,7 @@ public class Perso {
     private String image1;
     
     /**
-     * Constructor of the Perso class The user can give a name to the player. If
+     * Constructor of the Perso class for the player The user can give a name to the player. If
      * the name is empty, to not have problem there is a default value (Perso1)
      * If the numbers of lifePoint or attackPoint are under 0 and superior to
      * 10, the numbers are automatically initialized to 10.
@@ -54,7 +54,19 @@ public class Perso {
         }
     }
 
-    //The monster constructor
+    /**
+     * Constructor of the Perso class for the monster The user can give a name to the player. If
+     * the name is empty, to not have problem there is a default value (Perso1)
+     * If the numbers of lifePoint or attackPoint are under 0 and superior to
+     * 10, the numbers are automatically initialized to 10.
+     * 
+     * @param nameP is the name(String) of the Perso
+     * @param lifeP is the number of lifePoint
+     * @param attackP is the number of attackPoint
+     * @param aQuestElement the element quest given by the monster at its death
+     * @param aStuffElement the stuff element given by the monster at its death
+     * @param newImage1 the name of the picture for the monster.
+     */
     public Perso(String nameP, int lifeP, int attackP, QuestElement aQuestElement, Stuff aStuffElement, String newImage1) {
         if (nameP.isEmpty()) {
             namePerso = "Perso1";
@@ -252,7 +264,11 @@ public class Perso {
     public void setIsDead() {
         isDead = true;
     }
-
+    
+    /**
+     * get the name of the picture of the monster
+     * @return the name of the picture of the monster
+     */
     public String getImage1() {
         return image1;
     }

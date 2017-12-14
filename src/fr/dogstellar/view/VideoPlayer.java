@@ -90,6 +90,9 @@ public class VideoPlayer implements ActionListener {
         });
     }
 
+    /**
+     * The video player of the game.
+     */
     private void showVideo() {
 
         if (jfxPanel == null) //Instantiate the JFxPanel only if it not exists

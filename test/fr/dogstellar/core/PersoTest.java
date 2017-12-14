@@ -119,22 +119,6 @@ public class PersoTest {
         assertEquals(true, player1.isInList(potion1));
     }
 
-//    /**
-//     * We test if the player1 have been correctly added to the player1. At the
-//     * end of test, Potion1 is in the inventory
-//     */
-//    @Test
-//    public void addPlayerStuff() {
-//        Player player1 = new Player("Player1", 5, 5);
-//        Potion potion1 = new Potion("Potion1", "Donne 2 points", 1);
-//        player1.addStuff(potion1, 2);
-//        assertEquals(player1, potion1.getPlayer());
-//    }
-
-    /**
-     * We test if we cannot add a bad stuff. So we expected an error if we add
-     * Potion2 among Potion1. Potion2 must not be to the inventory.
-     */
     @Test
     public void badAddStuff() {
         Player player1 = new Player("Player1", 5, 5);
@@ -144,36 +128,6 @@ public class PersoTest {
         assertEquals(false, player1.isInList(potion2));
     }
 
-//    /**
-//     * We test if when a stuff is deleted, the stuff does not contain the player
-//     * anymore. The potion need to contain a "null" instead of player.
-//     */
-//    @Test
-//    public void removePlayerFromPotion() {
-//        Player player1 = new Player("Player1", 5, 5);
-//        Potion potion1 = new Potion("Potion1", "Donne 2 points", 1);
-//        player1.addStuff(potion1, 1);
-//        player1.deleteStuff(potion1);
-//        assertEquals(null, potion1.getPlayer());
-//    }
-
-//    /**
-//     * We test if when two stuffs are added and just one deleted The stuff still
-//     * has the player as owner.
-//     */
-//    @Test
-//    public void twoStuffsOnePlayer() {
-//        Player player1 = new Player("Player1", 5, 5);
-//        Potion potion1 = new Potion("Potion1", "Donne 2 points", 1);
-//        player1.addStuff(potion1, 2);
-//        player1.deleteStuff(potion1);
-//        assertEquals(player1, potion1.getPlayer());
-//    }
-
-    /**
-     * We test if we delete correctly the stuff. So potion1 that was added is
-     * not in the list after the delete.
-     */
     @Test
     public void goodDeleteStuff() {
         Player player1 = new Player("Player1", 5, 5);

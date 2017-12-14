@@ -22,6 +22,7 @@ import javax.swing.ImageIcon;
 /**
  * The Class Interface is the main Interface of the game, it allows to interract
  * with a specific area, with the inventory, and also with the console
+ * It contains the window, the consol, the bars ...
  *
  * @author G3
  * @version V05
@@ -229,7 +230,7 @@ public class Interface {
         Area3Planet1.addElement(new Element("PNJ", "Thanks ! my neighbor has gone away now", 3,"friend.png", "friend.png", 1, 3));
 //Enigma (universe)
         Weapon weapon1 = new Weapon("Walpurga", "Weak laser ", 1);
-        Area3Planet1.addElement(new Element("Everything is in nothing... What is it?", "universe",1, weapon1, "help.png", "helpRoll.png", 3, 2));      
+        Area3Planet1.addElement(new Element("Everything is in nothing... What is it? (in 8 characters)", "universe",1, weapon1, "help.png", "helpRoll.png", 3, 2));      
         
         Area1Planet1.addAreaPlanet(Area2Planet1, "south");
         Area2Planet1.addAreaPlanet(Area3Planet1, "east");
@@ -283,7 +284,7 @@ public class Interface {
         AreaPlanet Area3Planet3 = new AreaPlanet("Area3", "hum ...", "map/map5.png");
 //his neighbor is alive but your friend propose to you an enigma to have a his weapon (star)
         Armor armor2  = new Armor("Astraea", "keep it for fight the big monster",4);
-        Area3Planet3.addElement(new Element(" I will give you my armor but before answer to my enigma : I can be white, yellow, red, blue even black. Who am I?","star", 1, armor2, "friend.png", "friend.png", 3, 3));
+        Area3Planet3.addElement(new Element(" I will give you my armor but before answer to my enigma : I can be white, yellow, red, blue even black. Who am I?( in 4 characters)","star", 1, armor2, "friend.png", "friend.png", 3, 3));
         Area3Planet3.addPerso(neighborAlive);
 
         Area1Planet3.addAreaPlanet(Area2Planet3, "north");

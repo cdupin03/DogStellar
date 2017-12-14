@@ -16,20 +16,23 @@ import javax.swing.*;
 public class DisplayInfo extends JPanel {
 
 	private JLabel namePlayer, nameBarLife, nameBarAttack, nameBarArmor, nPlanet, nArea, nameWeapon, nameArmor;
-	private JProgressBar progressLife;
-        private JLabel armor ;
-        private JLabel damage ;
+	private JProgressBar progressLife;//the bar of life
+        private JLabel armor ;//the armor point to display
+        private JLabel damage ;//the damage point to display
         
 	private JPanel barLife = new JPanel(); // Panel for the information of the player
 	private JPanel barAttack = new JPanel(); // Panel for the information of the player
-	private JPanel weaponLife = new JPanel();
-	private JPanel armorLife = new JPanel();
+	private JPanel weaponLife = new JPanel(); //the life of the weapon
+	private JPanel armorLife = new JPanel(); //the armor life
 	private JPanel bar = new JPanel(); // Panel for the information of the player
 	private JPanel infoArea = new JPanel(); // Panel for the information of the Area
         private JPanel namearmorattack = new JPanel(); 
         private JPanel armorattack = new JPanel();
         
-	public DisplayInfo() {
+	/**
+         * Display the bars in the botton of the interface.
+         */
+        public DisplayInfo() {
                 final int  maxlifepoint =  StartGame.getLifePoint()*10;    
                 
                 
@@ -107,8 +110,11 @@ public class DisplayInfo extends JPanel {
 		this.setLayout(new BorderLayout());
 		this.add(bar, BorderLayout.CENTER);
 	}
-
-	public DisplayInfo(ArrayList<Planet> planets, AreaPlanet area) {/* HashMap<String, AreaPlanet> */
+        
+        /**
+         * Display the bars in the botton of the interface.
+         */
+	public DisplayInfo(ArrayList<Planet> planets, AreaPlanet area) {
 		this.setVisible(true);
 		this.setLayout(new BorderLayout());
 		this.setOpaque(isOpaque());
@@ -125,21 +131,7 @@ public class DisplayInfo extends JPanel {
 			nPlanet = new JLabel("You are on the Planet : " + planets.get(0).getAreas().getInformation().getName());
 
 		}
-
-		/*
-		 * System.out.println("Boucle for:"); for (Map.Entry<String,AreaPlanet> map :
-		 * area.entrySet()) { System.out.println("cle: "+map.getKey() + " | valeur: " +
-		 * map.getValue()); nArea = new JLabel("and on the Area : "+ map.getValue());
-		 * 
-		 * 
-		 * 
-		 * }
-		 */
-		// nPlanet = new JLabel("You are on the Planet : " +
-		// planets.getInformation().getName());
 		nArea = new JLabel("and on the Area : " + area.getNameArea());
-		// theDisplayPanel.setLayout(null);
-		// nameP.setBounds(600, 100, 50, 50);
 
 		namePlanet.setLayout(new BoxLayout(namePlanet, BoxLayout.LINE_AXIS));
 		namePlanet.add(nPlanet);
