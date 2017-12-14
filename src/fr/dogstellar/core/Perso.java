@@ -253,6 +253,10 @@ public class Perso {
         isDead = true;
     }
 
+    /**
+     * Allow persoview to have the image link to the monster
+     * @return the image
+     */
     public String getImage1() {
         return image1;
     }
