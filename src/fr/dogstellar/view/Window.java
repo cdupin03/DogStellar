@@ -144,12 +144,10 @@ public final class Window extends GeneralWindow {
         
         area.getPerso().stream().forEach((_item) -> {
             if (_item.getIsDead() == false) {
-                System.out.println("Monster : " + _item.getNamePerso() + _item.getIsDead());
                 addRandomlyComponent(new PersoView(getPicturePath(), _item));
             }
         });
 
-        
         drawGrid();
     }
 

@@ -14,7 +14,6 @@ import fr.dogstellar.game.Fight;
  */
 public class PersoView extends PictureButton {
 
-	
     /**
      * The constructor of this class
      *

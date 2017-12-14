@@ -205,7 +205,7 @@ public class Player extends Perso {
     
     /**
      * this method allows us to set the armor equiped by the player
-     * @param armor 
+     * @param armor is the armor to set
      */
         public void setArmor(Armor armor) {
             this.armor = armor;

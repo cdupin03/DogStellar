@@ -8,8 +8,13 @@ import org.junit.Test;
 /**
  * The test class ElementTest.
  *
- * @author (your name)
- * @version (a version number or a date)
+<<<<<<< HEAD
+ * @author (G3)
+ * @version (1)
+=======
+ * @author Group 3
+ * @version V02
+>>>>>>> ea25e0a84d28c041198cb609fe6dba0bf15dcd1d
  */
 public class ElementTest {
 
@@ -42,8 +47,8 @@ public class ElementTest {
 
     /**
      * Method LostLifePoint Test if the perso really last lifePoint. player has
-     * 10 lifePoint The element make the player lost 3 lifePoints Check if the
-     * player really has 7 lifePoints after.
+     * 5 lifePoint The element make the player lost 3 lifePoints Check if the
+     * player really has 2 lifePoints after.
      */
     @Test
     public void LostLifePoint() {

@@ -2,7 +2,7 @@ package fr.dogstellar.view;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
+import java.net.URISyntaxException;
 import javax.swing.*;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
@@ -29,10 +29,9 @@ public class VideoPlayer implements ActionListener {
     private MediaView mediaView;
     private BorderPane borderPane;
     private Scene scene;
-    private File file;
     private String nameVideo;
     private String nameJFrame;
-    private String picturePath = System.getProperty("user.dir") + "/videos/";
+    private String picturePath = "/videos/";
     private JButton skip;
     private Timer timer;
 
@@ -49,11 +48,14 @@ public class VideoPlayer implements ActionListener {
         nameJFrame = title;                                                     //Choose the name of the JFrame
         timer = new Timer(newTime + 1000, this);                                //The timer is set to the time of video plus one second, allows to close the JFrame
         timer.start();                                                          //The start of the counter + 1 seconde to aoid an early end
-        file = new File(picturePath + nameVideo);                               //Instanciate the file with the path and the name of the file
+        
         Platform.setImplicitExit(false);                                        //The platform that allows a graphical video view cannot be closed, so we can play another video after 
         initGUI();                                                              //Call the initGUI that buit the JFrame
     }
 
+    /**
+     * Initialise the interface and its actions
+     */
     private void initGUI() {
         window = new JFrame();                                                  //The main Frame 
         window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);            //Set the action of the window when we click on the exit button
@@ -61,23 +63,21 @@ public class VideoPlayer implements ActionListener {
 
         showVideo();                                                            //Call the showVideo function that create the media display and add it in the JFrame
 
-        //
         window.setPreferredSize(new Dimension(1200, 700));                      //The size of the panel jPanel1 that contains the media player
         window.setTitle(nameJFrame);                                            //Set the title of the Jframe
         window.pack();                                                          //Sizes the frame so that all its contents are at or above their preferred sizes
         window.setLocationRelativeTo(null);                                     //The display on the JFrame is on center of the screen
         window.setVisible(true);                                                //To display the frame
 
-        //The action of the skip button
+        //The action of the skip button = destroy all element but keep the Platform intact for a future use
         skip.addActionListener((ActionEvent e) -> {
-            timer.stop();                                                       //Stop the timer
-            player.stop();                                                      //Stop the video
+            timer.stop();
+            player.stop();
             player = null;
             mediaView = null;
             scene = null;
-            jfxPanel = null;                                                    //Destroy the JFxPanel
+            jfxPanel = null;
             borderPane = null;
-            file = null;
             window.dispose();                                                   //Close the frame when we click on the skip button
         });
 
@@ -90,17 +90,26 @@ public class VideoPlayer implements ActionListener {
         });
     }
 
+    /**
+     * The video player of the game.
+     * This method allows the creation of the medai player with the video
+     */
     private void showVideo() {
 
-        if (jfxPanel == null) //Instantiate the JFxPanel only if it not exists
+        if (jfxPanel == null)                                                   //Instantiate the JFxPanel only if it not exists
         {
             jfxPanel = new JFXPanel();
         }
 
         Platform.runLater(() -> {                                               //We order to the application that manage the JFxPanel to execute
-            media = new Media(file.toURI().toString());                         //Instanciation of the media with the file
+            try{
+                media = new Media (this.getClass().getResource(picturePath + nameVideo).toURI().toString()); //Try to crreate the media element 
+            }
+            catch (URISyntaxException e) {
+                media = new Media(this.getClass().getResource(picturePath + nameVideo).getPath());
+        }
             player = new MediaPlayer(media);                                    //Instanciation of the player with the media
-            if (mediaView == null) //Create the display of the player only if it not exists
+            if (mediaView == null)                                              //Create the display of the player only if it not exists
             {
                 mediaView = new MediaView(player);
             }

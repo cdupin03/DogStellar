@@ -13,8 +13,8 @@ import fr.dogstellar.view.StartGame;
  * he decide to fight, he begin the fight. While one of the people (monster or
  * player) is not dead the fight will continued At the end of the fight the
  * player can win or lost the fight. If the player win the fight he win a
- * partOfShip and maybe a otherStuff (with 1 chance /2) If the player lost the
- * game, the lifePoint of the monster is reinitialize.
+ * partOfShip and maybe a otherStuff. If the player lost the game, the lifePoint
+ * of the monster is reinitialize.
  *
  * @author GP3
  * @version 21/11/2017
@@ -22,14 +22,21 @@ import fr.dogstellar.view.StartGame;
  */
 public final class Fight {
 
-    private static Perso monster;
-    private static Player player;
-    private boolean end;
-    private static final Perso monsterDead = new Perso("Null", 0, 0);
+    private static Perso monster; // the monster
+    private static Player player; //the player
+    private boolean end; //true if the end is reached
 
     /**
-     * Is the constructor of Fight
+<<<<<<< HEAD
+     * Is the constructor of Fight. It contains all the step of a fight.
+     * It manages the attacks of the player and the monster
+     * If the player loose, he recovers its life point and go back to the ship
+     * If the monster loose, it signaled as dead and give its objects (1/2 chance) to the player.
      * 
+=======
+     * Is the constructor of Fight
+     *
+>>>>>>> ea25e0a84d28c041198cb609fe6dba0bf15dcd1d
      * @param myMonster is the monster to fight
      * @param myPlayer is the player that fight
      */
@@ -53,7 +60,6 @@ public final class Fight {
                     StartGame.getInterf().addMessageToConsole("You win also a stuff ! Look your inventory");
                 }
                 monster.setIsDead();
-                //System.out.println("the monster is dead" + monster.getIsDead());
                 end = true;
                 break;
             }
@@ -62,9 +68,9 @@ public final class Fight {
             StartGame.getInterf().addMessageToConsole("     The monster has " + monster.getLifePoint() + " life point");
             StartGame.getInterf().addMessageToConsole("MONSTER ATTACK !");
             if (player.hasArmor()) {
-            	StartGame.getInterf().addMessageToConsole("     Your armor has now " + player.getArmorEquip().getArmorPoint() + " life point");
+                StartGame.getInterf().addMessageToConsole("     Your armor has now " + player.getArmorEquip().getArmorPoint() + " life point");
             }
-            
+
             StartGame.getInterf().addMessageToConsole("     Now you have " + player.getLifePoint() + " life point");
             StartGame.getInterf().getDisplay().refreshDisplay();
             if (player.getLifePoint() == 0) {
@@ -73,7 +79,6 @@ public final class Fight {
                 Popup retourVaisseau = new Popup("You are dead, you are going back to the ship");
                 StartGame.getInterf().getTheWindow().returnToFirstMap();
                 StartGame.getPlayer().setLifePoint(StartGame.getLifePoint());
-                 
 
                 // !!!!!!!!!!!!!! Call method return to ship !!!!!!!!!!!!!!!!!!
                 end = true;
@@ -84,16 +89,22 @@ public final class Fight {
         }
         endFight();
     }
-
+    
+    /**
+     * get the end the of fight.
+     * @return the end (true if it is reached)
+     */
     public boolean getEnd() {
         return (end);
     }
-
+    
+    /**
+     * Allows to end the fight properly.
+     */
     public void endFight() {
         if (getEnd() == true) {
             GeneralWindow myNewWindow = StartGame.getInterf().getTheWindow();
             StartGame.getInterf().setWindow(myNewWindow);
-
         }
     }
 }
