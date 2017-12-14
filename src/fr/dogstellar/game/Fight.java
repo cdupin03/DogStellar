@@ -13,7 +13,7 @@ import fr.dogstellar.view.StartGame;
  * he decide to fight, he begin the fight. While one of the people (monster or
  * player) is not dead the fight will continued At the end of the fight the
  * player can win or lost the fight. If the player win the fight he win a
- * partOfShip and maybe a otherStuff (with 1 chance /2) If the player lost the
+ * partOfShip and maybe a otherStuff. If the player lost the
  * game, the lifePoint of the monster is reinitialize.
  *
  * @author GP3
@@ -53,7 +53,6 @@ public final class Fight {
                     StartGame.getInterf().addMessageToConsole("You win also a stuff ! Look your inventory");
                 }
                 monster.setIsDead();
-                //System.out.println("the monster is dead" + monster.getIsDead());
                 end = true;
                 break;
             }
