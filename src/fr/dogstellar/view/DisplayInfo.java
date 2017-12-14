@@ -29,6 +29,9 @@ public class DisplayInfo extends JPanel {
     private JPanel namearmorattack = new JPanel();
     private JPanel armorattack = new JPanel();
 
+    /**
+     * Display the bars in the botton of the interface.
+     */
     public DisplayInfo() {
         final int maxlifepoint = StartGame.getLifePoint() * 10;
 
@@ -90,6 +93,9 @@ public class DisplayInfo extends JPanel {
         this.add(bar, BorderLayout.CENTER);
     }
 
+    /**
+     * Display the bars in the botton of the interface.
+     */
     public DisplayInfo(ArrayList<Planet> planets, AreaPlanet area) {
         this.setVisible(true);
         this.setLayout(new BorderLayout());

@@ -91,6 +91,7 @@ public class VideoPlayer implements ActionListener {
     }
 
     /**
+     * The video player of the game.
      * This method allows the creation of the medai player with the video
      */
     private void showVideo() {

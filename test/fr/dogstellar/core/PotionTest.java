@@ -69,14 +69,4 @@ public class PotionTest {
         assertEquals(8, player.getLifePoint());
     }
 
-//    /**
-//     * Check if the player added is the player contained in the potion. Test the
-//     * stuff class.
-//     */
-//    @Test
-//    public void playerWellAdded() {
-//        Player player = new Player("Jean-Louis", 5, 5);
-//        player.addStuff(po, 1);
-//        assertEquals(player, po.getPlayer());
-//    }
 }

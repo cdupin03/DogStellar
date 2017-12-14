@@ -22,14 +22,21 @@ import fr.dogstellar.view.StartGame;
  */
 public final class Fight {
 
-    private static Perso monster;
-    private static Player player;
-    private boolean end;
-    private static final Perso monsterDead = new Perso("Null", 0, 0);
+    private static Perso monster; // the monster
+    private static Player player; //the player
+    private boolean end; //true if the end is reached
 
     /**
+<<<<<<< HEAD
+     * Is the constructor of Fight. It contains all the step of a fight.
+     * It manages the attacks of the player and the monster
+     * If the player loose, he recovers its life point and go back to the ship
+     * If the monster loose, it signaled as dead and give its objects (1/2 chance) to the player.
+     * 
+=======
      * Is the constructor of Fight
      *
+>>>>>>> ea25e0a84d28c041198cb609fe6dba0bf15dcd1d
      * @param myMonster is the monster to fight
      * @param myPlayer is the player that fight
      */
@@ -82,11 +89,18 @@ public final class Fight {
         }
         endFight();
     }
-
+    
+    /**
+     * get the end the of fight.
+     * @return the end (true if it is reached)
+     */
     public boolean getEnd() {
         return (end);
     }
-
+    
+    /**
+     * Allows to end the fight properly.
+     */
     public void endFight() {
         if (getEnd() == true) {
             GeneralWindow myNewWindow = StartGame.getInterf().getTheWindow();

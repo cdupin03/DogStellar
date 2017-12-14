@@ -38,7 +38,15 @@ public abstract class PictureButton extends JButton {
         this.setBorder(BorderFactory.createEmptyBorder());
         this.setContentAreaFilled(false);
     }
-
+    
+    
+    /**
+     * Convert the picture to the specified size
+     * @param largeur  the width
+     * @param hauteur the height
+     * @param img the image to resize
+     * @return the new image resized
+     */
      public ImageIcon ConvertImg(int largeur, int hauteur, ImageIcon img) {
         Image image = img.getImage();
         Image newimg = image.getScaledInstance(largeur, hauteur, java.awt.Image.SCALE_SMOOTH);

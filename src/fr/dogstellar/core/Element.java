@@ -18,7 +18,7 @@ public class Element {
     private final Stuff reward; //The reward you may win
     private String image1;
     private String image2;
-    
+
     /**
      * This method is the constructor. It initialize the value of the Element.
      * Give a name and a description to info attribute and their type, for
@@ -29,8 +29,10 @@ public class Element {
      * @param newType is the Type of the element
      * @param newImage1 is the normal image
      * @param newImage2 is the image when we pass on it with the mouse
-     * @param newX the x coordonate in the view must be between (0 and 7 (excluded))
-     * @param newY the y coordonate in the view must be between (0 and 7 (excluded))
+     * @param newX the x coordonate in the view must be between (0 and 7
+     * (excluded))
+     * @param newY the y coordonate in the view must be between (0 and 7
+     * (excluded))
      */
     public Element(String name, String description, int newType, String newImage1, String newImage2, int newX, int newY) {
         information = new Info(name, description, newX, newY);
@@ -51,9 +53,11 @@ public class Element {
      * @param newReward is the reward of the element
      * @param newImage1 is the normal image
      * @param newImage2 is the image when we pass on it with the mouse
-     * @param newX the x coordonate in the view must be between (0 and 7 (excluded))
-     * @param newY the y coordonate in the view must be between (0 and 7 (excluded))
-     * 
+     * @param newX the x coordonate in the view must be between (0 and 7
+     * (excluded))
+     * @param newY the y coordonate in the view must be between (0 and 7
+     * (excluded))
+     *
      */
     public Element(String name, String description, int newType, Stuff newReward, String newImage1, String newImage2, int newX, int newY) {
         information = new Info(name, description, newX, newY);
@@ -89,12 +93,15 @@ public class Element {
 
     }
 
+    /**
+     * Give the reward of the element to the player
+     *
+     * @param player
+     */
     public void open_chest(Player player) {
-    player.addStuff(reward, 1);
+        player.addStuff(reward, 1);
     }
-            
-    
-    
+
     /**
      * This method allows us to delete a lifePoint when the player meet a trap
      *
@@ -150,14 +157,23 @@ public class Element {
         this.done = Done;
     }
 
+    /**
+     * Give to the elementview the element image for the button
+     *
+     * @return the image
+     */
     public String getImage1() {
         return image1;
     }
 
+    /**
+     * Give to the elementview the element image for the button when the cursor
+     * is on it
+     *
+     * @return the image
+     */
     public String getImage2() {
         return image2;
     }
 
-    
-    
 }

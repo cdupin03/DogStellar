@@ -44,7 +44,8 @@ public class StartGame {
     private final JButton ok = new JButton();                                   //The button to validate an entry in the console
     
     /**
-     * The constructor of this class
+     * The constructor of this class, allow to display the 
+     * window to create and its perso and 
      */
     public StartGame() {
         picturePath = "/pictures/";
