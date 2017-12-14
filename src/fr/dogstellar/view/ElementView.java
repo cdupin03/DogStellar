@@ -21,7 +21,7 @@ import javax.swing.JButton;
  */
 public final class ElementView extends JButton {
 
-    private final String PicturePath;                                                 // The path of the picture.
+    private final String PicturePath;                                           // The path of the picture.
     private Element E;                                                          // The element which needs a picture          
 
     /**
@@ -39,7 +39,7 @@ public final class ElementView extends JButton {
      */
     public ElementView(String picturePath, Element newE, Window wind) {
         super();                                                                //call the constructor of the JButton
-        PicturePath = picturePath + "";                             			//Define the path of the picture
+        PicturePath = picturePath + "";                             		//Define the path of the picture
         E = newE;                                                               //Define the element
 
         if (E.getType() == 1) //If the element is a enigma 
@@ -165,8 +165,8 @@ public final class ElementView extends JButton {
                                 compt += 1;
                             }
                         }
-                        if (compt < 7) {
-                            StartGame.getInterf().addMessageToConsole("You have not enouth piece of ship to build your new ship");
+                        if (compt < 10) {
+                            StartGame.getInterf().addMessageToConsole("You have not enouth piece of ship to build your new ship, you need 10 spaceship part. You have :"+ compt);
                         } else {
                             StartGame.getInterf().addMessageToConsole("Great ! You have all piece of ship, so I can build it");
                             //StartGame.getInterf().dispose();
@@ -227,10 +227,10 @@ public final class ElementView extends JButton {
      * @param longueur is the eight of the image
      */
     public void afficher(String image, String imageclick, int largeur, int longueur) {
-        ImageIcon imageIcon = new ImageIcon(PicturePath + image);
+        ImageIcon imageIcon = new ImageIcon(this.getClass().getResource(PicturePath + image));
         imageIcon = ConvertImg(largeur, longueur, imageIcon);
 
-        ImageIcon imageIcon2 = new ImageIcon(PicturePath + imageclick);
+        ImageIcon imageIcon2 = new ImageIcon(this.getClass().getResource(PicturePath + imageclick));
         imageIcon2 = ConvertImg(largeur, longueur, imageIcon2);
 
         this.setIcon(imageIcon);
@@ -242,7 +242,7 @@ public final class ElementView extends JButton {
     /**
      * Disable an element
      */
-    @Override
+    @Deprecated
     public void disable() {
         this.setEnabled(false);
     }

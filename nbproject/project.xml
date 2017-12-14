@@ -5,6 +5,8 @@
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
             <name>DogStellar</name>
             <source-roots>
+                <root id="src.pictures.dir"/>
+                <root id="src.videos.dir"/>
                 <root id="src.dir"/>
             </source-roots>
             <test-roots>

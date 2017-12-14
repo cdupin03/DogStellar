@@ -19,45 +19,46 @@ public class StartGame {
 
     private JFrame myJFrame;
     private final JLabel title; 						//It is the title of the Game (DogStellar)
-    private final JLabel infoPLife; 					//display the info (life Point) of the player (different between 3 types of player)
-    private final JLabel infoPAttack;					//display the info (Attack Point) of the player (different between 3 types of player)
+    private final JLabel infoPLife;                                             //display the info (life Point) of the player (different between 3 types of player)
+    private final JLabel infoPAttack;                                           //display the info (Attack Point) of the player (different between 3 types of player)
     private final JTextPane description;					//Description of the game
-    private final JLabel chooseAName;					//name of the JTextField
-    private JTextField t;						//Is the area to right the name of the player
-    private JButton player1, player2, player3; 	//JButton for the 3 types of player
-    private JButton startGame;					//JButton for start the game
-    private final JPanel panelPlayer;					//JPanel contain the 3 types of player
-    private final JPanel infoP;						//JPanel that display the infoPLife and infoPAttack
-    private final JPanel infoPlayer;					//JPanel that display the 3 players + infoPLife and Attack
-    private final JPanel nameText;					//JPanel with chooseAName and the JtextFiels
-    private final JPanel menu;						//JPanel menu with title description and nameText
-    private final JPanel rightIcon;					//JPanel with menu, infoPlayer and button start game
+    private final JLabel chooseAName;                                           //name of the JTextField
+    private JTextField t;                                                       //Is the area to right the name of the player
+    private JButton player1, player2, player3;                                  //JButton for the 3 types of player
+    private JButton startGame;                                                  //JButton for start the game
+    private final JPanel panelPlayer;                                           //JPanel contain the 3 types of player
+    private final JPanel infoP;                                                 //JPanel that display the infoPLife and infoPAttack
+    private final JPanel infoPlayer;                                            //JPanel that display the 3 players + infoPLife and Attack
+    private final JPanel nameText;                                              //JPanel with chooseAName and the JtextFiels
+    private final JPanel menu;                                                  //JPanel menu with title description and nameText
+    private final JPanel rightIcon;                                             //JPanel with menu, infoPlayer and button start game
 
-    private String namePlayer = "";				//Initialize the name of the player to ""
-    private static Player player;				//It is the player
-    private String picturePath;					//To know where the picture are in the computer
-    private static int lP, aP, tmpaP;			// integer to the lifePoint, attackPoint, ?????????????????????????
+    private String namePlayer = "";                                             //Initialize the name of the player to ""
+    private static Player player;                                               //It is the player
+    private String picturePath;
+    private static int lP, aP, tmpaP;                                           // integer to the lifePoint, attackPoint, ?????????????????????????
     private static int tmplP;
-    private static Interface interf;			//Is the interface
-    private static ImageIcon imagePlayer;		//Is the image of the player that is select
+    private static Interface interf;                                            //Is the interface
+    private static ImageIcon imagePlayer;                                       //Is the image of the player that is select
 
-    private final JButton ok = new JButton();                   //The button to validate an entry in the console
+    private final JButton ok = new JButton();                                   //The button to validate an entry in the console
+    
     /**
      * The constructor of this class
      */
     public StartGame() {
-        picturePath = System.getProperty("user.dir") + "/pictures/";
+        picturePath = "/pictures/";
 
         //Instantiate my JFrame
         myJFrame = new JFrame();
 
         //action when clicked to button of a player
         //ranger have 2 life point and 8 attacked point
-        player1 = new JButton(new ImageIcon(picturePath + "Ranger.png"));
+        player1 = new JButton(new ImageIcon(this.getClass().getResource(picturePath + "Ranger.png")));
         player1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {
-                imagePlayer = new ImageIcon(picturePath + "Ranger.png");
+                imagePlayer = new ImageIcon(this.getClass().getResource(picturePath + "Ranger.png"));
                 lP = 2;
                 aP = 8;
                 t.setEnabled(true);
@@ -72,17 +73,16 @@ public class StartGame {
                 tmplP = 2;
                 tmpaP = 8;
                 majInfoP(tmplP, tmpaP);
-                System.out.println("entrer");
             }
 
         });
 
         //engineer have 5 life point and 5 attacked point
-        player2 = new JButton(new ImageIcon(picturePath + "Engineer.png"));
+        player2 = new JButton(new ImageIcon(this.getClass().getResource(picturePath +"Engineer.png")));
         player2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {
-                imagePlayer = new ImageIcon(picturePath + "Engineer.png");
+                imagePlayer = new ImageIcon(this.getClass().getResource(picturePath +"Engineer.png"));
                 lP = 5;
                 aP = 5;
                 t.setEnabled(true);
@@ -97,16 +97,15 @@ public class StartGame {
                 tmplP = 5;
                 tmpaP = 5;
                 majInfoP(tmplP, tmpaP);
-                System.out.println("entrer");
             }
         });
 
         //scientist have 8 life point and 2 attacked point
-        player3 = new JButton(new ImageIcon(picturePath + "Scientist.png"));
+        player3 = new JButton(new ImageIcon(this.getClass().getResource(picturePath + "Scientist.png")));
         player3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {
-                imagePlayer = new ImageIcon(picturePath + "Scientist.png");
+                imagePlayer = new ImageIcon(this.getClass().getResource(picturePath + "Scientist.png"));
                 lP = 8;
                 aP = 2;
                 t.setEnabled(true);
@@ -121,7 +120,6 @@ public class StartGame {
                 tmplP = 8;
                 tmpaP = 2;
                 majInfoP(tmplP, tmpaP);
-                System.out.println("entrer");
             }
         });
 
@@ -164,12 +162,12 @@ public class StartGame {
         infoPlayer.add(infoP, BorderLayout.SOUTH);
         infoPlayer.setOpaque(false);
 
-        //title
+            //title
         title = new JLabel("Dog Stellar", JLabel.CENTER);
         title.setFont(new java.awt.Font(Font.DIALOG, Font.BOLD, 75));
         title.setForeground(Color.white);
 
-        //description of the game
+            //description of the game
         description = new JTextPane();
         description.setFont(new java.awt.Font(Font.DIALOG, Font.BOLD, 25));
         description.setOpaque(false);
@@ -177,13 +175,13 @@ public class StartGame {
         description.setText(" Welcome to DogStellar, the team of GPhy developer \n is happy to see you test our Java project! \n During this adventure, you must be careful if you do not \n want to die before having been able to go back home...");
         description.setEditable(false);
         
-        //center the description
+            //center the description
         StyledDocument doc = description.getStyledDocument();
         SimpleAttributeSet center = new SimpleAttributeSet();
         StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
         doc.setParagraphAttributes(0, doc.getLength(), center, false);
 
-        //Text for enter the name of player (not enable if no player is choose)
+            //Text for enter the name of player (not enable if no player is choose)
         t = new JTextField(30);
         t.setPreferredSize(new Dimension(10, 40));
         t.setEnabled(false);
@@ -267,7 +265,7 @@ public class StartGame {
         rightIcon.setOpaque(false);
 
         //myJFrame with an image background
-        myJFrame.setContentPane(new JLabel(new ImageIcon(picturePath + "BackgroundStartGame.png")));
+        myJFrame.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource(picturePath + "BackgroundStartGame.png"))));
         myJFrame.setLayout(new BorderLayout());
         myJFrame.add(rightIcon);
 
