@@ -54,7 +54,7 @@ public final class ElementView extends JButton {
                 this.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent evt) {
-                        Popup newPopup = new Popup("Enigma :" + E.getInformation().getName());
+                        Popup newPopup = new Popup("Enigma: " + E.getInformation().getName());
                         wind.getInterfac().addMessageToConsole(E.getInformation().getName());
 
                         JButton ok = wind.getInterfac().okButton();  //Link a action listener in the ok button, to know when to check if the answer is correct.
@@ -72,8 +72,8 @@ public final class ElementView extends JButton {
 
                                 if (resolve) {
                                     wind.getInterfac().addMessageToConsole("Congratulation ! ");
-                                    wind.getInterfac().addMessageToConsole("You win :" + E.getReward().getInformation().getName());
-                                    Popup newPopup = new Popup("You have win : " + E.getReward().getInformation().getName() + "!");
+                                    wind.getInterfac().addMessageToConsole("You win: " + E.getReward().getInformation().getName());
+                                    Popup newPopup = new Popup("You have win: " + E.getReward().getInformation().getName() + "!");
                                     ok.removeActionListener(this);
                                     E.setDone(true);
                                     //trial
@@ -144,8 +144,8 @@ public final class ElementView extends JButton {
                 this.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent evt) {
-                        Popup newPopup = new Popup(E.getInformation().getName() + " :" + E.getInformation().getDescription());
-                        wind.getInterfac().addMessageToConsole(E.getInformation().getName() + " :" + E.getInformation().getDescription());
+                        Popup newPopup = new Popup(E.getInformation().getName() + ": " + E.getInformation().getDescription());
+                        wind.getInterfac().addMessageToConsole(E.getInformation().getName() + ": " + E.getInformation().getDescription());
                     }
                 });
             } else {
