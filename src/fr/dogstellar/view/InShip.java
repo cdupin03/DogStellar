@@ -18,8 +18,6 @@ public class InShip extends GeneralWindow implements ActionListener {
 
     private final ArrayList<Planet> planets;
     private final ArrayList<PlanetView> planetViews;
-    private final JButton test;
-    private final JButton test2;
 
     /**
      * The constructor of the class
@@ -31,8 +29,6 @@ public class InShip extends GeneralWindow implements ActionListener {
         super(interfac);
         planets = thePlanets;   //The first planet is the current
         planetViews = new ArrayList<>();
-        test = new JButton();
-        test2 = new JButton();
         adjustWindow();
     }
 
@@ -73,7 +69,7 @@ public class InShip extends GeneralWindow implements ActionListener {
     }
 
     /**
-     * To set enable the arrows of direction
+     * To set enable the arrows of direction in the ship (but there is no arrow)
      *
      * @param ena a boolean true if we set the arrows or false to not set them
      */
@@ -99,7 +95,7 @@ public class InShip extends GeneralWindow implements ActionListener {
      * Add the action to all planetView. When a planet is clicked, it redirects
      * to it.
      *
-     * @param ae The action event
+     * @param ae is the action event
      */
     @Override
     public void actionPerformed(ActionEvent ae) { //Interchanger avant les planetes

@@ -15,8 +15,6 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.text.DefaultCaret;
 
-import org.w3c.dom.NamedNodeMap;
-
 import javax.swing.ImageIcon;
 
 /**
@@ -178,17 +176,12 @@ public class Interface {
         displayP.add(subP, BorderLayout.EAST);
         displayInfo.setLayout(new BorderLayout());					//Set the layout of the displayInfo part
         displayInfo.add(displayP, BorderLayout.CENTER);				//Add the information of the player in the displayInfo Panel
-        //displayInfo.add(displayA, BorderLayout.CENTER);			   // Add the information of the area in the displayInfo Panel
 
         bottom.setLayout(new BorderLayout());                       //Set the layout of the bottom part
         bottom.add(console, BorderLayout.EAST);                     //Add the console to the right part of the bottom
         bottom.add(displayInfo, BorderLayout.CENTER);				//Add the info of the player
 
-        //JLabel test = new JLabel();
-        //test.setText(theWindow.getCurrentArea());
         displayA.setLayout(new BorderLayout());
-        //displayA.add(infoArea, BorderLayout.CENTER);
-        //displayA.add(test);
 
         /*
 		 *  *****   *  *   *****      ** **   *****   *****                                          
@@ -214,10 +207,7 @@ public class Interface {
 //my bag
         Armor armor1 = new Armor("Aurora", "More beautiful than effective", 1);
         Area1Planet1.addElement(new Element("Bag", "with your armor", 4, armor1, "sacados.png", "sacados.png",3,1));
-        
-       
-        
-        
+
         AreaPlanet Area2Planet1 = new AreaPlanet("Area2", "second area", "map/map3.png");
 //my friend present his neighbor
         Area2Planet1.addElement(new Element("PNJ",
@@ -339,11 +329,7 @@ public class Interface {
         Area5Planet4.addPerso(finalboss);
         finalboss.setLifePoint(20);
         
-        
-        
         Area5Planet4.addElement(new Element("Space knight", "Take that, you will need this to defeat this monster, I advice fight the monster, unless you have Master chief's weapon",4,new Potion("MEGA Potion Powerfull", "WoW", 10),"armor3_1.png", "armor3_1.png", 4, 3));
-        
-       
         
         Area1Planet4.addAreaPlanet(Area2Planet4, "east");
         Area2Planet4.addAreaPlanet(Area3Planet4, "south");

@@ -21,7 +21,7 @@ import javax.swing.JButton;
  */
 public final class ElementView extends JButton {
 
-    private final String PicturePath;                                                 // The path of the picture.
+    private final String PicturePath;                                           // The path of the picture.
     private Element E;                                                          // The element which needs a picture          
 
     /**
@@ -39,7 +39,7 @@ public final class ElementView extends JButton {
      */
     public ElementView(String picturePath, Element newE, Window wind) {
         super();                                                                //call the constructor of the JButton
-        PicturePath = picturePath + "";                             			//Define the path of the picture
+        PicturePath = picturePath + "";                             		//Define the path of the picture
         E = newE;                                                               //Define the element
 
         if (E.getType() == 1) //If the element is a enigma 

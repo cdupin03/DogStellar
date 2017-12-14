@@ -11,205 +11,159 @@ import javax.swing.*;
  * and the Area)
  *
  * @author G3
- *
+ * @version V03
  */
 public class DisplayInfo extends JPanel {
 
-	private JLabel namePlayer, nameBarLife, nameBarAttack, nameBarArmor, nPlanet, nArea, nameWeapon, nameArmor;
-	private JProgressBar progressLife;
-        private JLabel armor ;
-        private JLabel damage ;
-        
-	private JPanel barLife = new JPanel(); // Panel for the information of the player
-	private JPanel barAttack = new JPanel(); // Panel for the information of the player
-	private JPanel weaponLife = new JPanel();
-	private JPanel armorLife = new JPanel();
-	private JPanel bar = new JPanel(); // Panel for the information of the player
-	private JPanel infoArea = new JPanel(); // Panel for the information of the Area
-        private JPanel namearmorattack = new JPanel(); 
-        private JPanel armorattack = new JPanel();
-        
-	public DisplayInfo() {
-                final int  maxlifepoint =  StartGame.getLifePoint()*10;    
-                
-                
-		nameBarLife = new JLabel("Life Point      : ");
-		nameBarAttack = new JLabel("Attack Point : ");
-                nameBarArmor = new JLabel("Armor Point  : ");
-                
-                progressLife= new JProgressBar (0,maxlifepoint);
-                progressLife.setForeground(Color.red);
-               
-              
-                displayLife();
-		
+    private JLabel nameBarLife, nameBarAttack, nameBarArmor, nPlanet, nArea, nameWeapon, nameArmor;
+    private JProgressBar progressLife;
+    private JLabel armor;
+    private JLabel damage;
 
+    private JPanel barLife = new JPanel(); // Panel for the information of the player
+    private JPanel barAttack = new JPanel(); // Panel for the information of the player
+    private JPanel weaponLife = new JPanel();
+    private JPanel armorLife = new JPanel();
+    private JPanel bar = new JPanel(); // Panel for the information of the player
+    private JPanel infoArea = new JPanel(); // Panel for the information of the Area
+    private JPanel namearmorattack = new JPanel();
+    private JPanel armorattack = new JPanel();
 
-		if (StartGame.getPlayer().hasWeapon() == true) {
-                    int Damageweapon = StartGame.getPlayer().getWeaponEquip().getDamage();
-                    int Damageplayer = StartGame.getPlayer().getAttackPoint();
-                    int FinalDamage = Damageweapon + Damageplayer;
-                    damage = new JLabel(" "+ FinalDamage);
-                
-		}
-                else
-                {   
-                    damage = new JLabel(" "+ StartGame.getPlayer().getAttackPoint());
-                }   
-                
-		    nameArmor = new JLabel("Armor Life    : ");
-                    armorLife.setLayout(new BorderLayout());
-                    armorLife.add(nameArmor, BorderLayout.WEST);
-                    armorLife.setVisible(false);
-                    
-                
-		if (StartGame.getPlayer().hasArmor() == true) {
-                   
-                    
-                    
-                    final int trial = StartGame.getPlayer().getArmorEquip().getArmorPoint() * 10;
-                    displayArmor();
-                    armor = new JLabel(" "+StartGame.getPlayer().getArmorEquip().getArmorPoint());
-                
-		}
-                else
-                {
-                    armor = new JLabel(" 0");
-                
-                
-                }    
-                
-                namearmorattack.setLayout(new GridLayout(2,0));
-                namearmorattack.add(nameBarAttack);
-                namearmorattack.add(nameBarArmor);
-                
-                armorattack.setLayout(new GridLayout(2,0));
-                armorattack.add(damage);
-                armorattack.add(armor);
-                
-                
-		barLife.setLayout(new BorderLayout());
-		barLife.add(nameBarLife, BorderLayout.WEST);
-		barLife.add(progressLife, BorderLayout.CENTER);
-		//barLife.add(armorLife, BorderLayout.SOUTH); 
+    public DisplayInfo() {
+        final int maxlifepoint = StartGame.getLifePoint() * 10;
 
-		barAttack.setLayout(new BorderLayout());
-		barAttack.add(namearmorattack, BorderLayout.WEST);
-                barAttack.add(armorattack, BorderLayout.CENTER);
-	//	barAttack.add(progressAttack, BorderLayout.CENTER);
-	//	barAttack.add(weaponLife, BorderLayout.SOUTH);
+        nameBarLife = new JLabel("Life Point      : ");
+        nameBarAttack = new JLabel("Attack Point : ");
+        nameBarArmor = new JLabel("Armor Point  : ");
 
-		bar.setLayout(new GridLayout(2,1));
-		bar.setBackground(Color.cyan);
-		bar.add(barLife, BorderLayout.NORTH);
-		bar.add(barAttack, BorderLayout.SOUTH);
+        progressLife = new JProgressBar(0, maxlifepoint);
+        progressLife.setForeground(Color.red);
 
-		this.setLayout(new BorderLayout());
-		this.add(bar, BorderLayout.CENTER);
-	}
+        displayLife();
 
-	public DisplayInfo(ArrayList<Planet> planets, AreaPlanet area) {/* HashMap<String, AreaPlanet> */
-		this.setVisible(true);
-		this.setLayout(new BorderLayout());
-		this.setOpaque(isOpaque());
-		this.setBackground(Color.cyan);
+        if (StartGame.getPlayer().hasWeapon() == true) {
+            int Damageweapon = StartGame.getPlayer().getWeaponEquip().getDamage();
+            int Damageplayer = StartGame.getPlayer().getAttackPoint();
+            int FinalDamage = Damageweapon + Damageplayer;
+            damage = new JLabel(" " + FinalDamage);
 
-		infoArea.setPreferredSize(new Dimension(200, 200));
-		this.add(infoArea, BorderLayout.CENTER);
+        } else {
+            damage = new JLabel(" " + StartGame.getPlayer().getAttackPoint());
+        }
 
-		JPanel namePlanet = new JPanel();
-		JPanel nameArea = new JPanel();
+        nameArmor = new JLabel("Armor Life    : ");
+        armorLife.setLayout(new BorderLayout());
+        armorLife.add(nameArmor, BorderLayout.WEST);
+        armorLife.setVisible(false);
 
-		for (int i = 0; i < planets.size(); i++) {
-			System.out.println(planets.get(i).getInformation().getName());
-			nPlanet = new JLabel("You are on the Planet : " + planets.get(0).getAreas().getInformation().getName());
+        if (StartGame.getPlayer().hasArmor() == true) {
+            displayArmor();
+            armor = new JLabel(" " + StartGame.getPlayer().getArmorEquip().getArmorPoint());
+        } else {
+            armor = new JLabel(" 0");
 
-		}
+        }
 
-		/*
-		 * System.out.println("Boucle for:"); for (Map.Entry<String,AreaPlanet> map :
-		 * area.entrySet()) { System.out.println("cle: "+map.getKey() + " | valeur: " +
-		 * map.getValue()); nArea = new JLabel("and on the Area : "+ map.getValue());
-		 * 
-		 * 
-		 * 
-		 * }
-		 */
-		// nPlanet = new JLabel("You are on the Planet : " +
-		// planets.getInformation().getName());
-		nArea = new JLabel("and on the Area : " + area.getNameArea());
-		// theDisplayPanel.setLayout(null);
-		// nameP.setBounds(600, 100, 50, 50);
+        namearmorattack.setLayout(new GridLayout(2, 0));
+        namearmorattack.add(nameBarAttack);
+        namearmorattack.add(nameBarArmor);
 
-		namePlanet.setLayout(new BoxLayout(namePlanet, BoxLayout.LINE_AXIS));
-		namePlanet.add(nPlanet);
-		nameArea.setLayout(new BoxLayout(nameArea, BoxLayout.LINE_AXIS));
-		nameArea.add(nArea);
+        armorattack.setLayout(new GridLayout(2, 0));
+        armorattack.add(damage);
+        armorattack.add(armor);
 
-		infoArea.add(nPlanet);
-		infoArea.add(nArea);
-	}
+        barLife.setLayout(new BorderLayout());
+        barLife.add(nameBarLife, BorderLayout.WEST);
+        barLife.add(progressLife, BorderLayout.CENTER);
+        //barLife.add(armorLife, BorderLayout.SOUTH); 
 
-	/**
-	 * The display of the life bar
-	 */
-	public void displayLife() {
-		int tmp = StartGame.getPlayer().getLifePoint() * 10;
-		progressLife.setSize(new Dimension(10, 50));
-		progressLife.setValue(tmp);
-		progressLife.setStringPainted(true);
-                progressLife.setString(""+tmp/10);
-	}
+        barAttack.setLayout(new BorderLayout());
+        barAttack.add(namearmorattack, BorderLayout.WEST);
+        barAttack.add(armorattack, BorderLayout.CENTER);
 
-	/**
-	 * The display of the attackPoint
-	 */
-	public void displayAttack() {
-		
-               if (StartGame.getPlayer().hasWeapon() == true) {
-                    int Damageweapon = StartGame.getPlayer().getWeaponEquip().getDamage();
-                    int Damageplayer = StartGame.getPlayer().getAttackPoint();
-                    int FinalDamage = Damageweapon + Damageplayer;
-                    damage.setText(" "+ FinalDamage);
-                
-		}
-                else
-                {   
-                    damage.setText(" "+ StartGame.getPlayer().getAttackPoint());
-                }   
-	}
-	
+        bar.setLayout(new GridLayout(2, 1));
+        bar.setBackground(Color.cyan);
+        bar.add(barLife, BorderLayout.NORTH);
+        bar.add(barAttack, BorderLayout.SOUTH);
 
-        /**
-         * Display of the armorPoint
-         */
-	public void displayArmor() {
-		if (StartGame.getPlayer().hasArmor() == true) {
-                   
-                    
-                    
-                    final int trial = StartGame.getPlayer().getArmorEquip().getArmorPoint() * 10;
-                    armor.setText(" "+StartGame.getPlayer().getArmorEquip().getArmorPoint());
-                
-		}
-                else
-                {
-                    armor.setText(" 0");
-                
-                
-                }  
-	}
-	
-	/**
-	 * To refresh the bar display
-	 */
-	public void refreshDisplay() {
-		progressLife.setStringPainted(false);
-		displayLife();
-		displayAttack();
-                displayArmor();
-                
-		
-	}
+        this.setLayout(new BorderLayout());
+        this.add(bar, BorderLayout.CENTER);
+    }
+
+    public DisplayInfo(ArrayList<Planet> planets, AreaPlanet area) {
+        this.setVisible(true);
+        this.setLayout(new BorderLayout());
+        this.setOpaque(isOpaque());
+        this.setBackground(Color.cyan);
+
+        infoArea.setPreferredSize(new Dimension(200, 200));
+        this.add(infoArea, BorderLayout.CENTER);
+
+        JPanel namePlanet = new JPanel();
+        JPanel nameArea = new JPanel();
+
+        for (int i = 0; i < planets.size(); i++) {
+            System.out.println(planets.get(i).getInformation().getName());
+            nPlanet = new JLabel("You are on the Planet : " + planets.get(0).getAreas().getInformation().getName());
+
+        }
+
+        nArea = new JLabel("and on the Area : " + area.getNameArea());
+
+        namePlanet.setLayout(new BoxLayout(namePlanet, BoxLayout.LINE_AXIS));
+        namePlanet.add(nPlanet);
+        nameArea.setLayout(new BoxLayout(nameArea, BoxLayout.LINE_AXIS));
+        nameArea.add(nArea);
+
+        infoArea.add(nPlanet);
+        infoArea.add(nArea);
+    }
+
+    /**
+     * The display of the life bar
+     */
+    public void displayLife() {
+        int tmp = StartGame.getPlayer().getLifePoint() * 10;
+        progressLife.setSize(new Dimension(10, 50));
+        progressLife.setValue(tmp);
+        progressLife.setStringPainted(true);
+        progressLife.setString("" + tmp / 10);
+    }
+
+    /**
+     * The display of the attackPoint
+     */
+    public void displayAttack() {
+
+        if (StartGame.getPlayer().hasWeapon() == true) {
+            int Damageweapon = StartGame.getPlayer().getWeaponEquip().getDamage();
+            int Damageplayer = StartGame.getPlayer().getAttackPoint();
+            int FinalDamage = Damageweapon + Damageplayer;
+            damage.setText(" " + FinalDamage);
+        } else {
+            damage.setText(" " + StartGame.getPlayer().getAttackPoint());
+        }
+    }
+
+    /**
+     * Display of the armorPoint
+     */
+    public void displayArmor() {
+        if (StartGame.getPlayer().hasArmor() == true) {
+            armor.setText(" " + StartGame.getPlayer().getArmorEquip().getArmorPoint());
+        } else {
+            armor.setText(" 0");
+        }
+    }
+
+    /**
+     * To refresh the bar display
+     */
+    public void refreshDisplay() {
+        progressLife.setStringPainted(false);
+        displayLife();
+        displayAttack();
+        displayArmor();
+    }
 
 }

@@ -4,7 +4,6 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,18 +16,17 @@ import javax.swing.*;
  * The general window allows to display the map and the element on the map
  *
  * @author Group 3
- * @version V01
+ * @version V02
  */
 public abstract class GeneralWindow extends JPanel {
 
-    private final HashMap<Integer, Component> components;                             //The coordinates (xxyy) linked to a component (arrow for example)
+    private final HashMap<Integer, Component> components;                       //The coordinates (xxyy) linked to a component (arrow for example)
     private int height;                                                         //The number of column
     private int length;                                                         //The number of lines	private final String picturePath;
     private String nameOfFirstBackgroundPicture;                                //The name of the first background
     private final String picturePath;                                           //The path of the pictures
     private Image back;                                                         //The back Image
     private final Interface interfac;                                           //The interface that display this window
-    //protected String theCurrentZone;
     
     /**
      * The constructor of the GeneralWindow Class
@@ -188,7 +186,7 @@ public abstract class GeneralWindow extends JPanel {
     }
 
     /**
-     * getter of FirstBackgroundPicture
+     * Getter of FirstBackgroundPicture
      *
      * @return nameOfFirstBackgroundPicture is the path of the background
      * picture of the panel

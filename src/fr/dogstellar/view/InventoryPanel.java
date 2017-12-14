@@ -137,7 +137,6 @@ public final class InventoryPanel extends JFrame {
             
                   
             equipedWeapon.setToolTipText(associationLabel(thePlayer.getWeaponEquip()));     //set the right tooltiptext
-            System.out.println("Weapon =" + thePlayer.hasArmor());
             //action listener to unequip the weapon
             equipedWeapon.addActionListener((ActionEvent e) -> {
                 // TODO Auto-generated method stub
@@ -169,8 +168,6 @@ public final class InventoryPanel extends JFrame {
             GridLayout Disposition = new GridLayout(j /3+ j%3, 3);
             inventory.setLayout(Disposition);
 
-            System.out.println(j);
-
             // variables of the size of each item case
             if (j < 3) {
                 int gridCaseHeight = ((150) / (j / 1));
@@ -195,7 +192,6 @@ public final class InventoryPanel extends JFrame {
                     //management for a weapon
                     if (isWeapon(i)) {
                         if (thePlayer.hasWeapon()) {
-
                             thePlayer.desequipWeapon();
                         }
                         thePlayer.addWeaponEquip((Weapon) i);
@@ -266,7 +262,6 @@ public final class InventoryPanel extends JFrame {
                     compteur++;
                 }
             }
-
         }
         return compteur;
     }
@@ -369,15 +364,11 @@ public final class InventoryPanel extends JFrame {
             //load the associate image in function of the damage of the weapon
             if ((myWeapon.getDamage() <= 3)) {
                 iconPic = "/pictures/weapon1.png";
-
             } else if (myWeapon.getDamage() <= 5) {
                 iconPic = "/pictures/weapon2.png";
-
             } else {
                 iconPic = "/pictures/weapon3.png";
-
             }
-
         }
         //test if the stuff is an armor
         if (isArmor(theStuff)) {
@@ -386,13 +377,10 @@ public final class InventoryPanel extends JFrame {
             //associate the image name in function of the armor point of the stuff
             if (myArmor.getArmorPoint() <= 3) {
                 iconPic = "/pictures/armor1.png";
-
             } else if (myArmor.getArmorPoint() <= 5) {
                 iconPic = "/pictures/armor2.png";
-
             } else {
                 iconPic = "/pictures/armor3.png";
-
             }
         }
         // check if the stuff is a potion
@@ -402,19 +390,12 @@ public final class InventoryPanel extends JFrame {
             //Associate the good image in function of the number of points earned by a potion take 
             if (myPotion.getLifePoint() <= 3) {
                 iconPic = "/pictures/potion1.png";
-
             } else if (myPotion.getLifePoint() <= 5) {
                 iconPic = "/pictures/potion2.png";
-
             } else {
                 iconPic = "/pictures/potion3.png";
-
             }
         }
-
-        //String filePath = System.getProperty("user.dir") + iconPic; // take the path of the stuff picture
-        // System.out.println(filePath);
-
         return iconPic;
     }
 
@@ -454,7 +435,7 @@ public final class InventoryPanel extends JFrame {
     }
 
     /**
-     * The method who allow to refresh the inventory (all the element of the
+     * The method allows to refresh the inventory (all the element of the
      * frame are droped and reloaded exept the player data
      */
     public void refreshInventory() {
@@ -466,6 +447,5 @@ public final class InventoryPanel extends JFrame {
         generateInventory();
         inventory.revalidate();
         equipedInventory.revalidate();
-
     }
 }
