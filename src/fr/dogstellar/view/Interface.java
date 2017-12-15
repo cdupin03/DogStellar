@@ -297,7 +297,7 @@ public class Interface {
 
 //A stealth armor in the area 2. It is displayed only when you pass the mouse on it. It is in the top right corner of the map.
 //It give a second chance to the player to kill the boss if he didn't have a armor from the monster.
-        Armor armor4 = new Armor("???", "That is a stealth armor, a great one.", 10);
+        Armor armor4 = new Armor("Atilus", "That is a stealth armor, a great one.", 10);
         Area2Planet4.addElement(new Element("???", "???",4,armor4,"", "friend.png", 3, 1));
 
 //A map with 8 trap and one  chest with the greatest armor of the game. To find the chest you can either try it all or try to find clue in the maps
