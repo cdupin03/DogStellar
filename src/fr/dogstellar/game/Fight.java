@@ -32,7 +32,6 @@ public final class Fight {
      * If the player loose, he recovers its life point and go back to the ship
      * If the monster loose, it signaled as dead and give its objects to the player.
      * 
-     *
      * @param myMonster is the monster to fight
      * @param myPlayer is the player that fight
      */
