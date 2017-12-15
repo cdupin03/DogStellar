@@ -30,7 +30,7 @@ public final class Fight {
      * Is the constructor of Fight. It contains all the step of a fight.
      * It manages the attacks of the player and the monster
      * If the player loose, he recovers its life point and go back to the ship
-     * If the monster loose, it signaled as dead and give its objects (1/2 chance) to the player.
+     * If the monster loose, it signaled as dead and give its objects to the player.
      * 
      *
      * @param myMonster is the monster to fight
