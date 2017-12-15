@@ -45,10 +45,9 @@ public class DisplayInfo extends JPanel {
         displayLife();
 
         if (StartGame.getPlayer().hasWeapon() == true) {
-            int Damageweapon = StartGame.getPlayer().getWeaponEquip().getDamage();
             int Damageplayer = StartGame.getPlayer().getAttackPoint();
-            int FinalDamage = Damageweapon + Damageplayer;
-            damage = new JLabel(" " + FinalDamage);
+            damage.setText(" " + Damageplayer);
+          
 
         } else {
             damage = new JLabel(" " + StartGame.getPlayer().getAttackPoint());
@@ -142,10 +141,8 @@ public class DisplayInfo extends JPanel {
     public void displayAttack() {
 
         if (StartGame.getPlayer().hasWeapon() == true) {
-            int Damageweapon = StartGame.getPlayer().getWeaponEquip().getDamage();
-            int Damageplayer = StartGame.getPlayer().getAttackPoint();
-            int FinalDamage = Damageweapon + Damageplayer;
-            damage.setText(" " + FinalDamage);
+            int Damageplayer2 = StartGame.getPlayer().getAttackPoint();
+            damage.setText(" " + Damageplayer2);
         } else {
             damage.setText(" " + StartGame.getPlayer().getAttackPoint());
         }
