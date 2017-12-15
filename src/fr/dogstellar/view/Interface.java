@@ -249,16 +249,16 @@ public class Interface {
         
 //Planet 1 with 3 areas and different elements(perso,element) on them
 //my friend
-        Area1Planet1.addElement(new Element("Friend", " Hey my friend ! Do you remember me? I found you almost dead but you're better now. I hope you find your bag", 3, "friend.png", "friend.png",1,3));
+        Area1Planet1.addElement(new Element("Friend", " Hey my friend! Do you remember me? I found you almost dead but you're better now. I hope you find your bag !", 3, "friend.png", "friend.png",1,3));
 //my bag
         Armor armor1 = new Armor("Aurora", "More beautiful than effective", 1);
         Area1Planet1.addElement(new Element("Bag", "with your armor", 4, armor1, "sacados.png", "sacados.png",3,1));
 //my friend present his neighbor
         Area2Planet1.addElement(new Element("Friend",
-                "My neighbor does not like to be disturbed ... but he may have recovered a piece of your ship",3,"friend.png", "friend.png",3,3));
+                "My neighbor does not like to be disturbed ... but he may have recovered a piece of your ship.",3,"friend.png", "friend.png",3,3));
         Area2Planet1.addPerso(neighbor);
 //my friend his happy
-        Area3Planet1.addElement(new Element("Friend", "Thanks ! my neighbor has gone away now", 3,"friend.png", "friend.png", 1, 3));
+        Area3Planet1.addElement(new Element("Friend", "Thanks! My neighbor has gone away now.", 3,"friend.png", "friend.png", 1, 3));
 //Enigma (universe)
         Weapon weapon1 = new Weapon("Walpurga", "Weak laser ", 1);
 
@@ -266,7 +266,7 @@ public class Interface {
 
 //Planet 2 with 2 areas and different elements(perso,element) on them
 //false friend
-        Area2Planet2.addElement(new Element("Trap", " Who did you think I was ? ", 2, "friend.png", "friend.png", 1, 3));
+        Area2Planet2.addElement(new Element("Trap", " Who did you think I was? ", 2, "friend.png", "friend.png", 1, 3));
 //2 monsters 
         Area4Planet2.addPerso(double1);
         Area4Planet2.addPerso(double2);
@@ -285,19 +285,19 @@ public class Interface {
 //Planet3 with 3 areas
 //his neighbor is alive but your friend propose to you an enigma to have a his armor (star)
         Armor armor2  = new Armor("Astraea", "keep it for fight the big monster",4);
-        Area2Planet3.addElement(new Element(" Friend : I will give you my armor but before answer to my enigma : I can be white, yellow, red, blue even black. Who am I?( in 4 characters)","star", 1, armor2, "friend.png", "friend.png", 3, 3));
+        Area2Planet3.addElement(new Element(" I will give you my armor but before answer to my enigma : I can be white, yellow, red, blue even black. Who am I?( in 4 characters)","star", 1, armor2, "friend.png", "friend.png", 3, 3));
         Area2Planet3.addPerso(neighborAlive);
 
 //Planet 4 with 6 areas and different elements(perso,element) on them   
 
 //PNJ with information on the planet
-        Area1Planet4.addElement(new Element("knight", "Welcome to Vanatis, This is the toughest planet of this solar system. If you wonder if you are ready for this, you don't!",3,"help.png", "helpRoll.png", 1,1));
-        Area1Planet4.addElement(new Element("knight", "There is a lot of trap in this planet. Remember, trap cannot move..., don't fall for it",3,"help.png", "helpRoll.png", 3, 1));
-        Area1Planet4.addElement(new Element("knight", "Welcome to Vanatis, I saw the boss and small monsters with spaceship part. Good luck to pick them up.",3,"friend.png", "friend.png", 3, 3));
+        Area1Planet4.addElement(new Element("Knight", "Welcome to Vanatis, This is the toughest planet of this solar system. If you wonder if you are ready for this, you don't!",3,"help.png", "helpRoll.png", 1,1));
+        Area1Planet4.addElement(new Element("Knight", "There is a lot of trap in this planet. Remember, trap cannot move..., don't fall for it.",3,"help.png", "helpRoll.png", 3, 1));
+        Area1Planet4.addElement(new Element("Knight", "Welcome to Vanatis, I saw the boss and small monsters with spaceship part. Good luck to pick them up.",3,"friend.png", "friend.png", 3, 3));
 
 //A stealth armor in the area 2. It is displayed only when you pass the mouse on it. It is in the top right corner of the map.
 //It give a second chance to the player to kill the boss if he didn't have a armor from the monster.
-        Armor armor4 = new Armor("???", "That is a stealth armor, a great one", 10);
+        Armor armor4 = new Armor("???", "That is a stealth armor, a great one.", 10);
         Area2Planet4.addElement(new Element("???", "???",4,armor4,"", "friend.png", 3, 1));
 
 //A map with 8 trap and one  chest with the greatest armor of the game. To find the chest you can either try it all or try to find clue in the maps
@@ -337,7 +337,7 @@ public class Interface {
         Area5Planet4.addElement(new Element("Space knight", "Take that, you will need this to defeat this monster, I advice fight the monster, unless you have Master chief's weapon",4,new Potion("MEGA Potion Powerfull", "WoW", 10),"friend.png", "friend.png", 1, 3));
 
 //The old man that give the location of the chest area3.       
-        Area6Planet4.addElement(new Element("Old man _ enigma", "What is the number of chromosome possess by a human? ?",3,"help.png", "helpRoll.png", 1, 3));
+        Area6Planet4.addElement(new Element("Old man _ enigma", "What is the number of pairs of chromosomes possess by a human? ?",3,"help.png", "helpRoll.png", 1, 3));
         Area6Planet4.addElement(new Element("Old man _ enigma2", "XY => X line, Y column.",3,"help.png", "helpRoll.png", 2, 3));
 
         theWindow = new Window(planets, this);
