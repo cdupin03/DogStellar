@@ -173,7 +173,7 @@ public class StartGame {
         description.setFont(new java.awt.Font(Font.DIALOG, Font.BOLD, 25));
         description.setOpaque(false);
         description.setForeground(Color.white);
-        description.setText(" Welcome to DogStellar, the team of GPhy developer \n is happy to see you test our Java project! \n During this adventure, you must be careful if you do not \n want to die before having been able to go back home...");
+        description.setText(" Welcome to DogStellar, the team of GPhy developers \n is happy to see you test our Java project! \n During this adventure, you must be careful if you do not \n want to die before having been able to go back home...");
         description.setEditable(false);
         
             //center the description
