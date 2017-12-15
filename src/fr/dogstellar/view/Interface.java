@@ -337,7 +337,7 @@ public class Interface {
         Area5Planet4.addElement(new Element("Space knight", "Take that, you will need this to defeat this monster, I advice fight the monster, unless you have Master chief's weapon",4,new Potion("MEGA Potion Powerfull", "WoW", 10),"friend.png", "friend.png", 1, 3));
 
 //The old man that give the location of the chest area3.       
-        Area6Planet4.addElement(new Element("Old man _ enigma", "What is the number of chromosome possess by a human? ?",3,"help.png", "helpRoll.png", 1, 3));
+        Area6Planet4.addElement(new Element("Old man _ enigma", "What is the number of pairs of chromosomes possess by a human? ?",3,"help.png", "helpRoll.png", 1, 3));
         Area6Planet4.addElement(new Element("Old man _ enigma2", "XY => X line, Y column.",3,"help.png", "helpRoll.png", 2, 3));
 
         theWindow = new Window(planets, this);

@@ -165,7 +165,7 @@ public final class ElementView extends JButton {
                             }
                         }
                         if (compt < 9) {
-                            StartGame.getInterf().addMessageToConsole("You have not enouth piece of ship to build your new ship, you need 9 spaceship part. You have :" + compt);
+                            StartGame.getInterf().addMessageToConsole("You have not enough piece of ship to build your new ship, you need 9 spaceship part. You have: " + compt + " PLEASE COME BACK WHEN YOU HAVE ENOUGH PIECES !!!");
                         } else {
                             new VideoPlayer("fin.mp4", 20000, "DogStellar - The end");
                         }
