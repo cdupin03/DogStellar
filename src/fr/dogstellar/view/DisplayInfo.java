@@ -94,6 +94,8 @@ public class DisplayInfo extends JPanel {
 
     /**
      * Display the bars in the botton of the interface.
+     * @param planets is the planet to get the informations
+     * @param area is the specific area
      */
     public DisplayInfo(ArrayList<Planet> planets, AreaPlanet area) {
         this.setVisible(true);
