@@ -51,7 +51,6 @@ public final class InventoryPanel extends JFrame {
      */
     public void generateInventory() {
 
-        // test si le joueur à un équipement + creation du label "Equiped item"
         String picturePath = "/pictures/";
 
         equipedInventory = new JPanel();

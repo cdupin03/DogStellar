@@ -125,17 +125,17 @@ public class Interface {
                     ip.addWindowListener(new WindowAdapter() {
                         @Override
                         public void windowClosed(java.awt.event.WindowEvent e) {
-                            ip = null; // comme ça on peut réouvrir la fenêtre si elle est fermée
+                            ip = null;
                         }
                     ;
                     });
 					ip.setVisible(true);
                 } else {
-                    // remettre la fenêtre en état normal si elle a été réduite
+                    
                     if (ip.getState() == JFrame.ICONIFIED) {
                         ip.setState(JFrame.NORMAL);
                     }
-                    // remettre la fenêtre en premier plan
+                    
                     ip.toFront();
                 }
             }

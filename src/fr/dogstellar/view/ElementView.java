@@ -42,7 +42,7 @@ public final class ElementView extends JButton {
      */
     public ElementView(String picturePath, Element newE, Window wind) {
         super();                                                                //call the constructor of the JButton
-        PicturePath = picturePath + "";                             			//Define the path of the picture
+        PicturePath = picturePath + "";                             		//Define the path of the picture
         E = newE;                                                               //Define the element
 
         if (E.getType() == 1) //If the element is a enigma 
@@ -68,7 +68,6 @@ public final class ElementView extends JButton {
                                 String answer = wind.getInterfac().getAreaToWrite().getText().trim().toUpperCase();
 
                                 resolve = E.resolveEnigma(answer, StartGame.getPlayer());
-                                //Ajouter un return true dans resolve enigma
 
                                 if (resolve) {
                                     wind.getInterfac().addMessageToConsole("Congratulation ! ");
