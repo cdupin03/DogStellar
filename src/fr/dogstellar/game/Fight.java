@@ -27,16 +27,12 @@ public final class Fight {
     private boolean end; //true if the end is reached
 
     /**
-<<<<<<< HEAD
      * Is the constructor of Fight. It contains all the step of a fight.
      * It manages the attacks of the player and the monster
      * If the player loose, he recovers its life point and go back to the ship
      * If the monster loose, it signaled as dead and give its objects (1/2 chance) to the player.
      * 
-=======
-     * Is the constructor of Fight
      *
->>>>>>> ea25e0a84d28c041198cb609fe6dba0bf15dcd1d
      * @param myMonster is the monster to fight
      * @param myPlayer is the player that fight
      */
