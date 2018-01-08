@@ -66,7 +66,7 @@ public final class InventoryPanel extends JFrame {
         // Creation of the equipment Jpanel
         //test if the player has no equiped armor 
         if (!thePlayer.hasArmor()) {
-            ImageIcon theImage1 = new ImageIcon(this.getClass().getResource(picturePath + "void.jpg"));                  // set the default image 
+            ImageIcon theImage1 = new ImageIcon(this.getClass().getResource(picturePath + "void.png"));                  // set the default image 
 
             theImage1 = resyze(theImage1, gridCaseHeight1, gridCaseWidth1);                 //resize the image
             JButton equipedArmor = new JButton(theImage1);                                  //create a new JButton
@@ -109,7 +109,7 @@ public final class InventoryPanel extends JFrame {
         }
         // comportment if the player has no weapon equiped 
         if (!thePlayer.hasWeapon()) {
-            ImageIcon theImage2 = new ImageIcon(this.getClass().getResource(picturePath + "void.jpg"));                  // load a default image
+            ImageIcon theImage2 = new ImageIcon(this.getClass().getResource(picturePath + "void.png"));                  // load a default image
 
             theImage2 = resyze(theImage2, gridCaseHeight1, gridCaseWidth1);                 //resize the image
             JButton equipedWeapon = new JButton(theImage2);                                 //put the image in a button

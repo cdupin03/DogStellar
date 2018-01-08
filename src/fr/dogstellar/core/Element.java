@@ -96,7 +96,7 @@ public class Element {
     /**
      * Give the reward of the element to the player
      *
-     * @param player
+     * @param player is the player 
      */
     public void open_chest(Player player) {
         player.addStuff(reward, 1);

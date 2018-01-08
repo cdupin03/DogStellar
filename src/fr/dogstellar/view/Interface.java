@@ -308,7 +308,7 @@ public class Interface {
         Area3Planet4.addElement(new Element("Not this one", "universe",2,"friend.png", "friend.png", 1, 3));
         Area3Planet4.addElement(new Element("Not this one", "universe",2,"friend.png", "friend.png", 2, 1));
         Area3Planet4.addElement(new Element("Not this one", "universe",2,"friend.png", "friend.png", 2, 2));
-        Weapon weapon3 = new Weapon("Master chief's weapon", "The strongest, simple, basic. ", 15);
+        Weapon weapon3 = new Weapon("Master chief's weapon", "The strongest, simple, basic. ", 8);
         Area3Planet4.addElement(new Element("Space knight", "Congratulation, you find me. Take my greatest weapon",4,weapon3,"friend.png", "friend.png", 3, 2));
         Area3Planet4.addElement(new Element("Not this one", "universe",2,"friend.png", "friend.png", 3, 1));
         Area3Planet4.addElement(new Element("Not this one", "universe",2,"friend.png", "friend.png", 2, 3));
